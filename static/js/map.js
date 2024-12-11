@@ -303,8 +303,7 @@ function updateDistanceDisplay(text) {
 }
 
 
-// Function to highlight pinpoints based on category and zoom to them
-function highlightPinpoints(category) {
+function bounceAllPins(category) {
     // Clear previous highlights
     document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
 
@@ -317,53 +316,24 @@ function highlightPinpoints(category) {
     // Stop animation for all markers
     markers.forEach((marker) => marker.setAnimation(null));
 
-    // Filter and highlight all markers in the selected category
+    // Bounce all markers in the selected category
     const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
     const bounds = new google.maps.LatLngBounds(); // Define bounds for zoom
 
-    selectedPins.forEach((pin) => {
-        const marker = markers.find(
-            (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
-        );
-        if (marker) {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-            bounds.extend(marker.getPosition()); // Add marker to bounds
-        }
-    });
-
-    // Adjust the map to fit all selected markers
-    map.fitBounds(bounds);
-}
-
-// Function to bounce all pins in the selected category (e.g., Platform 1)
-function bounceAllPins(category) {
-    // Clear previous highlights
-    document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
-
-    // Highlight the selected menu item
-    const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
-        (li) => li.textContent === category
-    );
-    if (selectedItem) selectedItem.classList.add('highlight');
-
-    // Bounce all markers in the selected category
-    const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
     selectedPins.forEach((pin) => {
         const marker = markers.find(
             (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
         );
         if (marker) {
             marker.setAnimation(google.maps.Animation.BOUNCE); // Make marker bounce
+            bounds.extend(marker.getPosition()); // Add marker to bounds
         }
     });
 
-    // Optionally, you can zoom into the category as well
-    const bounds = new google.maps.LatLngBounds(); // Define bounds for zoom
-    selectedPins.forEach((pin) => {
-        bounds.extend(new google.maps.LatLng(pin.lat, pin.lng)); // Extend bounds to include all markers
-    });
-    map.fitBounds(bounds); // Adjust the map to fit all selected markers
+    // Adjust the map to fit all selected markers
+    map.fitBounds(bounds); // Fit the map to the category's bounds
 }
+
 
 
 // Predefined constant pinpoints with text and icons
@@ -464,22 +434,7 @@ const TOURIST_PLACES = [
 
 
 
-function addTouristPinpoints(placeName) {
-    // Find the corresponding tourist place
-    const place = TOURIST_PLACES.find((p) => p.name === placeName);
 
-    if (!place) {
-        console.error('Place not found:', placeName);
-        return;
-    }
-
-    // Add a custom marker for the place
-    addCustomMarker({ lat: place.lat, lng: place.lng }, place.title, place.icon);
-
-    // Center the map on the added marker
-    map.setCenter({ lat: place.lat, lng: place.lng });
-    map.setZoom(34); // Adjust zoom level
-}
 
 function handleBackButtonClick() {
     if (userLocation) {
