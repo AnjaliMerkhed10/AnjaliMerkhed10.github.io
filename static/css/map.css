@@ -92,7 +92,7 @@ body {
 position: fixed;
 top: 0;
 right: -250px; /* Hidden initially */
-width: 250px;
+width: 170px;
 height: 100%;
 background-color: #006BC0; /* Matches blue bar color */
 color: white;
@@ -124,7 +124,7 @@ color: rgb(22, 22, 22);
 border: none;
 padding: 10px 15px;
 text-align: left;
-font-size: 16px;
+font-size: 13px;
 border-radius: 5px;
 cursor: pointer;
 transition: background-color 0.3s ease-in-out;
@@ -149,7 +149,7 @@ display: block; /* Show the list */
 
 .menu-list li {
 padding: 5px 0;
-font-size: 14px;
+font-size: 15px;
 }
 
 .menu-list li a {
@@ -341,9 +341,12 @@ padding: 10px;
     padding: 8px 12px;
     font-size: 12px; /* Adjust this value to make the font smaller */
     color: #000;
+    text-transform: capitalize; 
+    font-weight: bold;
 }
 
 
 .menu-list > li:hover .submenu {
     display: block; /* Show submenu on hover */
+    font-size: 15px;
 }

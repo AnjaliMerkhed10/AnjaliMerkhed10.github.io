@@ -302,34 +302,8 @@ function updateDistanceDisplay(text) {
     }
 }
 
-function highlightPinpoints(category) {
-    // Clear previous highlights
-    document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
 
-    // Highlight the selected list item
-    const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
-        (li) => li.textContent === category
-    );
-    if (selectedItem) selectedItem.classList.add('highlight');
-
-    // Stop animation for all markers
-    markers.forEach((marker) => marker.setAnimation(null));
-
-    // Highlight all pinpoints in the selected category
-    const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
-    selectedPins.forEach((pin) => {
-        const marker = markers.find(
-            (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
-        );
-        if (marker) {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-            // Optionally pan to the first marker in the category
-            map.panTo(marker.getPosition());
-        }
-    });
-}
-
-
+// Function to highlight pinpoints based on category and zoom to them
 function highlightPinpoints(category) {
     // Clear previous highlights
     document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
@@ -361,12 +335,41 @@ function highlightPinpoints(category) {
     map.fitBounds(bounds);
 }
 
+// Function to bounce all pins in the selected category (e.g., Platform 1)
+function bounceAllPins(category) {
+    // Clear previous highlights
+    document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
+
+    // Highlight the selected menu item
+    const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
+        (li) => li.textContent === category
+    );
+    if (selectedItem) selectedItem.classList.add('highlight');
+
+    // Bounce all markers in the selected category
+    const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
+    selectedPins.forEach((pin) => {
+        const marker = markers.find(
+            (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
+        );
+        if (marker) {
+            marker.setAnimation(google.maps.Animation.BOUNCE); // Make marker bounce
+        }
+    });
+
+    // Optionally, you can zoom into the category as well
+    const bounds = new google.maps.LatLngBounds(); // Define bounds for zoom
+    selectedPins.forEach((pin) => {
+        bounds.extend(new google.maps.LatLng(pin.lat, pin.lng)); // Extend bounds to include all markers
+    });
+    map.fitBounds(bounds); // Adjust the map to fit all selected markers
+}
 
 
 // Predefined constant pinpoints with text and icons
 const PINPOINTS = [
       // Platform 1 markers
-      { id: 'Platform 1 Point 1', lat: 19.94773847335532, lng: 73.84220091350372, title: "Platform 1", category: "Platform 1", icon: "./static/img/train-station.png" },
+      { id: 'Platform 1 ', lat: 19.94773847335532, lng: 73.84220091350372, title: "Platform 1", category: "Platform 1", icon: "./static/img/train-station.png" },
       { id: 'Platform 1 Point 2', lat: 19.949073868898434, lng: 73.84239788165445, title: "Lift and Stairs Bhusval end", category: "Platform 1", icon: "./static/img/work.png" },
       { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/lift.png" },
       { id: 'Platform 1 Point 4', lat: 19.948904943962038, lng: 73.84242470374326, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/toilet.png" },
@@ -515,6 +518,8 @@ document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
         }
     });
 });
+
+
 
 
 
