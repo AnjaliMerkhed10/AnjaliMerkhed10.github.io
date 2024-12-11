@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,95 +11,160 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./static/css/map.css">
 </head>
+
 <body>
-<!-- Header Section -->
-<div class="header d-flex justify-content-between align-items-center p-3">
-  <!-- Menu Icon -->
-  <div class="menu-icon " id="menuIcon">
-    <img src="./static/img/app.png" alt="Menu Icon" height="50" id="iconImg" loading="lazy">
-</div>
+    <!-- Header Section -->
+    <div class="header d-flex justify-content-between align-items-center p-3">
+
+        <div class="back-button" id="backButton">
+            <img src="./static/img/left-arrow-in-circular-button-black-symbol.png" alt="Back Button" height="40"
+                id="backImg" loading="lazy" onclick="goBack()" />
+        </div>
+        <!-- Menu Icon -->
+        <div class="menu-icon " id="menuIcon">
+            <img src="./static/img/train (2).png" alt="Menu Icon" height="50" id="iconImg" loading="lazy">
+        </div>
 
 
-  <!-- Search Bar -->
-  <div class="search-container pt-5">
-    <input
-        type="text"
-        class="form-control search-input"
-        id="searchInput"
-        placeholder="Search location..."
-    />
-    <span class="search-icon" id="searchIcon"><img src="./static/img/search (2).png" alt="" loading="lazy"></span>
-</div>
-</div>
 
-
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-    <h3>Menu</h3>
-
-    <div class="menu-item">
-        <button class="menu-btn" onclick="toggleList('platform-list')">Select Platform <span><i class="fas fa-chevron-down "></i>
-        </span></button>
-        <ul id="platform-list" class="menu-list">
-            <li onclick="highlightPinpoints('Platform 1')">Platform 1</li>
-            <li onclick="highlightPinpoints('Platform 2')">Platform 2</li>
-            <li onclick="highlightPinpoints('Platform 3')">Platform 3</li>
-        </ul>
     </div>
 
-    <div class="menu-item">
-        <button class="menu-btn" onclick="toggleList('tourist-list')">Tourist Places</button>
-        <ul id="tourist-list" class="menu-list">
-            <li onclick="addTouristPinpoints('Trimbakeshwar')">Trimbakeshwar</li>
-            <li onclick="addTouristPinpoints('Mukti Dham Mandir')">Mukti Dham Mandir</li>
-            <li onclick="addTouristPinpoints('Pandav Leni')">Pandav Leni</li>
-            <li onclick="addTouristPinpoints('Panchvati')">Panchvati</li>
-            <li onclick="addTouristPinpoints('Saptashrungi Devi Mandir')">Saptashrungi Devi Mandir</li>
-            <li onclick="addTouristPinpoints('Sula Wine Yard')">Sula Wine Yard</li>
-            <li onclick="addTouristPinpoints('Jain Mandir')">Jain Mandir</li>
-            <li onclick="addTouristPinpoints('Anjaneri (Hanuman Temple)')">Anjaneri (Hanuman Temple)</li>
-            <li onclick="addTouristPinpoints('Ramkund')">Ramkund</li>
-            <li onclick="addTouristPinpoints('Kalaram Mandir')">Kalaram Mandir</li>
-            <li onclick="addTouristPinpoints('Sita Gufa')">Sita Gufa</li>
-            <li onclick="addTouristPinpoints('Someshwar Mandir')">Someshwar Mandir</li>
-            <li onclick="addTouristPinpoints('Coin Museum')">Coin Museum</li>
-            <li onclick="addTouristPinpoints('Gondeshwar Mandir Sinnar')">Gondeshwar Mandir Sinnar</li>
-            <li onclick="addTouristPinpoints('Tapowan')">Tapowan</li>
-        </ul>
-    </div>
 
-</div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h3>Menu</h3>
+
+        <div class="menu-item">
+            <button class="menu-btn" onclick="toggleList('platform-list')">Select Platform <span><i
+                        class="fas fa-chevron-down "></i>
+                </span></button>
+            <ul id="platform-list" class="menu-list">
+                <li>Platform 1
+                    <ul class="submenu">
+                        <li onclick="highlightPinpoints('Platform 1')">Platform 1</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 2')">Lift and Stairs Bhusval end</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 3')">Passenger Lift</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 4')">Pay and Use toilet near parcel office
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 5')">Parcel Office</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 6')">Waiting Room and Cloak room paid</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 7')">Ladies Waiting Room</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 8')">Reservation Counter</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 9')">Sleeping Pod (Vatsalyam)</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 10')">Deluxe Toilet</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 11')">ATM</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 12')">AC Retiring Hall (Godavari Waiting Hall)
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 13')">IRCTC Dormitory</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 14')">Waiting Room and Cloak Room Paid</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 15')">Water Stand PF at Middle</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 16')">Nashik Road Bus Stop</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 17')">Drinking Water</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 18')">Escalator</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 19')">Gift Shop</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 20')">RPF Station</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 21')">M. Dinshaw & Ranjit AC Dormitory, Deluxe
+                            Rooms</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 22')">Relax Zone</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 23')">Emergency Medical Facility</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 24')">Ticket Counter</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 25')">Cafeteria</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 26')">Pay & Use Toilet</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 27')">Pay & Use Toilet</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 28')">Water Stand PF-1</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 29')">Deluxe Toilet (M/F)</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 30')">Divyangjan Toilet</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 31')">Khadi Garments Store</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 32')">PF 1 Auto Stand</li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 33')">Pay & Park Parking</li>
+                        <!-- Add other Platform 1 points here -->
+                    </ul>
+                </li>
+                <li >Platform 2
+                    <ul class="submenu">
+                      <li onclick="highlightPinpoints('Platform 2 Point 1')">STATION MANAGER</li>
+                      <li onclick="highlightPinpoints('Platform 2 Point 2')">OXYGEN PARLOUR</li>
+                      <li onclick="highlightPinpoints('Platform 2 Point 3')">TEA STALL</li>
+                      <li onclick="highlightPinpoints('Platform 2 Point 4')">Lift and Stairs</li>
+                      <li onclick="highlightPinpoints('Platform 2 Point 5')">Lift and Escalators</li>
+                    </ul>
+                  </li>
+                  
+                  <li >Platform 3
+                    <ul class="submenu">
+                      <li onclick="highlightPinpoints('Platform 3 Point 1')">TEA STALL</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 2')">CHILD HELP DESK</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 3')">GENTS TOILET</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 4')">LIFT</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 5')">HANDICAPPED TOILET</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 6')">RESERVATION CENTER PF-4</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 7')">Water Stand</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 8')">Railway Station Pay & Park</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 9')">Reservation Counter</li>
+                      <li onclick="highlightPinpoints('Platform 3 Point 10')">Platform 3</li>
+                      <li onclick="highlightPinpoints('Platform 3')">Lift and Stairs Mumbai end</li>
+                    </ul>
+                  </li>
+                  
+            </ul>
+        </div>
+
+        <div class="menu-item">
+            <button class="menu-btn" onclick="toggleList('tourist-list')">Tourist Places</button>
+            <ul id="tourist-list" class="menu-list">
+                <li onclick="addTouristPinpoints('Trimbakeshwar')">Trimbakeshwar</li>
+                <li onclick="addTouristPinpoints('Mukti Dham Mandir')">Mukti Dham Mandir</li>
+                <li onclick="addTouristPinpoints('Pandav Leni')">Pandav Leni</li>
+                <li onclick="addTouristPinpoints('Panchvati')">Panchvati</li>
+                <li onclick="addTouristPinpoints('Saptashrungi Devi Mandir')">Saptashrungi Devi Mandir</li>
+                <li onclick="addTouristPinpoints('Sula Wine Yard')">Sula Wine Yard</li>
+                <li onclick="addTouristPinpoints('Jain Mandir')">Jain Mandir</li>
+                <li onclick="addTouristPinpoints('Anjaneri (Hanuman Temple)')">Anjaneri (Hanuman Temple)</li>
+                <li onclick="addTouristPinpoints('Ramkund')">Ramkund</li>
+                <li onclick="addTouristPinpoints('Kalaram Mandir')">Kalaram Mandir</li>
+                <li onclick="addTouristPinpoints('Sita Gufa')">Sita Gufa</li>
+                <li onclick="addTouristPinpoints('Someshwar Mandir')">Someshwar Mandir</li>
+                <li onclick="addTouristPinpoints('Coin Museum')">Coin Museum</li>
+                <li onclick="addTouristPinpoints('Gondeshwar Mandir Sinnar')">Gondeshwar Mandir Sinnar</li>
+                <li onclick="addTouristPinpoints('Tapowan')">Tapowan</li>
+            </ul>
+        </div>
+
+    </div>
     <!-- Voice Status -->
     <div class="voice-status" id="voiceStatus">Listening...</div>
 
     <!-- Map Section -->
-  
+
 
     <!-- Map container -->
     <div id="map"></div>
     <button id="whereAmI">Where am I</button>
     <!-- Bottom Navigation Bar -->
     <div class="bottom-bar d-flex justify-content-around">
-     
-      <button class="d-flex flex-column align-items-center" onclick="window.location.href='360_tour.html'">
-        <img src="./static/img/360-degree (1).png" alt="Virtual Tour Icon" style="width: 34px; height: 34px;" loading="lazy">
-        <span>Virtual Tour</span>
-    </button>
-    <button class="voice_button d-flex flex-column align-items-center"  id="voiceSearch" >
-      <img src="./static/img/voice (2).png" alt="" loading="lazy">
-      <span>Speak</span>
-  </button>
-       
+
+        <button class="d-flex flex-column align-items-center" onclick="window.location.href='360_tour.html'">
+            <img src="./static/img/360-degree (1).png" alt="Virtual Tour Icon" style="width: 34px; height: 34px;"
+                loading="lazy">
+            <span>Virtual Tour</span>
+        </button>
+        <button class="voice_button d-flex flex-column align-items-center" id="voiceSearch">
+            <img src="./static/img/voice (2).png" alt="" loading="lazy">
+            <span>Speak</span>
+        </button>
+
         <button class="d-flex flex-column align-items-center">
-          <img src="./static/img/help-desk (2).png" alt="Help Icon" style="width: 34px; height: 34px;" loading="lazy">
-          <span>Help Desk</span>
-      </button>
+            <img src="./static/img/help-desk (2).png" alt="Help Icon" style="width: 34px; height: 34px;" loading="lazy">
+            <span>Help Desk</span>
+        </button>
     </div>
-   
+
     <script src="./static/js/map.js"></script>
     <!-- Google Maps API Script -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnBmHondgwsA-dzeWtQdRT3X83On_V-wI&callback=initMap"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnBmHondgwsA-dzeWtQdRT3X83On_V-wI&callback=initMap"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

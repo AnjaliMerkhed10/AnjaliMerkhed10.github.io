@@ -18,8 +18,15 @@ menuIcon.addEventListener("click", () => {
         iconImg.src = "./static/img/close.png"; // Close icon
         iconImg.classList.add("icon-close-shift"); // Apply the upward shift
     } else {
-        iconImg.src = "./static/img/app.png"; // Menu icon
+        iconImg.src = "./static/img/train (2).png"; // Menu icon
         iconImg.classList.remove("icon-close-shift"); // Remove the upward shift
+    }
+
+      // Close all submenus when the sidebar is closed
+      if (!sidebar.classList.contains("open")) {
+        document.querySelectorAll('.submenu').forEach(submenu => {
+            submenu.style.display = 'none'; // Hide all submenus
+        });
     }
 });
 
@@ -106,32 +113,7 @@ function addMarker(location, title, icon) {
 
 
 
-// Search Bar Expand on Icon Click
-const searchIcon = document.getElementById("searchIcon");
-const searchInput = document.getElementById("searchInput");
 
-searchIcon.addEventListener("click", () => {
-    searchInput.focus(); // Focus the search input when the icon is clicked
-});
-
-// Search Input Functionality
-searchInput.addEventListener("keypress", (event) => {
-    if (event.key === "Enter" && searchInput.value.trim() !== "") {
-        const searchQuery = searchInput.value.trim();
-
-        // Perform geocoding with the search input
-        const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ address: searchQuery }, (results, status) => {
-            if (status === "OK") {
-                const location = results[0].geometry.location;
-                map.setCenter(location);
-                addMarker(location, searchQuery);
-            } else {
-                alert(`Location not found: "${searchQuery}"`);
-            }
-        });
-    }
-});
 
 
 let map;
@@ -148,12 +130,21 @@ function initMap() {
         { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }] },
         { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#cccccc" }] },
         { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#ff9900" }] },
+        // { "featureType": "all", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": 50 }, { "weight": 0.5 }] },
+        // { "featureType": "all", "elementType": "labels.text.fill", "stylers": [{ "color": "#000000" }, { "lightness": 50 }] },
+        { "featureType": "all", "elementType": "labels.text.stroke", "stylers": [{ "color": "#ffffff" }, { "weight": 1.5 }] },
+        { "featureType": "all", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }
     ];
 
     const mapOptions = {
-        zoom: 18,
+        zoom: 30,
         center: { lat: 19.9482, lng: 73.8421 }, // Default center: Nashik
         styles: customStyle,
+        mapTypeControl: false, // Disable the map type control
+        streetViewControl: false, // Hide the 3D Street View Pegman icon
+         scaleControl: false,      // Disable the scale control
+
+         
     };
 
     // Create the map
@@ -224,8 +215,8 @@ function addCustomMarker(location, title, icon) {
             : undefined,
         label: {
             text: title, // Text label
-            color: "#2d2d2d", // Label color
-            fontSize: "12px",
+            color: "#000000", // Label color
+            fontSize: "9px",
             fontWeight: "bold",
         },
     });
@@ -374,32 +365,80 @@ function highlightPinpoints(category) {
 
 // Predefined constant pinpoints with text and icons
 const PINPOINTS = [
-    { id: 'Platform 3',lat: 19.947255492904763, lng: 73.8422848190672, title: "Platform 3", icon: "./static/img/train-station.png" }, // Example 1
-    { id: 'Platform 1 Point 1', lat: 19.94773847335532, lng: 73.84220091350372, title: "Platform 1", category: "Platform 1", icon: "./static/img/train-station.png" }, // Example 2
-    { id: 'Platform 1 Point 7',lat: 19.948695330002558, lng: 73.84208099586698, title: "Reservation Counter",category: "Platform 1", icon: "./static/img/ticket-office.png" }, // Example 3
-    { id: 'Platform 3 Point 4',lat:19.94769388957853, lng: 73.84297092277446, title: "Railway Station Pay & Park",category: "Platform 3", icon: "./static/img/parking.png" }, // Example 1
-    { id: 'Platform 3 Point 1', lat: 19.94792176280579, lng: 73.84278592004723, title: "Water Stand", category: "Platform 3", icon: "./static/img/drop (1).png" },
+      // Platform 1 markers
+      { id: 'Platform 1 Point 1', lat: 19.94773847335532, lng: 73.84220091350372, title: "Platform 1", category: "Platform 1", icon: "./static/img/train-station.png" },
+      { id: 'Platform 1 Point 2', lat: 19.949073868898434, lng: 73.84239788165445, title: "Lift and Stairs Bhusval end", category: "Platform 1", icon: "./static/img/work.png" },
+      { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/lift.png" },
+      { id: 'Platform 1 Point 4', lat: 19.948904943962038, lng: 73.84242470374326, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 5', lat: 19.948881622227113, lng: 73.84214240124673, title: "Parcel Office", category: "Platform 1", icon: "./static/img/box.png" },
+      { id: 'Platform 1 Point 6', lat: 19.948548471074297, lng: 73.84236733867046, title: "Waiting Room and Cloak room paid", category: "Platform 1", icon: "./static/img/school-locker.png" },
+      { id: 'Platform 1 Point 7', lat: 19.948378860511262, lng: 73.84231771855413, title: "Ladies Waiting Room", category: "Platform 1", icon: "./static/img/waiting-room.png" },
+      { id: 'Platform 1 Point 8', lat: 19.948695330002558, lng: 73.84208099586698, title: "Reservation Counter", category: "Platform 1", icon: "./static/img/ticket-office.png" },
+      { id: 'Platform 1 Point 9', lat: 19.94755363580919, lng: 73.84188516992276, title: "Sleeping Pod (Vatsalyam)", category: "Platform 1", icon: "./static/img/bed.png" },
+      { id: 'Platform 1 Point 10', lat: 19.947581864126462, lng: 73.84204915044238, title: "Deluxe Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 11', lat: 19.94745544178198, lng: 73.84204121281842, title: "ATM", category: "Platform 1", icon: "./static/img/atm.png" },
+      { id: 'Platform 1 Point 12', lat: 19.947468872817097, lng: 73.84185339909355, title: "AC Retiring Hall (Godavari Waiting Hall)", category: "Platform 1", icon: "./static/img/waiting-room (1).png" },
+      { id: 'Platform 1 Point 13', lat: 19.94768630198704, lng: 73.84184148280016, title: "IRCTC Dormitory", category: "Platform 1", icon: "./static/img/bunk-bed.png" },
+      { id: 'Platform 1 Point 14', lat: 19.94737791202757, lng: 73.84201774349071, title: "Waiting Room and Cloak Room Paid", category: "Platform 1", icon: "./static/img/school-locker.png" },
+      { id: 'Platform 1 Point 15', lat: 19.94875366774617, lng: 73.84240592828107, title: "Water Stand PF at Middle", category: "Platform 1", icon: "./static/img/drop (1).png" },
+      { id: 'Platform 1 Point 16', lat: 19.94837037997832, lng: 73.8415192857732, title: "Nashik Road Bus Stop", category: "Platform 1", icon: "./static/img/bus-stop.png" },
+      { id: 'Platform 1 Point 17', lat: 19.94796, lng: 73.842213, title: "Drinking Water", category: "Platform 1", icon: "./static/img/water.png" },
+      { id: 'Platform 1 Point 18', lat: 19.947403, lng: 73.841755, title: "Escalator", category: "Platform 1", icon: "./static/img/escalator.png" },
+      { id: 'Platform 1 Point 19', lat: 19.948078, lng: 73.841949, title: "Gift Shop", category: "Platform 1", icon: "./static/img/gift.png" },
+      { id: 'Platform 1 Point 20', lat: 19.947048, lng: 73.842045, title: "RPF Station", category: "Platform 1", icon: "./static/img/RPF_Station.png" },
+      { id: 'Platform 1 Point 21', lat: 19.947766, lng: 73.841839, title: "M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms", category: "Platform 1", icon: "./static/img/bunk-bed.png" },
+      { id: 'Platform 1 Point 22', lat: 19.947659, lng: 73.84208, title: "Relax Zone", category: "Platform 1", icon: "./static/img/waiting-room.png" },
+      { id: 'Platform 1 Point 23', lat: 19.948437, lng: 73.84187, title: "Emergency Medical Facility", category: "Platform 1", icon: "./static/img/hospital.png" },
+      { id: 'Platform 1 Point 24', lat: 19.948534, lng: 73.84199, title: "Ticket Counter", category: "Platform 1", icon: "./static/img/ticket-office.png" },
+      { id: 'Platform 1 Point 25', lat: 19.947580, lng: 73.84193, title: "Cafeteria", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
+      { id: 'Platform 1 Point 26', lat: 19.947715, lng: 73.842172, title: "Pay & Use Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 27', lat: 19.946823, lng: 73.841875, title: "Pay & Use Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 28', lat: 19.94861, lng: 73.842431, title: "Water Stand PF-1", category: "Platform 1", icon: "./static/img/water.png" },
+      { id: 'Platform 1 Point 29', lat: 19.94692, lng: 73.84154, title: "Deluxe Toilet (M/F)", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 30', lat: 19.946848, lng: 73.841893, title: "Divyangjan Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: "Khadi Garments Store", category: "Platform 1", icon: "./static/img/shopping-store.png" },
+      { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/auto-rishaw.png" },
+      { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/parking.png" },
 
-    { id: 'Platform 2 Point 1',lat: 19.949000752161943, lng: 73.84261514058241, title: "Lift and Stairs",category: "Platform 2", icon: "./static/img/work.png" }, // Example 3
-    { id: 'Platform 1 Point 2',lat: 19.949073868898434, lng: 73.84239788165445, title: "Lift and Stairs Bhusval end",category: "Platform 1", icon: "./static/img/work.png" }, // 
-    { id: 'Platform 1 Point 3',lat: 19.948904943962038, lng: 73.84242470374326, title: "Pay and Use toilet near parcel office",category: "Platform 1", icon: "./static/img/toilet.png" }, 
-    { id: 'Platform 1 Point 4',lat: 19.948881622227113, lng: 73.84214240124673, title: "Parcel Office",category: "Platform 1", icon: "./static/img/box.png" }, // Example 3
-    { id: 'Platform 1 Point 14',lat: 19.94875366774617, lng: 73.84240592828107, title: "Water Stand PF at middle",category: "Platform 1", icon: "./static/img/drop (1).png" }, // Example 1
-    { id: 'Platform 1 Point 15',lat: 19.94837037997832, lng: 73.8415192857732, title: "Nashik road Bus stop",category: "Platform 1", icon: "./static/img/bus-stop.png" }, // Example 2
-    { id: 'Platform 1 Point 6',lat: 19.948378860511262, lng: 73.84231771855413, title: "Ladies Waiting Room",category: "Platform 1", icon: "./static/img/waiting-room.png" }, // Example 3
-    { id: 'Platform 1 Point 5',lat: 19.948548471074297, lng: 73.84236733867046, title: "Waiting Room and Cloak room paid",category: "Platform 1", icon: "./static/img/school-locker.png" }, // Example 3
-    { id: 'Platform 3 Point 5',lat: 19.948454784853407, lng: 73.84295156280345, title: "Reservation Counter",category: "Platform 3", icon: "./static/img/ticket-office.png" }, // Example 3
-    { id: 'Platform 1 Point 8',lat: 19.94755363580919, lng: 73.84188516992276, title: "Sleeping Pod(Vatsalyam)",category: "Platform 1", icon: "./static/img/bed.png" }, // Example 1
-    { id: 'Platform 1 Point 9',lat: 19.947581864126462, lng: 73.84204915044238, title: "Deluxe Toilet",category: "Platform 1", icon: "./static/img/toilet.png" }, // Example 2
-    { id: 'Platform 1 Point 10',lat: 19.94745544178198, lng: 73.84204121281842, title: "ATM",category: "Platform 1", icon: "./static/img/atm.png" }, // Example 3
-    { id: 'Platform 1 Point 13',lat: 19.94737791202757, lng: 73.84201774349071, title: "Waiting room and Cloak room paid",category: "Platform 1", icon: "./static/img/school-locker.png" }, // Example 3
-    { id: 'Platform 3 Point 2',lat: 19.947093392634322, lng: 73.84246655335382, title: "Lift and Stairs Mumbai end",category: "Platform 3", icon: "./static/img/work.png" }, // Example 2
-    { id: 'Platform 2 Point 2',lat: 19.94717596512187, lng: 73.84224124780778, title: "Lift and Escalators",category: "Platform 2", icon: "./static/img/escalator-down.png" }, // Example 3
-    { id: 'Platform 1 Point 12',lat: 19.94768630198704, lng: 73.84184148280016, title: "IRCTC Dorimotory ",category: "Platform 1", icon: "./static/img/bunk-bed.png" }, // Example 2
-    { id: 'Platform 1 Point 11',lat: 19.947468872817097, lng: 73.84185339909355, title: "AC retiring Hall(Godavari waiting Hall)",category: "Platform 1", icon: "./static/img/waiting-room (1).png" }, // Example 3
+  // Platform 2 markers
+  { id: 'Platform 2 Point 1', lat: 19.947836, lng: 73.84228, title: "STATION MANAGER", category: "Platform 2", icon: "./static/img/station-master.png" },
+  { id: 'Platform 2 Point 2', lat: 19.946342, lng: 73.842008, title: "OXYGEN PARLOUR", category: "Platform 2", icon: "./static/img/oxygen-Parlour.png" },
+  { id: 'Platform 2 Point 3', lat: 19.948452, lng: 73.842435, title: "TEA STALL", category: "Platform 2", icon: "./static/img/tea-shop.png" },
+  { id: 'Platform 2 Point 4',lat: 19.949000752161943, lng: 73.84261514058241, title: "Lift and Stairs",category: "Platform 2", icon: "./static/img/work.png" }, 
+  { id: 'Platform 2 Point 5',lat: 19.94717596512187, lng: 73.84224124780778, title: "Lift and Escalators",category: "Platform 2", icon: "./static/img/escalator-down.png" }, 
 
+  // Platform 3 markers
+  { id: 'Platform 3 Point 1', lat: 19.946815, lng: 73.842388, title: "TEA STALL", category: "Platform 3", icon: "./static/img/tea-shop.png" },
+  { id: 'Platform 3 Point 2', lat: 19.94742, lng: 73.842354, title: "CHILD HELP DESK", category: "Platform 3", icon: "./static/img/MAHANAND MILK.png" },
+  { id: 'Platform 3 Point 3', lat: 19.948972, lng: 73.842831, title: "GENTS TOILET", category: "Platform 3", icon: "./static/img/toilet.png" },
+  { id: 'Platform 3 Point 4', lat: 19.948991, lng: 73.842715, title: "LIFT", category: "Platform 3", icon: "./static/img/lift.png" },
+  { id: 'Platform 3 Point 5', lat: 19.948809, lng: 73.842814, title: "HANDICAPPED TOILET", category: "Platform 3", icon: "./static/img/Handicapped_Toilet.png" },
+  { id: 'Platform 3 Point 6', lat: 19.948503, lng: 73.842965, title: "RESERVATION CENTER PF-4", category: "Platform 3", icon: "./static/img/ticket-office.png" },
+  { id: 'Platform 3 ',lat: 19.947093392634322, lng: 73.84246655335382, title: "Lift and Stairs Mumbai end",category: "Platform 3", icon: "./static/img/work.png" }, 
+  { id: 'Platform 3 Point 7', lat: 19.94792176280579, lng: 73.84278592004723, title: "Water Stand", category: "Platform 3", icon: "./static/img/drop (1).png" }, 
+  { id: 'Platform 3 Point 8',lat:19.94769388957853, lng: 73.84297092277446, title: "Railway Station Pay & Park",category: "Platform 3", icon: "./static/img/parking.png" }, 
+  { id: 'Platform 3 Point 9',lat: 19.948454784853407, lng: 73.84295156280345, title: "Reservation Counter",category: "Platform 3", icon: "./static/img/ticket-office.png" }, 
+  { id: 'Platform 3 Point 10',lat: 19.947255492904763, lng: 73.8422848190672, title: "Platform 3", icon: "./static/img/train-station.png" } 
  
 ];
+
+function highlightPinpoints(pointId) {
+    // Find the pinpoint object by id
+    const location = PINPOINTS.find(point => point.id === pointId);
+    
+    if (location && map) {
+        // Center the map on the selected location
+        map.setCenter({ lat: location.lat, lng: location.lng });
+        
+        // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
+        map.setZoom(28); 
+
+        console.log(`Zooming into: ${location.title}`);
+    } else {
+        console.error(`Location with ID '${pointId}' not found.`);
+    }
+}
+
 
 
 const TOURIST_PLACES = [
@@ -420,6 +459,8 @@ const TOURIST_PLACES = [
     { name: 'Tapowan', lat: 19.9872720045505, lng: 73.81093044681361, title: 'Tapowan', icon: './static/img/temple.png' },
 ];
 
+
+
 function addTouristPinpoints(placeName) {
     // Find the corresponding tourist place
     const place = TOURIST_PLACES.find((p) => p.name === placeName);
@@ -434,8 +475,47 @@ function addTouristPinpoints(placeName) {
 
     // Center the map on the added marker
     map.setCenter({ lat: place.lat, lng: place.lng });
-    map.setZoom(14); // Adjust zoom level
+    map.setZoom(34); // Adjust zoom level
 }
+
+function handleBackButtonClick() {
+    if (userLocation) {
+        // Clear any existing directions from the map
+        directionsRenderer.setDirections({ routes: [] });
+
+        // Reset the map to the user's current location
+        map.setCenter(userLocation);
+        map.setZoom(38); // Reset to default zoom level
+
+        // Optionally, clear any other overlays or markers added dynamically
+        clearDynamicMarkers(); // If you have dynamically added markers, clear them
+    }
+}
+
+
+// Function to clear dynamically added markers (if any)
+function clearDynamicMarkers() {
+    if (dynamicMarkers) {
+        dynamicMarkers.forEach((marker) => marker.setMap(null));
+        dynamicMarkers = []; // Reset the array
+    }
+}
+
+// Back button event listener
+document.getElementById("backButton").addEventListener("click", handleBackButtonClick);
+
+// Handle submenu toggle with click (without hover)
+document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
+    menuItem.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent event bubbling
+        const submenu = this.querySelector('.submenu');
+        if (submenu) {
+            // Toggle the display of the submenu
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+    });
+});
+
 
 
 // Load the map
