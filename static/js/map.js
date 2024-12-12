@@ -73,46 +73,6 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     };
 }
 
-// Function to display all tourist places and pinpoints
-function displayAllPinpoints() {
-    // Add all tourist places and platform pinpoints to the map
-    [...TOURIST_PLACES, ...PINPOINTS].forEach(place => {
-        const location = { lat: place.lat, lng: place.lng };
-        addMarker(location, place.title, place.icon);
-    });
-}
-
-// Function to search and show specific pinpoints based on the transcript
-function searchAndShowPinpoints(transcript) {
-    // Filter the tourist places and pinpoints based on the search term
-    const allLocations = [...TOURIST_PLACES, ...PINPOINTS];
-    const filteredLocations = allLocations.filter(location =>
-        location.title.toLowerCase().includes(transcript) ||
-        location.name.toLowerCase().includes(transcript)
-    );
-
-    if (filteredLocations.length > 0) {
-        filteredLocations.forEach(place => {
-            const location = { lat: place.lat, lng: place.lng };
-            addMarker(location, place.title, place.icon);
-        });
-    } else {
-        alert(`No location found for: "${transcript}"`);
-    }
-}
-
-// Function to add marker on the map
-function addMarker(location, title, icon) {
-    const marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        title: title,
-        icon: icon,
-    });
-}
-
-
-
 
 
 
@@ -146,6 +106,8 @@ function initMap() {
 
          
     };
+
+    
 
     // Create the map
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -200,6 +162,8 @@ function initMap() {
 
 
 }
+
+
 
 // Function to add a custom marker with text and icon
 function addCustomMarker(location, title, icon) {
@@ -413,6 +377,44 @@ function highlightPinpoints(pointId) {
 }
 
 
+// Function to display all tourist places and pinpoints
+function displayAllPinpoints() {
+    // Add all tourist places and platform pinpoints to the map
+    [...TOURIST_PLACES, ...PINPOINTS].forEach(place => {
+        const location = { lat: place.lat, lng: place.lng };
+        addMarker(location, place.title, place.icon);
+    });
+}
+
+// Function to search and show specific pinpoints based on the transcript
+function searchAndShowPinpoints(transcript) {
+    // Filter the tourist places and pinpoints based on the search term
+    const allLocations = [...TOURIST_PLACES, ...PINPOINTS];
+    const filteredLocations = allLocations.filter(location =>
+        location.title.toLowerCase().includes(transcript) ||
+        location.name.toLowerCase().includes(transcript)
+    );
+
+    if (filteredLocations.length > 0) {
+        filteredLocations.forEach(place => {
+            const location = { lat: place.lat, lng: place.lng };
+            addMarker(location, place.title, place.icon);
+        });
+    } else {
+        alert(`No location found for: "${transcript}"`);
+    }
+}
+
+// Function to add marker on the map
+function addMarker(location, title, icon) {
+    const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: title,
+        icon: icon,
+    });
+}
+
 
 const TOURIST_PLACES = [
     { name: 'Trimbakeshwar', lat: 19.93453011425969, lng: 73.52842423653824, title: 'Trimbakeshwar Temple', icon: './static/img/temple.png' },
@@ -432,6 +434,22 @@ const TOURIST_PLACES = [
     { name: 'Tapowan', lat: 19.9872720045505, lng: 73.81093044681361, title: 'Tapowan', icon: './static/img/temple.png' },
 ];
 
+function addTouristPinpoints(placeName) {
+    // Find the corresponding tourist place
+    const place = TOURIST_PLACES.find((p) => p.name === placeName);
+
+    if (!place) {
+        console.error('Place not found:', placeName);
+        return;
+    }
+
+    // Add a custom marker for the place
+    addCustomMarker({ lat: place.lat, lng: place.lng }, place.title, place.icon);
+
+    // Center the map on the added marker
+    map.setCenter({ lat: place.lat, lng: place.lng });
+    map.setZoom(14); // Adjust zoom level
+}
 
 
 
@@ -473,7 +491,6 @@ document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
         }
     });
 });
-
 
 
 
