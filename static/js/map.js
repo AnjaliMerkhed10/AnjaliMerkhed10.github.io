@@ -74,7 +74,7 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
 }
 
 
-
+// LOCATION AND SUBMENU CODE
 
 let map;
 let markers = []; // To keep track of all markers
@@ -300,10 +300,10 @@ function bounceAllPins(category) {
 
 
 
-// Predefined constant pinpoints with text and icons
+// Predefined constant pinpoints with text and icons 
 const PINPOINTS = [
       // Platform 1 markers
-      { id: 'Platform 1 ', lat: 19.94773847335532, lng: 73.84220091350372, title: "Platform 1", category: "Platform 1", icon: "./static/img/train-station.png" },
+      { id: 'Platform 1 ', lat: 19.947730239875234, lng: 73.8421970006081, title: "Platform 1", category: "Platform 1", icon: "./static/img/train-station.png" },
       { id: 'Platform 1 Point 2', lat: 19.949073868898434, lng: 73.84239788165445, title: "Lift and Stairs Bhusval end", category: "Platform 1", icon: "./static/img/work.png" },
       { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/lift.png" },
       { id: 'Platform 1 Point 4', lat: 19.948904943962038, lng: 73.84242470374326, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/toilet.png" },
@@ -337,7 +337,8 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/auto-rishaw.png" },
       { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/parking.png" },
 
-  // Platform 2 markers
+  // Platform 2 markers 
+  { id: 'Platform 2 ', lat: 19.94786441080806, lng: 73.8423292571979, title: "Platform 2", category: "Platform 2", icon: "./static/img/train-station.png" },
   { id: 'Platform 2 Point 1', lat: 19.947836, lng: 73.84228, title: "STATION MANAGER", category: "Platform 2", icon: "./static/img/station-master.png" },
   { id: 'Platform 2 Point 2', lat: 19.946342, lng: 73.842008, title: "OXYGEN PARLOUR", category: "Platform 2", icon: "./static/img/oxygen-Parlour.png" },
   { id: 'Platform 2 Point 3', lat: 19.948452, lng: 73.842435, title: "TEA STALL", category: "Platform 2", icon: "./static/img/tea-shop.png" },
@@ -345,7 +346,7 @@ const PINPOINTS = [
   { id: 'Platform 2 Point 5',lat: 19.94717596512187, lng: 73.84224124780778, title: "Lift and Escalators",category: "Platform 2", icon: "./static/img/escalator-down.png" }, 
 
   // Platform 3 markers
-  { id: 'Platform 3 Point 1', lat: 19.946815, lng: 73.842388, title: "TEA STALL", category: "Platform 3", icon: "./static/img/tea-shop.png" },
+
   { id: 'Platform 3 Point 2', lat: 19.94742, lng: 73.842354, title: "CHILD HELP DESK", category: "Platform 3", icon: "./static/img/MAHANAND MILK.png" },
   { id: 'Platform 3 Point 3', lat: 19.948972, lng: 73.842831, title: "GENTS TOILET", category: "Platform 3", icon: "./static/img/toilet.png" },
   { id: 'Platform 3 Point 4', lat: 19.948991, lng: 73.842715, title: "LIFT", category: "Platform 3", icon: "./static/img/lift.png" },
@@ -355,8 +356,12 @@ const PINPOINTS = [
   { id: 'Platform 3 Point 7', lat: 19.94792176280579, lng: 73.84278592004723, title: "Water Stand", category: "Platform 3", icon: "./static/img/drop (1).png" }, 
   { id: 'Platform 3 Point 8',lat:19.94769388957853, lng: 73.84297092277446, title: "Railway Station Pay & Park",category: "Platform 3", icon: "./static/img/parking.png" }, 
   { id: 'Platform 3 Point 9',lat: 19.948454784853407, lng: 73.84295156280345, title: "Reservation Counter",category: "Platform 3", icon: "./static/img/ticket-office.png" }, 
-  { id: 'Platform 3 Point 10',lat: 19.947255492904763, lng: 73.8422848190672, title: "Platform 3", icon: "./static/img/train-station.png" } 
- 
+  { id: 'Platform 3 Point 10',lat: 19.947255492904763, lng: 73.8422848190672, title: "Platform 3", icon: "./static/img/train-station.png" }, 
+//   { id: 'Platform 3 ', lat: 19.94727556537938, lng: 73.84226307423131, title: "Platform 3", category: "Platform 3", icon: "./static/img/train-station.png" },
+
+
+  { id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
+
 ];
 
 function highlightPinpoints(pointId) {
@@ -376,6 +381,8 @@ function highlightPinpoints(pointId) {
     }
 }
 
+
+// TOURIST CODE
 
 // Function to display all tourist places and pinpoints
 function displayAllPinpoints() {
@@ -452,6 +459,8 @@ function addTouristPinpoints(placeName) {
 }
 
 
+
+// BACK BUTON CODE
 
 
 function handleBackButtonClick() {
