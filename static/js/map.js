@@ -337,10 +337,16 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: "Khadi Garments Store", category: "Platform 1", icon: "./static/img/shopping-store.png" },
       { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/auto-rishaw.png" },
       { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/parking.png" },
+    //   sohan sir changes
       { id: 'Platform 1 Point 34', lat: 19.9480189955569, lng: 73.8421796201009, title: "Platform 1 Enterance", category: "Platform 1", icon: "./static/img/train-station.png" },
       { id: 'Platform 1 Point 35', lat: 19.9479258110046, lng: 73.8422304943829, title: "Station Manager", category: "Platform 1", icon: "./static/img/station-master.png" },
     //   { id: 'Platform 1 Point 36', lat: 19.9480176092028, lng: 73.842178717499, title: "CTI OFFICE/HEAD TE OFFICE", category: "Platform 1", icon: "./static/img/CHILD HELP DESK.png" },
       { id: 'Platform 1 Point 37', lat: 19.947753, lng: 73.842124, title: "WATER STAND", category: "Platform 1", icon: "./static/img/water.png" },
+      { id: 'Platform 1 Point 38', lat: 19.9477949362633, lng: 73.8421749061679, title: "IRCTC FOOD TRACK", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
+      { id: 'Platform 1 Point 39', lat: 19.9476854516116, lng: 73.8418588942186, title: "IRCTC DORMITORY & DELUXE ROOM(REPLACE WITH BOTH PLACE TAGGING)", category: "Platform 1", icon: "./static/img/bed.png" },
+      { id: 'Platform 1 Point 40', lat: 19.9475138912436, lng: 73.8419460051485, title: "PAY & USE TOILET(M/F)", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 41', lat: 19.9475796157185, lng: 73.8419527715279, title: "RELAX ZONE", category: "Platform 1", icon: "./static/img/waiting-room.png" },
+      { id: 'Platform 1 Point 42', lat: 19.9475539155125, lng: 73.8418786083123, title: "VASTYALYAM SLEEPING POD", category: "Platform 1", icon: "./static/img/bed.png" },
      
   // Platform 2 markers 
   { id: 'Platform 2 ', lat: 19.94786441080806, lng: 73.8423292571979, title: "Platform 2", category: "Platform 2", icon: "./static/img/train-station.png" },
