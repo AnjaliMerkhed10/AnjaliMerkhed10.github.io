@@ -338,8 +338,8 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/auto-rishaw.png" },
       { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/parking.png" },
       { id: 'Platform 1 Point 34', lat: 19.9480189955569, lng: 73.8421796201009, title: "Platform 1 Enterance", category: "Platform 1", icon: "./static/img/train-station.png" },
-      { id: 'Platform 1 Point 35', lat: 19.947895, lng: 73.842279, title: "Station Manager", category: "Platform 1", icon: "./static/img/train-station.png" },
-      { id: 'Platform 1 Point 36', lat: 19.9480176092028, lng: 73.842178717499, title: "CTI OFFICE/HEAD TE OFFICE", category: "Platform 1", icon: "./static/img/CHILD HELP DESK.png" },
+      { id: 'Platform 1 Point 35', lat: 19.9479258110046, lng: 73.8422304943829, title: "Station Manager", category: "Platform 1", icon: "./static/img/station-master.png" },
+    //   { id: 'Platform 1 Point 36', lat: 19.9480176092028, lng: 73.842178717499, title: "CTI OFFICE/HEAD TE OFFICE", category: "Platform 1", icon: "./static/img/CHILD HELP DESK.png" },
       { id: 'Platform 1 Point 37', lat: 19.947753, lng: 73.842124, title: "WATER STAND", category: "Platform 1", icon: "./static/img/water.png" },
      
   // Platform 2 markers 
