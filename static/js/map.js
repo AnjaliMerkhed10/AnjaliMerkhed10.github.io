@@ -304,6 +304,7 @@ function bounceAllPins(category) {
 const PINPOINTS = [
       // Platform 1 markers
       { id: 'Platform 1 ', lat: 19.947730239875234, lng: 73.8421970006081, title: "Platform 1", category: "Platform 1", icon: "./static/img/train-station.png" },
+      
       { id: 'Platform 1 Point 2', lat: 19.949073868898434, lng: 73.84239788165445, title: "Lift and Stairs Bhusval end", category: "Platform 1", icon: "./static/img/work.png" },
       { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/lift.png" },
       { id: 'Platform 1 Point 4', lat: 19.948904943962038, lng: 73.84242470374326, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/toilet.png" },
@@ -336,10 +337,14 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: "Khadi Garments Store", category: "Platform 1", icon: "./static/img/shopping-store.png" },
       { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/auto-rishaw.png" },
       { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/parking.png" },
-
+      { id: 'Platform 1 Point 34', lat: 19.9480189955569, lng: 73.8421796201009, title: "Platform 1 Enterance", category: "Platform 1", icon: "./static/img/train-station.png" },
+      { id: 'Platform 1 Point 35', lat: 19.947895, lng: 73.842279, title: "Station Manager", category: "Platform 1", icon: "./static/img/train-station.png" },
+      { id: 'Platform 1 Point 36', lat: 19.9480176092028, lng: 73.842178717499, title: "CTI OFFICE/HEAD TE OFFICE", category: "Platform 1", icon: "./static/img/CHILD HELP DESK.png" },
+      { id: 'Platform 1 Point 37', lat: 19.947753, lng: 73.842124, title: "WATER STAND", category: "Platform 1", icon: "./static/img/water.png" },
+     
   // Platform 2 markers 
   { id: 'Platform 2 ', lat: 19.94786441080806, lng: 73.8423292571979, title: "Platform 2", category: "Platform 2", icon: "./static/img/train-station.png" },
-  { id: 'Platform 2 Point 1', lat: 19.947836, lng: 73.84228, title: "STATION MANAGER", category: "Platform 2", icon: "./static/img/station-master.png" },
+
   { id: 'Platform 2 Point 2', lat: 19.946342, lng: 73.842008, title: "OXYGEN PARLOUR", category: "Platform 2", icon: "./static/img/oxygen-Parlour.png" },
   { id: 'Platform 2 Point 3', lat: 19.948452, lng: 73.842435, title: "TEA STALL", category: "Platform 2", icon: "./static/img/tea-shop.png" },
   { id: 'Platform 2 Point 4',lat: 19.949000752161943, lng: 73.84261514058241, title: "Lift and Stairs",category: "Platform 2", icon: "./static/img/work.png" }, 
