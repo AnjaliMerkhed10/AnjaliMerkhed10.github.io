@@ -133,51 +133,31 @@ function initMap() {
 
     // Get the current location
     if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(
-            (position) => {
-                const newUserLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
-    
-                // Update the user location on the map
-                if (userLocation) {
-                    // Clear previous user marker
-                    markers = markers.filter((marker) => {
-                        if (marker.getTitle() !== "Your Location") return true;
-                        marker.setMap(null);
-                        return false;
-                    });
-                }
-    
-                userLocation = newUserLocation;
-    
-                // Add a new marker for the updated user location
-                addCustomMarker(userLocation, "Your Location", null);
-    
-                // Optionally, re-center the map
-                map.setCenter(userLocation);
-    
-                // Recalculate the route if a marker is clicked
-                if (directionsRenderer.getDirections()) {
-                    const destination = directionsRenderer.getDirections().routes[0].legs[0].end_location;
-                    calculateAndDisplayRoute(userLocation, { lat: destination.lat(), lng: destination.lng() }, "Updated Destination");
-                }
-            },
-            (error) => {
-                alert("Error: The Geolocation service failed or was denied.");
-            },
-            {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 0,
-            }
-        );
-    } else {
-        alert("Error: Your browser does not support geolocation.");
-    }
-    
-    
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            };
+
+            // Center map on user location
+            map.setCenter(userLocation);
+
+            // Add a marker for the user's location
+            addCustomMarker(userLocation, "Your Location", null);
+        },
+        (error) => {
+            alert("Error: The Geolocation service failed or was denied.");
+        },
+        {
+            enableHighAccuracy: true, // Request high accuracy
+            timeout: 10000, // Timeout in milliseconds
+            maximumAge: 0,  // Force fresh location data
+        }
+    );
+} else {
+    alert("Error: Your browser does not support geolocation.");
+}
 
 
 
@@ -217,28 +197,28 @@ function addCustomMarker(location, title, icon) {
     markers.push(marker); // Store the marker in the array
 }
 
-
-
+// Function to calculate and display the route
 function calculateAndDisplayRoute(start, end, title) {
     const request = {
         origin: start,
         destination: end,
-        travelMode: google.maps.TravelMode.WALKING, // Adjust as needed
+        travelMode: google.maps.TravelMode.WALKING, // or DRIVING, BICYCLING, TRANSIT
     };
 
     directionsService.route(request, (result, status) => {
         if (status === "OK") {
             directionsRenderer.setDirections(result);
 
-            // Calculate the distance dynamically
+            // Calculate the distance
             const distance = haversineDistance(start, end);
             updateDistanceDisplay(`Distance to "${title}": ${distance.toFixed(2)} km`);
         } else {
             alert("Directions request failed due to " + status);
         }
+
+        
     });
 }
-
 
 // Function to calculate distance using the Haversine formula
 function haversineDistance(coord1, coord2) {
@@ -381,10 +361,6 @@ const PINPOINTS = [
 
 
   { id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
-
-//   nagpur
-
-{ id: 'Platform 4 ', lat: 21.110710373958966, lng: 79.06388051183923, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
 
 ];
 
