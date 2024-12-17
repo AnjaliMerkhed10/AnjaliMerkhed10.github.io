@@ -85,6 +85,7 @@ let isMapCentered = false;
 let closestMarker = null; // Track the selected destination marker
 let distanceBox = null; // New box for displaying the distance on the path
 
+
 function initMap() {
     const customStyle = [
         { "featureType": "water", "stylers": [{ "color": "#00bfff" }] },
@@ -211,23 +212,104 @@ function addCustomMarker(location, title, icon) {
     markers.push(marker); // Store the marker in the array
 }
 
-// Function to calculate and display the route
+// Function to detect deviation and add a dotted line
+function checkDeviationAndDrawDottedLine(routePolyline) {
+    if (!userLocation || !routePolyline) return;
+
+    const userPoint = new google.maps.LatLng(userLocation.lat, userLocation.lng);
+    const routePath = routePolyline.getPath();
+    let closestPoint = null;
+    let minDistance = Infinity;
+
+    // Find the closest point on the route to the user's location
+    routePath.forEach((point) => {
+        const distance = google.maps.geometry.spherical.computeDistanceBetween(
+            userPoint,
+            point
+        );
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestPoint = point;
+        }
+    });
+
+    // If deviation exceeds 20 meters, draw a dotted line
+    if (minDistance > 20) {
+        new google.maps.Polyline({
+            path: [userPoint, closestPoint],
+            map: map,
+            strokeColor: "#000000",
+            strokeOpacity: 0.7,
+            strokeWeight: 3,
+            icons: [
+                {
+                    icon: {
+                        path: "M 0,-1 0,1",
+                        strokeOpacity: 1,
+                        scale: 2,
+                    },
+                    offset: "0",
+                    repeat: "10px",
+                },
+            ],
+        });
+    }
+}
+
+
 function updateRoute(start, end) {
     const request = {
         origin: start,
         destination: end,
-        travelMode: google.maps.TravelMode.WALKING, // Travel mode can be adjusted
+        travelMode: google.maps.TravelMode.WALKING,
     };
 
     directionsService.route(request, (result, status) => {
         if (status === "OK") {
+            // Render the route
             directionsRenderer.setDirections(result);
-            calculateAndDisplayRouteDistance(result.routes[0].legs[0]); // Calculate total route distance
+
+            // Get the route's path
+            const routePath = result.routes[0].overview_path;
+
+            // Find the last point of the route
+            const lastRouteablePoint = routePath[routePath.length - 1];
+
+            // Draw a dotted line from the last point to the destination
+            drawDottedLine(lastRouteablePoint, end);
+
+            // Display total route distance
+            calculateAndDisplayRouteDistance(result.routes[0].legs[0]);
         } else {
-            alert("Directions request failed due to " + status);
+            console.warn("No route found. Drawing a direct dotted line.");
+            drawDottedLine(start, end); // Draw dotted line directly if no route
         }
     });
 }
+
+// Function to draw a dotted line
+function drawDottedLine(startPoint, endPoint) {
+    new google.maps.Polyline({
+        path: [startPoint, endPoint],
+        strokeOpacity: 0, // Make the solid line invisible
+        map: map,
+        icons: [
+            {
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE, // Dotted line as circles
+                    fillOpacity: 1,
+                    fillColor: "#74ACFF", // Black dots
+                    strokeOpacity: 1,
+                    strokeColor: "#000000",
+                    scale: 2, // Size of dots
+                },
+                offset: "0",
+                repeat: "10px", // Distance between dots
+            },
+        ],
+    });
+}
+
 
 // Function to calculate and display the total route distance
 function calculateAndDisplayRouteDistance(routeLeg) {
@@ -275,6 +357,8 @@ function updateDistanceDisplay(message) {
         distanceDisplay.innerText = message;
     }
 }
+
+
 
 // Function to calculate the Haversine distance
 function haversineDistance(coords1, coords2) {
