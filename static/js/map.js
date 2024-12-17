@@ -82,6 +82,8 @@ let directionsRenderer;
 let userLocation = null; // User's current location
 let userLocationMarker = null;
 let isMapCentered = false;
+let closestMarker = null; // Track the selected destination marker
+let distanceBox = null; // New box for displaying the distance on the path
 
 function initMap() {
     const customStyle = [
@@ -105,7 +107,7 @@ function initMap() {
     directionsRenderer = new google.maps.DirectionsRenderer({
         map: map,
         polylineOptions: {
-            strokeColor: "#FF0000", // Highlighted route in red
+            strokeColor: "#004DBC", // Highlighted route in red
             strokeOpacity: 0.8,
             strokeWeight: 6,
         },
@@ -118,9 +120,8 @@ function initMap() {
         addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title, pin.icon);
     });
 
-    createDistanceDisplay();
+    createDistanceBox(); // Create the new box for showing distance
 }
-
 
 // Display the user's location and create a marker for it
 function displayUserLocation() {
@@ -139,7 +140,6 @@ function displayUserLocation() {
                         position: userLocation,
                         map: map,
                         label: {
-                           
                             color: "#ffffff",
                             fontSize: "12px",
                             fontWeight: "bold",
@@ -154,6 +154,12 @@ function displayUserLocation() {
                 if (!isMapCentered) {
                     map.setCenter(userLocation);
                     isMapCentered = true; // Prevent recentering on every location update
+                }
+
+                // If there's a closest marker, recalculate the route dynamically
+                if (closestMarker) {
+                    updateRoute(userLocation, closestMarker.position); // Recalculate the route
+                    displayLiveDistance(userLocation, closestMarker.position); // Update live distance
                 }
             },
             (error) => {
@@ -186,85 +192,123 @@ function addCustomMarker(location, title, icon) {
         },
     });
 
+    marker.title = title;
     // Add a click listener to calculate the route and show distance
     marker.addListener("click", () => {
         if (!userLocation) {
             alert("Your location is not available yet. Please wait.");
             return;
         }
-        calculateAndDisplayRoute(userLocation, location, title);
+        closestMarker = marker; // Update the closest marker
+        updateRoute(userLocation, marker.position); // Recalculate the route
+        displayLiveDistance(userLocation, marker.position); // Update live distance
     });
 
     markers.push(marker); // Store the marker in the array
 }
 
 // Function to calculate and display the route
-function calculateAndDisplayRoute(start, end, title) {
+function updateRoute(start, end) {
     const request = {
         origin: start,
         destination: end,
-        travelMode: google.maps.TravelMode.WALKING, // Set the travel mode
+        travelMode: google.maps.TravelMode.WALKING, // Travel mode can be adjusted
     };
 
     directionsService.route(request, (result, status) => {
         if (status === "OK") {
             directionsRenderer.setDirections(result);
-
-            // Calculate and display the distance dynamically
-            const distance = haversineDistance(start, end);
-            updateDistanceDisplay(`Distance to "${title}": ${distance.toFixed(2)} km`);
+            calculateAndDisplayRouteDistance(result.routes[0].legs[0]); // Calculate total route distance
         } else {
             alert("Directions request failed due to " + status);
         }
     });
 }
 
+// Function to calculate and display the total route distance
+function calculateAndDisplayRouteDistance(routeLeg) {
+    const totalDistance = routeLeg.distance.text; // The distance is provided in the response
+    updateDistanceDisplay(`Total route distance: ${totalDistance}`);
+}
 
-// Function to calculate distance using the Haversine formula
-function haversineDistance(coord1, coord2) {
+// Function to update live distance dynamically
+function displayLiveDistance(start, end) {
+    const distance = haversineDistance(start, end);
+    let distanceMessage = "";
+
+    if (!isNaN(distance)) {
+        if (distance < 1000) {
+            // Display distance in meters if less than 1 km
+            distanceMessage = `Distance: ${distance.toFixed(0)} meters`;
+        } else {
+            // Display distance in kilometers if 1 km or more
+            distanceMessage = `Distance: ${distance.toFixed(2)} km`;
+        }
+    }
+
+    updateDistanceDisplay(distanceMessage);
+}
+
+// Function to update distance display on the map
+function updateDistanceDisplay(message) {
+    const distanceDisplay = document.getElementById("distanceDisplay");
+    if (distanceDisplay) {
+        distanceDisplay.innerText = message;
+    }
+}
+
+// Function to calculate the Haversine distance
+function haversineDistance(coords1, coords2) {
+    if (!coords1 || !coords2) return NaN;
+
+    const R = 6371; // Radius of the Earth in kilometers
     const toRad = (value) => (value * Math.PI) / 180;
-    const R = 6371; // Radius of Earth in kilometers
-    const dLat = toRad(coord2.lat - coord1.lat);
-    const dLon = toRad(coord2.lng - coord1.lng);
-    const lat1 = toRad(coord1.lat);
-    const lat2 = toRad(coord2.lat);
+
+    const dLat = toRad(coords2.lat - coords1.lat);
+    const dLng = toRad(coords2.lng - coords1.lng);
 
     const a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+        Math.cos(toRad(coords1.lat)) *
+            Math.cos(toRad(coords2.lat)) *
+            Math.sin(dLng / 2) *
+            Math.sin(dLng / 2);
+
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
+    const distanceKm = R * c; // Distance in kilometers
+
+    if (distanceKm < 1) {
+        return distanceKm * 1000; // Convert to meters if distance is less than 1 km
+    } else {
+        return distanceKm; // Return distance in kilometers
+    }
 }
 
-// Function to create a distance display box
-function createDistanceDisplay() {
-    const distanceBox = document.createElement("div");
-    distanceBox.id = "distanceDisplay";
+// Create a distance box for showing live distance
+function createDistanceBox() {
+    distanceBox = document.createElement("div");
+    distanceBox.id = "distanceBox";
     distanceBox.style.position = "absolute";
-    distanceBox.style.top = "60px";
+    distanceBox.style.top = "50px";
     distanceBox.style.left = "50%";
     distanceBox.style.transform = "translateX(-50%)";
-    distanceBox.style.padding = "20px 20px";
-    distanceBox.style.backgroundColor = "#ffffff";
+    distanceBox.style.padding = "10px";
+    distanceBox.style.backgroundColor = "white";
     distanceBox.style.border = "1px solid #ccc";
     distanceBox.style.borderRadius = "5px";
-    distanceBox.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
     distanceBox.style.zIndex = "1000";
-    distanceBox.style.fontSize = "16px";
-    distanceBox.style.textAlign = "center";
-    distanceBox.textContent = "Click a marker to see the distance";
-    distanceBox.style.fontWeight = "bold";
+    distanceBox.innerText = "Click a marker to calculate route to Point B";
 
     document.body.appendChild(distanceBox);
 }
 
 // Function to update the distance display box
 function updateDistanceDisplay(text) {
-    const distanceBox = document.getElementById("distanceDisplay");
     if (distanceBox) {
         distanceBox.textContent = text;
     }
 }
+
 
 
 function bounceAllPins(category) {
@@ -350,6 +394,9 @@ const PINPOINTS = [
     { id: 'Platform 1 Point 43', lat: 19.9472754710607, lng: 73.8416707951445, title: "Offtrack Rail Coach Restaurant", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
     { id: 'Platform 1 Point 44', lat: 19.948129339158, lng: 73.8421446919026, title: "Osop Stall", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
     { id: 'Platform 1 Point 45', lat: 19.948143067654, lng: 73.8421064781602, title: "Gift Shop", category: "Platform 1", icon: "./static/img/shopping-store.png" },
+    { id: 'Platform 1 Point 46', lat: 19.9481698293033, lng: 73.8422593972415, title: "TCI Office", category: "Platform 1", icon: "./static/img/shopping-store.png" },
+    { id: 'Platform 1 Point 47', lat: 19.9485334879367, lng: 73.8422917267116, title: "Multi Purpose Stall Food", category: "Platform 1", icon: "./static/img/shopping-store.png" },
+    { id: 'Platform 1 Point 48', lat: 19.948510696088, lng: 73.8422879214036, title: "Rail Ahar (tea)", category: "Platform 1", icon: "./static/img/shopping-store.png" },
     
     
      
@@ -481,44 +528,13 @@ function addTouristPinpoints(placeName) {
 
 // BACK BUTON CODE
 
-
 function handleBackButtonClick() {
-    if (userLocation) {
-        // Clear any existing directions from the map
-        directionsRenderer.setDirections({ routes: [] });
-
-        // Reset the map to the user's current location
-        map.setCenter(userLocation);
-        map.setZoom(38); // Reset to default zoom level
-
-        // Optionally, clear any other overlays or markers added dynamically
-        clearDynamicMarkers(); // If you have dynamically added markers, clear them
-    }
-}
-
-
-// Function to clear dynamically added markers (if any)
-function clearDynamicMarkers() {
-    if (dynamicMarkers) {
-        dynamicMarkers.forEach((marker) => marker.setMap(null));
-        dynamicMarkers = []; // Reset the array
-    }
+    // Reload the page to reset everything
+    location.reload();
 }
 
 // Back button event listener
 document.getElementById("backButton").addEventListener("click", handleBackButtonClick);
-
-// Handle submenu toggle with click (without hover)
-document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
-    menuItem.addEventListener('click', function (e) {
-        e.stopPropagation(); // Prevent event bubbling
-        const submenu = this.querySelector('.submenu');
-        if (submenu) {
-            // Toggle the display of the submenu
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-        }
-    });
-});
 
 
 
