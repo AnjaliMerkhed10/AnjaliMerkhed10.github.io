@@ -108,7 +108,7 @@ function initMap() {
         map: map,
         polylineOptions: {
             strokeColor: "#004DBC", // Highlighted route in red
-            strokeOpacity: 0.8,
+            strokeOpacity: 0.9,
             strokeWeight: 6,
         },
         suppressMarkers: true, // Suppress default markers from directions
@@ -199,9 +199,13 @@ function addCustomMarker(location, title, icon) {
             alert("Your location is not available yet. Please wait.");
             return;
         }
+
         closestMarker = marker; // Update the closest marker
         updateRoute(userLocation, marker.position); // Recalculate the route
         displayLiveDistance(userLocation, marker.position); // Update live distance
+
+        // Hide other markers when one is selected
+        hideOtherMarkers(marker);
     });
 
     markers.push(marker); // Store the marker in the array
@@ -249,6 +253,21 @@ function displayLiveDistance(start, end) {
     updateDistanceDisplay(distanceMessage);
 }
 
+// Function to hide all markers except the selected one
+function hideOtherMarkers(selectedMarker) {
+    markers.forEach((marker) => {
+        if (marker !== selectedMarker) {
+            marker.setMap(null); // Hide the marker
+        }
+    });
+}
+
+// Function to show all markers (for back button)
+function showAllMarkers() {
+    markers.forEach((marker) => {
+        marker.setMap(map); // Show the marker again
+    });
+}
 // Function to update distance display on the map
 function updateDistanceDisplay(message) {
     const distanceDisplay = document.getElementById("distanceDisplay");
@@ -424,7 +443,7 @@ const PINPOINTS = [
 
 
   { id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
-//   { id: 'Platform 4 ', lat: 21.1101266727752, lng: 79.06336363929633, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
+  { id: 'Platform 4 ', lat: 21.1101266727752, lng: 79.06336363929633, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
 
 ];
 
@@ -536,6 +555,10 @@ function handleBackButtonClick() {
 // Back button event listener
 document.getElementById("backButton").addEventListener("click", handleBackButtonClick);
 
+function clearDynamicMarkers() {
+    markers.forEach((marker) => marker.setMap(null));
+    markers = []; // Reset the array
+}
 
 
 
