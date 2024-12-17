@@ -516,6 +516,10 @@ const PINPOINTS = [
   { id: 'Platform 2 Point 3', lat: 19.948452, lng: 73.842435, title: "TEA STALL", category: "Platform 2", icon: "./static/img/tea-shop.png" },
   { id: 'Platform 2 Point 4',lat: 19.949000752161943, lng: 73.84261514058241, title: "Lift and Stairs",category: "Platform 2", icon: "./static/img/work.png" }, 
   { id: 'Platform 2 Point 5',lat: 19.94717596512187, lng: 73.84224124780778, title: "Lift and Escalators",category: "Platform 2", icon: "./static/img/escalator-down.png" }, 
+  { id: 'Platform 2 Point 6', lat: 19.9478244018195, lng: 73.842379435037, title: "Snacks Stall at PF-2", category: "Platform 2", icon: "./static/img/Snacks_stall.png" },
+  { id: 'Platform 2 Point 7', lat: 19.9478675802091, lng: 73.8423900458132, title: "Fruit & Juice Stall PF-2 ", category: "Platform 2", icon: "./static/img/Snacks_stall.png" },
+  { id: 'Platform 2 Point 8',lat: 19.9482210479122, lng: 73.8424669704252, title: "Snacks Stall at PF-2 ",category: "Platform 2", icon: "./static/img/Snacks_stall.png" }, 
+  { id: 'Platform 2 Point 9',lat: 19.9483012745295, lng: 73.8424830915937, title: "Fruit & Juice Stall PF-2 ",category: "Platform 2", icon: "./static/img/Snacks_stall.png" }, 
 
   // Platform 3 markers
 
