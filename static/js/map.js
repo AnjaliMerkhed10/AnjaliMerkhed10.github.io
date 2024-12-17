@@ -456,7 +456,7 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/lift.png" },
       { id: 'Platform 1 Point 4', lat: 19.9485667622535, lng: 73.8422558012047, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/toilet.png" },
       { id: 'Platform 1 Point 5', lat: 19.948881622227113, lng: 73.84214240124673, title: "Parcel Office", category: "Platform 1", icon: "./static/img/box.png" },
-      { id: 'Platform 1 Point 6', lat: 19.948548471074297, lng: 73.84236733867046, title: "Waiting Room and Cloak room paid", category: "Platform 1", icon: "./static/img/school-locker.png" },
+    //   { id: 'Platform 1 Point 6', lat: 19.948548471074297, lng: 73.84236733867046, title: "Waiting Room and Cloak room paid", category: "Platform 1", icon: "./static/img/school-locker.png" },
       { id: 'Platform 1 Point 7', lat: 19.948378860511262, lng: 73.84231771855413, title: "Ladies Waiting Room", category: "Platform 1", icon: "./static/img/waiting-room.png" },
     //   { id: 'Platform 1 Point 8', lat: 19.948695330002558, lng: 73.84208099586698, title: "Reservation Counter", category: "Platform 1", icon: "./static/img/ticket-office.png" },
     //   { id: 'Platform 1 Point 9', lat: 19.94755363580919, lng: 73.84188516992276, title: "Sleeping Pod (Vatsalyam)", category: "Platform 1", icon: "./static/img/bed.png" },
@@ -661,6 +661,23 @@ document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
         }
     });
 });
+
+
+function changeLanguage(language) {
+    switch (language) {
+        case 'en':
+            alert('English selected');
+            break;
+        case 'hi':
+            alert('हिन्दी चुनी गई');
+            break;
+        case 'mr':
+            alert('मराठी निवडले');
+            break;
+        default:
+            alert('Language not supported');
+    }
+}
 
 
 // Load the map

@@ -350,3 +350,14 @@ padding: 10px;
     display: block; /* Show submenu on hover */
     font-size: 15px;
 }
+
+
+.language-tabs .language-tab {
+    font-size: 1rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.language-tabs .language-tab:hover {
+    color: #007bff; /* Blue color on hover */
+}
