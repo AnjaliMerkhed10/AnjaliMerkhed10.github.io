@@ -663,21 +663,21 @@ document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
 });
 
 
-function changeLanguage(language) {
-    switch (language) {
-        case 'en':
-            alert('English selected');
-            break;
-        case 'hi':
-            alert('हिन्दी चुनी गई');
-            break;
-        case 'mr':
-            alert('मराठी निवडले');
-            break;
-        default:
-            alert('Language not supported');
-    }
-}
+// function changeLanguage(language) {
+//     switch (language) {
+//         case 'en':
+//             alert('English selected');
+//             break;
+//         case 'hi':
+//             alert('हिन्दी चुनी गई');
+//             break;
+//         case 'mr':
+//             alert('मराठी निवडले');
+//             break;
+//         default:
+//             alert('Language not supported');
+//     }
+// }
 
 
 // Load the map
