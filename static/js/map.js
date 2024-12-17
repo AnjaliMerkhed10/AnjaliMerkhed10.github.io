@@ -377,7 +377,7 @@ const PINPOINTS = [
 
 
   { id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
-  { id: 'Platform 4 ', lat: 21.1101266727752, lng: 79.06336363929633, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
+//   { id: 'Platform 4 ', lat: 21.1101266727752, lng: 79.06336363929633, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
 
 ];
 
