@@ -560,6 +560,17 @@ function clearDynamicMarkers() {
     markers = []; // Reset the array
 }
 
+// Handle submenu toggle with click (without hover)
+document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
+    menuItem.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent event bubbling
+        const submenu = this.querySelector('.submenu');
+        if (submenu) {
+            // Toggle the display of the submenu
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+    });
+});
 
 
 // Load the map
