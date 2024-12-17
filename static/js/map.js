@@ -75,97 +75,98 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
 
 
 // LOCATION AND SUBMENU CODE
-
 let map;
-let markers = []; // To keep track of all markers
+let markers = [];
 let directionsService;
 let directionsRenderer;
-let userLocation;
+let userLocation = null; // User's current location
+let userLocationMarker = null;
+let isMapCentered = false;
 
 function initMap() {
-    // Custom Map Styles  
     const customStyle = [
-        { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#00bfff" }] },
-        { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }] },
-        { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }] },
-        { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#cccccc" }] },
-        { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#ff9900" }] },
-        // { "featureType": "all", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": 50 }, { "weight": 0.5 }] },
-        // { "featureType": "all", "elementType": "labels.text.fill", "stylers": [{ "color": "#000000" }, { "lightness": 50 }] },
-        { "featureType": "all", "elementType": "labels.text.stroke", "stylers": [{ "color": "#ffffff" }, { "weight": 1.5 }] },
-        { "featureType": "all", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }
+        { "featureType": "water", "stylers": [{ "color": "#00bfff" }] },
+        { "featureType": "landscape", "stylers": [{ "color": "#f2f2f2" }] },
+        { "featureType": "road", "stylers": [{ "color": "#ffffff" }] },
+        { "featureType": "poi", "stylers": [{ "visibility": "off" }] }
     ];
 
     const mapOptions = {
-        zoom: 30,
-        center: { lat: 19.9482, lng: 73.8421 }, // Default center: Nashik
+        zoom: 18,
+        center: { lat: 19.9482, lng: 73.8421 }, // Default center
         styles: customStyle,
-        mapTypeControl: false, // Disable the map type control
-        streetViewControl: false, // Hide the 3D Street View Pegman icon
-         scaleControl: false,      // Disable the scale control
-
-         
+        mapTypeControl: false,
+        streetViewControl: false,
     };
 
-    
-
-    // Create the map
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-  // Initialize Directions Services
-  directionsService = new google.maps.DirectionsService();
+    directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer({
         map: map,
         polylineOptions: {
-            strokeColor: "#0000ff", // Line color (e.g., blue)
-            strokeOpacity: 0.8,     // Opacity
-            strokeWeight: 8,        // Line width
+            strokeColor: "#FF0000", // Highlighted route in red
+            strokeOpacity: 0.8,
+            strokeWeight: 6,
         },
+        suppressMarkers: true, // Suppress default markers from directions
     });
-   
-    // Create a distance display box
-    createDistanceDisplay();
 
-    // Add predefined custom markers
+    // Display user's location and add predefined markers
+    displayUserLocation();
     PINPOINTS.forEach((pin) => {
         addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title, pin.icon);
     });
 
-    // Get the current location
+    createDistanceDisplay();
+}
+
+
+// Display the user's location and create a marker for it
+function displayUserLocation() {
     if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            userLocation = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            };
+        navigator.geolocation.watchPosition(
+            (position) => {
+                userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
 
-            // Center map on user location
-            map.setCenter(userLocation);
+                if (userLocationMarker) {
+                    userLocationMarker.setPosition(userLocation);
+                } else {
+                    userLocationMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        label: {
+                           
+                            color: "#ffffff",
+                            fontSize: "12px",
+                            fontWeight: "bold",
+                        },
+                        icon: {
+                            url: "./static/img/circle.png", // Blue marker for user
+                            scaledSize: new google.maps.Size(30, 30),
+                        },
+                    });
+                }
 
-            // Add a marker for the user's location
-            addCustomMarker(userLocation, "Your Location", null);
-        },
-        (error) => {
-            alert("Error: The Geolocation service failed or was denied.");
-        },
-        {
-            enableHighAccuracy: true, // Request high accuracy
-            timeout: 10000, // Timeout in milliseconds
-            maximumAge: 0,  // Force fresh location data
-        }
-    );
-} else {
-    alert("Error: Your browser does not support geolocation.");
+                if (!isMapCentered) {
+                    map.setCenter(userLocation);
+                    isMapCentered = true; // Prevent recentering on every location update
+                }
+            },
+            (error) => {
+                alert("Error: Unable to fetch your location.");
+            },
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
 }
 
-
-
-}
-
-
-
-// Function to add a custom marker with text and icon
+// Function to add a custom marker with text (title) and icon
 function addCustomMarker(location, title, icon) {
     const marker = new google.maps.Marker({
         position: location,
@@ -173,22 +174,22 @@ function addCustomMarker(location, title, icon) {
         icon: icon
             ? {
                   url: icon, // URL of the custom icon
-                  scaledSize: new google.maps.Size(30, 30), // Size of the icon
-                  labelOrigin: new google.maps.Point(15, 40), // Position of the label relative to the icon
+                  scaledSize: new google.maps.Size(30, 30), // Custom icon size
+                  labelOrigin: new google.maps.Point(15, 40), // Position of label relative to icon
               }
             : undefined,
         label: {
-            text: title, // Text label
-            color: "#000000", // Label color
-            fontSize: "9px",
+            text: title, // Show the title directly on the map
+            color: "#000000", // Label text color
+            fontSize: "10px",
             fontWeight: "bold",
         },
     });
 
-    // Add a click listener to show directions and distance
+    // Add a click listener to calculate the route and show distance
     marker.addListener("click", () => {
         if (!userLocation) {
-            alert("Your location is not available yet.");
+            alert("Your location is not available yet. Please wait.");
             return;
         }
         calculateAndDisplayRoute(userLocation, location, title);
@@ -202,23 +203,22 @@ function calculateAndDisplayRoute(start, end, title) {
     const request = {
         origin: start,
         destination: end,
-        travelMode: google.maps.TravelMode.WALKING, // or DRIVING, BICYCLING, TRANSIT
+        travelMode: google.maps.TravelMode.WALKING, // Set the travel mode
     };
 
     directionsService.route(request, (result, status) => {
         if (status === "OK") {
             directionsRenderer.setDirections(result);
 
-            // Calculate the distance
+            // Calculate and display the distance dynamically
             const distance = haversineDistance(start, end);
             updateDistanceDisplay(`Distance to "${title}": ${distance.toFixed(2)} km`);
         } else {
             alert("Directions request failed due to " + status);
         }
-
-        
     });
 }
+
 
 // Function to calculate distance using the Haversine formula
 function haversineDistance(coord1, coord2) {
@@ -377,6 +377,7 @@ const PINPOINTS = [
 
 
   { id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
+  { id: 'Platform 4 ', lat: 21.1101266727752, lng: 79.06336363929633, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
 
 ];
 
@@ -473,6 +474,8 @@ function addTouristPinpoints(placeName) {
     map.setCenter({ lat: place.lat, lng: place.lng });
     map.setZoom(14); // Adjust zoom level
 }
+
+
 
 
 
