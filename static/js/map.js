@@ -509,34 +509,39 @@ const PINPOINTS = [
     
     
      
-  // Platform 2 markers 
-  { id: 'Platform 2 ', lat: 19.94786441080806, lng: 73.8423292571979, title: "Platform 2", category: "Platform 2", icon: "./static/img/train-station.png" },
+// Platform 2 markers
+{ id: 'Platform 2 ', lat: 19.948403, lng: 73.8425432, title: "Platform 2/3", category: "Platform 2", icon: "./static/img/train-station.png" },
 
-  { id: 'Platform 2 Point 2', lat: 19.946342, lng: 73.842008, title: "OXYGEN PARLOUR", category: "Platform 2", icon: "./static/img/oxygen-Parlour.png" },
-  { id: 'Platform 2 Point 3', lat: 19.948452, lng: 73.842435, title: "TEA STALL", category: "Platform 2", icon: "./static/img/tea-shop.png" },
-  { id: 'Platform 2 Point 4',lat: 19.949000752161943, lng: 73.84261514058241, title: "Lift and Stairs",category: "Platform 2", icon: "./static/img/work.png" }, 
-  { id: 'Platform 2 Point 5',lat: 19.94717596512187, lng: 73.84224124780778, title: "Lift and Escalators",category: "Platform 2", icon: "./static/img/escalator-down.png" }, 
-  { id: 'Platform 2 Point 6', lat: 19.9478244018195, lng: 73.842379435037, title: "Snacks Stall at PF-2", category: "Platform 2", icon: "./static/img/Snacks_stall.png" },
-  { id: 'Platform 2 Point 7', lat: 19.9478675802091, lng: 73.8423900458132, title: "Fruit & Juice Stall PF-2 ", category: "Platform 2", icon: "./static/img/Snacks_stall.png" },
-  { id: 'Platform 2 Point 8',lat: 19.9482210479122, lng: 73.8424669704252, title: "Snacks Stall at PF-2 ",category: "Platform 2", icon: "./static/img/Snacks_stall.png" }, 
-  { id: 'Platform 2 Point 9',lat: 19.9483012745295, lng: 73.8424830915937, title: "Fruit & Juice Stall PF-2 ",category: "Platform 2", icon: "./static/img/Snacks_stall.png" }, 
+{ id: 'Platform 2 Point 2', lat: 19.9449908, lng: 73.8419853, title: "Drinking Water", category: "Platform 2", icon: "./static/img/water.png" },
+{ id: 'Platform 2 Point 3', lat: 19.9459933, lng: 73.8419712, title: "Tea Snacks Stall", category: "Platform 2", icon: "./static/img/tea-shop.png" },
+{ id: 'Platform 2 Point 4',lat: 19.9462599, lng: 73.8420426, title: "Oxygen Parlour",category: "Platform 2", icon: "./static/img/shopping-store.png" }, 
+{ id: 'Platform 2 Point 5',lat: 19.9463788, lng: 73.8420705, title: "Drinking Water",category: "Platform 2", icon: "./static/img/water.png" }, 
+{ id: 'Platform 2 Point 6', lat: 19.9466785, lng: 73.8421422, title: "Mahanand Milk Stall", category: "Platform 2", icon: "MAHANAND MILK.png" },
+{ id: 'Platform 2 Point 7', lat: 19.9469073, lng: 73.8421788, title: "Tea Stall", category: "Platform 2", icon: "./static/img/tea-shop.png" },
+{ id: 'Platform 2 Point 8',lat: 19.9493372, lng: 73.842735, title: "Snacks Corner",category: "Platform 2", icon: "./static/img/Snacks_stall.png" }, 
+{ id: 'Platform 2 Point 9',lat: 19.9492029, lng: 73.8426984, title: "Toilet(M/F)",category: "Platform 2", icon: "./static/img/toilet.png" }, 
+{ id: 'Platform 2 Point 5',lat: 19.9486886, lng: 73.8425563, title: "Drinking Water",category: "Platform 2", icon: "./static/img/water.png" }, 
 
-  // Platform 3 markers
+{ id: 'Platform 2 Point 7', lat: 19.9482395, lng: 73.8424611, title: "Fruit & Juice Stall", category: "Platform 2", icon: "./static/img/Snacks_stall.png" },
+{ id: 'Platform 2 Point 8',lat: 19.9481556, lng: 73.8424396, title: "Multipurpose Stall",category: "Platform 2", icon: "./static/img/Snacks_stall.png" }, 
+{ id: 'Platform 2 Point 9',lat: 19.9479139, lng: 73.8424121, title: "Drinking Water",category: "Platform 2", icon: "./static/img/water.png" }, 
+{ id: 'Platform 2 Point 8',lat: 19.9478792, lng: 73.8423712, title: "Fruit & Juice Stall",category: "Platform 2", icon: "./static/img/Snacks_stall.png" }, 
+{ id: 'Platform 2 Point 9',lat: 19.9477258, lng: 73.8423635, title: "Railahar Tea Stall",category: "Platform 2", icon: "./static/img/tea-shop.png" },
 
-  { id: 'Platform 3 Point 2', lat: 19.94742, lng: 73.842354, title: "CHILD HELP DESK", category: "Platform 3", icon: "./static/img/MAHANAND MILK.png" },
-  { id: 'Platform 3 Point 3', lat: 19.948972, lng: 73.842831, title: "GENTS TOILET", category: "Platform 3", icon: "./static/img/toilet.png" },
-  { id: 'Platform 3 Point 4', lat: 19.948991, lng: 73.842715, title: "LIFT", category: "Platform 3", icon: "./static/img/lift.png" },
-  { id: 'Platform 3 Point 5', lat: 19.948809, lng: 73.842814, title: "HANDICAPPED TOILET", category: "Platform 3", icon: "./static/img/Handicapped_Toilet.png" },
-  { id: 'Platform 3 Point 6', lat: 19.948503, lng: 73.842965, title: "RESERVATION CENTER PF-4", category: "Platform 3", icon: "./static/img/ticket-office.png" },
-  { id: 'Platform 3 ',lat: 19.947093392634322, lng: 73.84246655335382, title: "Lift and Stairs Mumbai end",category: "Platform 3", icon: "./static/img/work.png" }, 
-  { id: 'Platform 3 Point 7', lat: 19.94792176280579, lng: 73.84278592004723, title: "Water Stand", category: "Platform 3", icon: "./static/img/drop (1).png" }, 
-  { id: 'Platform 3 Point 8',lat:19.94769388957853, lng: 73.84297092277446, title: "Railway Station Pay & Park",category: "Platform 3", icon: "./static/img/parking.png" }, 
-  { id: 'Platform 3 Point 9',lat: 19.948454784853407, lng: 73.84295156280345, title: "Reservation Counter",category: "Platform 3", icon: "./static/img/ticket-office.png" }, 
-  { id: 'Platform 3 Point 10',lat: 19.947255492904763, lng: 73.8422848190672, title: "Platform 3", icon: "./static/img/train-station.png" }, 
-//   { id: 'Platform 3 ', lat: 19.94727556537938, lng: 73.84226307423131, title: "Platform 3", category: "Platform 3", icon: "./static/img/train-station.png" },
+{ id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
+{ id: 'Platform 4 Point 2', lat: 19.9462262, lng: 73.8422562, title: "Tea Stall", category: "Platform 4", icon: "./static/img/tea-shop.png" },
+{ id: 'Platform 4 Point 3', lat: 19.9448597, lng: 73.8419789, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/toilet.png" },
+{ id: 'Platform 4 Point 4', lat: 19.9469949, lng: 73.8424349, title: "Escalator & Stair", category: "Platform 4", icon: "./static/img/escalator.png" },
+{ id: 'Platform 4 Point 5', lat: 19.9473715, lng: 73.8425412, title: "Child Help Desk", category: "Platform 4", icon: "./static/img/train-station.png" },
+{ id: 'Platform 4 Point 6', lat: 19.9488988, lng: 73.8429194, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/toilet.png" },
+{ id: 'Platform 4 Point 7', lat: 19.9489224, lng: 73.8428393, title: "Lift & Stair", category: "Platform 4", icon: "./static/img/lift.png" },
+{ id: 'Platform 4 Point 8', lat: 19.9487459, lng: 73.8428979, title: "Divyangjan Toilet", category: "Platform 4", icon: "./static/img/toilet.png" },
+{ id: 'Platform 4 Point 9', lat: 19.948225, lng: 73.8427105, title: "Multipurpose Stall", category: "Platform 4", icon: "./static/img/Snacks_stall.png" },
+{ id: 'Platform 4 Point 10', lat: 19.948364, lng: 73.8427803, title: "Pf 4 Entry Exit", category: "Platform 4", icon: "./static/img/lift.png" },
+{ id: 'Platform 4 Point 11', lat: 19.9484613, lng: 73.8429938, title: "Reservation Center", category: "Platform 4", icon: "./static/img/train-station.png" },
+{ id: 'Platform 4 Point 12', lat: 19.9485354, lng: 73.8429546, title: "Pay Parking", category: "Platform 4", icon: "./static/img/parking.png" },
 
 
-  { id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
 //   { id: 'Platform 4 ', lat: 21.1101266727752, lng: 79.06336363929633, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
 
 ];
