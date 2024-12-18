@@ -4,6 +4,8 @@ function toggleList(listId) {
 }
 
 
+
+
    // Sidebar Toggle
 const menuIcon = document.getElementById("menuIcon");
 const sidebar = document.getElementById("sidebar");
@@ -146,8 +148,8 @@ function displayUserLocation() {
                             fontWeight: "bold",
                         },
                         icon: {
-                            url: "./static/img/circle.png", // Blue marker for user
-                            scaledSize: new google.maps.Size(30, 30),
+                            url: "./static/img/street-view.png", // Blue marker for user
+                            scaledSize: new google.maps.Size(45, 45),
                         },
                     });
                 }
@@ -546,6 +548,8 @@ const PINPOINTS = [
 
 ];
 
+
+
 function highlightPinpoints(pointId) {
     // Find the pinpoint object by id
     const location = PINPOINTS.find(point => point.id === pointId);
@@ -555,7 +559,7 @@ function highlightPinpoints(pointId) {
         map.setCenter({ lat: location.lat, lng: location.lng });
         
         // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
-        map.setZoom(28); 
+        map.setZoom(20); 
 
         console.log(`Zooming into: ${location.title}`);
     } else {

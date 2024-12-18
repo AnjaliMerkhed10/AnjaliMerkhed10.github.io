@@ -331,10 +331,13 @@ padding: 10px;
     top: 0;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
-    z-index: 1000;
+    z-index: 9999;
     max-height: 300px; /* Set the max height for the submenu */
     overflow-y: auto;  /* Enable vertical scrolling if content exceeds max-height */
     width: 150px;
+    color: #000;
+    list-style-type: none; /* Remove bullets */
+
 }
 
 .submenu li {
@@ -343,12 +346,18 @@ padding: 10px;
     color: #000;
     text-transform: capitalize; 
     font-weight: bold;
+
+}
+
+.submenu li:hover {
+    background-color: #e0e0e0; /* Light gray background on hover */
 }
 
 
 .menu-list > li:hover .submenu {
     display: block; /* Show submenu on hover */
     font-size: 15px;
+    color: #000;
 }
 
 
