@@ -458,14 +458,9 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/lift.png" },
       { id: 'Platform 1 Point 4', lat: 19.9485667622535, lng: 73.8422558012047, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/toilet.png" },
       { id: 'Platform 1 Point 5', lat: 19.948881622227113, lng: 73.84214240124673, title: "Parcel Office", category: "Platform 1", icon: "./static/img/box.png" },
-    //   { id: 'Platform 1 Point 6', lat: 19.948548471074297, lng: 73.84236733867046, title: "Waiting Room and Cloak room paid", category: "Platform 1", icon: "./static/img/school-locker.png" },
-      { id: 'Platform 1 Point 7', lat: 19.948378860511262, lng: 73.84231771855413, title: "Ladies Waiting Room", category: "Platform 1", icon: "./static/img/waiting-room.png" },
-    //   { id: 'Platform 1 Point 8', lat: 19.948695330002558, lng: 73.84208099586698, title: "Reservation Counter", category: "Platform 1", icon: "./static/img/ticket-office.png" },
-    //   { id: 'Platform 1 Point 9', lat: 19.94755363580919, lng: 73.84188516992276, title: "Sleeping Pod (Vatsalyam)", category: "Platform 1", icon: "./static/img/bed.png" },
-    //   { id: 'Platform 1 Point 10', lat: 19.947581864126462, lng: 73.84204915044238, title: "Deluxe Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 7', lat: 19.948378860511262, lng: 73.84231771855413, title: "DYSS Office", category: "Platform 1", icon: "./static/img/waiting-room.png" },
       { id: 'Platform 1 Point 11', lat: 19.94745544178198, lng: 73.84204121281842, title: "ATM", category: "Platform 1", icon: "./static/img/atm.png" },
       { id: 'Platform 1 Point 12', lat: 19.947468872817097, lng: 73.84185339909355, title: "AC Retiring Hall (Godavari Waiting Hall)", category: "Platform 1", icon: "./static/img/waiting-room (1).png" },
-    //   { id: 'Platform 1 Point 13', lat: 19.94768630198704, lng: 73.84184148280016, title: "IRCTC Dormitory", category: "Platform 1", icon: "./static/img/bunk-bed.png" },
       { id: 'Platform 1 Point 14', lat: 19.94737791202757, lng: 73.84201774349071, title: "Waiting Room and Cloak Room Paid", category: "Platform 1", icon: "./static/img/school-locker.png" },
       { id: 'Platform 1 Point 15', lat: 19.94875366774617, lng: 73.84240592828107, title: "Water Stand PF at Middle", category: "Platform 1", icon: "./static/img/drop (1).png" },
       { id: 'Platform 1 Point 16', lat: 19.94837037997832, lng: 73.8415192857732, title: "Nashik Road Bus Stop", category: "Platform 1", icon: "./static/img/bus-stop.png" },
@@ -474,11 +469,9 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 19', lat: 19.948078, lng: 73.841949, title: "Gift Shop", category: "Platform 1", icon: "./static/img/gift.png" },
       { id: 'Platform 1 Point 20', lat: 19.947048, lng: 73.842045, title: "RPF Station", category: "Platform 1", icon: "./static/img/RPF_Station.png" },
       { id: 'Platform 1 Point 21', lat: 19.947766, lng: 73.841839, title: "M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms", category: "Platform 1", icon: "./static/img/bunk-bed.png" },
-    //   { id: 'Platform 1 Point 22', lat: 19.947659, lng: 73.84208, title: "Relax Zone", category: "Platform 1", icon: "./static/img/waiting-room.png" },
       { id: 'Platform 1 Point 23', lat: 19.948437, lng: 73.84187, title: "Emergency Medical Facility", category: "Platform 1", icon: "./static/img/hospital.png" },
       { id: 'Platform 1 Point 24', lat: 19.948534, lng: 73.84199, title: "Ticket Counter", category: "Platform 1", icon: "./static/img/ticket-office.png" },
       { id: 'Platform 1 Point 25', lat: 19.947580, lng: 73.84193, title: "Cafeteria", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
-    //   { id: 'Platform 1 Point 26', lat: 19.947715, lng: 73.842172, title: "Pay & Use Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
       { id: 'Platform 1 Point 27', lat: 19.946823, lng: 73.841875, title: "Pay & Use Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
       { id: 'Platform 1 Point 28', lat: 19.94861, lng: 73.842431, title: "Water Stand PF-1", category: "Platform 1", icon: "./static/img/water.png" },
       { id: 'Platform 1 Point 29', lat: 19.94692, lng: 73.84154, title: "Deluxe Toilet (M/F)", category: "Platform 1", icon: "./static/img/toilet.png" },
@@ -486,11 +479,9 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: "Khadi Garments Store", category: "Platform 1", icon: "./static/img/shopping-store.png" },
       { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/auto-rishaw.png" },
       { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/parking.png" },
-    //   sohan sir changes
+
       { id: 'Platform 1 Point 34', lat: 19.9480189955569, lng: 73.8421796201009, title: "Platform 1 Enterance", category: "Platform 1", icon: "./static/img/train-station.png" },
       { id: 'Platform 1 Point 35', lat: 19.9479258110046, lng: 73.8422304943829, title: "Station Manager", category: "Platform 1", icon: "./static/img/station-master.png" },
-    //   { id: 'Platform 1 Point 36', lat: 19.9480176092028, lng: 73.842178717499, title: "CTI OFFICE/HEAD TE OFFICE", category: "Platform 1", icon: "./static/img/CHILD HELP DESK.png" },
-    //   { id: 'Platform 1 Point 37', lat: 19.947753, lng: 73.842124, title: "WATER STAND", category: "Platform 1", icon: "./static/img/water.png" },
     { id: 'Platform 1 Point 38', lat: 19.9477949362633, lng: 73.8421749061679, title: "Irctc Food Track", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
     { id: 'Platform 1 Point 39', lat: 19.9476854516116, lng: 73.8418588942186, title: "Irctc Dormitory & Deluxe Room", category: "Platform 1", icon: "./static/img/bed.png" },
     { id: 'Platform 1 Point 40', lat: 19.9475138912436, lng: 73.8419460051485, title: "Pay & Use Toilet(M/F)", category: "Platform 1", icon: "./static/img/toilet.png" },
@@ -504,7 +495,6 @@ const PINPOINTS = [
     { id: 'Platform 1 Point 48', lat: 19.9484980281734, lng: 73.8422879214036, title: "Rail Ahar (tea)", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
     { id: 'Platform 1 Point 49', lat: 19.9482496775167, lng: 73.842275675835, title: "Upper class waiting room(Female)", category: "Platform 1", icon: "./static/img/waiting-room.png" },
     { id: 'Platform 1 Point 50', lat: 19.9482820506708, lng: 73.8422826237955, title: " Waiting Room", category: "Platform 1", icon: "./static/img/waiting-room.png" },
-    { id: 'Platform 1 Point 51', lat: 19.9483622574445, lng: 73.8423036381708, title: "DYSS Office", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
     { id: 'Platform 1 Point 52', lat: 19.9483313103336, lng: 73.842295280183, title: "Kitab Ghar", category: "Platform 1", icon: "./static/img/Book_Stall.png" },
     { id: 'Platform 1 Point 53', lat: 19.9484636071821, lng: 73.8423238682215, title: " Maa Tara Ac Waiting&Cloak Room", category: "Platform 1", icon: "./static/img/waiting-room.png" },
     { id: 'Platform 1 Point 54', lat: 19.9484832502068, lng: 73.8423302994909, title: "Sleeper Class Waiting Room", category: "Platform 1", icon: "./static/img/waiting-room.png" },
@@ -556,21 +546,21 @@ function highlightPinpoints(pointId) {
     
     if (location && map) {
         // Center the map on the selected location
-        map.setCenter({ lat: location.lat, lng: location.lng });
+        map.setCenter({ lat: location.lat, lng: location.lng }); 
         
         // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
         map.setZoom(20); 
 
         console.log(`Zooming into: ${location.title}`);
     } else {
-        console.error(`Location with ID '${pointId}' not found.`);
+        console.error(`Location with ID '${pointId}' not found.`);       
     }
 }
 
 
 // TOURIST CODE
 
-// Function to display all tourist places and pinpoints
+// Function to display all tourist places and pinpoints                                                                                                                                            
 function displayAllPinpoints() {
     // Add all tourist places and platform pinpoints to the map
     [...TOURIST_PLACES, ...PINPOINTS].forEach(place => {
