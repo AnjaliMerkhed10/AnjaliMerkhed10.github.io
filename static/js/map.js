@@ -309,7 +309,7 @@ function drawDottedLine(startPoint, endPoint) {
                 repeat: "10px", // Distance between dots
             },
         ],
-    });
+    }); 
 }
 
 
@@ -423,7 +423,7 @@ function bounceAllPins(category) {
     // Highlight the selected menu item
     const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
         (li) => li.textContent === category
-    );
+    );  
     if (selectedItem) selectedItem.classList.add('highlight');
 
     // Stop animation for all markers
@@ -534,7 +534,7 @@ const PINPOINTS = [
 { id: 'Platform 4 Point 12', lat: 19.9485354, lng: 73.8429546, title: "Pay Parking", category: "Platform 4", icon: "./static/img/parking.png" },
 
 
-//   { id: 'Platform 4 ', lat: 21.1101266727752, lng: 79.06336363929633, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
+   
 
 ];
 
