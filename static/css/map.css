@@ -1,8 +1,7 @@
 body {
-    font-family: 'Lato', sans-serif;
-   
-
+    font-family: 'Roboto', sans-serif;
 }
+
 #map {
     width: 100%;
     height: calc(100vh - 60px); /* Map occupies the height above the footer */
@@ -12,20 +11,20 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 70px;
-    background-color: #006BC0; /* Matches the blue bar color */
-    color: white;
+    height: 85px;
+    background-color: #ffffff; /* Matches the blue bar color */
+    color: #484C52;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); 
+    /* box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);  */
     z-index: 1000;
 }
 .bottom-bar button {
     background: none;
-    color: white;
+    color: #484C52;
     border: none;
-    font-size: 16px;
+    font-size: 12px;
     cursor: pointer;
 }
 .bottom-bar button:hover {
@@ -91,18 +90,19 @@ body {
 .sidebar {
 position: fixed;
 top: 0;
-right: -250px; /* Hidden initially */
-width: 170px;
+left: -250px; /* Hidden initially */
+width: 230px;
 height: 100%;
-background-color: #006BC0; /* Matches blue bar color */
+background-color: #ffffff; /* Matches blue bar color */
 color: white;
 padding: 15px;
-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+box-shadow: 2px 0 2px rgba(128, 128, 128, 0.192);
 transition: right 0.3s ease-in-out;
 z-index: 1500;
+
 }
 .sidebar.open {
-right: 0; /* Show the sidebar */
+left: 0; /* Show the sidebar */
 }
 
 .sidebar h3 {
@@ -114,30 +114,49 @@ margin-bottom: 15px;
 
 .menu-item {
 margin-bottom: 15px;
-margin-top: 35px;
+margin-top: 25px;
 }
 
 .menu-btn {
 width: 100%;
 background-color: #ffffff; /* Slightly darker blue */
-color: rgb(22, 22, 22);
+color: #526581;
 border: none;
-padding: 10px 15px;
+
 text-align: left;
-font-size: 13px;
+font-size: 16px;
 border-radius: 5px;
 cursor: pointer;
 transition: background-color 0.3s ease-in-out;
-font-weight: 900;
+
 }
+
+.menu-btn img {
+    margin-right: 10px; /* Adds space between the image and the text */
+    vertical-align: middle; /* Ensures the image is vertically aligned with the text */
+}
+
 .menu-btn:hover {
 background-color: #c1e2ff; /* Even darker blue for hover */
 }
 
+.menu-btn i {
+    font-size: 0.8rem; /* Adjust the font size as needed */
+    margin-left: 10px;
+}
+
+.custom-hr {
+    border: 0;
+    border-top: 2px solid #D9D9D9; /* Adjust the grey color as needed */
+    opacity: 0.5; /* Optional: Makes the line a bit lighter */
+}
+
+
+
 .menu-list {
 list-style: none;
 /* padding: 10px 15px; */
-background-color: #004a8a; /* Background for dropdown list */
+background-color: #E2F5FF; /* Background for dropdown list */
 border-radius: 5px;
 margin-top: 5px;
 display: none; /* Initially hidden */
@@ -150,6 +169,7 @@ display: block; /* Show the list */
 .menu-list li {
 padding: 5px 0;
 font-size: 15px;
+color: #526581;
 }
 
 .menu-list li a {
@@ -175,9 +195,16 @@ font-weight: 800;
 
 }
 
+.safety_text {
+    color: #526581;          /* Sets the text color */
+    font-weight: bold;       /* Makes the text bold */
+    font-size: medium;       /* Sets the font size to medium */
+    font-size: 16px;
+}
+
 .sidebar ul li:hover {
-background-color: #ffffff; /* Optional: Highlight on hover */
-color: #181818;
+background-color: #007AFF; /* Optional: Highlight on hover */
+color: #ffffff;
 font-size: larger;
 }
 
@@ -191,18 +218,30 @@ display: block; /* Makes the entire list item clickable */
 /* Menu Icon */
 .menu-icon {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: 5px;
+    left: 15px;
     z-index: 1600;
     cursor: pointer;
 
-    padding-top: 50px;
+    padding-top: 10px;
 
+}
+
+.submenu_title {
+    color: #2B3674;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.submenu_subtitle {
+    color: #2B3674;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .menu-icon.right {
 left: calc(200px - 8px); /* Adjust for sidebar width (250px) */
-transition: right 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition for position and color */
+transition: left 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition for position and color */
 }
 
 .header {
@@ -327,7 +366,7 @@ padding: 10px;
     margin: 0;
     display: none; /* Hidden by default */
     position: absolute;
-    right: 100%; /* Position submenu to the right */
+    left: 100%; /* Position submenu to the right */
     top: 0;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
@@ -378,3 +417,120 @@ padding: 10px;
     color: #ffffff;
 
 }
+
+/* CSS for highlighting */
+.highlight-background {
+    background-color: grey;
+    color: white;  /* Optional: Change text color for better visibility */
+}
+
+
+/* Initial state of the menu icon */
+#menuIcon {
+    display: inline-block;
+
+
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Hide the menu icon when the sidebar is open */
+  #menuIcon.hidden {
+    display: none; /* Hides the icon */
+  }
+  
+  /* Add hamburger menu style (3 bars) */
+  #menuIcon::before,
+  #menuIcon::after {
+    content: '';
+    position: absolute;
+
+
+    transition: transform 0.3s ease-in-out;
+  }
+  
+
+  /* Icon changes when the sidebar is open (close icon) */
+  #menuIcon.icon-close {
+    background-color: transparent; /* Hide the middle bar */
+  }
+  
+  #menuIcon.icon-close::before {
+    transform: rotate(45deg); /* Rotate top bar to form close "X" */
+    top: 0;
+  }
+  
+  #menuIcon.icon-close::after {
+    transform: rotate(-45deg); /* Rotate bottom bar to form close "X" */
+    top: 0;
+  }
+  
+  /* Optional: Sidebar appearance changes when it's open */
+  #sidebar.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  
+
+  #distanceBox {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+    font-size: 12px; /* Smaller font size */
+    width: 250px; /* Set a fixed width for the box */
+    display: flex;
+    align-items: center; /* Vertically center the icon and text */
+    justify-content: center; /* Center the content horizontally */
+    gap: 10px; /* Space between the icon and text */
+}
+
+#distanceBox i {
+    font-size: 16px; /* Icon size */
+    color: #FF5C00; /* Icon color */
+}
+
+
+/* Language dropdown styling */
+.language-dropdown {
+    position: absolute; /* Positioning it absolutely within the header */
+    right: 20px; /* Distance from the right edge */
+    top: 50%; /* Aligns it vertically in the center */
+
+}
+
+.language-dropdown select {
+    padding: 7px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #3789FF;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.search-bar {
+    position: relative;
+    color: #B5BDC9; 
+    
+}
+
+.search-bar input {
+    padding-left: 40px; /* Adjust space for icon */
+    background-color: #F2F4F6;
+    color: #B5BDC9; 
+}
+
+.search-bar i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #B5BDC9; /* Search icon color */
+}
+

@@ -6,7 +6,7 @@ function toggleList(listId) {
 
 
 
-   // Sidebar Toggle
+// Sidebar Toggle
 const menuIcon = document.getElementById("menuIcon");
 const sidebar = document.getElementById("sidebar");
 
@@ -14,18 +14,25 @@ menuIcon.addEventListener("click", () => {
     sidebar.classList.toggle("open");
     menuIcon.classList.toggle("right"); // Shift the icon to the right
 
-    // Change the image source based on sidebar state
-    const iconImg = document.getElementById("iconImg");
-    if (sidebar.classList.contains("open")) {
-        iconImg.src = "./static/img/close.png"; // Close icon
-        iconImg.classList.add("icon-close-shift"); // Apply the upward shift
-    } else {
-        iconImg.src = "./static/img/train (2).png"; // Menu icon
-        iconImg.classList.remove("icon-close-shift"); // Remove the upward shift
-    }
+    // Toggle the icon visibility when the sidebar is open
+    menuIcon.classList.toggle("hidden"); // Hide the icon when sidebar is open
 
-      // Close all submenus when the sidebar is closed   
-       if (!sidebar.classList.contains("open")) {
+    // Close all submenus when the sidebar is closed   
+    if (!sidebar.classList.contains("open")) {
+        document.querySelectorAll('.submenu').forEach(submenu => {
+            submenu.style.display = 'none'; // Hide all submenus
+        });
+    }
+});
+
+// Close sidebar when clicking outside
+document.addEventListener("click", (event) => {
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+        sidebar.classList.remove("open");
+        menuIcon.classList.remove("right");
+        menuIcon.classList.remove("hidden"); // Reset icon visibility when clicking outside
+
+        // Close all submenus when the sidebar is closed
         document.querySelectorAll('.submenu').forEach(submenu => {
             submenu.style.display = 'none'; // Hide all submenus
         });
@@ -33,47 +40,6 @@ menuIcon.addEventListener("click", () => {
 });
 
 
-// Voice Search Functionality
-const voiceSearchButton = document.getElementById("voiceSearch");
-const voiceStatus = document.getElementById("voiceStatus");
-
-if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-
-    voiceSearchButton.addEventListener("click", () => {
-        recognition.start();
-        voiceStatus.style.display = "block";
-        voiceStatus.textContent = "Listening...";
-    });
-
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript.toLowerCase();
-        voiceStatus.textContent = `Searching for: "${transcript}"`;
-
-        // Check if transcript matches any location or category
-        if (transcript.includes("tourist places") || transcript.includes("show all")) {
-            // Show all pinpoints if "show all" or "tourist places" is said
-            displayAllPinpoints();
-        } else {
-            // Search for specific tourist places or platforms
-            searchAndShowPinpoints(transcript);
-        }
-    };
-
-    recognition.onspeechend = () => {
-        recognition.stop();
-        voiceStatus.style.display = "none";
-    };
-
-    recognition.onerror = (event) => {
-        voiceStatus.textContent = `Error occurred in recognition: ${event.error}`;
-        setTimeout(() => {
-            voiceStatus.style.display = "none";
-        }, 2000);
-    };
-}
 
 
 // LOCATION AND SUBMENU CODE
@@ -87,14 +53,31 @@ let isMapCentered = false;
 let closestMarker = null; // Track the selected destination marker
 let distanceBox = null; // New box for displaying the distance on the path
 
-
 function initMap() {
     const customStyle = [
-        { "featureType": "water", "stylers": [{ "color": "#00bfff" }] },
-        { "featureType": "landscape", "stylers": [{ "color": "#f2f2f2" }] },
+        { "featureType": "water", "stylers": [{ "color": "#50B6FF" }] },
+        { "featureType": "landscape", "stylers": [{ "color": "#F1F9FF" }] },
         { "featureType": "road", "stylers": [{ "color": "#ffffff" }] },
-        { "featureType": "poi", "stylers": [{ "visibility": "off" }] }
+        { "featureType": "poi", "stylers": [{ "visibility": "off" }] },
+        // { "featureType": "landscape.natural", "stylers": [{ "color": "#BBFF9B" }] },
+        { "featureType": "road.highway", "stylers": [{ "color": "#FFEBDE" }] },
+        {
+            featureType: "transit.line", // Targets railway tracks
+            elementType: "geometry",
+            stylers: [
+                { color: "#FFC74E" }, // Change to your desired color
+                { visibility: "simplified" }, // Simplify the line
+                { weight: 4 }, // Adjust thickness
+            ],
+        },
+        {
+            featureType: "transit.line", // Targets railway tracks
+            elementType: "labels",
+            stylers: [{ visibility: "off" }], // Remove railway labels (optional)
+        },
     ];
+
+     
 
     const mapOptions = {
         zoom: 18,
@@ -102,15 +85,41 @@ function initMap() {
         styles: customStyle,
         mapTypeControl: false,
         streetViewControl: false,
+        
+        
+        fullscreenControl: false, // Disable fullscreen control (fullscreen button)
+     
     };
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    const railwayLine = new google.maps.Polyline({
+        path: [
+            { lat: 19.946810167998795, lng: 73.84199274218622 }, // Starting point
+            { lat: 19.94985046657326, lng: 73.84263706196272 }, // Ending point
+        ],
+        geodesic: true,
+        strokeColor: '#FFC74E', // Color of the line
+        strokeOpacity: 1.0,
+        strokeWeight: 4,
+        icons: [{
+            icon: {
+                path: "M 0,0 L 2,0",  // Horizontal line (start to end in X direction)
+                strokeColor: '#FFC74E', // Color of the horizontal dash
+                strokeWeight: 4,
+            },
+            offset: '0',
+            repeat: '20px', // Adjust the gap between dashes (20px here)
+        }],
+    });
+
+    railwayLine.setMap(map);
 
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer({
         map: map,
         polylineOptions: {
-            strokeColor: "#004DBC", // Highlighted route in red
+            strokeColor: "#004DBC", // Highlighted route in blue
             strokeOpacity: 0.9,
             strokeWeight: 6,
         },
@@ -124,7 +133,38 @@ function initMap() {
     });
 
     createDistanceBox(); // Create the new box for showing distance
+
+    // Coordinates for highlighting the area (Nashik region)
+    const polygonCoords = [
+        { lat: 19.944991064829356, lng: 73.84000596022472 },
+        { lat: 19.94459527745609, lng: 73.84112873522083},
+       
+        { lat: 19.948733005505602, lng: 73.84234082186437 },
+        { lat: 19.948673039206877, lng: 73.84147322300373 },
+    ];
+
+    // Create a polygon using the defined coordinates
+    const polygon = new google.maps.Polygon({
+        paths: polygonCoords,
+        strokeColor: '#ff0000',  // Border color (Orange)
+        strokeOpacity: 0.8,      // Border opacity
+        strokeWeight: 3,         // Border weight
+        fillColor: '#ff0000',    // Fill color (Orange)
+        fillOpacity: 0.35,       // Fill opacity
+    });
+
+    // Add the polygon to the map
+    polygon.setMap(map);
+
+    // Optionally, you can add a listener to change the polygon's style on click
+    google.maps.event.addListener(polygon, 'click', function () {
+        polygon.setOptions({
+            fillColor: '#ff0000', // Grey color on click
+            strokeColor: '#ff0000'
+        });
+    });
 }
+
 
 // Display the user's location and create a marker for it
 function displayUserLocation() {
@@ -390,20 +430,41 @@ function haversineDistance(coords1, coords2) {
 }
 
 // Create a distance box for showing live distance
+// Create a distance box for showing live distance
 function createDistanceBox() {
-    distanceBox = document.createElement("div");
+    const distanceBox = document.createElement("div");
     distanceBox.id = "distanceBox";
+    
+    // Create the icon element
+    const icon = document.createElement("i");
+    icon.classList.add("fas", "fa-map-marker-alt"); // Font Awesome icon class
+    
+    // Create the text element
+    const text = document.createElement("span");
+    text.innerText = "Click a marker to calculate route to Point B";
+
+    // Add the icon and text to the box
+    distanceBox.appendChild(icon);
+    distanceBox.appendChild(text);
+
+    // Style the distance box and its children
     distanceBox.style.position = "absolute";
-    distanceBox.style.top = "50px";
+    distanceBox.style.top = "100px";
     distanceBox.style.left = "50%";
     distanceBox.style.transform = "translateX(-50%)";
-    distanceBox.style.padding = "10px";
+    distanceBox.style.padding = "15px";
     distanceBox.style.backgroundColor = "white";
     distanceBox.style.border = "1px solid #ccc";
     distanceBox.style.borderRadius = "5px";
     distanceBox.style.zIndex = "1000";
-    distanceBox.innerText = "Click a marker to calculate route to Point B";
+    distanceBox.style.fontSize = "12px"; // Smaller font size
+    distanceBox.style.width = "250px"; // Set a fixed width for the box
+    distanceBox.style.display = "flex";
+    distanceBox.style.alignItems = "center"; // Vertically center the icon and text
+    distanceBox.style.justifyContent = "center"; // Center the content horizontally
+    distanceBox.style.gap = "10px"; // Add some space between the icon and text
 
+    // Append the distance box to the body
     document.body.appendChild(distanceBox);
 }
 
@@ -666,21 +727,21 @@ document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
 });
 
 
-// function changeLanguage(language) {
-//     switch (language) {
-//         case 'en':
-//             alert('English selected');
-//             break;
-//         case 'hi':
-//             alert('हिन्दी चुनी गई');
-//             break;
-//         case 'mr':
-//             alert('मराठी निवडले');
-//             break;
-//         default:
-//             alert('Language not supported');
-//     }
-// }
+function changeLanguage(language) {
+    switch (language) {
+        case 'en':
+            alert('English selected');
+            break;
+        case 'hi':
+            alert('हिन्दी चुनी गई');
+            break;
+        case 'mr':
+            alert('मराठी निवडले');
+            break;
+        default:
+            alert('Language not supported');
+    }
+}
 
 
 // Load the map
