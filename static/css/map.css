@@ -99,7 +99,7 @@ padding: 15px;
 box-shadow: 2px 0 2px rgba(128, 128, 128, 0.192);
 transition: right 0.3s ease-in-out;
 z-index: 1500;
-
+overflow-y: scroll;
 }
 .sidebar.open {
 left: 0; /* Show the sidebar */
@@ -131,18 +131,25 @@ transition: background-color 0.3s ease-in-out;
 
 }
 
+.menu-btn.active {
+    background-color: #007AFF; /* Blue color when active */
+    color: white; /* Change text color to white when active */
+}
+
 .menu-btn img {
     margin-right: 10px; /* Adds space between the image and the text */
     vertical-align: middle; /* Ensures the image is vertically aligned with the text */
 }
 
 .menu-btn:hover {
-background-color: #c1e2ff; /* Even darker blue for hover */
+    background-color: #007AFF;/* Even darker blue for hover */
+    color: white;
+    padding: 8px;
 }
 
 .menu-btn i {
     font-size: 0.8rem; /* Adjust the font size as needed */
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .custom-hr {
@@ -170,10 +177,11 @@ display: block; /* Show the list */
 padding: 5px 0;
 font-size: 15px;
 color: #526581;
+
 }
 
 .menu-list li a {
-color: white;
+color: #526581;
 text-decoration: none;
 font-size: 15px;
 }
@@ -209,9 +217,9 @@ font-size: larger;
 }
 
 .sidebar ul li a {
-color: white;
+color: #526581;
 text-decoration: none;
-font-size: 18px;
+font-size: 15px;
 display: block; /* Makes the entire list item clickable */
 }
 
@@ -364,25 +372,21 @@ padding: 10px;
     list-style-type: none;
     padding: 0;
     margin: 0;
-    display: none; /* Hidden by default */
+    display: none; /* Initially hidden */
     position: absolute;
-    left: 100%; /* Position submenu to the right */
-    top: 0;
+    top: 100%; /* Position it below the parent list item */
+    left: 0; /* Align it to the left of the parent */
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     z-index: 9999;
-    max-height: 300px; /* Set the max height for the submenu */
-    overflow-y: auto;  /* Enable vertical scrolling if content exceeds max-height */
-    width: 150px;
-    color: #000;
-    list-style-type: none; /* Remove bullets */
-
+    width: 200px; /* Set width of the submenu */
+    color: #526581;
 }
 
 .submenu li {
     padding: 8px 12px;
     font-size: 12px; /* Adjust this value to make the font smaller */
-    color: #000000 !important; /* Force black text */
+    color: #526581 !important; /* Force black text */
     text-transform: capitalize; 
     font-weight: bold;
 
@@ -396,7 +400,7 @@ padding: 10px;
 .menu-list > li:hover .submenu {
     display: block; /* Show submenu on hover */
     font-size: 15px;
-    color: #000;
+    color: #526581;
 }
 
 
@@ -516,14 +520,14 @@ padding: 10px;
 
 .search-bar {
     position: relative;
-    color: #B5BDC9; 
+    color: #526581;
     
 }
 
 .search-bar input {
     padding-left: 40px; /* Adjust space for icon */
     background-color: #F2F4F6;
-    color: #B5BDC9; 
+    color: #526581;
 }
 
 .search-bar i {
@@ -531,6 +535,31 @@ padding: 10px;
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
-    color: #B5BDC9; /* Search icon color */
+    color: #526581; /* Search icon color */
 }
 
+/* Shilpasearch */
+
+.search-suggestions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    /* border: 1px solid #ccc; */
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}

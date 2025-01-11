@@ -168,21 +168,51 @@
             </ul>
         </div>
 
-        <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Divyangjan facilities
-                </button>
+     
 
-        </div>
         <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Storage & Services
-                </button>
-
+            <button class="menu-btn" onclick="toggleList('Divyangjan-facilities')">
+                <img src="./static/img/platforms.png" alt="">Divyangjan facilities
+                <span><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <ul id="Divyangjan-facilities" class="menu-list">
+                <li><a href="#"><img src="./static/img/parking-icon.png" > Divyangjan Parking</a></li>
+                <li><a href="#"><img src="./static/img/toilet-icon.png" > Toilet</a></li>
+                <li><a href="#"><img src="./static/img/water-booth-icon.png" > Water Booth</a></li>
+                <li><a href="#"><img src="./static/img/escalator-icon.png" > Escalator</a></li>
+                <li><a href="#"><img src="./static/img/ramp-icon.png" > Ramp</a></li>
+            </ul>
         </div>
+        
         <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Entry/exit
-                </button>
-
+            <button class="menu-btn" onclick="toggleList('Storage&Services')">
+                <img src="./static/img/platforms.png" alt="">Storage & Services
+                <span><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <ul id="Storage&Services" class="menu-list">
+                <li><a href="#"><img src="./static/img/parking-icon.png" > Luggage Room</a></li>
+                <li><a href="#"><img src="./static/img/toilet-icon.png" > Cloak Room</a></li>
+                <li><a href="#"><img src="./static/img/water-booth-icon.png" > Parcel Room</a></li>
+              
+            </ul>
         </div>
+
+        <div class="menu-item">
+            <button class="menu-btn" onclick="toggleList('Entry')">
+                <img src="./static/img/platforms.png" alt="">Entry/exit    <span><i class="fas fa-chevron-down"></i></span>
+            </button>
+            
+          
+            <ul id="Entry" class="menu-list">
+                <li><a href="#"><img src="./static/img/parking-icon.png" > PF 1 Entry/exit</a></li>
+                <li><a href="#"><img src="./static/img/toilet-icon.png" > PF 2/3 Entry/exit</a></li>
+                <li><a href="#"><img src="./static/img/water-booth-icon.png" > PF 4 Entry/exit</a></li>
+              
+            </ul>
+        </div>
+
+     
+     
 
         <div class="menu-item">
             <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Help Desk
@@ -209,10 +239,11 @@
 
 
         <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Nashik map
-                </button>
-
+            <button class="menu-btn" id="nashikMapBtn">
+                <img src="./static/img/platforms.png" alt="">Nashik map
+            </button>
         </div>
+        
 
       
       

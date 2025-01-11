@@ -1,6 +1,6 @@
 function toggleList(listId) {
     const list = document.getElementById(listId);
-    list.classList.toggle("open");
+    list.classList.toggle("open");  // Toggle 'open' class to show/hide the list
 }
 
 
@@ -95,8 +95,10 @@ function initMap() {
 
     const railwayLine = new google.maps.Polyline({
         path: [
-            { lat: 19.946810167998795, lng: 73.84199274218622 }, // Starting point
-            { lat: 19.94985046657326, lng: 73.84263706196272 }, // Ending point
+            { lat: 19.946810167998795, lng: 73.84199274218622 }, // Starting point , 
+            { lat: 19.94985046657326, lng: 73.84263706196272 }, // Ending point  , 
+            { lat: 19.946513449638726, lng: 73.84194493518378 }, // Starting point , 
+            { lat: 19.94905780688094, lng: 73.84250658274564 },
         ],
         geodesic: true,
         strokeColor: '#FFC74E', // Color of the line
@@ -136,11 +138,11 @@ function initMap() {
 
     // Coordinates for highlighting the area (Nashik region)
     const polygonCoords = [
-        { lat: 19.944991064829356, lng: 73.84000596022472 },
-        { lat: 19.94459527745609, lng: 73.84112873522083},
+        { lat: 19.94686458912694, lng: 73.84195673955416 },
+        { lat: 19.94704748836203, lng:  73.84164893334075},
        
-        { lat: 19.948733005505602, lng: 73.84234082186437 },
-        { lat: 19.948673039206877, lng: 73.84147322300373 },
+        { lat:19.948939068659485, lng:  73.84214446870736 },
+        { lat: 19.948889150081854, lng:  73.84241758025566 },
     ];
 
     // Create a polygon using the defined coordinates
@@ -618,6 +620,39 @@ function highlightPinpoints(pointId) {
     }
 }
 
+// MENU BUTTONS CODE
+
+// NASHIK MAP CODE
+
+// Variable to store the Nashik marker
+let nashikMarker = null;
+
+// Function to show Nashik map and add a marker
+function showNashikMap() {
+    const nashikCenter = { lat: 19.9975, lng: 73.7898 }; // Nashik's approximate center
+
+    // Center and zoom to Nashik
+    map.setCenter(nashikCenter);
+    map.setZoom(14);
+
+    // Add marker for Nashik if it doesn't exist
+    if (!nashikMarker) {
+        nashikMarker = new google.maps.Marker({
+            position: nashikCenter,
+            map: map,
+            title: "Nashik Center",
+            icon: {
+                url: "./static/img/marker-icon.png", // Path to your custom marker icon
+                scaledSize: new google.maps.Size(40, 40),
+            },
+        });
+    }
+}
+
+// Add event listener to "Nashik map" button
+document.getElementById("nashikMapBtn").addEventListener("click", showNashikMap);
+
+
 
 // TOURIST CODE
 
@@ -742,6 +777,55 @@ function changeLanguage(language) {
             alert('Language not supported');
     }
 }
+
+// search bar code 
+
+// -------------Search Logic Start-----
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector(".search-bar input");
+    const searchSuggestions = document.createElement("ul");
+    searchSuggestions.classList.add("search-suggestions");
+    document.querySelector(".search-bar").appendChild(searchSuggestions);
+
+    searchInput.addEventListener("input", function () {
+        const query = searchInput.value.trim().toLowerCase();
+        searchSuggestions.innerHTML = ""; // Clear previous suggestions
+
+        if (query) {
+            const matchingPins = PINPOINTS.filter(pin =>
+                pin.title.toLowerCase().includes(query)
+            );
+
+            matchingPins.forEach(pin => {
+                const suggestionItem = document.createElement("li");
+                suggestionItem.textContent = pin.title;
+                suggestionItem.classList.add("suggestion-item");
+                suggestionItem.addEventListener("click", () => {
+                    searchInput.value = pin.title; // Set the clicked value in the input
+                    zoomToPin(pin); // Point to the location on the map
+                    searchSuggestions.innerHTML = ""; // Clear suggestions
+                });
+                searchSuggestions.appendChild(suggestionItem);
+            });
+        }
+    });
+
+    // Function to zoom to a specific pin
+    function zoomToPin(pin) {
+        const marker = markers.find(
+            m => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
+        );
+        if (marker) {
+            map.setCenter(marker.getPosition()); // Center the map to the marker
+            map.setZoom(28); // Adjust zoom level
+            marker.setAnimation(google.maps.Animation.BOUNCE); // Make the marker bounce
+            setTimeout(() => marker.setAnimation(null), 1500); // Stop bouncing after 1.5s
+        }
+    }
+});
+
+//  
+// -------------Search Logic End-----
 
 
 // Load the map
