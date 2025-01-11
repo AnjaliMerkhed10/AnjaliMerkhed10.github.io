@@ -135,36 +135,98 @@ function initMap() {
     });
 
     createDistanceBox(); // Create the new box for showing distance
-
-    // Coordinates for highlighting the area (Nashik region)
-    const polygonCoords = [
-        { lat: 19.94686458912694, lng: 73.84195673955416 },
-        { lat: 19.94704748836203, lng:  73.84164893334075},
-       
-        { lat:19.948939068659485, lng:  73.84214446870736 },
-        { lat: 19.948889150081854, lng:  73.84241758025566 },
-    ];
-
-    // Create a polygon using the defined coordinates
-    const polygon = new google.maps.Polygon({
-        paths: polygonCoords,
-        strokeColor: '#ff0000',  // Border color (Orange)
-        strokeOpacity: 0.8,      // Border opacity
-        strokeWeight: 3,         // Border weight
-        fillColor: '#ff0000',    // Fill color (Orange)
-        fillOpacity: 0.35,       // Fill opacity
-    });
-
-    // Add the polygon to the map
-    polygon.setMap(map);
-
-    // Optionally, you can add a listener to change the polygon's style on click
-    google.maps.event.addListener(polygon, 'click', function () {
-        polygon.setOptions({
-            fillColor: '#ff0000', // Grey color on click
-            strokeColor: '#ff0000'
+    let polygon = null; // Variable to store the polygon object
+    let platformLabel = null; // Variable to store the label object
+    
+    // Coordinates for highlighting the areas (Nashik region)
+    const platformCoordinates = {
+        platform1: [
+            { lat: 19.94651232696333, lng: 73.84195008739192 },
+            { lat: 19.946557206782217, lng: 73.84163827255864 },
+            { lat: 19.94967212368754, lng: 73.84257638314101 },
+            { lat: 19.949656996145993, lng: 73.84263405062848 },
+        ],
+        platform2: [
+            { lat: 19.945917044530635, lng: 73.84201509462258 },
+            { lat: 19.945947028206277, lng: 73.84188431685314 },
+          
+            { lat: 19.94980431114777, lng: 73.84275299314311 },
+            { lat: 19.94978332308824, lng: 73.84287260695663 },
+        ],
+        platform3: [
+            { lat: 19.945917044530635, lng: 73.84201509462258 },
+            { lat: 19.945947028206277, lng: 73.84188431685314 },
+          
+            { lat: 19.94980431114777, lng: 73.84275299314311 },
+            { lat: 19.94978332308824, lng: 73.84287260695663 },
+        ],
+        platform4: [
+            { lat: 19.947962021507408, lng: 73.84270602969995 },
+            { lat: 19.947983415311114, lng: 73.84260930269326 },
+           
+            { lat: 19.94880351490256, lng: 73.8428006416216 },
+            { lat: 19.94878252670998, lng: 73.84290111722493 },
+        ]
+    };
+    
+    // Function to create the polygon, zoom, and add label
+    function togglePolygon(platform) {
+        if (polygon) {
+            // Remove previous polygon and label if any
+            polygon.setMap(null);
+            polygon = null;
+            platformLabel.close(); // Close the label
+            platformLabel = null;
+        }
+    
+        // Create the polygon for the selected platform
+        const polygonCoords = platformCoordinates[platform];
+    
+        // Create the polygon using the selected coordinates
+        polygon = new google.maps.Polygon({
+            paths: polygonCoords,
+            strokeColor: '#FFD1CB',  // Border color (Orange)
+            strokeOpacity: 0.8,      // Border opacity
+            strokeWeight: 0,         // Border weight
+            fillColor: '#FFD1CB',    // Fill color (Orange)
+            fillOpacity: 0.35,       // Fill opacity
+        });
+    
+        // Add the polygon to the map
+        polygon.setMap(map);
+    
+        // Add label (Platform name)
+        platformLabel = new google.maps.InfoWindow({
+            content: platform.charAt(0).toUpperCase() + platform.slice(1), // Capitalize the first letter of the platform name
+            position: { lat: polygonCoords[0].lat, lng: polygonCoords[0].lng }, // Position the label near the polygon
+        });
+        platformLabel.open(map);
+    
+        // Zoom into the polygon area
+        const bounds = new google.maps.LatLngBounds();
+        polygon.getPath().forEach(function (latLng) {
+            bounds.extend(latLng);
+        });
+        map.fitBounds(bounds); // Zoom to the bounds of the polygon
+    
+        // Optionally, add a listener to change the polygon's style on click
+        google.maps.event.addListener(polygon, 'click', function () {
+            polygon.setOptions({
+                fillColor: '#ff0000', // Red color on click
+                strokeColor: '#ff0000'
+            });
+        });
+    }
+    
+    // Event listeners for each platform in the menu
+    document.querySelectorAll('#platforms li').forEach(item => {
+        item.addEventListener('click', function () {
+            const platformId = this.innerText.trim().toLowerCase().replace(' ', ''); // Extract platform name (e.g., "platform1")
+            togglePolygon(platformId);
         });
     });
+    
+
 }
 
 
@@ -519,7 +581,7 @@ const PINPOINTS = [
       
       { id: 'Platform 1 Point 2', lat: 19.949073868898434, lng: 73.84239788165445, title: "Lift and Stairs Bhusval end", category: "Platform 1", icon: "./static/img/work.png" },
       { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/lift.png" },
-      { id: 'Platform 1 Point 4', lat: 19.9485667622535, lng: 73.8422558012047, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 4', lat: 19.9485667622535, lng: 73.8422558012047, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/icons/Washroom.png" },
       { id: 'Platform 1 Point 5', lat: 19.948881622227113, lng: 73.84214240124673, title: "Parcel Office", category: "Platform 1", icon: "./static/img/box.png" },
       { id: 'Platform 1 Point 7', lat: 19.948378860511262, lng: 73.84231771855413, title: "DYSS Office", category: "Platform 1", icon: "./static/img/waiting-room.png" },
       { id: 'Platform 1 Point 11', lat: 19.94745544178198, lng: 73.84204121281842, title: "ATM", category: "Platform 1", icon: "./static/img/atm.png" },
@@ -535,10 +597,10 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 23', lat: 19.948437, lng: 73.84187, title: "Emergency Medical Facility", category: "Platform 1", icon: "./static/img/hospital.png" },
       { id: 'Platform 1 Point 24', lat: 19.948534, lng: 73.84199, title: "Ticket Counter", category: "Platform 1", icon: "./static/img/ticket-office.png" },
       { id: 'Platform 1 Point 25', lat: 19.947580, lng: 73.84193, title: "Cafeteria", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
-      { id: 'Platform 1 Point 27', lat: 19.946823, lng: 73.841875, title: "Pay & Use Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 27', lat: 19.946823, lng: 73.841875, title: "Pay & Use Toilet", category: "Platform 1", icon: "./static/img/icons/Washroom.png" },
       { id: 'Platform 1 Point 28', lat: 19.94861, lng: 73.842431, title: "Water Stand PF-1", category: "Platform 1", icon: "./static/img/water.png" },
-      { id: 'Platform 1 Point 29', lat: 19.94692, lng: 73.84154, title: "Deluxe Toilet (M/F)", category: "Platform 1", icon: "./static/img/toilet.png" },
-      { id: 'Platform 1 Point 30', lat: 19.946848, lng: 73.841893, title: "Divyangjan Toilet", category: "Platform 1", icon: "./static/img/toilet.png" },
+      { id: 'Platform 1 Point 29', lat: 19.94692, lng: 73.84154, title: "Deluxe Toilet (M/F)", category: "Platform 1", icon: "./static/img/icons/Washroom.png" },
+      { id: 'Platform 1 Point 30', lat: 19.946848, lng: 73.841893, title: "Divyangjan Toilet", category: "Platform 1", icon: "./static/img/icons/Washroom.png" },
       { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: "Khadi Garments Store", category: "Platform 1", icon: "./static/img/shopping-store.png" },
       { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/auto-rishaw.png" },
       { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/parking.png" },
@@ -547,7 +609,7 @@ const PINPOINTS = [
       { id: 'Platform 1 Point 35', lat: 19.9479258110046, lng: 73.8422304943829, title: "Station Manager", category: "Platform 1", icon: "./static/img/station-master.png" },
     { id: 'Platform 1 Point 38', lat: 19.9477949362633, lng: 73.8421749061679, title: "Irctc Food Track", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
     { id: 'Platform 1 Point 39', lat: 19.9476854516116, lng: 73.8418588942186, title: "Irctc Dormitory & Deluxe Room", category: "Platform 1", icon: "./static/img/bed.png" },
-    { id: 'Platform 1 Point 40', lat: 19.9475138912436, lng: 73.8419460051485, title: "Pay & Use Toilet(M/F)", category: "Platform 1", icon: "./static/img/toilet.png" },
+    { id: 'Platform 1 Point 40', lat: 19.9475138912436, lng: 73.8419460051485, title: "Pay & Use Toilet(M/F)", category: "Platform 1", icon: "./static/img/icons/Washroom.png" },
     { id: 'Platform 1 Point 41', lat: 19.9475796157185, lng: 73.8419527715279, title: "Relax Zone", category: "Platform 1", icon: "./static/img/waiting-room.png" },
     { id: 'Platform 1 Point 42', lat: 19.9475539155125, lng: 73.8418786083123, title: "Vastyalyam Sleeping Pod", category: "Platform 1", icon: "./static/img/bed.png" },
     { id: 'Platform 1 Point 43', lat: 19.9472754710607, lng: 73.8416707951445, title: "Offtrack Rail Coach Restaurant", category: "Platform 1", icon: "./static/img/Snacks_stall.png" },
@@ -574,7 +636,7 @@ const PINPOINTS = [
 { id: 'Platform 2 Point 6', lat: 19.9466785, lng: 73.8421422, title: "Mahanand Milk Stall", category: "Platform 2", icon: "MAHANAND MILK.png" },
 { id: 'Platform 2 Point 7', lat: 19.9469073, lng: 73.8421788, title: "Tea Stall", category: "Platform 2", icon: "./static/img/tea-shop.png" },
 { id: 'Platform 2 Point 8',lat: 19.9493372, lng: 73.842735, title: "Snacks Corner",category: "Platform 2", icon: "./static/img/Snacks_stall.png" }, 
-{ id: 'Platform 2 Point 9',lat: 19.9492029, lng: 73.8426984, title: "Toilet(M/F)",category: "Platform 2", icon: "./static/img/toilet.png" }, 
+{ id: 'Platform 2 Point 9',lat: 19.9492029, lng: 73.8426984, title: "Toilet(M/F)",category: "Platform 2", icon: "./static/img/icons/Washroom.png" }, 
 { id: 'Platform 2 Point 5',lat: 19.9486886, lng: 73.8425563, title: "Drinking Water",category: "Platform 2", icon: "./static/img/water.png" }, 
 
 { id: 'Platform 2 Point 7', lat: 19.9482395, lng: 73.8424611, title: "Fruit & Juice Stall", category: "Platform 2", icon: "./static/img/Snacks_stall.png" },
@@ -585,12 +647,12 @@ const PINPOINTS = [
 
 { id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/train-station.png" },
 { id: 'Platform 4 Point 2', lat: 19.9462262, lng: 73.8422562, title: "Tea Stall", category: "Platform 4", icon: "./static/img/tea-shop.png" },
-{ id: 'Platform 4 Point 3', lat: 19.9448597, lng: 73.8419789, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/toilet.png" },
+{ id: 'Platform 4 Point 3', lat: 19.9448597, lng: 73.8419789, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/icons/Washroom.png" },
 { id: 'Platform 4 Point 4', lat: 19.9469949, lng: 73.8424349, title: "Escalator & Stair", category: "Platform 4", icon: "./static/img/escalator.png" },
 { id: 'Platform 4 Point 5', lat: 19.9473715, lng: 73.8425412, title: "Child Help Desk", category: "Platform 4", icon: "./static/img/train-station.png" },
-{ id: 'Platform 4 Point 6', lat: 19.9488988, lng: 73.8429194, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/toilet.png" },
+{ id: 'Platform 4 Point 6', lat: 19.9488988, lng: 73.8429194, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/icons/Washroom.png" },
 { id: 'Platform 4 Point 7', lat: 19.9489224, lng: 73.8428393, title: "Lift & Stair", category: "Platform 4", icon: "./static/img/lift.png" },
-{ id: 'Platform 4 Point 8', lat: 19.9487459, lng: 73.8428979, title: "Divyangjan Toilet", category: "Platform 4", icon: "./static/img/toilet.png" },
+{ id: 'Platform 4 Point 8', lat: 19.9487459, lng: 73.8428979, title: "Divyangjan Toilet", category: "Platform 4", icon: "./static/img/icons/Washroom.png" },
 { id: 'Platform 4 Point 9', lat: 19.948225, lng: 73.8427105, title: "Multipurpose Stall", category: "Platform 4", icon: "./static/img/Snacks_stall.png" },
 { id: 'Platform 4 Point 10', lat: 19.948364, lng: 73.8427803, title: "Pf 4 Entry Exit", category: "Platform 4", icon: "./static/img/lift.png" },
 { id: 'Platform 4 Point 11', lat: 19.9484613, lng: 73.8429938, title: "Reservation Center", category: "Platform 4", icon: "./static/img/train-station.png" },
@@ -612,7 +674,7 @@ function highlightPinpoints(pointId) {
         map.setCenter({ lat: location.lat, lng: location.lng }); 
         
         // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
-        map.setZoom(20); 
+        map.setZoom(28); 
 
         console.log(`Zooming into: ${location.title}`);
     } else {
@@ -642,7 +704,7 @@ function showNashikMap() {
             map: map,
             title: "Nashik Center",
             icon: {
-                url: "./static/img/marker-icon.png", // Path to your custom marker icon
+                url: "./static/img/menu_img/placeholder.png", // Path to your custom marker icon
                 scaledSize: new google.maps.Size(40, 40),
             },
         });

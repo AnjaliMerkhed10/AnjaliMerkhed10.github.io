@@ -50,14 +50,22 @@
             <!-- Search Icon -->
             <i class="fas fa-search"></i>
         </div>
+      
         <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Platforms
-                </button>
-
+            <button class="menu-btn" onclick="toggleList('platforms')">
+                <img src="./static/img/menu_img/platforms.png" alt="">Platforms
+                <span><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <ul id="platforms" class="menu-list">
+                <li onclick="togglePolygon('platform1')"><img src="./static/img/parking-icon.png" alt="Platform 1"> Platform 1</li>
+                <li onclick="togglePolygon('platform2')"><img src="./static/img/toilet-icon.png" alt="Platform 2"> Platform 2</li>
+                <li onclick="togglePolygon('platform3')"><img src="./static/img/water-booth-icon.png" alt="Platform 3"> Platform 3</li>
+                <li onclick="togglePolygon('platform4')"><img src="./static/img/water-booth-icon.png" alt="Platform 4"> Platform 4</li>
+            </ul>
         </div>
-
+        
         <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('platform-list')"><img src="./static/img/platforms.png" alt="">Platform amenities<span><i
+            <button class="menu-btn" onclick="toggleList('platform-list')"><img src="./static/img/menu_img/platform_amenity.png" alt="">Platform amenities<span><i
                         class="fas fa-chevron-down "></i>
                 </span></button>
             <ul id="platform-list" class="menu-list">
@@ -167,46 +175,46 @@
 
             </ul>
         </div>
-
-     
+ 
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Divyangjan-facilities')">
-                <img src="./static/img/platforms.png" alt="">Divyangjan facilities
+                <img src="./static/img/menu_img/Divyangjan facilities.png" alt="">Divyangjan facilities
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="Divyangjan-facilities" class="menu-list">
                 <li><a href="#"><img src="./static/img/parking-icon.png" > Divyangjan Parking</a></li>
-                <li><a href="#"><img src="./static/img/toilet-icon.png" > Toilet</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 30')"><img src="./static/img/menu_img/person.png" >Divyangjan Toilet</a></li>
                 <li><a href="#"><img src="./static/img/water-booth-icon.png" > Water Booth</a></li>
-                <li><a href="#"><img src="./static/img/escalator-icon.png" > Escalator</a></li>
-                <li><a href="#"><img src="./static/img/ramp-icon.png" > Ramp</a></li>
+                <li><a href="#"><img src="./static/img/escalator-icon.png" >Divyangjan Escalator</a></li>
+                <li><a href="#"><img src="./static/img/ramp-icon.png" >Divyangjan Ramp</a></li>
+                <li><a href="#"><img src="./static/img/ramp-icon.png" >Divyangjan Lift</a></li>
             </ul>
         </div>
         
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Storage&Services')">
-                <img src="./static/img/platforms.png" alt="">Storage & Services
+                <img src="./static/img/menu_img/Storage & Services.png" alt="">Storage & Services
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="Storage&Services" class="menu-list">
-                <li><a href="#"><img src="./static/img/parking-icon.png" > Luggage Room</a></li>
-                <li><a href="#"><img src="./static/img/toilet-icon.png" > Cloak Room</a></li>
-                <li><a href="#"><img src="./static/img/water-booth-icon.png" > Parcel Room</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 53')"><a href="#"><img src="./static/img/parking-icon.png" > Luggage Room</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 14')"><img src="./static/img/toilet-icon.png" > Cloak Room</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 4')"><a href="#"><img src="./static/img/water-booth-icon.png" > Parcel Room</a></li>
               
             </ul>
         </div>
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Entry')">
-                <img src="./static/img/platforms.png" alt="">Entry/exit    <span><i class="fas fa-chevron-down"></i></span>
+                <img src="./static/img/menu_img/Entryexit.png" alt="">Entry/exit<span><i class="fas fa-chevron-down"></i></span>
             </button>
             
           
             <ul id="Entry" class="menu-list">
                 <li><a href="#"><img src="./static/img/parking-icon.png" > PF 1 Entry/exit</a></li>
-                <li><a href="#"><img src="./static/img/toilet-icon.png" > PF 2/3 Entry/exit</a></li>
-                <li><a href="#"><img src="./static/img/water-booth-icon.png" > PF 4 Entry/exit</a></li>
+            
+                <li onclick="highlightPinpoints('Platform 4 Point 10')"><a href="#"><img src="./static/img/water-booth-icon.png" > PF 4 Entry/exit</a></li>
               
             </ul>
         </div>
@@ -215,7 +223,7 @@
      
 
         <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Help Desk
+            <button class="menu-btn"><img src="./static/img/menu_img/HelpDesk.png" alt="">Help Desk
                 </button>
 
         </div>
@@ -223,14 +231,14 @@
         
         <p class="safety_text " >SAFETY</p>
 
-        <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Emergency contacts
+        <!-- <div class="menu-item">
+            <button class="menu-btn"><img src="./static/img/menu_img/Emergency contacts.png" alt="">Emergency contacts
                 </button>
 
-        </div>
+        </div> -->
 
         <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">Police station locator
+            <button class="menu-btn" onclick="highlightPinpoints('Platform 1 Point 20')"><img src="./static/img/menu_img/Police station locator.png" alt="">Police station locator
                 </button>
 
         </div>
@@ -240,7 +248,7 @@
 
         <div class="menu-item">
             <button class="menu-btn" id="nashikMapBtn">
-                <img src="./static/img/platforms.png" alt="">Nashik map
+                <img src="./static/img/menu_img/Nashik map.png" alt="">Nashik map
             </button>
         </div>
         
@@ -248,7 +256,7 @@
       
       
         <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('tourist-list')"><img src="./static/img/platforms.png" alt="">Tourist Places<span><i
+            <button class="menu-btn" onclick="toggleList('tourist-list')"><img src="./static/img/menu_img/Popular places.png" alt="">Tourist Places<span><i
                 class="fas fa-chevron-down "></i>
         </span></button>
             <ul id="tourist-list" class="menu-list">
@@ -270,11 +278,11 @@
             </ul>
         </div>
     
-        <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/platforms.png" alt="">How to travel ?
+        <!-- <div class="menu-item">
+            <button class="menu-btn"><img src="./static/img/menu_img/How to travel.png" alt="">How to travel ?
                 </button>
 
-        </div>
+        </div> -->
     </div>
 
     
