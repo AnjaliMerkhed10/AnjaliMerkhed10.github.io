@@ -563,3 +563,8 @@ padding: 10px;
 .suggestion-item:hover {
     background-color: #f0f0f0;
 }
+
+.text_decoration{
+    text-decoration: none;
+    color: #484C52;
+}
