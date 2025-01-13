@@ -252,7 +252,6 @@ function initMap() {
     createDistanceBox(); // Create the new box for showing distance
 }
 
-
 // Display the user's location and create a marker for it
 function displayUserLocation() {
     if (navigator.geolocation) {
@@ -263,6 +262,7 @@ function displayUserLocation() {
                     lng: position.coords.longitude,
                 };
 
+                // Create or update the marker for the user's location
                 if (userLocationMarker) {
                     userLocationMarker.setPosition(userLocation);
                 } else {
@@ -275,15 +275,17 @@ function displayUserLocation() {
                             fontWeight: "bold",
                         },
                         icon: {
-                            url: "./static/img/street-view.png", // Blue marker for user
+                            url: "./static/img/street-view.png", // Custom marker for user
                             scaledSize: new google.maps.Size(45, 45),
                         },
                     });
                 }
 
+                // Zoom and center the map on the user's location
                 if (!isMapCentered) {
                     map.setCenter(userLocation);
-                    isMapCentered = true; // Prevent recentering on every location update
+                    map.setZoom(28); // Zoom level 28 for street-level precision
+                    isMapCentered = true; // Prevent recentering after this
                 }
 
                 // If there's a closest marker, recalculate the route dynamically
@@ -301,6 +303,12 @@ function displayUserLocation() {
         alert("Geolocation is not supported by this browser.");
     }
 }
+
+// Listen for the button click to show the user's location
+document.getElementById('userLocationButton').addEventListener('click', function() {
+    displayUserLocation();  // Call the function to show the user's location
+});
+
 
 // Function to add a custom marker with text (title) and icon
 function addCustomMarker(location, title, icon) {

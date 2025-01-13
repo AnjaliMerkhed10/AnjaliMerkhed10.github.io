@@ -207,6 +207,20 @@
         </div>
 
         <div class="menu-item">
+            <button class="menu-btn" onclick="toggleList('Escalator')">
+                <img src="./static/img/menu_img/menu_escalator.png" alt="">Lift & Escalator
+                <span><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <ul id="Escalator" class="menu-list">
+                <li onclick="highlightPinpoints('Platform 1 Point 2')"><a href="#"><img src="./static/img/pin_icon/escalator.png" height="20" > PF1 Escalator</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 2')"><a href="#"><img src="./static/img/pin_icon/lift.png" height="20" > PF1 Lift Bhusval end</a></li>
+                <li onclick="highlightPinpoints('Platform 4 Point 4')"><img src="./static/img/pin_icon/escalator.png" height="20" > PF4 Escalator</a></li>
+                <li onclick="highlightPinpoints('Platform 4 Point 7')"><a href="#"><img src="./static/img/pin_icon/lift.png" height="20" > PF4 Lift</a></li>
+              
+            </ul>
+        </div>
+
+        <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Entry')">
                 <img src="./static/img/menu_img/Entryexit.png" alt="">Entry/exit<span><i class="fas fa-chevron-down"></i></span>
             </button>
@@ -318,13 +332,13 @@
     </button>
    
 
-    <button class="d-flex flex-column align-items-center">
+    <button class="d-flex flex-column align-items-center" id="userLocationButton">
         <img src="./static/img/search-normal.png" alt="Help Icon"  loading="lazy">
-        <span>Search</span>
+        <span>user location</span>
     </button>
 
-    <button class="d-flex flex-column align-items-center" onclick="window.location.href='360_tour.html'">
-        <img src="./static/img/help1.png" alt="Virtual Tour Icon"  loading="lazy">
+    <button class="d-flex flex-column align-items-center" onclick="window.location.href='help_desk.html'">
+        <img src="./static/img/menu_img/HelpDesk.png" alt="Virtual Tour Icon"  loading="lazy">
        
         <a href="./help_desk.html" class="text_decoration" > <span>Help Desk</span></a>
 
