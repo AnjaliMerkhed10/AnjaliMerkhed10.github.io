@@ -1,6 +1,31 @@
+// function toggleList(listId) {
+//     const list = document.getElementById(listId);
+//     list.classList.toggle("open");  // Toggle 'open' class to show/hide the list
+// }
+
 function toggleList(listId) {
+    // Get all dropdown lists
+    const dropdownLists = document.querySelectorAll("ul");
+
+    // Close any open dropdowns except the one being toggled
+    dropdownLists.forEach(list => {
+        if (list.id !== listId && list.classList.contains("open")) {
+            list.classList.remove("open");
+            
+        }
+    });
+
+    // Toggle the selected dropdown
     const list = document.getElementById(listId);
-    list.classList.toggle("open");  // Toggle 'open' class to show/hide the list
+    list.classList.toggle("open");
+
+    // Add event listeners to close the list when an item is clicked
+    const items = list.querySelectorAll("li"); // Assuming list items are <li>
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+            list.classList.remove("open"); // Close the list after selecting an item
+        });
+    });
 }
 
 
@@ -182,10 +207,10 @@ function initMap() {
         // Create the polygon using the selected coordinates
         polygon = new google.maps.Polygon({
             paths: polygonCoords,
-            strokeColor: '#FFD1CB',  // Border color (Orange)
+            strokeColor: '#FF8031',  // Border color (Orange)
             strokeOpacity: 0.8,      // Border opacity
             strokeWeight: 0,         // Border weight
-            fillColor: '#FFD1CB',    // Fill color (Orange)
+            fillColor: '#FF8031',    // Fill color (Orange)
             fillOpacity: 0.35,       // Fill opacity
         });
     
@@ -223,18 +248,7 @@ function initMap() {
         });
     });
     
-    // Add event listener to the map to clear the polygon and label when clicked anywhere else
-    google.maps.event.addListener(map, 'click', function () {
-        if (polygon) {
-            // Remove the polygon and close the label if the map is clicked elsewhere
-            polygon.setMap(null);
-            polygon = null;
-            if (platformLabel) {
-                platformLabel.close(); // Close the label
-                platformLabel = null;
-            }
-        }
-    });
+
     createDistanceBox(); // Create the new box for showing distance
 }
 
@@ -566,63 +580,63 @@ function bounceAllPins(category) {
 // Predefined constant pinpoints with text and pin_icon1 
 const PINPOINTS = [
       // Platform 1 markers
-      { id: 'Platform 1 ', lat: 19.947730239875234, lng: 73.8421970006081, title: "Platform 1", category: "Platform 1", icon: "./static/img/pin_icon/train-station.png" },
+      { id: 'Platform 1 ', lat: 19.947730239875234, lng: 73.8421970006081, title: "Platform 1", category: "Platform 1", icon: "./static/img/pin_icon/platform.png" },
       
       { id: 'Platform 1 Point 2', lat: 19.949073868898434, lng: 73.84239788165445, title: "Lift and Stairs Bhusval end", category: "Platform 1", icon: "./static/img/pin_icon/stairs.png" },
-      { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/pin_icon/Passenger_Lift.png" },
+      { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/pin_icon/lift.png" },
       { id: 'Platform 1 Point 4', lat: 19.9485667622535, lng: 73.8422558012047, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
       { id: 'Platform 1 Point 5', lat: 19.948881622227113, lng: 73.84214240124673, title: "Parcel Office", category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
       { id: 'Platform 1 Point 7', lat: 19.948378860511262, lng: 73.84231771855413, title: "DYSS Office", category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
-      { id: 'Platform 1 Point 11', lat: 19.94745544178198, lng: 73.84204121281842, title: "ATM", category: "Platform 1", icon: "./static/img/pin_icon/Passenger_Lift.png" },
+      { id: 'Platform 1 Point 11', lat: 19.94745544178198, lng: 73.84204121281842, title: "ATM", category: "Platform 1", icon: "./static/img/pin_icon/atm.png" },
       { id: 'Platform 1 Point 12', lat: 19.947468872817097, lng: 73.84185339909355, title: "AC Retiring Hall (Godavari Waiting Hall)", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
       { id: 'Platform 1 Point 14', lat: 19.94737791202757, lng: 73.84201774349071, title: "Waiting Room and Cloak Room Paid", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
       { id: 'Platform 1 Point 15', lat: 19.94875366774617, lng: 73.84240592828107, title: "Water Stand PF at Middle", category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
-      { id: 'Platform 1 Point 16', lat: 19.94837037997832, lng: 73.8415192857732, title: "Nashik Road Bus Stop", category: "Platform 1", icon: "./static/img/pin_icon/bus-stop.png" },
+      { id: 'Platform 1 Point 16', lat: 19.94837037997832, lng: 73.8415192857732, title: "Nashik Road Bus Stop", category: "Platform 1", icon: "./static/img/pin_icon/auto.png" },
       { id: 'Platform 1 Point 17', lat: 19.94796, lng: 73.842213, title: "Drinking Water", category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
       { id: 'Platform 1 Point 18', lat: 19.947403, lng: 73.841755, title: "Escalator", category: "Platform 1", icon: "./static/img/pin_icon/escalator.png" },
-      { id: 'Platform 1 Point 19', lat: 19.948078, lng: 73.841949, title: "Gift Shop", category: "Platform 1", icon: "./static/img/pin_icon/gift.png" },
-      { id: 'Platform 1 Point 20', lat: 19.947048, lng: 73.842045, title: "RPF Station", category: "Platform 1", icon: "./static/img/pin_icon/RPF_Station.png" },
-      { id: 'Platform 1 Point 21', lat: 19.947766, lng: 73.841839, title: "M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms", category: "Platform 1", icon: "./static/img/pin_icon/bunk-bed.png" },
-      { id: 'Platform 1 Point 23', lat: 19.948437, lng: 73.84187, title: "Emergency Medical Facility", category: "Platform 1", icon: "./static/img/pin_icon/hospital.png" },
-      { id: 'Platform 1 Point 24', lat: 19.948534, lng: 73.84199, title: "Ticket Counter", category: "Platform 1", icon: "./static/img/pin_icon/ticket-office.png" },
+      { id: 'Platform 1 Point 19', lat: 19.948078, lng: 73.841949, title: "Gift Shop", category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
+      { id: 'Platform 1 Point 20', lat: 19.947048, lng: 73.842045, title: "RPF Station", category: "Platform 1", icon: "./static/img/pin_icon/police_station.png" },
+      { id: 'Platform 1 Point 21', lat: 19.947766, lng: 73.841839, title: "M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms", category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
+      { id: 'Platform 1 Point 23', lat: 19.948437, lng: 73.84187, title: "Emergency Medical Facility", category: "Platform 1", icon: "./static/img/pin_icon/medical.png" },
+      { id: 'Platform 1 Point 24', lat: 19.948534, lng: 73.84199, title: "Ticket Counter", category: "Platform 1", icon: "./static/img/pin_icon/ticket_counter.png" },
       { id: 'Platform 1 Point 25', lat: 19.947580, lng: 73.84193, title: "Cafeteria", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
       { id: 'Platform 1 Point 27', lat: 19.946823, lng: 73.841875, title: "Pay & Use Toilet", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
       { id: 'Platform 1 Point 28', lat: 19.94861, lng: 73.842431, title: "Water Stand PF-1", category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
       { id: 'Platform 1 Point 29', lat: 19.94692, lng: 73.84154, title: "Deluxe Toilet (M/F)", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
       { id: 'Platform 1 Point 30', lat: 19.946848, lng: 73.841893, title: "Divyangjan Toilet", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
-      { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: "Khadi Garments Store", category: "Platform 1", icon: "./static/img/pin_icon/shopping-store.png" },
-      { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/pin_icon/auto-rishaw.png" },
+      { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: "Khadi Garments Store", category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
+      { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/pin_icon/auto.png" },
       { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/pin_icon/pay_park.png" },
 
-      { id: 'Platform 1 Point 34', lat: 19.9480189955569, lng: 73.8421796201009, title: "Platform 1 Enterance", category: "Platform 1", icon: "./static/img/pin_icon/train-station.png" },
-      { id: 'Platform 1 Point 35', lat: 19.9479258110046, lng: 73.8422304943829, title: "Station Manager", category: "Platform 1", icon: "./static/img/pin_icon/station-master.png" },
+      { id: 'Platform 1 Point 34', lat: 19.9480189955569, lng: 73.8421796201009, title: "Platform 1 Enterance", category: "Platform 1", icon: "./static/img/pin_icon/Entryexit.png" },
+      { id: 'Platform 1 Point 35', lat: 19.9479258110046, lng: 73.8422304943829, title: "Station Manager", category: "Platform 1", icon: "./static/img/pin_icon/station_manager.png" },
     { id: 'Platform 1 Point 38', lat: 19.9477949362633, lng: 73.8421749061679, title: "Irctc Food Track", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 39', lat: 19.9476854516116, lng: 73.8418588942186, title: "Irctc Dormitory & Deluxe Room", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
-    { id: 'Platform 1 Point 40', lat: 19.9475138912436, lng: 73.8419460051485, title: "Pay & Use Toilet(M/F)", category: "Platform 1", icon: "./static/img/pin_icon/pin_icon/Washroom.png" },
+    { id: 'Platform 1 Point 39', lat: 19.9476854516116, lng: 73.8418588942186, title: "Irctc Dormitory & Deluxe Room", category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
+    { id: 'Platform 1 Point 40', lat: 19.9475138912436, lng: 73.8419460051485, title: "Pay & Use Toilet(M/F)", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
     { id: 'Platform 1 Point 41', lat: 19.9475796157185, lng: 73.8419527715279, title: "Relax Zone", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
-    { id: 'Platform 1 Point 42', lat: 19.9475539155125, lng: 73.8418786083123, title: "Vastyalyam Sleeping Pod", category: "Platform 1", icon: "./static/img/pin_icon/bed.png" },
-    { id: 'Platform 1 Point 43', lat: 19.9472754710607, lng: 73.8416707951445, title: "Offtrack Rail Coach Restaurant", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png.png" },
+    { id: 'Platform 1 Point 42', lat: 19.9475539155125, lng: 73.8418786083123, title: "Vastyalyam Sleeping Pod", category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
+    { id: 'Platform 1 Point 43', lat: 19.9472754710607, lng: 73.8416707951445, title: "Offtrack Rail Coach Restaurant", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
     { id: 'Platform 1 Point 44', lat: 19.948129339158, lng: 73.8421446919026, title: "Osop Stall", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 45', lat: 19.948143067654, lng: 73.8421064781602, title: "Gift Shop", category: "Platform 1", icon: "./static/img/pin_icon/shopping-store.png" },
-    { id: 'Platform 1 Point 46', lat: 19.9481698293033, lng: 73.8422593972415, title: "TCI Office", category: "Platform 1", icon: "./static/img/pin_icon/ticket-office.png" },
+    { id: 'Platform 1 Point 45', lat: 19.948143067654, lng: 73.8421064781602, title: "Gift Shop", category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
+    { id: 'Platform 1 Point 46', lat: 19.9481698293033, lng: 73.8422593972415, title: "TCI Office", category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
     { id: 'Platform 1 Point 47', lat: 19.9485308902095, lng: 73.8423358285154, title: "Multi Purpose Stall Food", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
     { id: 'Platform 1 Point 48', lat: 19.9484980281734, lng: 73.8422879214036, title: "Rail Ahar (tea)", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 49', lat: 19.9482496775167, lng: 73.842275675835, title: "Upper class waiting room(Female)", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
+    { id: 'Platform 1 Point 49', lat: 19.9482496775167, lng: 73.842275675835, title: "Upper class waiting room(Female)", category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
     { id: 'Platform 1 Point 50', lat: 19.9482820506708, lng: 73.8422826237955, title: " Waiting Room", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
-    { id: 'Platform 1 Point 52', lat: 19.9483313103336, lng: 73.842295280183, title: "Kitab Ghar", category: "Platform 1", icon: "./static/img/pin_icon/Book_Stall.png" },
+    { id: 'Platform 1 Point 52', lat: 19.9483313103336, lng: 73.842295280183, title: "Kitab Ghar", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
     { id: 'Platform 1 Point 53', lat: 19.9484636071821, lng: 73.8423238682215, title: " Maa Tara Ac Waiting&Cloak Room", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
     { id: 'Platform 1 Point 54', lat: 19.9484832502068, lng: 73.8423302994909, title: "Sleeper Class Waiting Room", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
     
     
      
 // Platform 2 markers
-{ id: 'Platform 2 ', lat: 19.948403, lng: 73.8425432, title: "Platform 2/3", category: "Platform 2", icon: "./static/img/pin_icon/train-station.png" },
+{ id: 'Platform 2 ', lat: 19.948403, lng: 73.8425432, title: "Platform 2/3", category: "Platform 2", icon: "./static/img/pin_icon/platform.png" },
 
 { id: 'Platform 2 Point 2', lat: 19.9449908, lng: 73.8419853, title: "Drinking Water", category: "Platform 2", icon: "./static/img/pin_icon/water.png" },
 { id: 'Platform 2 Point 3', lat: 19.9459933, lng: 73.8419712, title: "Tea Snacks Stall", category: "Platform 2", icon: "./static/img/pin_icon/tea_stall.png" },
-{ id: 'Platform 2 Point 4',lat: 19.9462599, lng: 73.8420426, title: "Oxygen Parlour",category: "Platform 2", icon: "./static/img/pin_icon/shopping-store.png" }, 
+{ id: 'Platform 2 Point 4',lat: 19.9462599, lng: 73.8420426, title: "Oxygen Parlour",category: "Platform 2", icon: "./static/img/pin_icon/store.png" }, 
 { id: 'Platform 2 Point 5',lat: 19.9463788, lng: 73.8420705, title: "Drinking Water",category: "Platform 2", icon: "./static/img/pin_icon/water.png" }, 
-{ id: 'Platform 2 Point 6', lat: 19.9466785, lng: 73.8421422, title: "Mahanand Milk Stall", category: "Platform 2", icon: "MAHANAND MILK.png" },
+{ id: 'Platform 2 Point 6', lat: 19.9466785, lng: 73.8421422, title: "Mahanand Milk Stall", category: "Platform 2", icon: "./static/img/pin_icon/milk.png" },
 { id: 'Platform 2 Point 7', lat: 19.9469073, lng: 73.8421788, title: "Tea Stall", category: "Platform 2", icon: "./static/img/pin_icon/tea_stall.png" },
 { id: 'Platform 2 Point 8',lat: 19.9493372, lng: 73.842735, title: "Snacks Corner",category: "Platform 2", icon: "./static/img/pin_icon/fruit_stall.png" }, 
 { id: 'Platform 2 Point 9',lat: 19.9492029, lng: 73.8426984, title: "Toilet(M/F)",category: "Platform 2", icon: "./static/img/pin_icon/washroom.png" }, 
@@ -634,7 +648,7 @@ const PINPOINTS = [
 { id: 'Platform 2 Point 8',lat: 19.9478792, lng: 73.8423712, title: "Fruit & Juice Stall",category: "Platform 2", icon: "./static/img/pin_icon/fruit_stall.png" }, 
 { id: 'Platform 2 Point 9',lat: 19.9477258, lng: 73.8423635, title: "Railahar Tea Stall",category: "Platform 2", icon: "./static/img/pin_icon/tea_stall.png" },
 
-{ id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/pin_icon/train-station.png" },
+{ id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/pin_icon/platform.png" },
 { id: 'Platform 4 Point 2', lat: 19.9462262, lng: 73.8422562, title: "Tea Stall", category: "Platform 4", icon: "./static/img/pin_icon/tea_stall.png" },
 { id: 'Platform 4 Point 3', lat: 19.9448597, lng: 73.8419789, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/pin_icon/washroom.png" },
 { id: 'Platform 4 Point 4', lat: 19.9469949, lng: 73.8424349, title: "Escalator & Stair", category: "Platform 4", icon: "./static/img/pin_icon/escalator.png" },

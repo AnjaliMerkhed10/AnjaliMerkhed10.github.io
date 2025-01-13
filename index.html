@@ -19,7 +19,7 @@
     <div class="header d-flex justify-content-between align-items-center p-2">
         <!-- Menu Icon -->
         <div class="menu-icon" id="menuIcon">
-            <img src="./static/img/train (2).png" alt="Menu Icon" id="iconImg" loading="lazy">
+            <img src="./static/img/menu.png" alt="Menu Icon" id="iconImg" loading="lazy">
         </div>
     
         <div class="language-dropdown">
@@ -57,10 +57,10 @@
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="platforms" class="menu-list">
-                <li onclick="togglePolygon('platform1')"><img src="./static/img/parking-icon.png" alt="Platform 1"> Platform 1</li>
-                <li onclick="togglePolygon('platform2')"><img src="./static/img/toilet-icon.png" alt="Platform 2"> Platform 2</li>
-                <li onclick="togglePolygon('platform3')"><img src="./static/img/water-booth-icon.png" alt="Platform 3"> Platform 3</li>
-                <li onclick="togglePolygon('platform4')"><img src="./static/img/water-booth-icon.png" alt="Platform 4"> Platform 4</li>
+                <li onclick="togglePolygon('platform1')"><img src="./static/img/pin_icon/platform.png" alt="Platform 1" height="20"> Platform 1</li>
+                <li onclick="togglePolygon('platform2')"><img src="./static/img/pin_icon/platform.png" alt="Platform 2" height="20"> Platform 2</li>
+                <li onclick="togglePolygon('platform3')"><img src="./static/img/pin_icon/platform.png" alt="Platform 3" height="20"> Platform 3</li>
+                <li onclick="togglePolygon('platform4')"><img src="./static/img/pin_icon/platform.png" alt="Platform 4" height="20"> Platform 4</li>
             </ul>
         </div>
         
@@ -184,12 +184,12 @@
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="Divyangjan-facilities" class="menu-list">
-                <li><a href="#"><img src="./static/img/parking-icon.png" > Divyangjan Parking</a></li>
-                <li onclick="highlightPinpoints('Platform 1 Point 30')"><img src="./static/img/menu_img/person.png" >Divyangjan Toilet</a></li>
-                <li><a href="#"><img src="./static/img/water-booth-icon.png" > Water Booth</a></li>
-                <li><a href="#"><img src="./static/img/escalator-icon.png" >Divyangjan Escalator</a></li>
-                <li><a href="#"><img src="./static/img/ramp-icon.png" >Divyangjan Ramp</a></li>
-                <li><a href="#"><img src="./static/img/ramp-icon.png" >Divyangjan Lift</a></li>
+                <!-- <li><a href="#"><img src="./static/img/pin_icon/pay_park.png" height="20" > Divyangjan Parking</a></li> -->
+                <li onclick="highlightPinpoints('Platform 1 Point 30')"><img src="./static/img/pin_icon/washroom.png" height="20">Divyangjan Toilet</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 15')"><a href="#"><img src="./static/img/pin_icon/water.png"  height="20"> Water Booth</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 18')"><a href="#"><img src="./static/img/pin_icon/escalator.png" height="20" >Divyangjan Escalator</a></li>
+                <!-- <li><a href="#"><img src="./static/img/ramp-icon.png" >Divyangjan Ramp</a></li> -->
+                <li onclick="highlightPinpoints('Platform 1 Point 2')"><a href="#"><img src="./static/img/pin_icon/lift.png" height="20">Divyangjan Lift</a></li>
             </ul>
         </div>
         
@@ -199,9 +199,9 @@
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="Storage&Services" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 53')"><a href="#"><img src="./static/img/parking-icon.png"  > Luggage Room</a></li>
-                <li onclick="highlightPinpoints('Platform 1 Point 14')"><img src="./static/img/Icons/Waiting_room_cloak_room.png" height="20" > Cloak Room</a></li>
-                <li onclick="highlightPinpoints('Platform 1 Point 4')"><a href="#"><img src="./static/img/water-booth-icon.png" > Parcel Room</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 53')"><a href="#"><img src="./static/img/pin_icon/waiting.png" height="20" > Luggage Room</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 14')"><img src="./static/img/pin_icon/waiting.png" height="20" > Cloak Room</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 4')"><a href="#"><img src="./static/img/pin_icon/waiting.png" height="20" > Parcel Room</a></li>
               
             </ul>
         </div>
@@ -213,9 +213,9 @@
             
           
             <ul id="Entry" class="menu-list">
-                <li><a href="#"><img src="./static/img/Icons/icons8-parking-100.png"  height="20"> PF 1 Entry/exit</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 34')"><img src="./static/img/pin_icon/Entryexit.png"  height="20"> PF 1 Entry/exit</a></li>
             
-                <li onclick="highlightPinpoints('Platform 4 Point 10')"><a href="#"><img src="./static/img/water-booth-icon.png" > PF 4 Entry/exit</a></li>
+                <li onclick="highlightPinpoints('Platform 4 Point 10')"><img src="./static/img/pin_icon/Entryexit.png" height="20"> PF 4 Entry/exit</a></li>
               
             </ul>
         </div>
