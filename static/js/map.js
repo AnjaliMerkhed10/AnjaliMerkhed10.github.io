@@ -2,7 +2,6 @@
 //     const list = document.getElementById(listId);
 //     list.classList.toggle("open");  // Toggle 'open' class to show/hide the list
 // }
-
 function toggleList(listId) {
     // Get all dropdown lists
     const dropdownLists = document.querySelectorAll("ul");
@@ -11,7 +10,6 @@ function toggleList(listId) {
     dropdownLists.forEach(list => {
         if (list.id !== listId && list.classList.contains("open")) {
             list.classList.remove("open");
-            
         }
     });
 
@@ -19,15 +17,25 @@ function toggleList(listId) {
     const list = document.getElementById(listId);
     list.classList.toggle("open");
 
-    // Add event listeners to close the list when an item is clicked
-    const items = list.querySelectorAll("li"); // Assuming list items are <li>
+    // Add click event to handle sublist visibility
+    const items = list.querySelectorAll("li");
     items.forEach(item => {
+        const subList = item.querySelector("ul"); // Check if the item has a sublist
+        if (subList) {
+            item.addEventListener("click", (event) => {
+                event.stopPropagation(); // Prevent parent list toggling
+                subList.classList.toggle("open"); // Toggle the sublist
+            });
+        }
+
+        // Close the parent list when an item is clicked, if it doesn't have a sublist
         item.addEventListener("click", () => {
-            list.classList.remove("open"); // Close the list after selecting an item
+            if (!subList) {
+                list.classList.remove("open");
+            }
         });
     });
 }
-
 
 
 
@@ -677,19 +685,36 @@ const PINPOINTS = [
 
 
 function highlightPinpoints(pointId) {
+    // Stop animation for all markers
+    markers.forEach((marker) => marker.setAnimation(null));
+
     // Find the pinpoint object by id
-    const location = PINPOINTS.find(point => point.id === pointId);
-    
+    const location = PINPOINTS.find((point) => point.id === pointId);
+
     if (location && map) {
         // Center the map on the selected location
-        map.setCenter({ lat: location.lat, lng: location.lng }); 
-        
-        // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
-        map.setZoom(28); 
+        map.setCenter({ lat: location.lat, lng: location.lng });
 
-        console.log(`Zooming into: ${location.title}`);
+        // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
+        map.setZoom(28);
+
+        // Find the marker for the selected location and make it bounce
+        const marker = markers.find(
+            (m) => m.getPosition().lat() === location.lat && m.getPosition().lng() === location.lng
+        );
+
+        if (marker) {
+            marker.setAnimation(google.maps.Animation.BOUNCE); // Make the selected marker bounce
+
+            // Stop the bouncing after 2 seconds (2000 ms)
+            setTimeout(() => {
+                marker.setAnimation(null);
+            }, 2000);
+        }
+
+        // console.log(Zooming into: ${location.title});
     } else {
-        console.error(`Location with ID '${pointId}' not found.`);       
+        // console.error(Location with ID '${pointId}' not found.);
     }
 }
 
