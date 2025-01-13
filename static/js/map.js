@@ -134,7 +134,7 @@ function initMap() {
         addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title, pin.icon);
     });
 
-    createDistanceBox(); // Create the new box for showing distance
+
     let polygon = null; // Variable to store the polygon object
     let platformLabel = null; // Variable to store the label object
     
@@ -235,7 +235,7 @@ function initMap() {
             }
         }
     });
-    
+    createDistanceBox(); // Create the new box for showing distance
 }
 
 
@@ -426,6 +426,7 @@ function drawDottedLine(startPoint, endPoint) {
 }
 
 
+
 // Function to calculate and display the total route distance
 function calculateAndDisplayRouteDistance(routeLeg) {
     const totalDistance = routeLeg.distance.text; // The distance is provided in the response
@@ -503,41 +504,20 @@ function haversineDistance(coords1, coords2) {
 }
 
 // Create a distance box for showing live distance
-// Create a distance box for showing live distance
 function createDistanceBox() {
-    const distanceBox = document.createElement("div");
+    distanceBox = document.createElement("div");
     distanceBox.id = "distanceBox";
-    
-    // Create the icon element
-    const icon = document.createElement("i");
-    icon.classList.add("fas", "fa-map-marker-alt"); // Font Awesome icon class
-    
-    // Create the text element
-    const text = document.createElement("span");
-    text.innerText = "Click a marker to calculate route to Point B";
-
-    // Add the icon and text to the box
-    distanceBox.appendChild(icon);
-    distanceBox.appendChild(text);
-
-    // Style the distance box and its children
     distanceBox.style.position = "absolute";
-    distanceBox.style.top = "100px";
+    distanceBox.style.top = "50px";
     distanceBox.style.left = "50%";
     distanceBox.style.transform = "translateX(-50%)";
-    distanceBox.style.padding = "15px";
+    distanceBox.style.padding = "10px";
     distanceBox.style.backgroundColor = "white";
     distanceBox.style.border = "1px solid #ccc";
     distanceBox.style.borderRadius = "5px";
     distanceBox.style.zIndex = "1000";
-    distanceBox.style.fontSize = "12px"; // Smaller font size
-    distanceBox.style.width = "250px"; // Set a fixed width for the box
-    distanceBox.style.display = "flex";
-    distanceBox.style.alignItems = "center"; // Vertically center the icon and text
-    distanceBox.style.justifyContent = "center"; // Center the content horizontally
-    distanceBox.style.gap = "10px"; // Add some space between the icon and text
+    distanceBox.innerText = "Click a marker to calculate route to Point B";
 
-    // Append the distance box to the body
     document.body.appendChild(distanceBox);
 }
 
