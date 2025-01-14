@@ -31,7 +31,8 @@
         </div>
         <p id="voiceStatus"></p>
         <p id="voiceResult"><strong></strong> <span></span></p>
-        <div id="count">Markers in view: <span id="markerCount">0</span></div>
+     
+
     </div>
     
 
@@ -52,7 +53,7 @@
             <i class="fas fa-search"></i>
         </div>
       
-        <div class="menu-item">
+        <!-- <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('platforms')">
                 <img src="./static/img/menu_img/platforms.png" alt="">Platforms
                 <span><i class="fas fa-chevron-down"></i></span>
@@ -63,7 +64,7 @@
                 <li onclick="togglePolygon('platform3')"><img src="./static/img/pin_icon/platform.png" alt="Platform 3" height="20"> Platform 3</li>
                 <li onclick="togglePolygon('platform4')"><img src="./static/img/pin_icon/platform.png" alt="Platform 4" height="20"> Platform 4</li>
             </ul>
-        </div>
+        </div> -->
         
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('platform-list')"><img src="./static/img/menu_img/platform_amenity.png" alt="">Platform amenities<span><i
@@ -176,7 +177,11 @@
                     </ul>
                 </li>
                 
-                  
+                <li>
+                    <span onclick="showAllPlatforms('Platform All')">All Platform</span>
+                    <ul class="submenu">
+                    </ul>
+                </li>
 
             </ul>
         </div>

@@ -195,10 +195,13 @@ function initMap() {
 
     // Display user's location and add predefined markers
     displayUserLocation();
+
     PINPOINTS.forEach((pin) => {
         addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title, pin.icon);
     });
 
+     // Call handleZoomChanged immediately after the map is loaded to apply the right marker visibility
+     handleZoomChanged();
 
     let polygon = null; // Variable to store the polygon object
     let platformLabel = null; // Variable to store the label object
@@ -288,8 +291,56 @@ function initMap() {
         });
     });
     
-
+  // Add zoom_changed event listener
+   google.maps.event.addListener(map, 'zoom_changed', handleZoomChanged);
     createDistanceBox(); // Create the new box for showing distance
+}
+
+
+
+
+// Function to show a certain number of markers, removing equally from the start and end
+function showMarkersEvenly(count) {
+    const halfCount = Math.floor(count / 2);
+    const markersToShow = [
+        ...markers.slice(0, halfCount), // Start part of markers
+        ...markers.slice(-halfCount)    // End part of markers
+    ];
+
+    // Show only the selected markers
+    markersToShow.forEach(marker => marker.setMap(map));
+
+    // Hide markers that are not in the markersToShow array
+    markers.forEach(marker => {
+        if (!markersToShow.includes(marker)) {
+            marker.setMap(null);
+        }
+    });
+}
+
+// Handle zoom level changes
+function handleZoomChanged() {
+    const zoomLevel = map.getZoom();
+
+    if (zoomLevel >= 21) {
+        // Show all markers at zoom level 21 and above
+        markers.forEach(marker => marker.setMap(map));
+    } else if (zoomLevel >= 20 && zoomLevel < 21) {
+        // Show 50 markers at zoom level 20
+        showMarkersEvenly(50);
+    } else if (zoomLevel >= 19 && zoomLevel < 20) {
+        // Show 40 markers at zoom level 19
+        showMarkersEvenly(40);
+    } else if (zoomLevel >= 18 && zoomLevel < 19) {
+        // Show 35 markers at zoom level 18
+        showMarkersEvenly(35);
+    } else if (zoomLevel >= 15 && zoomLevel < 18) {
+        // Show 30 markers at zoom level 15
+        showMarkersEvenly(20);
+    } else {
+        // Hide all markers for zoom levels below 15
+        markers.forEach(marker => marker.setMap(null));
+    }
 }
 
 // Display the user's location and create a marker for it
@@ -667,6 +718,10 @@ function highlightPinpoints(pointId) {
             }, 2000);
         }
     }
+}
+
+function showAllPlatforms() {
+    location.reload();
 }
 
 // Predefined constant pinpoints with text and pin_icon1 
