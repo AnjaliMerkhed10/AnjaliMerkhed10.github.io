@@ -333,10 +333,10 @@ function handleZoomChanged() {
         showMarkersEvenly(40);
     } else if (zoomLevel >= 18 && zoomLevel < 19) {
         // Show 35 markers at zoom level 18
-        showMarkersEvenly(35);
+        showMarkersEvenly(25);
     } else if (zoomLevel >= 15 && zoomLevel < 18) {
         // Show 30 markers at zoom level 15
-        showMarkersEvenly(20);
+        showMarkersEvenly(15);
     } else {
         // Hide all markers for zoom levels below 15
         markers.forEach(marker => marker.setMap(null));
