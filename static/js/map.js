@@ -592,38 +592,82 @@ function updateDistanceDisplay(text) {
 
 
 
+// function bounceAllPins(category) {
+//     // Clear previous highlights
+//     document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
+
+//     // Highlight the selected menu item
+//     const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
+//         (li) => li.textContent === category
+//     );  
+//     if (selectedItem) selectedItem.classList.add('highlight');
+
+//     // Stop animation for all markers
+//     markers.forEach((marker) => marker.setAnimation(null));
+
+//     // Bounce all markers in the selected category
+//     const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
+//     const bounds = new google.maps.LatLngBounds(); // Define bounds for zoom
+
+//     selectedPins.forEach((pin) => {
+//         const marker = markers.find(
+//             (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
+//         );
+//         if (marker) {
+//             marker.setAnimation(google.maps.Animation.BOUNCE); // Make marker bounce
+//             bounds.extend(marker.getPosition()); // Add marker to bounds
+//         }
+//     });
+
+//     // Adjust the map to fit all selected markers
+//     map.fitBounds(bounds); // Fit the map to the category's bounds
+// }
+
+
 function bounceAllPins(category) {
-    // Clear previous highlights
+    markers.forEach((marker) => marker.setMap(null));
     document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
-
-    // Highlight the selected menu item
     const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
-        (li) => li.textContent === category
-    );  
+        (li) => li.textContent.trim() === category
+    );
     if (selectedItem) selectedItem.classList.add('highlight');
-
-    // Stop animation for all markers
-    markers.forEach((marker) => marker.setAnimation(null));
-
-    // Bounce all markers in the selected category
     const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
-    const bounds = new google.maps.LatLngBounds(); // Define bounds for zoom
-
+    const bounds = new google.maps.LatLngBounds();
     selectedPins.forEach((pin) => {
         const marker = markers.find(
             (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
         );
         if (marker) {
-            marker.setAnimation(google.maps.Animation.BOUNCE); // Make marker bounce
-            bounds.extend(marker.getPosition()); // Add marker to bounds
+            marker.setMap(map);
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            bounds.extend(marker.getPosition());
         }
     });
 
-    // Adjust the map to fit all selected markers
-    map.fitBounds(bounds); // Fit the map to the category's bounds
+    if (!bounds.isEmpty()) {
+        map.fitBounds(bounds);
+    }
 }
-
-
+function highlightPinpoints(pointId) {
+    markers.forEach((marker) => marker.setAnimation(null)); // Remove bounce from all markers
+    
+    const location = PINPOINTS.find((point) => point.id === pointId);
+    if (location && map) {
+        map.setCenter({ lat: location.lat, lng: location.lng });
+        map.setZoom(28);
+        
+        const marker = markers.find(
+            (m) => m.getPosition().lat() === location.lat && m.getPosition().lng() === location.lng
+        );
+        
+        if (marker) {
+            marker.setAnimation(google.maps.Animation.BOUNCE); // Bounce animation
+            setTimeout(() => {
+                marker.setAnimation(null); // Stop bouncing after 2 seconds
+            }, 2000);
+        }
+    }
+}
 
 // Predefined constant pinpoints with text and pin_icon1 
 const PINPOINTS = [
@@ -716,39 +760,39 @@ const PINPOINTS = [
 
 
 
-function highlightPinpoints(pointId) {
-    // Stop animation for all markers
-    markers.forEach((marker) => marker.setAnimation(null));
+// function highlightPinpoints(pointId) {
+//     // Stop animation for all markers
+//     markers.forEach((marker) => marker.setAnimation(null));
 
-    // Find the pinpoint object by id
-    const location = PINPOINTS.find((point) => point.id === pointId);
+//     // Find the pinpoint object by id
+//     const location = PINPOINTS.find((point) => point.id === pointId);
 
-    if (location && map) {
-        // Center the map on the selected location
-        map.setCenter({ lat: location.lat, lng: location.lng });
+//     if (location && map) {
+//         // Center the map on the selected location
+//         map.setCenter({ lat: location.lat, lng: location.lng });
 
-        // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
-        map.setZoom(28);
+//         // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
+//         map.setZoom(28);
 
-        // Find the marker for the selected location and make it bounce
-        const marker = markers.find(
-            (m) => m.getPosition().lat() === location.lat && m.getPosition().lng() === location.lng
-        );
+//         // Find the marker for the selected location and make it bounce
+//         const marker = markers.find(
+//             (m) => m.getPosition().lat() === location.lat && m.getPosition().lng() === location.lng
+//         );
 
-        if (marker) {
-            marker.setAnimation(google.maps.Animation.BOUNCE); // Make the selected marker bounce
+//         if (marker) {
+//             marker.setAnimation(google.maps.Animation.BOUNCE); // Make the selected marker bounce
 
-            // Stop the bouncing after 2 seconds (2000 ms)
-            setTimeout(() => {
-                marker.setAnimation(null);
-            }, 2000);
-        }
+//             // Stop the bouncing after 2 seconds (2000 ms)
+//             setTimeout(() => {
+//                 marker.setAnimation(null);
+//             }, 2000);
+//         }
 
-        // console.log(Zooming into: ${location.title});
-    } else {
-        // console.error(Location with ID '${pointId}' not found.);
-    }
-}
+//         // console.log(Zooming into: ${location.title});
+//     } else {
+//         // console.error(Location with ID '${pointId}' not found.);
+//     }
+// }
 
 // MENU BUTTONS CODE
 

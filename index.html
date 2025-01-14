@@ -31,6 +31,7 @@
         </div>
         <p id="voiceStatus"></p>
         <p id="voiceResult"><strong></strong> <span></span></p>
+        <div id="count">Markers in view: <span id="markerCount">0</span></div>
     </div>
     
 
@@ -69,9 +70,10 @@
                         class="fas fa-chevron-down "></i>
                 </span></button>
             <ul id="platform-list" class="menu-list">
-                <li >Platform 1
+             <li>
+                <span onclick="bounceAllPins('Platform 1')">Platform 1</span>
                     <ul class="submenu"  id="submenu">
-                        <li onclick="bounceAllPins('Platform 1')">Platform 1</li>
+                        <!-- <li onclick="bounceAllPins('Platform 1')">Platform 1</li> -->
                         <li onclick="highlightPinpoints('Platform 1 Point 2')">Lift and Stairs Bhusval end</li>
                         <li onclick="highlightPinpoints('Platform 1 Point 3')">Passenger Lift</li>    
                         <li onclick="highlightPinpoints('Platform 1 Point 4')">Pay and Use toilet near parcel office
@@ -135,9 +137,10 @@
                         <!-- Add other Platform 1 points here -->
                     </ul>
                 </li>
-                <li>Platform 2/3
+                <li>
+                    <span onclick="bounceAllPins('Platform 2')">Platform 2/3</span>
                     <ul class="submenu">
-                        <li onclick="bounceAllPins('Platform 2')">Platform 2/3</li>
+                        <!-- <li onclick="bounceAllPins('Platform 2')">Platform 2/3</li> -->
                         <li onclick="highlightPinpoints('Platform 2 Point 2')">Drinking water</li>
                         <li onclick="highlightPinpoints('Platform 2 Point 3')">Tea snacks stall</li>
                         <li onclick="highlightPinpoints('Platform 2 Point 4')">Oxygen parlour</li>
@@ -155,9 +158,10 @@
                     </ul>
                 </li>
                 
-                <li>Platform 4
+                <li>
+                    <span onclick="bounceAllPins('Platform 4')">Platform 4</span>
                     <ul class="submenu">
-                        <li onclick="bounceAllPins('Platform 4')">Platform 4</li>
+                        <!-- <li onclick="bounceAllPins('Platform 4')">Platform 4</li> -->
                         <li onclick="highlightPinpoints('Platform 4 Point 2')">Tea stall</li>
                         <li onclick="highlightPinpoints('Platform 4 Point 3')">Toilet(M/L)</li>
                         <li onclick="highlightPinpoints('Platform 4 Point 4')">Escalator & stair</li>
