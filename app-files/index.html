@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project Title</title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+<style> @-ms-viewport { width: device-width; } </style>
+<link rel="stylesheet" href="vendor/reset.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="multiple-scenes ">
+
+<div id="pano"></div>
+
+<div id="sceneList">
+  <ul class="scenes">
+    
+      <a href="javascript:void(0)" class="scene" data-id="0-nashik_main">
+        <li class="text">NASHIK_MAIN</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="1-pf1-entry">
+        <li class="text">PF1 ENTRY</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="2-exit-busstand">
+        <li class="text">EXIT BUSSTAND</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="3-ticket-counter-mg">
+        <li class="text">TICKET COUNTER MG</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="4-pf1-inside">
+        <li class="text">PF1 INSIDE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="5-pf-1_lr">
+        <li class="text">PF 1_L&amp;R</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="6-l1_pf1">
+        <li class="text">L1_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="7-l2_pf1">
+        <li class="text">L2_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="8-l3_pf1">
+        <li class="text">L3_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="9-l4_pf1">
+        <li class="text">L4_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="10-l5_pf1">
+        <li class="text">L5_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="11-l6_pf1way-to_pf2">
+        <li class="text">L6_PF1WAY TO_PF2</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="12-l7_pf1_lift-way-to-pf2">
+        <li class="text">L7_PF1_LIFT WAY TO PF2</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="13-l8_pf1">
+        <li class="text">L8_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="14-l9_pf1">
+        <li class="text">L9_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="15-l10_pf1">
+        <li class="text">L10_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="16-r1_pf1">
+        <li class="text">R1_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="17-r2_pf1">
+        <li class="text">R2_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="18-r3_pf1_lr">
+        <li class="text">R3_PF1_L&amp;R</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="19-r4_pf1">
+        <li class="text">R4_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="20-r5_pf1">
+        <li class="text">R5_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="21-r6_pf1">
+        <li class="text">R6_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="22-r7_pf1">
+        <li class="text">R7_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="23-r8_pf1">
+        <li class="text">R8_PF1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="24-r3_1_inside">
+        <li class="text">R3_1_INSIDE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="25-r3_2_in_ammenities">
+        <li class="text">R3_2_IN_AMMENITIES</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="26-r3_3_in_lr">
+        <li class="text">R3_3_IN_L&amp;R</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="27-r3_4_way-to-pf2--straight">
+        <li class="text">R3_4_WAY TO PF2 &amp; STRAIGHT</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="28-r3_5">
+        <li class="text">R3_5</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="29-r3_6">
+        <li class="text">R3_6</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="30-pf1stair">
+        <li class="text">PF1STAIR</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="31-pf1stair_pf2">
+        <li class="text">PF1STAIR_PF2</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="32-pf2stair">
+        <li class="text">PF2STAIR</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="33-pf23stairdown">
+        <li class="text">PF2,3STAIRDOWN</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="34-pf23">
+        <li class="text">PF2,3</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="35-pf4rampdown">
+        <li class="text">PF4RAMPDOWN</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="36-pf4srairup">
+        <li class="text">PF4SRAIRUP</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="37-pf4stairdownme">
+        <li class="text">PF4STAIRDOWNME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="38-pf4bridge">
+        <li class="text">PF4BRIDGE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="39-pf3_1me">
+        <li class="text">PF3_1ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="40-pf3_2me">
+        <li class="text">PF3_2ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="41-pf3_3me">
+        <li class="text">PF3_3ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="42-pf3_4me">
+        <li class="text">PF3_4ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="43-pf3_5me">
+        <li class="text">PF3_5ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="44-pf3_6me">
+        <li class="text">PF3_6ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="45-pf3_7me">
+        <li class="text">PF3_7ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="46-pf3_8me">
+        <li class="text">PF3_8ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="47-pf2_1be">
+        <li class="text">PF2_1BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="48-pf2_1me">
+        <li class="text">PF2_1ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="49-pf2_2be">
+        <li class="text">PF2_2BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="50-pf2_2me">
+        <li class="text">PF2_2ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="51-pf2_3be">
+        <li class="text">PF2_3BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="52-pf2_3me">
+        <li class="text">PF2_3ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="53-pf2_4be">
+        <li class="text">PF2_4BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="54-pf2_4me">
+        <li class="text">PF2_4ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="55-pf2_5be">
+        <li class="text">PF2_5BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="56-pf2_5me">
+        <li class="text">PF2_5ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="57-pf2_6be">
+        <li class="text">PF2_6BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="58-pf2_6me">
+        <li class="text">PF2_6ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="59-pf2_7be">
+        <li class="text">PF2_7BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="60-pf2_7me">
+        <li class="text">PF2_7ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="61-pf2_8be">
+        <li class="text">PF2_8BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="62-pf2_8me">
+        <li class="text">PF2_8ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="63-pf2_9be">
+        <li class="text">PF2_9BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="64-pf2_9me">
+        <li class="text">PF2_9ME</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="65-pf2_10be">
+        <li class="text">PF2_10BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="66-pf3_1be">
+        <li class="text">PF3_1BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="67-pf3_2be">
+        <li class="text">PF3_2BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="68-pf3_3be">
+        <li class="text">PF3_3BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="69-pf3_4be">
+        <li class="text">PF3_4BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="70-pf3_5be">
+        <li class="text">PF3_5BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="71-pf3_6be">
+        <li class="text">PF3_6BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="72-pf3_7be">
+        <li class="text">PF3_7BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="73-pf3_8be">
+        <li class="text">PF3_8BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="74-pf3_9be">
+        <li class="text">PF3_9BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="75-pf3_10be">
+        <li class="text">PF3_10BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="76-pf3_11be">
+        <li class="text">PF3_11BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="77-pf3_12be">
+        <li class="text">PF3_12BE</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="78-pf4_me6">
+        <li class="text">PF4_ME6</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="79-pf4_me7">
+        <li class="text">PF4_ME7</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="80-pf4_me8">
+        <li class="text">PF4_ME8</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="81-pf4_me9">
+        <li class="text">PF4_ME9</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="82-pf4_me10">
+        <li class="text">PF4_ME10</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="83-pf4_me11">
+        <li class="text">PF4_ME11</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="84-pf4_me12">
+        <li class="text">PF4_ME12</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="85-pf4_me13">
+        <li class="text">PF4_ME13</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="86-pf4_be1">
+        <li class="text">PF4_BE1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="87-pf4_be2_">
+        <li class="text">PF4_BE2_</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="88-pf4_entry_exit">
+        <li class="text">PF4_ENTRY_EXIT</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="89-pf4_entry_exit_in">
+        <li class="text">PF4_ENTRY_EXIT_IN</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="90-pf4_exit_out">
+        <li class="text">PF4_EXIT_OUT</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="91-pf4_me1">
+        <li class="text">PF4_ME1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="92-pf4_me1_ramp">
+        <li class="text">PF4_ME1_RAMP</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="93-pf4_me2">
+        <li class="text">PF4_ME2</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="94-pf4_me3">
+        <li class="text">PF4_ME3</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="95-pf4_me5">
+        <li class="text">PF4_ME5</li>
+      </a>
+    
+  </ul>
+</div>
+
+<div id="titleBar">
+  <h1 class="sceneName"></h1>
+</div>
+
+<a href="javascript:void(0)" id="autorotateToggle">
+  <img class="icon off" src="img/play.png">
+  <img class="icon on" src="img/pause.png">
+</a>
+
+<a href="javascript:void(0)" id="fullscreenToggle">
+  <img class="icon off" src="img/fullscreen.png">
+  <img class="icon on" src="img/windowed.png">
+</a>
+
+<a href="javascript:void(0)" id="sceneListToggle">
+  <img class="icon off" src="img/expand.png">
+  <img class="icon on" src="img/collapse.png">
+</a>
+
+<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+  <img class="icon" src="img/up.png">
+</a>
+<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+  <img class="icon" src="img/down.png">
+</a>
+<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+  <img class="icon" src="img/left.png">
+</a>
+<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+  <img class="icon" src="img/right.png">
+</a>
+<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+  <img class="icon" src="img/plus.png">
+</a>
+<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+  <img class="icon" src="img/minus.png">
+</a>
+
+<script src="vendor/screenfull.min.js" ></script>
+<script src="vendor/bowser.min.js" ></script>
+<script src="vendor/marzipano.js" ></script>
+
+<script src="data.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
