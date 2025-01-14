@@ -141,11 +141,7 @@ transition: background-color 0.3s ease-in-out;
     vertical-align: middle; /* Ensures the image is vertically aligned with the text */
 }
 
-.menu-btn:hover {
-    background-color: #007AFF;/* Even darker blue for hover */
-    color: white;
-    padding: 8px;
-}
+
 
 .menu-btn i {
     font-size: 0.8rem; /* Adjust the font size as needed */

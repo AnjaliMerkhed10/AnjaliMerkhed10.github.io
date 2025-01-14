@@ -72,6 +72,38 @@ document.addEventListener("click", (event) => {
     }
 });
 
+// Close sidebar when clicking any submenu item inside it
+sidebar.querySelectorAll('.menu-list li').forEach(submenuItem => {
+    submenuItem.addEventListener('click', (event) => {
+        const hasNestedSubmenu = submenuItem.querySelector('.submenu');
+
+        if (!hasNestedSubmenu) {
+            sidebar.classList.remove("open");
+            menuIcon.classList.remove("right");
+            menuIcon.classList.remove("hidden"); // Reset icon visibility
+
+            // Close all submenus
+            document.querySelectorAll('.submenu').forEach(submenu => {
+                submenu.style.display = 'none'; // Hide all submenus
+            });
+        }
+    });
+});
+
+// Close sidebar when clicking main menu items without submenus
+sidebar.querySelectorAll('.menu-item > button').forEach(menuButton => {
+    menuButton.addEventListener('click', (event) => {
+        const hasSubmenu = menuButton.nextElementSibling && menuButton.nextElementSibling.classList.contains('menu-list');
+
+        if (!hasSubmenu) {
+            sidebar.classList.remove("open");
+            menuIcon.classList.remove("right");
+            menuIcon.classList.remove("hidden"); // Reset icon visibility
+        }
+    });
+});
+
+
 
 
 
