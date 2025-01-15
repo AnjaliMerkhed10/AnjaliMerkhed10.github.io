@@ -199,13 +199,13 @@ var APP_DATA = {
         {
           "yaw": -0.27749223304137516,
           "pitch": 0.03753863889658504,
-          "title": "GIFT STORE/OSOP",
+          "title": "<img src='pin_icon/store.png' alt='Custom Icon' style='width: 40px; height: 40px;'> GIFT STORE/OSOP",
           "text": "Text"
         },
         {
           "yaw": -2.1846958559071794,
           "pitch": 0.01630615467034069,
-          "title": "KHADI STORE",
+          "title": "<img src='pin_icon/store.png' alt='Custom Icon' style='width: 40px; height: 40px;'> KHADI STORE",
           "text": "Text"
         }
       ]
@@ -306,19 +306,19 @@ var APP_DATA = {
         {
           "yaw": 0.37656529391720994,
           "pitch": 0.01826490588424967,
-          "title": "UPPER CLASS WAITING ROOM",
+          "title": "<img src='pin_icon/sleeping_pod.png' alt='Custom Icon' style='width: 40px; height: 40px;'> UPPER CLASS WAITING ROOM",
           "text": "Text"
         },
         {
           "yaw": -0.6027288304937279,
           "pitch": 0.061308346014698145,
-          "title": "TCI OFFICE",
+          "title": "<img src='pin_icon/office.png' alt='Custom Icon' style='width: 40px; height: 40px;'> TCI OFFICE",
           "text": "Text"
         },
         {
           "yaw": 0.6632708550369113,
           "pitch": 0.005735486322127059,
-          "title": "WAITING ROOM",
+          "title": "<img src='pin_icon/waiting.png' alt='Custom Icon' style='width: 40px; height: 40px;'> WAITING ROOM",
           "text": "Text"
         }
       ]
@@ -369,13 +369,13 @@ var APP_DATA = {
         {
           "yaw": 0.4955449919329187,
           "pitch": 0.04512174814222902,
-          "title": "KITAB GHAR",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> KITAB GHAR",
           "text": "Text"
         },
         {
           "yaw": 1.483406237145843,
           "pitch": 0.03219472941925794,
-          "title": "DYSS OFFICE",
+          "title": "<img src='pin_icon/office.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DYSS OFFICE",
           "text": "Text"
         }
       ]
@@ -426,25 +426,25 @@ var APP_DATA = {
         {
           "yaw": 1.8959656430599061,
           "pitch": 0.032122126842089926,
-          "title": "MAA TARA AC WAITING &amp; CLOAK ROOM",
+          "title": "<img src='pin_icon/waiting.png' alt='Custom Icon' style='width: 40px; height: 40px;'> MAA TARA AC WAITING &amp; CLOAK ROOM",
           "text": "Text"
         },
         {
           "yaw": 2.189276668969401,
           "pitch": 0.048682679174305576,
-          "title": "SLEEPER CLASS WAITING ROOM",
+          "title": "<img src='pin_icon/waiting.png' alt='Custom Icon' style='width: 40px; height: 40px;'> SLEEPER CLASS WAITING ROOM",
           "text": "Text"
         },
         {
           "yaw": 3.0388272267455143,
           "pitch": -0.0477236598101527,
-          "title": "RAIL AHAR (TEA STALL)",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> RAIL AHAR (TEA STALL)",
           "text": "Text"
         },
         {
           "yaw": -2.9623182257782847,
           "pitch": -0.043805147944940614,
-          "title": "MULTI PURPOSE STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> MULTI PURPOSE STALL",
           "text": "Text"
         }
       ]
@@ -495,13 +495,13 @@ var APP_DATA = {
         {
           "yaw": -1.104433112436002,
           "pitch": 0.13240782348670344,
-          "title": "PAY &amp; USE TOILET(M/F)&nbsp;",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> PAY &amp; USE TOILET(M/F)&nbsp;",
           "text": "Text"
         },
         {
           "yaw": -0.5973557459971719,
           "pitch": 0.046856471501012464,
-          "title": "PARCEL OFFICE",
+          "title": "<img src='pin_icon/office.png' alt='Custom Icon' style='width: 40px; height: 40px;'> PARCEL OFFICE",
           "text": "Text"
         }
       ]
@@ -596,7 +596,7 @@ var APP_DATA = {
         {
           "yaw": 0.6776948274858849,
           "pitch": 0.09224574293683929,
-          "title": "WAY TO PF2,3&amp;4",
+          "title": "<img src='pin_icon/platform.png' alt='Custom Icon' style='width: 40px; height: 40px;'> WAY TO PF2,3&amp;4",
           "text": "Text"
         }
       ]
@@ -647,7 +647,7 @@ var APP_DATA = {
         {
           "yaw": 0.50122488335602,
           "pitch": 0.0696371511353231,
-          "title": "LIFT",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT",
           "text": "Text"
         }
       ]
@@ -698,7 +698,7 @@ var APP_DATA = {
         {
           "yaw": 1.6983110388788312,
           "pitch": 0.19131970164288603,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -749,7 +749,7 @@ var APP_DATA = {
         {
           "yaw": -1.832284559854095,
           "pitch": 0.19420414319967882,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -838,19 +838,19 @@ var APP_DATA = {
         {
           "yaw": 0.12419078029103225,
           "pitch": -0.02552234466426384,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         },
         {
           "yaw": -0.8134545676314424,
           "pitch": 0.031240692265591008,
-          "title": "STATION MASTER",
+          "title": "<img src='pin_icon/station_manager.png' alt='Custom Icon' style='width: 40px; height: 40px;'> STATION MASTER",
           "text": "Text"
         },
         {
           "yaw": -1.355665178474844,
           "pitch": 0.036604895966409146,
-          "title": "VIP ROOM",
+          "title": "<img src='pin_icon/waiting.png' alt='Custom Icon' style='width: 40px; height: 40px;'> VIP ROOM",
           "text": "Text"
         }
       ]
@@ -901,7 +901,7 @@ var APP_DATA = {
         {
           "yaw": -0.6068486536552768,
           "pitch": -0.03268987365482623,
-          "title": "IRCTC FOOD TRACK",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> IRCTC FOOD TRACK",
           "text": "Text"
         }
       ]
@@ -1046,13 +1046,13 @@ var APP_DATA = {
         {
           "yaw": -2.782783259713895,
           "pitch": 0.10699987539393163,
-          "title": "LIFT",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT",
           "text": "Text"
         },
         {
           "yaw": 2.3429038253792935,
           "pitch": 0.054294301432708636,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -1103,13 +1103,13 @@ var APP_DATA = {
         {
           "yaw": 0.03811751839894306,
           "pitch": -0.11959341455203187,
-          "title": "RAILWAY POLICE STATION",
+          "title": "<img src='pin_icon/police_station.png' alt='Custom Icon' style='width: 40px; height: 40px;'> RAILWAY POLICE STATION",
           "text": "Text"
         },
         {
           "yaw": 1.209768273653797,
           "pitch": -0.091920665507768,
-          "title": "R P F STATION",
+          "title": "<img src='pin_icon/police_station.png' alt='Custom Icon' style='width: 40px; height: 40px;'> R P F STATION",
           "text": "Text"
         }
       ]
@@ -1160,19 +1160,19 @@ var APP_DATA = {
         {
           "yaw": -0.913865291367614,
           "pitch": -0.002267672306414781,
-          "title": "PAY &amp; USE TOILET",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> PAY &amp; USE TOILET",
           "text": "Text"
         },
         {
           "yaw": -1.4230076606297217,
           "pitch": 0.017134949997092974,
-          "title": "DIVYANGJAN TOILET",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DIVYANGJAN TOILET",
           "text": "Text"
         },
         {
           "yaw": -2.669993840059419,
           "pitch": 0.39195413623674824,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -1261,7 +1261,7 @@ var APP_DATA = {
         {
           "yaw": -2.7351362668919315,
           "pitch": -0.07391979352376943,
-          "title": "RELAX ZONE",
+          "title": "<img src='pin_icon/waiting.png' alt='Custom Icon' style='width: 40px; height: 40px;'> RELAX ZONE",
           "text": "Text"
         },
         {
@@ -1273,13 +1273,13 @@ var APP_DATA = {
         {
           "yaw": -0.3757734886419186,
           "pitch": 0.019831929759732247,
-          "title": "GODAWARI WAITING HALL",
+          "title": "<img src='pin_icon/waiting.png' alt='Custom Icon' style='width: 40px; height: 40px;'> GODAWARI WAITING HALL",
           "text": "Text"
         },
         {
           "yaw": -0.35629251723412736,
           "pitch": -0.1392964037373794,
-          "title": "IRCTC DORMITORY",
+          "title": "<img src='pin_icon/sleeping_pod.png' alt='Custom Icon' style='width: 40px; height: 40px;'> IRCTC DORMITORY",
           "text": "Text"
         }
       ]
@@ -1431,13 +1431,13 @@ var APP_DATA = {
         {
           "yaw": -2.0398125198570387,
           "pitch": 0.057652641979492714,
-          "title": "WAY TO PF2,3,&amp;4",
+          "title": "<img src='pin_icon/platform.png' alt='Custom Icon' style='width: 40px; height: 40px;'> WAY TO PF2,3,&amp;4",
           "text": "Text"
         },
         {
           "yaw": -1.4764060713298903,
           "pitch": 0.04754563270026679,
-          "title": "WAY TO ESCALATOR",
+          "title": "<img src='pin_icon/escalator.png' alt='Custom Icon' style='width: 40px; height: 40px;'> WAY TO ESCALATOR",
           "text": "Text"
         }
       ]
@@ -1526,13 +1526,13 @@ var APP_DATA = {
         {
           "yaw": 0.14046089911708748,
           "pitch": -0.01749812057524025,
-          "title": "PAY &amp; USE DELUX TOILET",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> PAY &amp; USE DELUX TOILET",
           "text": "Text"
         },
         {
           "yaw": 1.0230782144422772,
           "pitch": 0.05892887238385214,
-          "title": "PAY PARKING",
+          "title": "<img src='pin_icon/pay_park' alt='Custom Icon' style='width: 40px; height: 40px;'> PAY PARKING",
           "text": "Text"
         }
       ]
@@ -1577,13 +1577,13 @@ var APP_DATA = {
         {
           "yaw": 2.197206804330249,
           "pitch": 0.028242008424436804,
-          "title": "IRCTC DOORMETRY",
+          "title": "<img src='pin_icon/sleeping_pod.png' alt='Custom Icon' style='width: 40px; height: 40px;'> IRCTC DOORMETRY",
           "text": "Text"
         },
         {
           "yaw": 2.194872362878429,
           "pitch": 0.19798362635871136,
-          "title": "GODAVARI RETIERING HALL",
+          "title": "<img src='pin_icon/waiting.png' alt='Custom Icon' style='width: 40px; height: 40px;'> GODAVARI RETIERING HALL",
           "text": "Text"
         }
       ]
@@ -1591,7 +1591,8 @@ var APP_DATA = {
     {
       "id": "31-pf1stair_pf2",
       "name": "PF1STAIR_PF2",
-      "levels": [
+      "levels": 
+      [
         {
           "tileSize": 256,
           "size": 256,
@@ -1634,13 +1635,13 @@ var APP_DATA = {
         {
           "yaw": -0.8395652907634421,
           "pitch": 0.0346808725419816,
-          "title": "PF1 LIFT MUMBAI END",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> PF1 LIFT MUMBAI END",
           "text": "Text"
         },
         {
           "yaw": -0.6848443758670619,
           "pitch": 0.1905097134981144,
-          "title": "ECALATOR PF1 EXIT",
+          "title": "<img src='pin_icon/escalator.png' alt='Custom Icon' style='width: 40px; height: 40px;'> ECALATOR PF1 EXIT",
           "text": "Text"
         }
       ]
@@ -1697,13 +1698,13 @@ var APP_DATA = {
         {
           "yaw": -0.81212469213596,
           "pitch": 0.155037141609899,
-          "title": "LIFT PF2/3",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT PF2/3",
           "text": "Text"
         },
         {
           "yaw": 2.3946450799657875,
           "pitch": 0.36595634471500205,
-          "title": "STAIR MUMBAI END PF2/3",
+          "title": "<img src='pin_icon/platform.png' alt='Custom Icon' style='width: 40px; height: 40px;'> STAIR MUMBAI END PF2/3",
           "text": "Text"
         }
       ]
@@ -1748,7 +1749,7 @@ var APP_DATA = {
         {
           "yaw": 0.7625480534506615,
           "pitch": 0.39054213364957846,
-          "title": "PF 2&amp;3 MUMBAI END",
+          "title": "<img src='pin_icon/platform.png' alt='Custom Icon' style='width: 40px; height: 40px;'> PF 2&amp;3 MUMBAI END",
           "text": "Text"
         }
       ]
@@ -1811,25 +1812,25 @@ var APP_DATA = {
         {
           "yaw": -1.7615888285160928,
           "pitch": 0.28877473710607227,
-          "title": "TOWARDS PF3 MUMBAI END",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> TOWARDS PF3 MUMBAI END",
           "text": "Text"
         },
         {
           "yaw": -1.187930955186081,
           "pitch": 0.34446177402668354,
-          "title": "TOWARDS PF2 MUMBAI END",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> TOWARDS PF2 MUMBAI END",
           "text": "Text"
         },
         {
           "yaw": -0.37911071874875546,
           "pitch": 0.5780500945730829,
-          "title": "TOWARDS PF2 BHUSAWAL END",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> TOWARDS PF2 BHUSAWAL END",
           "text": "Text"
         },
         {
           "yaw": -2.177654244171398,
           "pitch": 0.5199885040856103,
-          "title": "TOWARDS PF3 BHUSAWAL END",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> TOWARDS PF3 BHUSAWAL END",
           "text": "Text"
         }
       ]
@@ -1917,7 +1918,7 @@ var APP_DATA = {
         {
           "yaw": -2.791165915138775,
           "pitch": 0.34107020664270316,
-          "title": "TOWARDS PF4 EXIT",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> TOWARDS PF4 EXIT",
           "text": "Text"
         }
       ]
@@ -1974,7 +1975,7 @@ var APP_DATA = {
         {
           "yaw": -0.47809816653840365,
           "pitch": 0.36329866573164793,
-          "title": "WAY TO PF4 MUMBAI END",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> WAY TO PF4 MUMBAI END",
           "text": "Text"
         }
       ]
@@ -2025,13 +2026,13 @@ var APP_DATA = {
         {
           "yaw": -2.039567801228781,
           "pitch": 0.005835828626533868,
-          "title": "LIFT PF4",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT PF4",
           "text": "Text"
         },
         {
           "yaw": -1.0087157975127923,
           "pitch": 0.17674829232289646,
-          "title": "ESCALATOR PF4",
+          "title": "<img src='pin_icon/escalator.png' alt='Custom Icon' style='width: 40px; height: 40px;'> ESCALATOR PF4",
           "text": "Text"
         }
       ]
@@ -2076,7 +2077,7 @@ var APP_DATA = {
         {
           "yaw": -2.8407617042125874,
           "pitch": 0.11420514789872449,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -2121,13 +2122,13 @@ var APP_DATA = {
         {
           "yaw": -1.4884785865797063,
           "pitch": -0.08248650835683691,
-          "title": "TEA STALL RAIL AHAR",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> TEA STALL RAIL AHAR",
           "text": "Text"
         },
         {
           "yaw": 2.663724812909426,
           "pitch": -0.04606918065197263,
-          "title": "MAHANAND MILK",
+          "title": "<img src='pin_icon/milk.png' alt='Custom Icon' style='width: 40px; height: 40px;'> MAHANAND MILK",
           "text": "Text"
         }
       ]
@@ -2172,13 +2173,13 @@ var APP_DATA = {
         {
           "yaw": -2.4389671553046792,
           "pitch": 0.06260871724058958,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         },
         {
           "yaw": -3.0682642816131747,
           "pitch": 0.01331219648808002,
-          "title": "OXYGEN PARLOR",
+          "title": "<img src='pin_icon/store.png' alt='Custom Icon' style='width: 40px; height: 40px;'> OXYGEN PARLOR",
           "text": "Text"
         }
       ]
@@ -2223,7 +2224,7 @@ var APP_DATA = {
         {
           "yaw": -2.3786903367588046,
           "pitch": -0.001067088946872019,
-          "title": "FOOD STALL",
+          "title": "<img src='pin_icon/store.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD STALL",
           "text": "Text"
         }
       ]
@@ -2306,7 +2307,7 @@ var APP_DATA = {
         {
           "yaw": -0.9081639811315654,
           "pitch": 0.1208604519914882,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -2382,13 +2383,13 @@ var APP_DATA = {
         {
           "yaw": -2.7285908121854483,
           "pitch": 0.09890252625098839,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         },
         {
           "yaw": -1.8778325767347255,
           "pitch": 0.05555513929741984,
-          "title": "DIVYANGJAN TOILET",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DIVYANGJAN TOILET",
           "text": "Text"
         }
       ]
@@ -2433,7 +2434,7 @@ var APP_DATA = {
         {
           "yaw": 1.8122913320977911,
           "pitch": 0.07935020775629198,
-          "title": "LIFT",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT",
           "text": "Text"
         }
       ]
@@ -2478,7 +2479,7 @@ var APP_DATA = {
         {
           "yaw": -2.403753565205964,
           "pitch": 0.18843175984219407,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -2523,19 +2524,19 @@ var APP_DATA = {
         {
           "yaw": -1.0287847807058075,
           "pitch": 0.12125640222134848,
-          "title": "ESCALATOR",
+          "title": "<img src='pin_icon/escalator.png' alt='Custom Icon' style='width: 40px; height: 40px;'> ESCALATOR",
           "text": "Text"
         },
         {
           "yaw": -1.7489340499679358,
           "pitch": 0.07623055643711041,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         },
         {
           "yaw": -2.807078417385995,
           "pitch": -0.11568338410792656,
-          "title": "FOOD AND TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD AND TEA STALL",
           "text": "Text"
         }
       ]
@@ -2580,13 +2581,13 @@ var APP_DATA = {
         {
           "yaw": 0.03427742495778219,
           "pitch": -0.006361935460210688,
-          "title": "FOOD STALL &amp; TEA",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD STALL &amp; TEA",
           "text": "Text"
         },
         {
           "yaw": 1.8525867055494984,
           "pitch": -0.13857309015938313,
-          "title": "MAHANAND MILK STALL",
+          "title": "<img src='pin_icon/milk.png' alt='Custom Icon' style='width: 40px; height: 40px;'> MAHANAND MILK STALL",
           "text": "Text"
         }
       ]
@@ -2631,13 +2632,13 @@ var APP_DATA = {
         {
           "yaw": 0.5994066353438186,
           "pitch": -0.0509214533438076,
-          "title": "FOOD AND TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD AND TEA STALL",
           "text": "Text"
         },
         {
           "yaw": -1.1079076499137415,
           "pitch": 0.05624519697026997,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -2682,7 +2683,7 @@ var APP_DATA = {
         {
           "yaw": 2.1014887824600645,
           "pitch": 0.026771813506856645,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -2727,7 +2728,7 @@ var APP_DATA = {
         {
           "yaw": 0.23562868028194472,
           "pitch": 0.029595721188091062,
-          "title": "FRUIT AND JUICE STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FRUIT AND JUICE STALL",
           "text": "Text"
         }
       ]
@@ -2823,13 +2824,13 @@ var APP_DATA = {
         {
           "yaw": 0.9814445459214447,
           "pitch": 0.12149923444179933,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         },
         {
           "yaw": -0.14698609778754523,
           "pitch": 0.00751490065983873,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -2874,7 +2875,7 @@ var APP_DATA = {
         {
           "yaw": 0.4866125179944554,
           "pitch": -0.039112550194973394,
-          "title": "FOOD STALL &amp; TEA",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD STALL &amp; TEA",
           "text": "Text"
         }
       ]
@@ -2919,7 +2920,7 @@ var APP_DATA = {
         {
           "yaw": -0.20774826620255737,
           "pitch": 0.08537694019211628,
-          "title": "EXIT PF 1&amp;4",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> EXIT PF 1&amp;4",
           "text": "Text"
         }
       ]
@@ -2964,7 +2965,7 @@ var APP_DATA = {
         {
           "yaw": 1.3985928060955448,
           "pitch": 0.267406366674825,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -3009,7 +3010,7 @@ var APP_DATA = {
         {
           "yaw": 0.5856158154717654,
           "pitch": 0.10507934841090538,
-          "title": "LIFT",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT",
           "text": "Text"
         }
       ]
@@ -3054,7 +3055,7 @@ var APP_DATA = {
         {
           "yaw": 2.7170306002586386,
           "pitch": 0.16197839315754337,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -3099,13 +3100,13 @@ var APP_DATA = {
         {
           "yaw": 2.008624749152175,
           "pitch": 0.0522280740375205,
-          "title": "M/F TOILET&nbsp;",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> M/F TOILET&nbsp;",
           "text": "Text"
         },
         {
           "yaw": 0.1590095089641963,
           "pitch": -0.05284499445086688,
-          "title": "FOOD AND TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD AND TEA STALL",
           "text": "Text"
         }
       ]
@@ -3150,7 +3151,7 @@ var APP_DATA = {
         {
           "yaw": 2.8469449277251373,
           "pitch": 0.1725712084996509,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -3226,13 +3227,13 @@ var APP_DATA = {
         {
           "yaw": -3.0229368649859722,
           "pitch": 0.10769736145767439,
-          "title": "DIVYANGJAN TOILET",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DIVYANGJAN TOILET",
           "text": "Text"
         },
         {
           "yaw": -2.5794955859280613,
           "pitch": 0.1304685144681006,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -3308,7 +3309,7 @@ var APP_DATA = {
         {
           "yaw": -2.613493944172113,
           "pitch": 0.029456512934590506,
-          "title": "LIFT",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT",
           "text": "Text"
         }
       ]
@@ -3353,25 +3354,25 @@ var APP_DATA = {
         {
           "yaw": 2.70889666249935,
           "pitch": 0.03870606678069066,
-          "title": "ESCALATOR",
+          "title": "<img src='pin_icon/escalator.png' alt='Custom Icon' style='width: 40px; height: 40px;'> ESCALATOR",
           "text": "Text"
         },
         {
           "yaw": -2.2903479801522604,
           "pitch": 0.298036754652534,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         },
         {
           "yaw": -1.4017878545441391,
           "pitch": -0.07146937417546795,
-          "title": "FOOD AND TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD AND TEA STALL",
           "text": "Text"
         },
         {
           "yaw": -0.7962564517273805,
           "pitch": -0.03746010615112105,
-          "title": "FOOD AND TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD AND TEA STALL",
           "text": "Text"
         }
       ]
@@ -3416,13 +3417,13 @@ var APP_DATA = {
         {
           "yaw": 3.055222114558328,
           "pitch": 0.04277665358702798,
-          "title": "FRUIT AND JUICE STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FRUIT AND JUICE STALL",
           "text": "Text"
         },
         {
           "yaw": -1.3798889562027643,
           "pitch": 0.03233996454529908,
-          "title": "DRINKING WATER&nbsp;",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER&nbsp;",
           "text": "Text"
         }
       ]
@@ -3467,7 +3468,7 @@ var APP_DATA = {
         {
           "yaw": 2.55802455044857,
           "pitch": -0.10355542726728473,
-          "title": "FOOD AND TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD AND TEA STALL",
           "text": "Text"
         }
       ]
@@ -3512,7 +3513,7 @@ var APP_DATA = {
         {
           "yaw": 1.0229550789109219,
           "pitch": -0.017685986928865916,
-          "title": "FOOD AND TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD AND TEA STALL",
           "text": "Text"
         }
       ]
@@ -3557,13 +3558,13 @@ var APP_DATA = {
         {
           "yaw": 0.18960869884726783,
           "pitch": 0.11409739010088416,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         },
         {
           "yaw": 0.5792640546909862,
           "pitch": 0.0018000589780253762,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -3645,13 +3646,13 @@ var APP_DATA = {
         {
           "yaw": 0.3115675937245541,
           "pitch": -0.011101233163214985,
-          "title": "FOOD AND TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD AND TEA STALL",
           "text": "Text"
         },
         {
           "yaw": 2.067131391943259,
           "pitch": 0.1717463318661494,
-          "title": "EXIT PF 1 &amp; 4",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> EXIT PF 1 &amp; 4",
           "text": "Text"
         }
       ]
@@ -3696,7 +3697,7 @@ var APP_DATA = {
         {
           "yaw": 0.014997464323354137,
           "pitch": 0.001840853116320318,
-          "title": "LIFT EXIT PF1 &amp;4",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT EXIT PF1 &amp;4",
           "text": "Text"
         }
       ]
@@ -3741,7 +3742,7 @@ var APP_DATA = {
         {
           "yaw": 0.01997730332490022,
           "pitch": -0.047859716722989276,
-          "title": "M/F TOILET",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> M/F TOILET",
           "text": "Text"
         }
       ]
@@ -3786,13 +3787,13 @@ var APP_DATA = {
         {
           "yaw": -1.9464521587317964,
           "pitch": 0.01037213859130759,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         },
         {
           "yaw": -2.1969858821036556,
           "pitch": -0.04333007340892436,
-          "title": "FOOD &amp; TEA STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;' FOOD &amp; TEA STALL",
           "text": "Text"
         }
       ]
@@ -3830,7 +3831,7 @@ var APP_DATA = {
         {
           "yaw": -2.791387785212171,
           "pitch": 0.14988266277542373,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -3881,7 +3882,7 @@ var APP_DATA = {
         {
           "yaw": 1.0181109846975076,
           "pitch": 0.018737287982208528,
-          "title": "ESCALATOR PF1,2&amp;3",
+          "title": "<img src='pin_icon/escalator.png' alt='Custom Icon' style='width: 40px; height: 40px;'> ESCALATOR PF1,2&amp;3",
           "text": "Text"
         }
       ]
@@ -4020,7 +4021,7 @@ var APP_DATA = {
         {
           "yaw": -2.2515980146277563,
           "pitch": 0.00893132407230901,
-          "title": "FOOD STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD STALL",
           "text": "Text"
         }
       ]
@@ -4071,7 +4072,7 @@ var APP_DATA = {
         {
           "yaw": 1.2163866648887858,
           "pitch": 0.04409748832243565,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -4248,7 +4249,7 @@ var APP_DATA = {
         {
           "yaw": 1.967379472396071,
           "pitch": 0.016783811443588093,
-          "title": "DIVYANGJAN TOILET",
+          "title": "<img src='pin_icon/washroom.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DIVYANGJAN TOILET",
           "text": "Text"
         }
       ]
@@ -4293,13 +4294,13 @@ var APP_DATA = {
         {
           "yaw": 0.05884532578636126,
           "pitch": -0.008821469281901528,
-          "title": "LIFT PF 1,2 &amp; 3",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> LIFT PF 1,2 &amp; 3",
           "text": "Text"
         },
         {
           "yaw": 0.9344796812411218,
           "pitch": 0.00018531834997581598,
-          "title": "M/F TOILET",
+          "title": "<img src='pin_icon/lift.png' alt='Custom Icon' style='width: 40px; height: 40px;'> M/F TOILET",
           "text": "Text"
         }
       ]
@@ -4400,7 +4401,7 @@ var APP_DATA = {
         {
           "yaw": -1.6316908746640024,
           "pitch": -0.03834505743192551,
-          "title": "RESERVATION COUNTER",
+          "title": "<img src='pin_icon/ticket_counter.png' alt='Custom Icon' style='width: 40px; height: 40px;'> RESERVATION COUNTER",
           "text": "Text"
         }
       ]
@@ -4445,19 +4446,19 @@ var APP_DATA = {
         {
           "yaw": -0.6382382059907314,
           "pitch": 0.1782034313682903,
-          "title": "PAY AND PARK",
+          "title": "<img src='pin_icon/pay_park.png' alt='Custom Icon' style='width: 40px; height: 40px;'> PAY AND PARK",
           "text": "Text"
         },
         {
           "yaw": 0.11611488613365495,
           "pitch": 0.09148358126144984,
-          "title": "WAY TO EXIT",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> WAY TO EXIT",
           "text": "Text"
         },
         {
           "yaw": -3.0850753263742092,
           "pitch": 0.07738592650324705,
-          "title": "RESERVATION COUNTER",
+          "title": "<img src='pin_icon/ticket_counter.png' alt='Custom Icon' style='width: 40px; height: 40px;'> RESERVATION COUNTER",
           "text": "Text"
         }
       ]
@@ -4508,7 +4509,7 @@ var APP_DATA = {
         {
           "yaw": 0.6165525772176252,
           "pitch": 0.06438967855831734,
-          "title": "FOOD STALL",
+          "title": "<img src='pin_icon/fruit_stall.png' alt='Custom Icon' style='width: 40px; height: 40px;'> FOOD STALL",
           "text": "Text"
         }
       ]
@@ -4640,7 +4641,7 @@ var APP_DATA = {
         {
           "yaw": 0.038972815522866355,
           "pitch": 0.0617065373304122,
-          "title": "DRINKING WATER",
+          "title": "<img src='pin_icon/water.png' alt='Custom Icon' style='width: 40px; height: 40px;'> DRINKING WATER",
           "text": "Text"
         }
       ]
@@ -4691,7 +4692,7 @@ var APP_DATA = {
         {
           "yaw": 1.2538709731132673,
           "pitch": -0.010471413289943499,
-          "title": "CHILD HELP DESK",
+          "title": "<img src='pin_icon/help.png' alt='Custom Icon' style='width: 40px; height: 40px;'> CHILD HELP DESK",
           "text": "Text"
         }
       ]
