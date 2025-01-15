@@ -644,6 +644,8 @@ function updateDistanceDisplay(text) {
     }
 }
 
+
+
 function bounceAllPins(category) {
     markers.forEach((marker) => marker.setMap(null));
     const selectedLanguage = document.getElementById('language-select').value;
@@ -882,6 +884,46 @@ const PINPOINTS = [
         title: { en: 'Railahar Tea Stall', hi: 'रेलाहर चहा स्टॉल', mr: 'रेलाहर चहा स्टॉल' },
         category: "Platform 2",
         icon: "./static/img/pin_icon/tea_stall.png"
+    },
+    {
+        id: 'Platform 2 Point 16',
+        lat: 19.94893508,
+        lng: 73.84257904,
+        title: { en: 'Stair Bhusawal End', hi: 'स्टेयर भुसावल छोर', mr: 'स्टेयर भुसावल अंत' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/stairs.png"
+    },
+    {
+        id: 'Platform 2 Point 17',
+        lat: 19.94904434,
+        lng: 73.84262655,
+        title: { en: 'Lift Bhusawal End', hi: 'लिफ्ट भुसावल छोर', mr: 'लिफ्ट भुसावल अंत' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/lift.png"
+    },
+    {
+        id: 'Platform 2 Point 18',
+        lat: 19.94761333,
+        lng: 73.84233439,
+        title: { en: 'Excelerator Mumbai End', hi: 'एक्सेलरेटर मुंबई छोर', mr: 'एक्सेलरेटर मुंबई अंत' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/escalator.png"
+    },
+    {
+        id: 'Platform 2 Point 19',
+        lat: 19.94739521,
+        lng: 73.84223735,
+        title: { en: 'Lift Mumbai End', hi: 'लिफ्ट मुंबई छोर', mr: 'लिफ्ट मुंबई अंत' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/lift.png"
+    },
+    {
+        id: 'Platform 2 Point 20',
+        lat: 19.94718233,
+        lng: 73.84222358,
+        title: { en: 'Stair Mumbai End', hi: 'स्टेयर मुंबई छोर', mr: 'स्टेयर मुंबई अंत' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/stairs.png"
     },
 
 
