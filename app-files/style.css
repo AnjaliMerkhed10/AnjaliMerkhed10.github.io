@@ -452,12 +452,13 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot .info-hotspot-header {
   display: flex; /* Use flexbox to align elements side by side */
   align-items: center;
-  width: 260px; /* Adjust width to accommodate icon and title */
+  max-width: 260px; /* Adjust width to accommodate icon and title */
   height: 50px; /* Increased height for spacing */
-  border-radius: 5px;
-  background-color: rgb(103,115,131);
+  background-color: rgba(59, 59, 59, 0.568);
   cursor: pointer;
   transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  padding-right: 20px;
+  border-radius: 10px;
 }
 
 .mobile .info-hotspot .info-hotspot-header {
@@ -531,12 +532,15 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 }
 
 .info-hotspot .info-hotspot-title {
-  display: inline-block;
+  display: inline-flex;
   vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Prevents title from overflowing */
+  text-overflow: ellipsis;
   font-size: 14px;
+  font-weight: bolder;
+  align-items: center;
+  gap: 10px; 
 }
 .info-hotspot .info-hotspot-close-wrapper {
   position: absolute;

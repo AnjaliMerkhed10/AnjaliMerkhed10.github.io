@@ -41,7 +41,7 @@ var APP_DATA = {
         {
           "yaw": 1.293619888995039,
           "pitch": 0.025347762093684167,
-          "title": "MAIN ENTRANCE PF1",
+          "title": "<img src='pin_icon/Entryexit.png' alt='Custom Icon' style='width: 40px; height: 40px;'> MAIN ENTRANCE PF1",
           "text": "Text"
         },
     

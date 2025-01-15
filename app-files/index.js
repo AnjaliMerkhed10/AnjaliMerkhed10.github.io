@@ -42,7 +42,7 @@
         document.body.classList.add('desktop');
       }
     };
-    var mql = matchMedia("(max-width: 500px), (max-height: 500px)");
+    var mql = matchMedia("(max-width: 50px), (max-height: 500px)");
     setMode();
     mql.addListener(setMode);
   } else {
@@ -308,13 +308,13 @@
     var header = document.createElement('div');
     header.classList.add('info-hotspot-header');
 
-    // Create image element.
-    var iconWrapper = document.createElement('div');
-    iconWrapper.classList.add('info-hotspot-icon-wrapper');
-    var icon = document.createElement('img');
-    icon.src = 'img/info.png';
-    icon.classList.add('info-hotspot-icon');
-    iconWrapper.appendChild(icon);
+   // Create image element.
+   var iconWrapper = document.createElement('div');
+   // iconWrapper.classList.add('info-hotspot-icon-wrapper');
+   var icon = document.createElement('img');
+   // icon.src = 'img/info.png';
+   // icon.classList.add('info-hotspot-icon');
+   iconWrapper.appendChild(icon);
 
     // Create title element.
     var titleWrapper = document.createElement('div');
@@ -403,3 +403,4 @@
   switchScene(scenes[0]);
 
 })();
+

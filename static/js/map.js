@@ -97,7 +97,7 @@ sidebar.querySelectorAll('.menu-item > button').forEach(menuButton => {
 
         if (!hasSubmenu) {
             sidebar.classList.remove("open");
-            menuIcon.classList.remove("right");
+            menuIcon.classList.remove("right");  
             menuIcon.classList.remove("hidden"); // Reset icon visibility
         }
     });
@@ -145,6 +145,7 @@ function initMap() {
 
 
     const mapOptions = {
+        zoomControl: false,
         zoom: 18,
         center: { lat: 19.9482, lng: 73.8421 }, // Default center
         styles: customStyle,
@@ -700,9 +701,15 @@ function highlightPinpoints(pointId) {
     }
 }
 
-function showAllPlatforms() {
-    location.reload();
+   // Function to reload the page
+   function showAllPlatforms() {
+    location.reload();  // This will reload the page when called
 }
+
+// Add event listener to the span inside the <li> for showing all platforms
+document.querySelector('span[data-en="All Platform"]').addEventListener('click', function() {
+    showAllPlatforms();  // Call showAllPlatforms when clicked
+});
 
 // Predefined constant pinpoints with text and pin_icon1 
 const PINPOINTS = [
@@ -1068,7 +1075,7 @@ const TOURIST_PLACES = [
     { name: 'Sita Gufa', lat: 20.007919657116876, lng: 73.79599376690547, title: { en: 'Sita Gufa', hi: 'सीता गुफा', mr: 'सीता गुहा' }, icon: './static/img/photo-camera-interface-symbol-for-button.png' },
     { name: 'Someshwar Mandir', lat: 20.004587365702832, lng: 73.79132816733286, title: { en: 'Someshwar Mandir', hi: 'सोमेश्वर मंदिर', mr: 'सोमेश्वर मंदिर' }, icon: './static/img/temple.png' },
     { name: 'Coin Museum', lat: 19.958324062485083, lng: 73.61125273880573, title: { en: 'Coin Museum', hi: 'सिक्का संग्रहालय', mr: 'नाणे संग्रहालय' }, icon: './static/img/photo-camera-interface-symbol-for-button.png' },
-    { name: 'ondeshwar Mandir Sinnar', lat: 19.85149481194432, lng: 74.00206217901264, title: { en: 'Gondeshwar Mandir Sinnar', hi: 'गोंदेश्वर मंदिर, सिन्नर', mr: 'गोंदेश्वर मंदिर, सिन्नर' }, icon: './static/img/temple.png' },
+    { name: 'Gondeshwar Mandir Sinnar', lat: 19.85149481194432, lng: 74.00206217901264, title: { en: 'Gondeshwar Mandir Sinnar', hi: 'गोंदेश्वर मंदिर, सिन्नर', mr: 'गोंदेश्वर मंदिर, सिन्नर' }, icon: './static/img/temple.png' },
     { name: 'Tapowan', lat: 19.9872720045505, lng: 73.81093044681361, title: { en: 'Tapowan', hi: 'तपोवन', mr: 'तपोवन' }, icon: './static/img/temple.png' },
 ];
 
@@ -1086,7 +1093,7 @@ function addTouristPinpoints(placeName, language = 'en') {
 
     // Center the map on the added marker
     map.setCenter({ lat: place.lat, lng: place.lng });
-    map.setZoom(14); // Adjust zoom level
+    map.setZoom(28); // Adjust zoom level
 }
 
 // Function to update markers with the selected language

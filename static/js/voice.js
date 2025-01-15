@@ -58,9 +58,6 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
 }
 
 
-
-
-
 function searchAndShowPinpoints(transcript) {
     // Normalize transcript to remove extra words and punctuation
     const normalizedTranscript = transcript
@@ -69,20 +66,33 @@ function searchAndShowPinpoints(transcript) {
         .trim()
         .toLowerCase();
 
-   
+    // Get the selected language (for example, 'en', 'hi', 'mr')
+    const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
 
+    // Create a function to get the title based on the selected language
+    function getTitleForLanguage(location) {
+        return location.title && location.title[selectedLanguage] ? location.title[selectedLanguage].toLowerCase() : ''; 
+    }
+
+    // Combine all locations (PINPOINTS + TOURIST_PLACES)
     const allLocations = [...PINPOINTS, ...TOURIST_PLACES];
 
     // Find the exact or closest match
-    const location = allLocations.find(point =>
-        point.title?.toLowerCase().includes(normalizedTranscript) || 
-        point.id?.toLowerCase().includes(normalizedTranscript)
-    );
+    const location = allLocations.find(point => {
+        const title = getTitleForLanguage(point); // Get the title based on the selected language
+        const id = point.id ? point.id.toLowerCase() : ''; // Ensure id is a string
+        
+        return title.includes(normalizedTranscript) || id.includes(normalizedTranscript);
+    });
 
     if (location && map) {
         map.setCenter({ lat: location.lat, lng: location.lng });
         map.setZoom(30); // Adjust zoom as necessary
-        console.log(`Zooming into: ${location.title}`);
+        console.log(`Zooming into: ${location.title[selectedLanguage]}`);
+        
+        // Hide the voice search status and result after zooming in
+        voiceStatus.style.display = "none"; // Hide voice status
+        voiceResult.textContent = ""; // Clear the transcript text
     } else {
         // Fallback to default location
         const defaultLocation = PINPOINTS.find(point => point.id === "Platform 1 ");
@@ -96,7 +106,3 @@ function searchAndShowPinpoints(transcript) {
         }
     }
 }
-
-
-
-  
