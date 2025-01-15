@@ -23,12 +23,13 @@
 
   // Grab elements from DOM.
   var panoElement = document.querySelector('#pano');
-  var sceneNameElement = document.querySelector('#titleBar .sceneName');
+  // var sceneNameElement = document.querySelector('#titleBar .sceneName');
   var sceneListElement = document.querySelector('#sceneList');
   var sceneElements = document.querySelectorAll('#sceneList .scene');
   var sceneListToggleElement = document.querySelector('#sceneListToggle');
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
+  
 
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
@@ -142,7 +143,7 @@
 
   // Start with the scene list open on desktop.
   if (!document.body.classList.contains('mobile')) {
-    showSceneList();
+    // showSceneList();
   }
 
   // Set handler for scene switch.
@@ -191,9 +192,9 @@
     updateSceneList(scene);
   }
 
-  function updateSceneName(scene) {
-    sceneNameElement.innerHTML = sanitize(scene.data.name);
-  }
+  // function updateSceneName(scene) {
+  //   sceneNameElement.innerHTML = sanitize(scene.data.name);
+  // }
 
   function updateSceneList(scene) {
     for (var i = 0; i < sceneElements.length; i++) {
@@ -220,6 +221,18 @@
     sceneListElement.classList.toggle('enabled');
     sceneListToggleElement.classList.toggle('enabled');
   }
+
+  var icons = sceneListToggleElement.querySelectorAll('img');
+    
+    // If the images are present, remove them
+    if (icons.length > 0) {
+        icons.forEach(function(icon) {
+            icon.style.display = 'none'; // Hides the images
+        });
+    }
+ 
+  
+
 
   function startAutorotate() {
     if (!autorotateToggleElement.classList.contains('enabled')) {

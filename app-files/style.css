@@ -79,8 +79,8 @@ body.multiple-scenes.mobile #titleBar {
   height: 100%;
   line-height: 30px;
   padding: 5px;
-  background-color: rgb(58,68,84);
-  background-color: rgba(58,68,84,0.8);
+  /* background-color: rgb(58,68,84); */
+  /* background-color: rgba(58,68,84,0.8); */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -207,8 +207,8 @@ body.fullscreen-enabled.mobile #autorotateToggle {
   width: 40px;
   height: 40px;
   padding: 5px;
-  background-color: rgb(103,115,131);
-  background-color: rgba(103,115,131,0.8);
+  /* background-color: rgb(103,115,131);
+  background-color: rgba(103,115,131,0.8); */
 }
 
 .mobile #sceneListToggle {
@@ -450,15 +450,14 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 }
 
 .info-hotspot .info-hotspot-header {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  display: flex; /* Use flexbox to align elements side by side */
+  align-items: center;
+  width: 260px; /* Adjust width to accommodate icon and title */
+  height: 50px; /* Increased height for spacing */
+  border-radius: 5px;
   background-color: rgb(103,115,131);
   cursor: pointer;
-  -webkit-transition: width 0.3s ease-in-out 0.5s,
-                      border-radius 0.3s ease-in-out 0.5s;
-  transition: width 0.3s ease-in-out 0.5s,
-              border-radius 0.3s ease-in-out 0.5s;
+  transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 }
 
 .mobile .info-hotspot .info-hotspot-header {
@@ -492,6 +491,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot .info-hotspot-icon-wrapper {
   width: 40px;
   height: 40px;
+  margin-right: 10px; /* Space between icon and title */
 }
 
 .mobile .info-hotspot .info-hotspot-icon-wrapper {
@@ -506,17 +506,11 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 }
 
 .info-hotspot .info-hotspot-title-wrapper {
-  position: absolute;
-  left: 40px;
-  top: 0;
-  width: 0;
+  flex-grow: 1; /* Title takes remaining space */
   height: 40px;
-  padding: 0;
-  overflow: hidden;
-  -webkit-transition: width 0s 0.4s,
-                      padding 0s 0.4s;
-  transition: width 0s 0.4s,
-              padding 0s 0.4s;
+  padding: 0 5px;
+  visibility: visible; /* Ensure it's always visible */
+  transition: none; /* Remove hover-dependent transition */
 }
 
 .desktop .info-hotspot.visible .info-hotspot-title-wrapper,
@@ -539,13 +533,11 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot .info-hotspot-title {
   display: inline-block;
   vertical-align: middle;
-
-  -moz-user-select: text;
-  -webkit-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Prevents title from overflowing */
+  font-size: 14px;
 }
-
 .info-hotspot .info-hotspot-close-wrapper {
   position: absolute;
   left: 260px;
@@ -709,12 +701,13 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot-modal .info-hotspot-title-wrapper {
   position: absolute;
   top: 0;
-  left: 50px;
+  left: 60px; /* Space after the icon */
   right: 50px;
   width: auto;
   height: 50px;
   padding: 0 10px;
 }
+
 
 .info-hotspot-modal .info-hotspot-title-wrapper:before {
   content: '';

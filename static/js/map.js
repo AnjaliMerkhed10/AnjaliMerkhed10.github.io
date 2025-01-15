@@ -1116,14 +1116,19 @@ function updateLanguage(language) {
         }
     });
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    document.getElementById('language-select').value = selectedLanguage;
+    updateLanguage(selectedLanguage);
+});
 
 // Listen for changes in the language dropdown
 document.getElementById('language-select').addEventListener('change', function () {
     const selectedLanguage = this.value;
+    localStorage.setItem('selectedLanguage', selectedLanguage);
     updateMarkersLanguage(selectedLanguage);
     updateLanguage(selectedLanguage);
 });
-
 
 // BACK BUTON CODE
 

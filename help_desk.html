@@ -235,25 +235,30 @@
     </div>
 
     <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
-            function updateLanguage(language) {
-                const elements = document.querySelectorAll('[data-en]');
-                elements.forEach(el => {
-                    if (el.tagName === 'INPUT' && el.type === 'text') {
-                        el.setAttribute('placeholder', el.getAttribute(`data-${language}`));
-                    } else {
-                        el.textContent = el.getAttribute(`data-${language}`);
-                    }
-                });
-            }
-
-            // Listen for changes in the language dropdown
-            document.getElementById('language-select').addEventListener('change', function () {
-                const selectedLanguage = this.value;
-                updateLanguage(selectedLanguage);
-            });
+document.addEventListener('DOMContentLoaded', function () {
+            const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            document.getElementById('language-select').value = selectedLanguage;
+            updateLanguage(selectedLanguage);
         });
+
+        function updateLanguage(language) {
+            const elements = document.querySelectorAll('[data-en]');
+            elements.forEach(el => {
+                if (el.tagName === 'INPUT' && el.type === 'text') {
+                    el.setAttribute('placeholder', el.getAttribute(`data-${language}`));
+                } else {
+                    el.textContent = el.getAttribute(`data-${language}`);
+                }
+            });
+        }
+
+        // Listen for changes in the language dropdown
+        document.getElementById('language-select').addEventListener('change', function () {
+            const selectedLanguage = this.value;
+            localStorage.setItem('selectedLanguage', selectedLanguage);
+            updateLanguage(selectedLanguage);
+        });
+        
         // Get all icon divs
         const iconDivs = document.querySelectorAll('.help_desk_icon_div');
 
