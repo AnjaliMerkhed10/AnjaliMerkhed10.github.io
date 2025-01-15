@@ -11,7 +11,28 @@
 <body class="multiple-scenes ">
 
 <div id="pano"></div>
+<div id="overlay">
+  <!-- <h3>Device Orientation Data</h3> -->
+  <!-- <p>Alpha: <span id="alpha">0</span></p>
+  <p>Beta: <span id="beta">0</span></p>
+  <p>Gamma: <span id="gamma">0</span></p> -->
+  <!-- <button id="requestPermissionButton">Enable Motion Controls</button>
+  <button id="disablePermissionButton" style="display: none;">Disable Motion Controls</button> -->
 
+<!-- Button for requesting permission -->
+<button id="requestPermissionButton" style="background: transparent; border: none; padding: 0;">
+  <img class="toggle_virtual" src="../app-files/img/switch-off.png" alt="Enable Motion Controls" style="width: 50px; height: 50px;" />
+  <h4 style="color: #526581;font-weight: bold;">Enable Motion Controls</h4>
+</button>
+
+<!-- Button for disabling permission (initially hidden) -->
+<button id="disablePermissionButton" style="display: none; background: transparent; border: none; padding: 0;">
+  <img class="toggle_virtual" src="../app-files/img/toggle-button (1).png" alt="Disable Motion Controls" style="width: 50px; height: 50px;" />
+  <h4 style="color: #526581;font-weight: bold;">Disable Motion Controls</h4>
+</button>
+
+
+</div>
 <div id="sceneList">
   <ul class="scenes">
     
@@ -446,6 +467,7 @@
 
 <script src="data.js"></script>
 <script src="index.js"></script>
+<script src="virtual.js"></script>
 
 </body>
 </html>

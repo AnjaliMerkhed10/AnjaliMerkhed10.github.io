@@ -108,6 +108,86 @@
     };
   });
 
+    // -------------------
+
+
+  // Display the initial scene.
+  // switchScene(scenes[0]);
+  var activeScene = scenes[0]; // Default active scene
+  activeScene.scene.switchTo();
+
+
+
+
+  function handleOrientation(event) {
+      if (!activeScene) return;
+
+      let yaw = -event.alpha * (Math.PI / 180);   // Convert to radians
+      let pitch = event.beta * (Math.PI / 180);
+
+      scenes.forEach((scene) => {
+        if (scene && scene.view) {
+          scene.view.setYaw(yaw);
+          scene.view.setPitch(pitch);
+        }
+      });
+
+      activeScene.view.setYaw(yaw);
+      activeScene.view.setPitch(pitch);
+
+      document.getElementById('alpha').textContent = event.alpha.toFixed(2);
+      document.getElementById('beta').textContent = event.beta.toFixed(2);
+      document.getElementById('gamma').textContent = event.gamma.toFixed(2);
+  }
+
+
+
+
+  function requestPermission() {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission()
+        .then((permissionState) => {
+          if (permissionState === 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation);
+            toggleButtons(true);
+          }
+        })
+        .catch(console.error);
+    } else {
+      window.addEventListener('deviceorientation', handleOrientation);
+      toggleButtons(true);
+    }
+  }
+
+  function disableMotionControls() {
+    window.removeEventListener('deviceorientation', handleOrientation);
+    toggleButtons(false);
+  
+    // Reset displayed data to 0
+    document.getElementById('alpha').textContent = "0";
+    document.getElementById('beta').textContent = "0";
+    document.getElementById('gamma').textContent = "0";
+  
+    // Reset scene view if necessary
+    if (activeScene) {
+      activeScene.view.setYaw(0);
+      activeScene.view.setPitch(0);
+    }
+  }
+
+  function toggleButtons(enable) {
+    document.getElementById('requestPermissionButton').style.display = enable ? 'none' : 'block';
+    document.getElementById('disablePermissionButton').style.display = enable ? 'block' : 'none';
+  }
+  
+  // Event listeners for buttons
+  document.getElementById('requestPermissionButton').addEventListener('click', requestPermission);
+  document.getElementById('disablePermissionButton').addEventListener('click', disableMotionControls);
+ 
+
+
+  // -----------------------
+
   // Set up autorotate, if enabled.
   var autorotate = Marzipano.autorotate({
     yawSpeed: 0.03,

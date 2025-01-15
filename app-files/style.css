@@ -825,3 +825,23 @@ body.view-control-buttons .viewControlButton {
 .viewControlButton-6 {
   margin-left: 105px;
 }
+
+#overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  /* background: rgba(0, 0, 0, 0.5); */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+.toggle_virtual{
+height: 20px;
+}

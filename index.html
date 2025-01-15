@@ -50,7 +50,7 @@
                 data-en="Search..." data-hi="खोज..." data-mr="शोधा..." onkeyup="filterMenu()">
             <i class="fas fa-search"></i>
         </div>
-	  
+<!-- 	  
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('platforms')">
                 <img src="./static/img/menu_img/platforms.png" alt="">
@@ -71,7 +71,7 @@
                         height="20"> <span data-en="Platform 4" data-hi="प्लेटफार्म 4" data-mr="प्लॅटफॉर्म ४">Platform
                         4</span></li>
             </ul>
-        </div>
+        </div> -->
 
 
         <div class="menu-item">
@@ -383,7 +383,34 @@
 
             </ul>
         </div>
-
+        <div class="menu-item">
+            <button class="menu-btn" onclick="toggleList('360_amenities')">
+                <img src="./static/img/menu_img/virtual.png" alt="">
+                <span data-en="360 view amenities" data-hi="360 दृश्य सुविधाएं" data-mr="360 दृश्य सुविधा">360 view amenities</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            
+            <ul id="360_amenities" class="menu-list">
+                <!-- Platform 1 Link -->
+                <li onclick="window.location.href='./app-files/index.html?scene=1-pf1-entry'">
+                    <a href="javascript:void(0);">
+                        <img src="./static/img/pin_icon/platform.png" height="20">
+                        <span data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १">Platform 1</span>
+                    </a>
+                </li>
+        
+                <!-- Platform 2 Link -->
+                <li onclick="window.location.href='./app-files/index.html?scene=1-pf2-entry'">
+                    <a href="javascript:void(0);">
+                        <img src="./static/img/pin_icon/platform.png" height="20">
+                        <span data-en="Platform 2" data-hi="प्लेटफार्म 2" data-mr="प्लॅटफॉर्म २">Platform 2</span>
+                    </a>
+                </li>
+        
+                <!-- Add more platforms or scenes as needed -->
+            </ul>
+        </div>
+        
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Divyangjan-facilities')">
