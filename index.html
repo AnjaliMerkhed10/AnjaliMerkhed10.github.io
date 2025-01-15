@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./static/css/map.css">
@@ -21,7 +21,7 @@
         <div class="menu-icon" id="menuIcon">
             <img src="./static/img/menu.png" alt="Menu Icon" id="iconImg" loading="lazy">
         </div>
-    
+
         <div class="language-dropdown">
             <select id="language-select">
                 <option value="en" selected>English</option>
@@ -31,229 +31,477 @@
         </div>
         <p id="voiceStatus"></p>
         <p id="voiceResult"><strong></strong> <span></span></p>
-     
 
     </div>
-    
-
-
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="d-flex align-items-center pt-3">
-            <i class="icon"><img src="./static/img/location (1).png" height="40" alt="" style="margin-right: 10px;"></i> <!-- Icon with Bootstrap spacing -->
+            <i class="icon"><img src="./static/img/location (1).png" height="40" alt="" style="margin-right: 10px;"></i>
             <div>
-              <h3 class="submenu_title mb-1">WELCOME TO!</h3>
-              <p class="submenu_subtitle mb-0">Nashik road railway station</p>
+                <h3 class="submenu_title mb-1" data-en="WELCOME TO!" data-hi="स्वागत है!" data-mr="स्वागत आहे!">WELCOME
+                    TO!</h3>
+                <p class="submenu_subtitle mb-0" data-en="Nashik road railway station" data-hi="नासिक रोड रेलवे स्टेशन"
+                    data-mr="नाशिक रोड रेल्वे स्टेशन">Nashik road railway station</p>
             </div>
-          </div>
-          <div class="mt-3 position-relative search-bar ">
-            <input type="text" class="form-control" placeholder="Search..." aria-label="Search" id="menuSearch" onkeyup="filterMenu()">
-            <!-- Search Icon -->
+        </div>
+        <div class="mt-3 position-relative search-bar">
+            <input type="text" class="form-control" placeholder="Search..." aria-label="Search" id="menuSearch"
+                data-en="Search..." data-hi="खोज..." data-mr="शोधा..." onkeyup="filterMenu()">
             <i class="fas fa-search"></i>
         </div>
-      
-        <!-- <div class="menu-item">
+	  
+        <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('platforms')">
-                <img src="./static/img/menu_img/platforms.png" alt="">Platforms
+                <img src="./static/img/menu_img/platforms.png" alt="">
+                <span data-en="Platforms" data-hi="प्लेटफार्म" data-mr="प्लॅटफॉर्म">Platforms</span>
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="platforms" class="menu-list">
-                <li onclick="togglePolygon('platform1')"><img src="./static/img/pin_icon/platform.png" alt="Platform 1" height="20"> Platform 1</li>
-                <li onclick="togglePolygon('platform2')"><img src="./static/img/pin_icon/platform.png" alt="Platform 2" height="20"> Platform 2</li>
-                <li onclick="togglePolygon('platform3')"><img src="./static/img/pin_icon/platform.png" alt="Platform 3" height="20"> Platform 3</li>
-                <li onclick="togglePolygon('platform4')"><img src="./static/img/pin_icon/platform.png" alt="Platform 4" height="20"> Platform 4</li>
+                <li onclick="togglePolygon('platform1')"><img src="./static/img/pin_icon/platform.png" alt="Platform 1"
+                        height="20"> <span data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १">Platform
+                        1</span></li>
+                <li onclick="togglePolygon('platform2')"><img src="./static/img/pin_icon/platform.png" alt="Platform 2"
+                        height="20"> <span data-en="Platform 2" data-hi="प्लेटफार्म 2" data-mr="प्लॅटफॉर्म २">Platform
+                        2</span></li>
+                <li onclick="togglePolygon('platform3')"><img src="./static/img/pin_icon/platform.png" alt="Platform 3"
+                        height="20"> <span data-en="Platform 3" data-hi="प्लेटफार्म 3" data-mr="प्लॅटफॉर्म ३">Platform
+                        3</span></li>
+                <li onclick="togglePolygon('platform4')"><img src="./static/img/pin_icon/platform.png" alt="Platform 4"
+                        height="20"> <span data-en="Platform 4" data-hi="प्लेटफार्म 4" data-mr="प्लॅटफॉर्म ४">Platform
+                        4</span></li>
             </ul>
-        </div> -->
-        
+        </div>
+
+
         <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('platform-list')"><img src="./static/img/menu_img/platform_amenity.png" alt="">Platform amenities<span><i
-                        class="fas fa-chevron-down "></i>
-                </span></button>
+            <button class="menu-btn" onclick="toggleList('platform-list')">
+                <img src="./static/img/menu_img/platform_amenity.png" alt="">
+                <span data-en="Platform Amenities" data-hi="प्लेटफार्म सुविधाएं"
+                    data-mr="प्लॅटफॉर्म सोयीसुविधा">Platform Amenities</span>
+                <span><i class="fas fa-chevron-down "></i></span>
+            </button>
+
             <ul id="platform-list" class="menu-list">
-             <li>
-                <span onclick="bounceAllPins('Platform 1')">Platform 1</span>
-                    <ul class="submenu"  id="submenu">
+                <li>
+                    <span onclick="bounceAllPins('Platform 1')" data-en="Platform 1" data-hi="प्लेटफार्म 1"
+                        data-mr="प्लॅटफॉर्म १">Platform 1</span>
+                    <ul class="submenu" id="submenu">
                         <!-- <li onclick="bounceAllPins('Platform 1')">Platform 1</li> -->
-                        <li onclick="highlightPinpoints('Platform 1 Point 2')">Lift and Stairs Bhusval end</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 3')">Passenger Lift</li>    
-                        <li onclick="highlightPinpoints('Platform 1 Point 4')">Pay and Use toilet near parcel office
+                        <li onclick="highlightPinpoints('Platform 1 Point 2')">
+                            <span data-en="Lift and Stairs Bhusval end" data-hi="लिफ्ट और सीढ़ियाँ भुसावल छोर"
+                                data-mr="लिफ्ट आणि जिने भुसावळ शेवट">Lift and Stairs Bhusval end</span>
                         </li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 5')">Parcel Office</li>
-                        <!-- <li onclick="highlightPinpoints('Platform 1 Point 6')">Waiting Room and Cloak room paid</li> -->
-                        <li onclick="highlightPinpoints('Platform 1 Point 7')">DYSS Office  </li>
-                        <!-- <li onclick="highlightPinpoints('Platform 1 Point 8')">Reservation Counter</li> -->
-                        <li onclick="highlightPinpoints('Platform 1 Point 9')">Sleeping Pod (Vatsalyam)</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 10')">Deluxe Toilet</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 11')">ATM</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 12')">AC Retiring Hall (Godavari Waiting Hall)
+                        <li onclick="highlightPinpoints('Platform 1 Point 3')">
+                            <span data-en="Passenger Lift" data-hi="यात्री लिफ्ट" data-mr="प्रवासी लिफ्ट">Passenger
+                                Lift</span>
                         </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 4')">
+                            <span data-en="Pay and Use toilet near parcel office"
+                                data-hi="पार्सल कार्यालय के पास पे एंड यूज शौचालय"
+                                data-mr="पार्सल ऑफिसजवळचे पैसे आणि वापर शौचालय">Pay and Use toilet near parcel
+                                office</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 5')">
+                            <span data-en="Parcel Office" data-hi="पार्सल कार्यालय" data-mr="पार्सल ऑफिस">Parcel
+                                Office</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 7')">
+                            <span data-en="DYSS Office" data-hi="डीवायएसएस कार्यालय" data-mr="डीवायएसएस ऑफिस">DYSS
+                                Office</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 9')">
+                            <span data-en="Sleeping Pod (Vatsalyam)" data-hi="स्लीपिंग पॉड (वत्सल्य)"
+                                data-mr="झोपण्याचे पॉड (वत्सल्य)">Sleeping Pod (Vatsalyam)</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 10')">
+                            <span data-en="Deluxe Toilet" data-hi="डिलक्स शौचालय" data-mr="डिलक्स शौचालय">Deluxe
+                                Toilet</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 11')">
+                            <span data-en="ATM" data-hi="एटीएम" data-mr="एटीएम">ATM</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 12')">
+                            <span data-en="AC Retiring Hall (Godavari Waiting Hall)"
+                                data-hi="एसी रिटायरिंग हॉल (गोदावरी वेटिंग हॉल)"
+                                data-mr="एसी रिटायरिंग हॉल (गोदावरी वेटिंग हॉल)">AC Retiring Hall (Godavari Waiting
+                                Hall)</span>
+                        </li>
+
                         <!-- <li onclick="highlightPinpoints('Platform 1 Point 13')">IRCTC Dormitory</li> -->
-                        <li onclick="highlightPinpoints('Platform 1 Point 14')">Waiting Room and Cloak Room Paid</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 15')">Water Stand PF at Middle</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 16')">Nashik Road Bus Stop</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 17')">Drinking Water</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 18')">Escalator</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 19')">Gift Shop</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 20')">RPF Station</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 21')">M. Dinshaw & Ranjit AC Dormitory, Deluxe
-                            Rooms</li>
-                            
+                        <li onclick="highlightPinpoints('Platform 1 Point 14')">
+                            <span data-en="Waiting Room and Cloak Room Paid" data-hi="वेटिंग रूम और क्लोक रूम भुगतान"
+                                data-mr="वेटिंग रूम आणि क्लोक रूम पेड">Waiting Room and Cloak Room Paid</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 15')">
+                            <span data-en="Water Stand PF at Middle" data-hi="बीच में जल स्टैंड पीएफ"
+                                data-mr="मधला वॉटर स्टँड पीएफ">Water Stand PF at Middle</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 16')">
+                            <span data-en="Nashik Road Bus Stop" data-hi="नासिक रोड बस स्टॉप"
+                                data-mr="नाशिक रोड बस स्टॉप">Nashik Road Bus Stop</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 17')">
+                            <span data-en="Drinking Water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                                Water</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 18')">
+                            <span data-en="Escalator" data-hi="एस्केलेटर" data-mr="चलती जिने">Escalator</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 19')">
+                            <span data-en="Gift Shop" data-hi="उपहार की दुकान" data-mr="भेटवस्तू दुकान">Gift Shop</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 20')">
+                            <span data-en="RPF Station" data-hi="आरपीएफ स्टेशन" data-mr="आरपीएफ स्टेशन">RPF
+                                Station</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 21')">
+                            <span data-en="M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms"
+                                data-hi="एम. दिनशॉ और रंजीत एसी डॉरमिटरी, डीलक्स रूम"
+                                data-mr="एम. दिनशॉ आणि रंजीत एसी डॉर्मिटरी, डिलक्स रूम">M. Dinshaw & Ranjit AC
+                                Dormitory, Deluxe Rooms</span>
+                        </li>
+
+
                         <!-- <li onclick="highlightPinpoints('Platform 1 Point 22')">Relax Zone</li> -->
-                        <li onclick="highlightPinpoints('Platform 1 Point 23')">Emergency Medical Facility</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 24')">Ticket Counter</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 25')">Cafeteria</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 26')">Pay & Use Toilet</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 27')">Pay & Use Toilet</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 28')">Water Stand PF-1</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 29')">Deluxe Toilet (M/F)</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 30')">Divyangjan Toilet</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 31')">Khadi Garments Store</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 32')">PF 1 Auto Stand</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 33')">Pay & Park Parking</li>
-                        
-                        <li onclick="highlightPinpoints('Platform 1 Point 34')">Pf 1 Entrance</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 35')">Station Manager</li>
-                        <!-- <li onclick="highlightPinpoints('Platform 1 Point 36')">Cti Office/Head Te Office</li> -->
-                        <!-- <li onclick="highlightPinpoints('Platform 1 Point 37')">Water Stand</li> -->
-                        <li onclick="highlightPinpoints('Platform 1 Point 38')">Irctc Food Track</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 39')">Irctc Dormitory & Deluxe Room</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 40')">Pay & Use Toilet(M/F)</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 41')">Relax Zone</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 42')">Vastyalyam Sleeping Pod</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 43')">Offtrack Rail Coach Restaurant</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 44')">Osop Stall</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 45')">Gift Shop</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 46')">TCI Office</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 47')">Multi Purpose Stall Food</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 48')">Rail Ahar (tea)</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 49')">Upper class waiting room(Female)</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 50')">Waiting Room</li>
-                        <!-- <li onclick="highlightPinpoints('Platform 1 Point 51')">DYSS Office</li> -->
-                        <li onclick="highlightPinpoints('Platform 1 Point 52')">Kitab Ghar</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 53')">Maa Tara Ac Waiting&Cloak Room</li>
-                        <li onclick="highlightPinpoints('Platform 1 Point 54')">Sleeper Class Waiting Room</li>
-                        
-                 
+                        <li onclick="highlightPinpoints('Platform 1 Point 23')">
+                            <span data-en="Emergency Medical Facility" data-hi="आपातकालीन चिकित्सा सुविधा"
+                                data-mr="आपत्कालीन वैद्यकीय सुविधा">Emergency Medical Facility</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 24')">
+                            <span data-en="Ticket Counter" data-hi="टिकट काउंटर" data-mr="तिकीट काउंटर">Ticket
+                                Counter</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 25')">
+                            <span data-en="Cafeteria" data-hi="कैफेटेरिया" data-mr="कॅफेटेरिया">Cafeteria</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 26')">
+                            <span data-en="Pay & Use Toilet" data-hi="पे एंड यूज शौचालय" data-mr="पे अँड यूज शौचालय">Pay
+                                & Use Toilet</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 27')">
+                            <span data-en="Pay & Use Toilet" data-hi="पे एंड यूज शौचालय" data-mr="पे अँड यूज शौचालय">Pay
+                                & Use Toilet</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 28')">
+                            <span data-en="Water Stand PF-1" data-hi="वाटर स्टैंड पीएफ-१"
+                                data-mr="वॉटर स्टँड पीएफ-१">Water Stand PF-1</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 29')">
+                            <span data-en="Deluxe Toilet (M/F)" data-hi="डिलक्स शौचालय (पुरुष/महिला)"
+                                data-mr="डिलक्स शौचालय (पुरुष/महिला)">Deluxe Toilet (M/F)</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 30')">
+                            <span data-en="Divyangjan Toilet" data-hi="दिव्यांगजन शौचालय"
+                                data-mr="दिव्यांगजन शौचालय">Divyangjan Toilet</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 31')">
+                            <span data-en="Khadi Garments Store" data-hi="खादी वस्त्र दुकान"
+                                data-mr="खादी वस्त्र दुकान">Khadi Garments Store</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 32')">
+                            <span data-en="PF 1 Auto Stand" data-hi="पीएफ १ ऑटो स्टैंड" data-mr="पीएफ १ ऑटो स्टँड">PF 1
+                                Auto Stand</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 33')">
+                            <span data-en="Pay & Park Parking" data-hi="पे एंड पार्क पार्किंग"
+                                data-mr="पे अँड पार्क पार्किंग">Pay & Park Parking</span>
+                        </li>
+
+																								  
+																									
+																													   
+																										 
+																									 
+																												  
+																										  
+																							   
+																											
+																												   
+																							   
+																							  
+																							   
+																											 
+																									
+																													 
+																								 
+																										 
+																							   
+																												   
+																											   
+
+                        <li onclick="highlightPinpoints('Platform 1 Point 34')">
+                            <span data-en="Pf 1 Entrance" data-hi="प्लेटफार्म १ प्रवेश" data-mr="प्लॅटफॉर्म १ प्रवेश">Pf
+                                1 Entrance</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 35')">
+                            <span data-en="Station Manager" data-hi="स्टेशन प्रबंधक" data-mr="स्थानक व्यवस्थापक">Station
+                                Manager</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 38')">
+                            <span data-en="Irctc Food Track" data-hi="आईआरसीटीसी फूड ट्रक"
+                                data-mr="आयआरसीटीसी फूड ट्रक">Irctc Food Track</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 39')">
+                            <span data-en="Irctc Dormitory & Deluxe Room" data-hi="आईआरसीटीसी डॉरमिटरी और डीलक्स रूम"
+                                data-mr="आयआरसीटीसी डॉर्मिटरी आणि डिलक्स रूम">Irctc Dormitory & Deluxe Room</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 40')">
+                            <span data-en="Pay & Use Toilet(M/F)" data-hi="पे एंड यूज शौचालय (पुरुष/महिला)"
+                                data-mr="पे अँड यूज शौचालय (पुरुष/महिला)">Pay & Use Toilet(M/F)</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 41')">
+                            <span data-en="Relax Zone" data-hi="आराम क्षेत्र" data-mr="रिलॅक्स झोन">Relax Zone</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 42')">
+                            <span data-en="Vastyalyam Sleeping Pod" data-hi="वत्सल्य स्लीपिंग पॉड"
+                                data-mr="वत्सल्य झोपण्याचे पॉड">Vastyalyam Sleeping Pod</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 43')">
+                            <span data-en="Offtrack Rail Coach Restaurant" data-hi="ऑफट्रैक रेल कोच रेस्टोरेंट"
+                                data-mr="ऑफट्रॅक रेल कोच रेस्टॉरंट">Offtrack Rail Coach Restaurant</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 44')">
+                            <span data-en="Osop Stall" data-hi="ओएसओपी स्टॉल" data-mr="ओएसओपी स्टॉल">Osop Stall</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 45')">
+                            <span data-en="Gift Shop" data-hi="उपहार की दुकान" data-mr="भेटवस्तू दुकान">Gift Shop</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 46')">
+                            <span data-en="TCI Office" data-hi="टीसीआई कार्यालय" data-mr="टीसीआय ऑफिस">TCI Office</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 47')">
+                            <span data-en="Multi Purpose Stall Food" data-hi="बहुउद्देशीय स्टॉल खाद्य"
+                                data-mr="बहुउद्देशीय स्टॉल खाद्य">Multi Purpose Stall Food</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 48')">
+                            <span data-en="Rail Ahar (tea)" data-hi="रेल आहार (चाय)" data-mr="रेल आहार (चहा)">Rail Ahar
+                                (tea)</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 49')">
+                            <span data-en="Upper class waiting room(Female)" data-hi="उच्च वर्ग प्रतीक्षालय (महिला)"
+                                data-mr="उच्च वर्ग प्रतीक्षालय (महिला)">Upper class waiting room(Female)</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 50')">
+                            <span data-en="Waiting Room" data-hi="प्रतीक्षालय" data-mr="प्रतीक्षालय">Waiting Room</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 52')">
+                            <span data-en="Kitab Ghar" data-hi="किताब घर" data-mr="किताब घर">Kitab Ghar</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 53')">
+                            <span data-en="Maa Tara Ac Waiting&Cloak Room"
+                                data-hi="माँ तारा एसी प्रतीक्षालय और क्लोक रूम"
+                                data-mr="माँ तारा एसी प्रतीक्षालय आणि क्लोक रूम">Maa Tara Ac Waiting&Cloak Room</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 1 Point 54')">
+                            <span data-en="Sleeper Class Waiting Room" data-hi="स्लीपर क्लास प्रतीक्षालय"
+                                data-mr="स्लीपर क्लास प्रतीक्षालय">Sleeper Class Waiting Room</span>
+                        </li>
+
+
+
                         <!-- Add other Platform 1 points here -->
                     </ul>
                 </li>
                 <li>
-                    <span onclick="bounceAllPins('Platform 2')">Platform 2/3</span>
+                    <span onclick="bounceAllPins('Platform 2')" data-en="Platform 2/3" data-hi="प्लेटफार्म २/३"
+                        data-mr="प्लॅटफॉर्म २/३">Platform 2/3</span>
                     <ul class="submenu">
                         <!-- <li onclick="bounceAllPins('Platform 2')">Platform 2/3</li> -->
-                        <li onclick="highlightPinpoints('Platform 2 Point 2')">Drinking water</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 3')">Tea snacks stall</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 4')">Oxygen parlour</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 5')">Drinking water</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 6')">Mahanand milk stall</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 7')">Tea stall</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 8')">Snacks corner</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 9')">Toilet(M/F)</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 10')">Drinking water</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 11')">Fruit & juice stall</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 12')">Multipurpose stall</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 13')">Drinking water</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 14')">Fruit & juice stall</li>
-                        <li onclick="highlightPinpoints('Platform 2 Point 15')">Railahar tea stall</li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 2')">
+                            <span data-en="Drinking water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                                water</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 3')">
+                            <span data-en="Tea snacks stall" data-hi="चाय स्नैक्स स्टॉल" data-mr="चहा स्नॅक्स स्टॉल">Tea
+                                snacks stall</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 4')">
+                            <span data-en="Oxygen parlour" data-hi="ऑक्सीजन पार्लर" data-mr="ऑक्सिजन पार्लर">Oxygen
+                                parlour</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 5')">
+                            <span data-en="Drinking water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                                water</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 6')">
+                            <span data-en="Mahanand milk stall" data-hi="महानंद दूध स्टॉल"
+                                data-mr="महानंद दूध स्टॉल">Mahanand milk stall</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 7')">
+                            <span data-en="Tea stall" data-hi="चाय स्टॉल" data-mr="चहा स्टॉल">Tea stall</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 8')">
+                            <span data-en="Snacks corner" data-hi="स्नैक्स कॉर्नर" data-mr="स्नॅक्स कॉर्नर">Snacks
+                                corner</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 9')">
+                            <span data-en="Toilet (M/F)" data-hi="शौचालय (पुरुष/महिला)"
+                                data-mr="शौचालय (पुरुष/महिला)">Toilet (M/F)</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 10')">
+                            <span data-en="Drinking water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                                water</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 11')">
+                            <span data-en="Fruit & juice stall" data-hi="फल और जूस स्टॉल"
+                                data-mr="फळे व ज्यूस स्टॉल">Fruit & juice stall</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 12')">
+                            <span data-en="Multipurpose stall" data-hi="बहुउद्देशीय स्टॉल"
+                                data-mr="बहुउद्देशीय स्टॉल">Multipurpose stall</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 13')">
+                            <span data-en="Drinking water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                                water</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 14')">
+                            <span data-en="Fruit & juice stall" data-hi="फल और जूस स्टॉल"
+                                data-mr="फळे व ज्यूस स्टॉल">Fruit & juice stall</span>
+                        </li>
+                        <li onclick="highlightPinpoints('Platform 2 Point 15')">
+                            <span data-en="Railahar tea stall" data-hi="रेलाहर चाय स्टॉल"
+                                data-mr="रेलाहर चहा स्टॉल">Railahar tea stall</span>
+                        </li>
                     </ul>
-                </li>
-                
-                <li>
-                    <span onclick="bounceAllPins('Platform 4')">Platform 4</span>
-                    <ul class="submenu">
-                        <!-- <li onclick="bounceAllPins('Platform 4')">Platform 4</li> -->
-                        <li onclick="highlightPinpoints('Platform 4 Point 2')">Tea stall</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 3')">Toilet(M/L)</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 4')">Escalator & stair</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 5')">Child help desk</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 6')">Toilet(M/L)</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 7')">Lift & stair</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 8')">Divyangjan toilet</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 9')">Multipurpose stall</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 10')">Pf 4 entry exit</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 11')">Reservation center</li>
-                        <li onclick="highlightPinpoints('Platform 4 Point 12')">Pay parking</li>
-                    </ul>
-                </li>
-                
-                <li>
-                    <span onclick="showAllPlatforms('Platform All')">All Platform</span>
+            </li>
+
+            <li>
+                <span onclick="bounceAllPins('Platform 4')" data-en="Platform 4" data-hi="प्लेटफार्म ४"
+                    data-mr="प्लॅटफॉर्म ४">Platform 4</span>
+                <ul class="submenu">
+                    <!-- <li onclick="bounceAllPins('Platform 4')">Platform 4</li> -->
+                    <li onclick="highlightPinpoints('Platform 4 Point 2')" data-en="Tea stall" data-hi="चाय स्टाल"
+                        data-mr="चहा स्टॉल">Tea stall</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 3')" data-en="Toilet(M/L)" data-hi="शौचालय(पु/म) "
+                        data-mr="शौचालय(पु/म) ">Toilet(M/L)</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 4')" data-en="Escalator & stair"
+                        data-hi="एस्केलेटर और सीढ़ी" data-mr="एस्केलेटर आणि पायऱ्या">Escalator & stair</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 5')" data-en="Child help desk"
+                        data-hi="बच्चा मदद डेस्क" data-mr="लहान मुलांच्या मदतीचा डेस्क">Child help desk</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 6')" data-en="Toilet(M/L)" data-hi="शौचालय(पु/म) "
+                        data-mr="शौचालय(पु/म) ">Toilet(M/L)</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 7')" data-en="Lift & stair"
+                        data-hi="लिफ्ट और सीढ़ी" data-mr="लिफ्ट आणि पायऱ्या">Lift & stair</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 8')" data-en="Divyangjan toilet"
+                        data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan toilet</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 9')" data-en="Multipurpose stall"
+                        data-hi="बहुउद्देश्यीय स्टॉल" data-mr="बहुउद्देशीय स्टॉल">Multipurpose stall</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 10')" data-en="Pf 4 entry exit"
+                        data-hi="प्लेटफार्म ४ प्रवेश निकास" data-mr="प्लॅटफॉर्म ४ प्रवेश निकास">Pf 4 entry exit</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 11')" data-en="Reservation center"
+                        data-hi="आरक्षण केंद्र" data-mr="आरक्षण केंद्र">Reservation center</li>
+                    <li onclick="highlightPinpoints('Platform 4 Point 12')" data-en="Pay parking"
+                        data-hi="भुगतान पार्किंग" data-mr="सशुल्क पार्किंग">Pay parking</li>
+                </ul>		 
+            </li>
+         <li>
+            <span data-en="All Platform" data-hi="सभी प्लेटफार्म" data-mr="सर्व प्लॅटफॉर्म">All Platform</span>
                     <ul class="submenu">
                     </ul>
                 </li>
 
+
             </ul>
         </div>
- 
+
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Divyangjan-facilities')">
-                <img src="./static/img/menu_img/Divyangjan facilities.png" alt="">Divyangjan facilities
-                <span><i class="fas fa-chevron-down"></i></span>
+                <img src="./static/img/menu_img/Divyangjan facilities.png" alt="">
+                <span data-en="Divyangjan facilities" data-hi="दिव्यांगजन सुविधाएं" data-mr="दिव्यांगजन सुविधा">Divyangjan facilities</span>
+                <i class="fas fa-chevron-down"></i>
             </button>
+            
             <ul id="Divyangjan-facilities" class="menu-list">
-                <!-- <li><a href="#"><img src="./static/img/pin_icon/pay_park.png" height="20" > Divyangjan Parking</a></li> -->
-                <li onclick="highlightPinpoints('Platform 1 Point 30')"><img src="./static/img/pin_icon/washroom.png" height="20">Divyangjan Toilet</a></li>
-                <li onclick="highlightPinpoints('Platform 1 Point 15')"><a href="#"><img src="./static/img/pin_icon/water.png"  height="20"> Water Booth</a></li>
-                <li onclick="highlightPinpoints('Platform 1 Point 18')"><a href="#"><img src="./static/img/pin_icon/escalator.png" height="20" >Divyangjan Escalator</a></li>
-                <!-- <li><a href="#"><img src="./static/img/ramp-icon.png" >Divyangjan Ramp</a></li> -->
-                <li onclick="highlightPinpoints('Platform 1 Point 2')"><a href="#"><img src="./static/img/pin_icon/lift.png" height="20">Divyangjan Lift</a></li>
+                <li onclick="highlightPinpoints('Platform 1 Point 30')" >
+                    <img src="./static/img/pin_icon/washroom.png" height="20"><span data-en="Divyangjan Toilet" data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan Toilet</span>
+                </li>
+                <li onclick="highlightPinpoints('Platform 1 Point 15')" >
+                    <a href="#"><img src="./static/img/pin_icon/water.png" height="20"><span data-en="Water Booth" data-hi="जल बूथ" data-mr="पाण्याचे बूथ">Water Booth</span> </a>
+                </li>
+                <li onclick="highlightPinpoints('Platform 1 Point 18')" >
+                    <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"><span data-en="Divyangjan Escalator" data-hi="दिव्यांगजन एस्केलेटर" data-mr="दिव्यांगजन एस्केलेटर">Divyangjan Escalator</span></a>
+                </li>
+                <li onclick="highlightPinpoints('Platform 1 Point 2')" >
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"><span data-en="Divyangjan Lift" data-hi="दिव्यांगजन लिफ्ट" data-mr="दिव्यांगजन लिफ्ट">Divyangjan Lift</span></a>
+                </li>
             </ul>
         </div>
         
-        <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('Storage&Services')">
-                <img src="./static/img/menu_img/Storage & Services.png" alt="">Storage & Services
-                <span><i class="fas fa-chevron-down"></i></span>
-            </button>
-            <ul id="Storage&Services" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 53')"><a href="#"><img src="./static/img/pin_icon/waiting.png" height="20" > Luggage Room</a></li>
-                <li onclick="highlightPinpoints('Platform 1 Point 14')"><img src="./static/img/pin_icon/waiting.png" height="20" > Cloak Room</a></li>
-                <li onclick="highlightPinpoints('Platform 1 Point 4')"><a href="#"><img src="./static/img/pin_icon/waiting.png" height="20" > Parcel Room</a></li>
-              
-            </ul>
-        </div>
 
         <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('Escalator')">
-                <img src="./static/img/menu_img/menu_escalator.png" alt="">Lift & Escalator
+            <button class="menu-btn" onclick="toggleList('Storage&Services')" >
+                <img src="./static/img/menu_img/Storage & Services.png" alt=""> 
+                <span data-en="Storage & Services" data-hi="भंडारण और सेवाएं" data-mr="साठवण आणि सेवा">Storage & Services</span><i class="fas fa-chevron-down"></i>
+            </button>
+            <ul id="Storage&Services" class="menu-list">
+                <li onclick="highlightPinpoints('Platform 1 Point 53')">
+                    <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"><span data-en="Luggage Room" data-hi="सामान कक्ष" data-mr="सामान कक्ष">Luggage Room</span> </a>
+                </li>
+                <li onclick="highlightPinpoints('Platform 1 Point 14')" >
+                    <img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Cloak Room" data-hi="क्लोक रूम" data-mr="क्लोक रूम">Cloak Room</span>
+                </li>
+                <li onclick="highlightPinpoints('Platform 1 Point 4')" >
+                    <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Parcel Room" data-hi="पार्सल कक्ष" data-mr="पार्सल कक्ष">Parcel Room</span></a>
+                </li>
+            </ul>
+        </div>
+        
+
+        <div class="menu-item">
+            <button class="menu-btn" onclick="toggleList('Escalator')" >
+                <img src="./static/img/menu_img/menu_escalator.png" alt=""><span data-en="Lift & Escalator" data-hi="लिफ्ट और एस्केलेटर" data-mr="लिफ्ट आणि एस्केलेटर">Lift & Escalator</span>
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="Escalator" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 2')"><a href="#"><img src="./static/img/pin_icon/escalator.png" height="20" > PF1 Escalator</a></li>
-                <li onclick="highlightPinpoints('Platform 1 Point 2')"><a href="#"><img src="./static/img/pin_icon/lift.png" height="20" > PF1 Lift Bhusval end</a></li>
-                <li onclick="highlightPinpoints('Platform 4 Point 4')"><img src="./static/img/pin_icon/escalator.png" height="20" > PF4 Escalator</a></li>
-                <li onclick="highlightPinpoints('Platform 4 Point 7')"><a href="#"><img src="./static/img/pin_icon/lift.png" height="20" > PF4 Lift</a></li>
-              
+                <li onclick="highlightPinpoints('Platform 1 Point 2')" >
+                    <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"> <span data-en="PF1 Escalator" data-hi="प्लेटफार्म 1 एस्केलेटर" data-mr="प्लॅटफॉर्म 1 एस्केलेटर">PF1 Escalator</span></a>
+                </li>
+                <li onclick="highlightPinpoints('Platform 1 Point 2')" >
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span data-en="PF1 Lift Bhusval end" data-hi="प्लेटफार्म 1 लिफ्ट भुसावल छोर" data-mr="प्लॅटफॉर्म 1 लिफ्ट भुसावळ छोर">PF1 Lift Bhusval end</span></a>
+                </li>
+                <li onclick="highlightPinpoints('Platform 4 Point 4')">
+                    <img src="./static/img/pin_icon/escalator.png" height="20"> <span data-en="PF4 Escalator" data-hi="प्लेटफार्म 4 एस्केलेटर" data-mr="प्लॅटफॉर्म 4 एस्केलेटर">PF4 Escalator</span>
+                </li>
+                <li onclick="highlightPinpoints('Platform 4 Point 7')">
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span data-en="PF4 Lift" data-hi="प्लेटफार्म 4 लिफ्ट" data-mr="प्लॅटफॉर्म 4 लिफ्ट">PF4 Lift</span></a>
+                </li>
             </ul>
         </div>
+        
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Entry')">
-                <img src="./static/img/menu_img/Entryexit.png" alt="">Entry/exit<span><i class="fas fa-chevron-down"></i></span>
+                <img src="./static/img/menu_img/Entryexit.png" alt=""><span data-en="Entry/exit" data-hi="प्रवेश/निकास" data-mr="प्रवेश/निर्गम">Entry/exit</span><span><i class="fas fa-chevron-down"></i></span>
             </button>
-            
-          
+			
+		  
             <ul id="Entry" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 34')"><img src="./static/img/pin_icon/Entryexit.png"  height="20"> PF 1 Entry/exit</a></li>
-            
-                <li onclick="highlightPinpoints('Platform 4 Point 10')"><img src="./static/img/pin_icon/Entryexit.png" height="20"> PF 4 Entry/exit</a></li>
-              
+                <li onclick="highlightPinpoints('Platform 1 Point 34')" >
+                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span data-en="PF 1 Entry/exit" data-hi="प्लेटफार्म 1 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 1 प्रवेश/निर्गम">PF 1 Entry/exit</span>
+                </li>
+                <li onclick="highlightPinpoints('Platform 4 Point 10')" >
+                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span data-en="PF 4 Entry/exit" data-hi="प्लेटफार्म 4 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 4 प्रवेश/निर्गम">PF 4 Entry/exit</span>
+                </li>
             </ul>
         </div>
+        
 
-     
-     
+
+
 
         <div class="menu-item">
-            <button class="menu-btn" onclick="window.location.href='help_desk.html'"><img src="./static/img/menu_img/HelpDesk.png" alt="">Help Desk
-                </button>
+            <button class="menu-btn" onclick="window.location.href='help_desk.html'">
+                <img src="./static/img/menu_img/HelpDesk.png" alt=""><span data-en="Help Desk" data-hi="मदद डेस्क" data-mr="मदत डेस्क">Help Desk</span>
+            </button>
 
         </div>
-        <hr class="custom-hr">
         
-        <p class="safety_text " >SAFETY</p>
+        <hr class="custom-hr">
+
+        <p class="safety_text" data-en="SAFETY" data-hi="सुरक्षा" data-mr="सुरक्षा">SAFETY</p>
+
 
         <!-- <div class="menu-item">
             <button class="menu-btn"><img src="./static/img/menu_img/Emergency contacts.png" alt="">Emergency contacts
@@ -262,46 +510,50 @@
         </div> -->
 
         <div class="menu-item">
-            <button class="menu-btn" onclick="highlightPinpoints('Platform 1 Point 20')"><img src="./static/img/menu_img/Police station locator.png" alt="">Police station locator
-                </button>
+            <button class="menu-btn" onclick="highlightPinpoints('Platform 1 Point 20')" >
+                <img src="./static/img/menu_img/Police station locator.png" alt=""><span data-en="Police station locator" data-hi="पुलिस स्टेशन लोकेटर" data-mr="पोलीस स्टेशन शोधक">Police station locator</span>
+            </button>
 
         </div>
+        
+        <p class="safety_text" data-en="EXPLORE NASHIK" data-hi="नासिक का अन्वेषण करें" data-mr="नाशिक शोधा">EXPLORE NASHIK</p>
 
-        <p class="safety_text">EXPLORE NASHIK</p>
 
 
         <div class="menu-item">
             <button class="menu-btn" id="nashikMapBtn">
-                <img src="./static/img/menu_img/Nashik map.png" alt="">Nashik map
+                <img src="./static/img/menu_img/Nashik map.png" alt=""><span data-en="Nashik map" data-hi="नासिक का नक्शा" data-mr="नाशिक नकाशा">Nashik map</span>
             </button>
         </div>
         
 
-      
-      
+
+
         <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('tourist-list')"><img src="./static/img/menu_img/Popular places.png" alt="">Tourist Places<span><i
-                class="fas fa-chevron-down "></i>
-        </span></button>
+            <button class="menu-btn" onclick="toggleList('tourist-list')">
+                <img src="./static/img/menu_img/Popular places.png" alt=""><span data-en="Tourist Places" data-hi="पर्यटक स्थल" data-mr="पर्यटन स्थळे">Tourist Places</span><span><i class="fas fa-chevron-down "></i></span>
+												 
+            </button>
             <ul id="tourist-list" class="menu-list">
-                <li onclick="addTouristPinpoints('Trimbakeshwar')">Trimbakeshwar</li>
-                <li onclick="addTouristPinpoints('Mukti Dham Mandir')">Mukti Dham Mandir</li>
-                <li onclick="addTouristPinpoints('Pandav Leni')">Pandav Leni</li>
-                <li onclick="addTouristPinpoints('Panchvati')">Panchvati</li>
-                <li onclick="addTouristPinpoints('Saptashrungi Devi Mandir')">Saptashrungi Devi Mandir</li>
-                <li onclick="addTouristPinpoints('Sula Wine Yard')">Sula Wine Yard</li>
-                <li onclick="addTouristPinpoints('Jain Mandir')">Jain Mandir</li>
-                <li onclick="addTouristPinpoints('Anjaneri (Hanuman Temple)')">Anjaneri (Hanuman Temple)</li>
-                <li onclick="addTouristPinpoints('Ramkund')">Ramkund</li>
-                <li onclick="addTouristPinpoints('Kalaram Mandir')">Kalaram Mandir</li>
-                <li onclick="addTouristPinpoints('Sita Gufa')">Sita Gufa</li>
-                <li onclick="addTouristPinpoints('Someshwar Mandir')">Someshwar Mandir</li>
-                <li onclick="addTouristPinpoints('Coin Museum')">Coin Museum</li>
-                <li onclick="addTouristPinpoints('Gondeshwar Mandir Sinnar')">Gondeshwar Mandir Sinnar</li>
-                <li onclick="addTouristPinpoints('Tapowan')">Tapowan</li>
+                <li onclick="addTouristPinpoints('Trimbakeshwar')" data-en="Trimbakeshwar" data-hi="त्र्यंबकेश्वर" data-mr="त्र्यंबकेश्वर">Trimbakeshwar</li>
+                <li onclick="addTouristPinpoints('Mukti Dham Mandir')" data-en="Mukti Dham Mandir" data-hi="मुक्ति धाम मंदिर" data-mr="मुक्ति धाम मंदिर">Mukti Dham Mandir</li>
+                <li onclick="addTouristPinpoints('Pandav Leni')" data-en="Pandav Leni" data-hi="पांडव लेनी" data-mr="पांडव लेणी">Pandav Leni</li>
+                <li onclick="addTouristPinpoints('Panchvati')" data-en="Panchvati" data-hi="पंचवटी" data-mr="पंचवटी">Panchvati</li>
+                <li onclick="addTouristPinpoints('Saptashrungi Devi Mandir')" data-en="Saptashrungi Devi Mandir" data-hi="सप्तश्रृंगी देवी मंदिर" data-mr="सप्तश्रृंगी देवी मंदिर">Saptashrungi Devi Mandir</li>
+                <li onclick="addTouristPinpoints('Sula Wine Yard')" data-en="Sula Wine Yard" data-hi="सुला वाइन यार्ड" data-mr="सुला वाइन यार्ड">Sula Wine Yard</li>
+                <li onclick="addTouristPinpoints('Jain Mandir')" data-en="Jain Mandir" data-hi="जैन मंदिर" data-mr="जैन मंदिर">Jain Mandir</li>
+                <li onclick="addTouristPinpoints('Anjaneri (Hanuman Temple)')" data-en="Anjaneri (Hanuman Temple)" data-hi="अंजनेरी (हनुमान मंदिर)" data-mr="अंजनेरी (हनुमान मंदिर)">Anjaneri (Hanuman Temple)</li>
+                <li onclick="addTouristPinpoints('Ramkund')" data-en="Ramkund" data-hi="रामकुंड" data-mr="रामकुंड">Ramkund</li>
+                <li onclick="addTouristPinpoints('Kalaram Mandir')" data-en="Kalaram Mandir" data-hi="कालाराम मंदिर" data-mr="कालाराम मंदिर">Kalaram Mandir</li>
+                <li onclick="addTouristPinpoints('Sita Gufa')" data-en="Sita Gufa" data-hi="सीता गुफा" data-mr="सीता गुफा">Sita Gufa</li>
+                <li onclick="addTouristPinpoints('Someshwar Mandir')" data-en="Someshwar Mandir" data-hi="सोमेश्वर मंदिर" data-mr="सोमेश्वर मंदिर">Someshwar Mandir</li>
+                <li onclick="addTouristPinpoints('Coin Museum')" data-en="Coin Museum" data-hi="सिक्का संग्रहालय" data-mr="नाणे संग्रहालय">Coin Museum</li>
+                <li onclick="addTouristPinpoints('Gondeshwar Mandir Sinnar')" data-en="Gondeshwar Mandir Sinnar" data-hi="गोंदेश्वर मंदिर सिन्नर" data-mr="गोंदेश्वर मंदिर सिन्नर">Gondeshwar Mandir Sinnar</li>
+                <li onclick="addTouristPinpoints('Tapowan')" data-en="Tapowan" data-hi="तपोवन" data-mr="तपोवन">Tapowan</li>
             </ul>
         </div>
-    
+        
+
         <!-- <div class="menu-item">
             <button class="menu-btn"><img src="./static/img/menu_img/How to travel.png" alt="">How to travel ?
                 </button>
@@ -309,9 +561,9 @@
         </div> -->
     </div>
 
-    
+
     <!-- Voice Status -->
-    <div class="voice-status" id="voiceStatus">Listening...</div>
+    <div class="voice-status" id="voiceStatus" data-en="Listening..." data-hi="सुन रहा है..." data-mr="ऐकत आहे...">Listening...</div>
 
     <!-- Map Section -->
 
@@ -319,48 +571,45 @@
     <!-- Map container -->
     <div id="map"></div>
 
-   <!-- Bottom Navigation Bar -->
-<div class="bottom-bar d-flex justify-content-around">
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-bar d-flex justify-content-around">
 
-    <button class="d-flex flex-column align-items-center" id="backButton" >
-        <img src="./static/img/home-2.png" alt="Virtual Tour Icon"  loading="lazy"  id="backImg" onclick="goBack()">
-        <a href="./index.html" class="text_decoration" ><span>Home</span></a>
-
-    </button>
-
-    <button class="d-flex flex-column align-items-center" onclick="window.location.href='./app-files/index.html'">
-        <img src="./static/img/360.png" alt="Virtual Tour Icon"  loading="lazy">
-        <span>Virtual Tour</span>
-        
-    </button>
+        <a href="./index.html" class="text_decoration"><button class="d-flex flex-column align-items-center" id="backButton">
+            <img src="./static/img/home-2.png" alt="Virtual Tour Icon" loading="lazy" id="backImg" onclick="goBack()">
+           <span data-en="Home" data-hi="होम" data-mr="होम">Home</span>
+        </button></a>
     
-    <button class="voice_button d-flex flex-column align-items-center" id="voiceSearch">
-        <img src="./static/img/speak.png" alt="" loading="lazy" >
-        <!-- <span>Speak</span> -->
-       
-    </button>
-   
+        <button class="d-flex flex-column align-items-center" onclick="window.location.href='./app-files/index.html'">
+            <img src="./static/img/360.png" alt="Virtual Tour Icon" loading="lazy">
+            <span data-en="Virtual Tour" data-hi="वर्चुअल टूर" data-mr="आभासी टूर">Virtual Tour</span>
+		
+        </button>
+    
+        <button class="voice_button d-flex flex-column align-items-center" id="voiceSearch">
+            <img src="./static/img/speak.png" alt="" loading="lazy">
+            <!-- <span>Speak</span> -->
+	   
+        </button>
+    
 
-    <button class="d-flex flex-column align-items-center" id="userLocationButton"  onclick="window.location.href='index.html'">
-        <img src="./static/img/menu_img/user.png" alt="Help Icon"  loading="lazy">
-        <span>user location</span>
-    </button>
+        <button class="d-flex flex-column align-items-center" id="userLocationButton" onclick="window.location.href='index.html'">
+            <img src="./static/img/menu_img/user.png" alt="Help Icon" loading="lazy">
+            <span data-en="User Location" data-hi="उपयोगकर्ता स्थान" data-mr="वापरकर्ता स्थान">User Location</span>
+        </button>
+    
+        <button class="d-flex flex-column align-items-center" onclick="window.location.href='help_desk.html'" >
+            <img src="./static/img/menu_img/HelpDesk.png" alt="Virtual Tour Icon" loading="lazy">
+	   
+            <a href="./help_desk.html" class="text_decoration"> <span data-en="Help Desk" data-hi="मदद डेस्क" data-mr="मदत डेस्क">Help Desk</span></a>
 
-    <button class="d-flex flex-column align-items-center" onclick="window.location.href='help_desk.html'">
-        <img src="./static/img/menu_img/HelpDesk.png" alt="Virtual Tour Icon"  loading="lazy">
-       
-        <a href="./help_desk.html" class="text_decoration" > <span>Help Desk</span></a>
-
-    </button>
-</div>
-
+        </button>
+    
+    </div>
+    
 
     <script src="./static/js/map.js"></script>
     <script src="./static/js/voice.js"></script>
-   
-     <script>
-        
-     </script>
+
     <!-- Google Maps API Script -->
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnBmHondgwsA-dzeWtQdRT3X83On_V-wI&libraries=geometry&callback=initMap"></script>

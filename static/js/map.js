@@ -142,7 +142,7 @@ function initMap() {
         },
     ];
 
-     
+
 
     const mapOptions = {
         zoom: 18,
@@ -150,10 +150,10 @@ function initMap() {
         styles: customStyle,
         mapTypeControl: false,
         streetViewControl: false,
-        
-        
+
+
         fullscreenControl: false, // Disable fullscreen control (fullscreen button)
-     
+
     };
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -195,17 +195,16 @@ function initMap() {
 
     // Display user's location and add predefined markers
     displayUserLocation();
-
     PINPOINTS.forEach((pin) => {
         addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title, pin.icon);
     });
-
-     // Call handleZoomChanged immediately after the map is loaded to apply the right marker visibility
-     handleZoomChanged();
+    
+    // Call handleZoomChanged immediately after the map is loaded to apply the right marker visibility
+    handleZoomChanged();
 
     let polygon = null; // Variable to store the polygon object
     let platformLabel = null; // Variable to store the label object
-    
+
     // Coordinates for highlighting the areas (Nashik region)
     const platformCoordinates = {
         platform1: [
@@ -227,13 +226,13 @@ function initMap() {
             { lat: 19.94978332308824, lng: 73.84287260695663 },
         ],
         platform4: [
-            { lat: 19.9436202071113, lng: 73.8417142930895},
+            { lat: 19.9436202071113, lng: 73.8417142930895 },
             { lat: 19.943654156095327, lng: 73.84161908124462 },
-            { lat: 19.94912395531475, lng: 73.84286265635902},
+            { lat: 19.94912395531475, lng: 73.84286265635902 },
             { lat: 19.949101493390923, lng: 73.84294151237617 },
         ]
     };
-    
+
     // Function to create the polygon, zoom, and add label
     function togglePolygon(platform) {
         if (polygon) {
@@ -243,10 +242,10 @@ function initMap() {
             platformLabel.close(); // Close the label
             platformLabel = null;
         }
-    
+
         // Create the polygon for the selected platform
         const polygonCoords = platformCoordinates[platform];
-    
+
         // Create the polygon using the selected coordinates
         polygon = new google.maps.Polygon({
             paths: polygonCoords,
@@ -256,24 +255,24 @@ function initMap() {
             fillColor: '#FF8031',    // Fill color (Orange)
             fillOpacity: 0.35,       // Fill opacity
         });
-    
+
         // Add the polygon to the map
         polygon.setMap(map);
-    
+
         // Add label (Platform name)
         platformLabel = new google.maps.InfoWindow({
             content: platform.charAt(0).toUpperCase() + platform.slice(1), // Capitalize the first letter of the platform name
             position: { lat: polygonCoords[0].lat, lng: polygonCoords[0].lng }, // Position the label near the polygon
         });
         platformLabel.open(map);
-    
+
         // Zoom into the polygon area
         const bounds = new google.maps.LatLngBounds();
         polygon.getPath().forEach(function (latLng) {
             bounds.extend(latLng);
         });
         map.fitBounds(bounds); // Zoom to the bounds of the polygon
-    
+
         // Optionally, add a listener to change the polygon's style on click
         google.maps.event.addListener(polygon, 'click', function () {
             polygon.setOptions({
@@ -282,7 +281,7 @@ function initMap() {
             });
         });
     }
-    
+
     // Event listeners for each platform in the menu
     document.querySelectorAll('#platforms li').forEach(item => {
         item.addEventListener('click', function () {
@@ -290,13 +289,14 @@ function initMap() {
             togglePolygon(platformId);
         });
     });
-    
-  // Add zoom_changed event listener
-   google.maps.event.addListener(map, 'zoom_changed', handleZoomChanged);
+
+
     createDistanceBox(); // Create the new box for showing distance
+    const languageSelect = document.getElementById('language-select'); 
+    const selectedLanguage = languageSelect.value;
+    updateMarkersLanguage(selectedLanguage);
+    updateLanguage(selectedLanguage);
 }
-
-
 
 
 // Function to show a certain number of markers, removing equally from the start and end
@@ -396,7 +396,7 @@ function displayUserLocation() {
 }
 
 // Listen for the button click to show the user's location
-document.getElementById('userLocationButton').addEventListener('click', function() {
+document.getElementById('userLocationButton').addEventListener('click', function () {
     displayUserLocation();  // Call the function to show the user's location
 });
 
@@ -408,10 +408,10 @@ function addCustomMarker(location, title, icon) {
         map: map,
         icon: icon
             ? {
-                  url: icon, // URL of the custom icon
-                  scaledSize: new google.maps.Size(30, 30), // Custom icon size
-                  labelOrigin: new google.maps.Point(15, 40), // Position of label relative to icon
-              }
+                url: icon, // URL of the custom icon
+                scaledSize: new google.maps.Size(30, 30), // Custom icon size
+                labelOrigin: new google.maps.Point(15, 40), // Position of label relative to icon
+            }
             : undefined,
         label: {
             text: title, // Show the title directly on the map
@@ -535,7 +535,7 @@ function drawDottedLine(startPoint, endPoint) {
                 repeat: "10px", // Distance between dots
             },
         ],
-    }); 
+    });
 }
 
 
@@ -602,9 +602,9 @@ function haversineDistance(coords1, coords2) {
     const a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos(toRad(coords1.lat)) *
-            Math.cos(toRad(coords2.lat)) *
-            Math.sin(dLng / 2) *
-            Math.sin(dLng / 2);
+        Math.cos(toRad(coords2.lat)) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distanceKm = R * c; // Distance in kilometers
@@ -641,42 +641,9 @@ function updateDistanceDisplay(text) {
     }
 }
 
-
-
-// function bounceAllPins(category) {
-//     // Clear previous highlights
-//     document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
-
-//     // Highlight the selected menu item
-//     const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
-//         (li) => li.textContent === category
-//     );  
-//     if (selectedItem) selectedItem.classList.add('highlight');
-
-//     // Stop animation for all markers
-//     markers.forEach((marker) => marker.setAnimation(null));
-
-//     // Bounce all markers in the selected category
-//     const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
-//     const bounds = new google.maps.LatLngBounds(); // Define bounds for zoom
-
-//     selectedPins.forEach((pin) => {
-//         const marker = markers.find(
-//             (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
-//         );
-//         if (marker) {
-//             marker.setAnimation(google.maps.Animation.BOUNCE); // Make marker bounce
-//             bounds.extend(marker.getPosition()); // Add marker to bounds
-//         }
-//     });
-
-//     // Adjust the map to fit all selected markers
-//     map.fitBounds(bounds); // Fit the map to the category's bounds
-// }
-
-
 function bounceAllPins(category) {
     markers.forEach((marker) => marker.setMap(null));
+    const selectedLanguage = document.getElementById('language-select').value;
     document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
     const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
         (li) => li.textContent.trim() === category
@@ -691,6 +658,9 @@ function bounceAllPins(category) {
         if (marker) {
             marker.setMap(map);
             marker.setAnimation(google.maps.Animation.BOUNCE);
+            marker.setLabel({
+                text: pin.title[selectedLanguage],
+            });
             bounds.extend(marker.getPosition());
         }
     });
@@ -699,19 +669,24 @@ function bounceAllPins(category) {
         map.fitBounds(bounds);
     }
 }
+
 function highlightPinpoints(pointId) {
     markers.forEach((marker) => marker.setAnimation(null)); // Remove bounce from all markers
-    
+    const selectedLanguage = document.getElementById('language-select').value;
+
     const location = PINPOINTS.find((point) => point.id === pointId);
     if (location && map) {
         map.setCenter({ lat: location.lat, lng: location.lng });
         map.setZoom(28);
-        
+
         const marker = markers.find(
             (m) => m.getPosition().lat() === location.lat && m.getPosition().lng() === location.lng
         );
-        
+
         if (marker) {
+            marker.setLabel({
+                text: location.title[selectedLanguage],
+            });
             marker.setAnimation(google.maps.Animation.BOUNCE); // Bounce animation
             setTimeout(() => {
                 marker.setAnimation(null); // Stop bouncing after 2 seconds
@@ -726,128 +701,278 @@ function showAllPlatforms() {
 
 // Predefined constant pinpoints with text and pin_icon1 
 const PINPOINTS = [
-      // Platform 1 markers
-      { id: 'Platform 1 ', lat: 19.947730239875234, lng: 73.8421970006081, title: "Platform 1", category: "Platform 1", icon: "./static/img/pin_icon/platform.png" },
-      
-      { id: 'Platform 1 Point 2', lat: 19.949073868898434, lng: 73.84239788165445, title: "Lift and Stairs Bhusval end", category: "Platform 1", icon: "./static/img/pin_icon/stairs.png" },
-      { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: "Passenger Lift", category: "Platform 1", icon: "./static/img/pin_icon/lift.png" },
-      { id: 'Platform 1 Point 4', lat: 19.9485667622535, lng: 73.8422558012047, title: "Pay and Use toilet near parcel office", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
-      { id: 'Platform 1 Point 5', lat: 19.948881622227113, lng: 73.84214240124673, title: "Parcel Office", category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
-      { id: 'Platform 1 Point 7', lat: 19.948378860511262, lng: 73.84231771855413, title: "DYSS Office", category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
-      { id: 'Platform 1 Point 11', lat: 19.94745544178198, lng: 73.84204121281842, title: "ATM", category: "Platform 1", icon: "./static/img/pin_icon/atm.png" },
-      { id: 'Platform 1 Point 12', lat: 19.947468872817097, lng: 73.84185339909355, title: "AC Retiring Hall (Godavari Waiting Hall)", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
-      { id: 'Platform 1 Point 14', lat: 19.94737791202757, lng: 73.84201774349071, title: "Waiting Room and Cloak Room Paid", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
-      { id: 'Platform 1 Point 15', lat: 19.94875366774617, lng: 73.84240592828107, title: "Water Stand PF at Middle", category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
-      { id: 'Platform 1 Point 16', lat: 19.94837037997832, lng: 73.8415192857732, title: "Nashik Road Bus Stop", category: "Platform 1", icon: "./static/img/pin_icon/auto.png" },
-      { id: 'Platform 1 Point 17', lat: 19.94796, lng: 73.842213, title: "Drinking Water", category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
-      { id: 'Platform 1 Point 18', lat: 19.947403, lng: 73.841755, title: "Escalator", category: "Platform 1", icon: "./static/img/pin_icon/escalator.png" },
-      { id: 'Platform 1 Point 19', lat: 19.948078, lng: 73.841949, title: "Gift Shop", category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
-      { id: 'Platform 1 Point 20', lat: 19.947048, lng: 73.842045, title: "RPF Station", category: "Platform 1", icon: "./static/img/pin_icon/police_station.png" },
-      { id: 'Platform 1 Point 21', lat: 19.947766, lng: 73.841839, title: "M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms", category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
-      { id: 'Platform 1 Point 23', lat: 19.948437, lng: 73.84187, title: "Emergency Medical Facility", category: "Platform 1", icon: "./static/img/pin_icon/medical.png" },
-      { id: 'Platform 1 Point 24', lat: 19.948534, lng: 73.84199, title: "Ticket Counter", category: "Platform 1", icon: "./static/img/pin_icon/ticket_counter.png" },
-      { id: 'Platform 1 Point 25', lat: 19.947580, lng: 73.84193, title: "Cafeteria", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-      { id: 'Platform 1 Point 27', lat: 19.946823, lng: 73.841875, title: "Pay & Use Toilet", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
-      { id: 'Platform 1 Point 28', lat: 19.94861, lng: 73.842431, title: "Water Stand PF-1", category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
-      { id: 'Platform 1 Point 29', lat: 19.94692, lng: 73.84154, title: "Deluxe Toilet (M/F)", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
-      { id: 'Platform 1 Point 30', lat: 19.946848, lng: 73.841893, title: "Divyangjan Toilet", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
-      { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: "Khadi Garments Store", category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
-      { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: "PF 1 Auto Stand", category: "Platform 1", icon: "./static/img/pin_icon/auto.png" },
-      { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: "Pay & Park Parking", category: "Platform 1", icon: "./static/img/pin_icon/pay_park.png" },
+    // Platform 1 markers
+    { id: 'Platform 1 ', lat: 19.947730239875234, lng: 73.8421970006081, title: { en: 'Platform 1', hi: 'प्लेटफार्म १', mr: 'प्लॅटफॉर्म १' }, category: "Platform 1", icon: "./static/img/pin_icon/platform.png" },
+    { id: 'Platform 1 Point 2', lat: 19.949073868898434, lng: 73.84239788165445, title: { en: 'Lift and Stairs Bhusval end', hi: 'लिफ्ट और सीढ़ियाँ भुसावल छोर', mr: 'लिफ्ट आणि जिने भुसावळ शेवट' }, category: "Platform 1", icon: "./static/img/pin_icon/stairs.png" },
+    { id: 'Platform 1 Point 3', lat: 19.947196, lng: 73.842069, title: { en: 'Passenger Lift', hi: 'यात्री लिफ्ट', mr: 'प्रवासी लिफ्ट' }, category: "Platform 1", icon: "./static/img/pin_icon/lift.png" },
+    { id: 'Platform 1 Point 4', lat: 19.9485667622535, lng: 73.8422558012047, title: { en: 'Pay and Use toilet near parcel office', hi: 'पार्सल कार्यालय के पास पे एंड यूज शौचालय', mr: 'पार्सल ऑफिसजवळचे पैसे आणि वापर शौचालय' }, category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
+    { id: 'Platform 1 Point 5', lat: 19.948881622227113, lng: 73.84214240124673, title: { en: 'Parcel Office', hi: 'पार्सल कार्यालय', mr: 'पार्सल ऑफिस' }, category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
+    { id: 'Platform 1 Point 7', lat: 19.948378860511262, lng: 73.84231771855413, title: { en: 'DYSS Office', hi: 'डीवायएसएस कार्यालय', mr: 'डीवायएसएस ऑफिस' }, category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
+    { id: 'Platform 1 Point 11', lat: 19.94745544178198, lng: 73.84204121281842, title: { en: 'ATM', hi: 'एटीएम', mr: 'एटीएम' }, category: "Platform 1", icon: "./static/img/pin_icon/atm.png" },
+    { id: 'Platform 1 Point 12', lat: 19.947468872817097, lng: 73.84185339909355, title: { en: 'AC Retiring Hall (Godavari Waiting Hall)', hi: 'एसी रिटायरिंग हॉल (गोदावरी वेटिंग हॉल)', mr: 'एसी रिटायरिंग हॉल (गोदावरी वेटिंग हॉल)' }, category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
+    { id: 'Platform 1 Point 14', lat: 19.94737791202757, lng: 73.84201774349071, title: { en: 'Waiting Room and Cloak Room Paid', hi: 'वेटिंग रूम और क्लोक रूम भुगतान', mr: 'वेटिंग रूम आणि क्लोक रूम पेड' }, category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
+    { id: 'Platform 1 Point 15', lat: 19.94875366774617, lng: 73.84240592828107, title: { en: 'Water Stand PF at Middle', hi: 'बीच में जल स्टैंड पीएफ', mr: 'मधला वॉटर स्टँड पीएफ' }, category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
+    { id: 'Platform 1 Point 16', lat: 19.94837037997832, lng: 73.8415192857732, title: { en: 'Nashik Road Bus Stop', hi: 'नासिक रोड बस स्टॉप', mr: 'नाशिक रोड बस स्टॉप' }, category: "Platform 1", icon: "./static/img/pin_icon/auto.png" },
+    { id: 'Platform 1 Point 17', lat: 19.94796, lng: 73.842213, title: { en: 'Drinking Water', hi: 'पीने का पानी', mr: 'पिण्याचे पाणी' }, category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
+    { id: 'Platform 1 Point 18', lat: 19.947403, lng: 73.841755, title: { en: 'Escalator', hi: 'एस्केलेटर', mr: 'चलती जिने' }, category: "Platform 1", icon: "./static/img/pin_icon/escalator.png" },
+    { id: 'Platform 1 Point 19', lat: 19.948078, lng: 73.841949, title: { en: 'Gift Shop', hi: 'उपहार की दुकान', mr: 'भेटवस्तू दुकान' }, category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
+    { id: 'Platform 1 Point 20', lat: 19.947048, lng: 73.842045, title: { en: 'RPF Station', hi: 'आरपीएफ स्टेशन', mr: 'आरपीएफ स्टेशन' }, category: "Platform 1", icon: "./static/img/pin_icon/police_station.png" },
+    { id: 'Platform 1 Point 21', lat: 19.947766, lng: 73.841839, title: { en: 'M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms', hi: 'एम. दिनशॉ और रणजीत एसी डॉरमेटरी, डीलक्स रूम', mr: 'एम. दिनशॉ आणि रणजीत एसी डॉर्मिटरी, डिलक्स रूम' }, category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
+    { id: 'Platform 1 Point 23', lat: 19.948437, lng: 73.84187, title: { en: 'Emergency Medical Facility', hi: 'आपातकालीन चिकित्सा सुविधा', mr: 'आपत्कालीन वैद्यकीय सुविधा' }, category: "Platform 1", icon: "./static/img/pin_icon/medical.png" },
+    { id: 'Platform 1 Point 24', lat: 19.948534, lng: 73.84199, title: { en: 'Ticket Counter', hi: 'टिकट काउंटर', mr: 'तिकीट काउंटर' }, category: "Platform 1", icon: "./static/img/pin_icon/ticket_counter.png" },
+    { id: 'Platform 1 Point 25', lat: 19.947580, lng: 73.84193, title: { en: 'Cafeteria', hi: 'कैफेटेरिया', mr: 'कॅफेटेरिया' }, category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
+    { id: 'Platform 1 Point 27', lat: 19.946823, lng: 73.841875, title: { en: 'Pay & Use Toilet', hi: 'पे एंड यूज शौचालय', mr: 'पे अँड यूज शौचालय' }, category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
+    { id: 'Platform 1 Point 28', lat: 19.94861, lng: 73.842431, title: { en: 'Water Stand PF-1', hi: 'पानी स्टैंड पीएफ-1', mr: 'पाणी स्टँड पीएफ-1' }, category: "Platform 1", icon: "./static/img/pin_icon/water.png" },
+    { id: 'Platform 1 Point 29', lat: 19.94692, lng: 73.84154, title: { en: 'Deluxe Toilet (M/F)', hi: 'डीलक्स शौचालय (पुरुष/महिला)', mr: 'डिलक्स शौचालय (पुरुष/महिला)' }, category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
+    { id: 'Platform 1 Point 30', lat: 19.946848, lng: 73.841893, title: { en: 'Divyangjan Toilet', hi: 'दिव्यांगजन शौचालय', mr: 'दिव्यांगजन शौचालय' }, category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
+    { id: 'Platform 1 Point 31', lat: 19.948059, lng: 73.84199, title: { en: 'Khadi Garments Store', hi: 'खादी वस्त्र भंडार', mr: 'खादी वस्त्र स्टोअर' }, category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
+    { id: 'Platform 1 Point 32', lat: 19.948305, lng: 73.841933, title: { en: 'PF 1 Auto Stand', hi: 'पीएफ 1 ऑटो स्टैंड', mr: 'पीएफ 1 ऑटो स्टँड' }, category: "Platform 1", icon: "./static/img/pin_icon/auto.png" },
+    { id: 'Platform 1 Point 33', lat: 19.94665, lng: 73.841403, title: { en: 'Pay & Park Parking', hi: 'पे एंड पार्क पार्किंग', mr: 'पे अँड पार्क पार्किंग' }, category: "Platform 1", icon: "./static/img/pin_icon/pay_park.png" },
 
-      { id: 'Platform 1 Point 34', lat: 19.9480189955569, lng: 73.8421796201009, title: "Platform 1 Enterance", category: "Platform 1", icon: "./static/img/pin_icon/Entryexit.png" },
-      { id: 'Platform 1 Point 35', lat: 19.9479258110046, lng: 73.8422304943829, title: "Station Manager", category: "Platform 1", icon: "./static/img/pin_icon/station_manager.png" },
-    { id: 'Platform 1 Point 38', lat: 19.9477949362633, lng: 73.8421749061679, title: "Irctc Food Track", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 39', lat: 19.9476854516116, lng: 73.8418588942186, title: "Irctc Dormitory & Deluxe Room", category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
-    { id: 'Platform 1 Point 40', lat: 19.9475138912436, lng: 73.8419460051485, title: "Pay & Use Toilet(M/F)", category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
-    { id: 'Platform 1 Point 41', lat: 19.9475796157185, lng: 73.8419527715279, title: "Relax Zone", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
-    { id: 'Platform 1 Point 42', lat: 19.9475539155125, lng: 73.8418786083123, title: "Vastyalyam Sleeping Pod", category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
-    { id: 'Platform 1 Point 43', lat: 19.9472754710607, lng: 73.8416707951445, title: "Offtrack Rail Coach Restaurant", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 44', lat: 19.948129339158, lng: 73.8421446919026, title: "Osop Stall", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 45', lat: 19.948143067654, lng: 73.8421064781602, title: "Gift Shop", category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
-    { id: 'Platform 1 Point 46', lat: 19.9481698293033, lng: 73.8422593972415, title: "TCI Office", category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
-    { id: 'Platform 1 Point 47', lat: 19.9485308902095, lng: 73.8423358285154, title: "Multi Purpose Stall Food", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 48', lat: 19.9484980281734, lng: 73.8422879214036, title: "Rail Ahar (tea)", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 49', lat: 19.9482496775167, lng: 73.842275675835, title: "Upper class waiting room(Female)", category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
-    { id: 'Platform 1 Point 50', lat: 19.9482820506708, lng: 73.8422826237955, title: " Waiting Room", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
-    { id: 'Platform 1 Point 52', lat: 19.9483313103336, lng: 73.842295280183, title: "Kitab Ghar", category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
-    { id: 'Platform 1 Point 53', lat: 19.9484636071821, lng: 73.8423238682215, title: " Maa Tara Ac Waiting&Cloak Room", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
-    { id: 'Platform 1 Point 54', lat: 19.9484832502068, lng: 73.8423302994909, title: "Sleeper Class Waiting Room", category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
-    
-    
-     
-// Platform 2 markers
-{ id: 'Platform 2 ', lat: 19.948403, lng: 73.8425432, title: "Platform 2/3", category: "Platform 2", icon: "./static/img/pin_icon/platform.png" },
-
-{ id: 'Platform 2 Point 2', lat: 19.9449908, lng: 73.8419853, title: "Drinking Water", category: "Platform 2", icon: "./static/img/pin_icon/water.png" },
-{ id: 'Platform 2 Point 3', lat: 19.9459933, lng: 73.8419712, title: "Tea Snacks Stall", category: "Platform 2", icon: "./static/img/pin_icon/tea_stall.png" },
-{ id: 'Platform 2 Point 4',lat: 19.9462599, lng: 73.8420426, title: "Oxygen Parlour",category: "Platform 2", icon: "./static/img/pin_icon/store.png" }, 
-{ id: 'Platform 2 Point 5',lat: 19.9463788, lng: 73.8420705, title: "Drinking Water",category: "Platform 2", icon: "./static/img/pin_icon/water.png" }, 
-{ id: 'Platform 2 Point 6', lat: 19.9466785, lng: 73.8421422, title: "Mahanand Milk Stall", category: "Platform 2", icon: "./static/img/pin_icon/milk.png" },
-{ id: 'Platform 2 Point 7', lat: 19.9469073, lng: 73.8421788, title: "Tea Stall", category: "Platform 2", icon: "./static/img/pin_icon/tea_stall.png" },
-{ id: 'Platform 2 Point 8',lat: 19.9493372, lng: 73.842735, title: "Snacks Corner",category: "Platform 2", icon: "./static/img/pin_icon/fruit_stall.png" }, 
-{ id: 'Platform 2 Point 9',lat: 19.9492029, lng: 73.8426984, title: "Toilet(M/F)",category: "Platform 2", icon: "./static/img/pin_icon/washroom.png" }, 
-{ id: 'Platform 2 Point 10',lat: 19.9486886, lng: 73.8425563, title: "Drinking Water",category: "Platform 2", icon: "./static/img/pin_icon/water.png" }, 
-
-{ id: 'Platform 2 Point 11', lat: 19.9482395, lng: 73.8424611, title: "Fruit & Juice Stall", category: "Platform 2", icon: "./static/img/pin_icon/fruit_stall.png" },
-{ id: 'Platform 2 Point 12',lat: 19.9481556, lng: 73.8424396, title: "Multipurpose Stall",category: "Platform 2", icon: "./static/img/pin_icon/fruit_stall.png" }, 
-{ id: 'Platform 2 Point 13',lat: 19.9479139, lng: 73.8424121, title: "Drinking Water",category: "Platform 2", icon: "./static/img/pin_icon/water.png" }, 
-{ id: 'Platform 2 Point 14',lat: 19.9478792, lng: 73.8423712, title: "Fruit & Juice Stall",category: "Platform 2", icon: "./static/img/pin_icon/fruit_stall.png" }, 
-{ id: 'Platform 2 Point 15',lat: 19.9477258, lng: 73.8423635, title: "Railahar Tea Stall",category: "Platform 2", icon: "./static/img/pin_icon/tea_stall.png" },
-
-{ id: 'Platform 4 ', lat: 19.947206897269872, lng: 73.84249036809372, title: "Platform 4", category: "Platform 4", icon: "./static/img/pin_icon/platform.png" },
-{ id: 'Platform 4 Point 2', lat: 19.9462262, lng: 73.8422562, title: "Tea Stall", category: "Platform 4", icon: "./static/img/pin_icon/tea_stall.png" },
-{ id: 'Platform 4 Point 3', lat: 19.9448597, lng: 73.8419789, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/pin_icon/washroom.png" },
-{ id: 'Platform 4 Point 4', lat: 19.9469949, lng: 73.8424349, title: "Escalator & Stair", category: "Platform 4", icon: "./static/img/pin_icon/escalator.png" },
-{ id: 'Platform 4 Point 5', lat: 19.9473715, lng: 73.8425412, title: "Child Help Desk", category: "Platform 4", icon: "./static/img/pin_icon/help.png" },
-{ id: 'Platform 4 Point 6', lat: 19.9488988, lng: 73.8429194, title: "Toilet(M/L)", category: "Platform 4", icon: "./static/img/pin_icon/washroom.png" },
-{ id: 'Platform 4 Point 7', lat: 19.9489224, lng: 73.8428393, title: "Lift & Stair", category: "Platform 4", icon: "./static/img/pin_icon/lift.png" },
-{ id: 'Platform 4 Point 8', lat: 19.9487459, lng: 73.8428979, title: "Divyangjan Toilet", category: "Platform 4", icon: "./static/img/pin_icon/washroom.png" },
-{ id: 'Platform 4 Point 9', lat: 19.948225, lng: 73.8427105, title: "Multipurpose Stall", category: "Platform 4", icon: "./static/img/pin_icon/fruit_stall.png" },
-{ id: 'Platform 4 Point 10', lat: 19.948364, lng: 73.8427803, title: "Pf 4 Entry Exit", category: "Platform 4", icon: "./static/img/pin_icon/Entryexit.png" },
-{ id: 'Platform 4 Point 11', lat: 19.9484613, lng: 73.8429938, title: "Reservation Center", category: "Platform 4", icon: "./static/img/pin_icon/reservation.png" },
-{ id: 'Platform 4 Point 12', lat: 19.9485354, lng: 73.8429546, title: "Pay Parking", category: "Platform 4", icon: "./static/img/pin_icon/pay_park.png" },
+    { id: 'Platform 1 Point 34', lat: 19.9480189955569, lng: 73.8421796201009, title: { en: 'Platform 1 Entrance', hi: 'प्लेटफार्म १ प्रवेश', mr: 'प्लॅटफॉर्म १ प्रवेश' }, category: "Platform 1", icon: "./static/img/pin_icon/Entryexit.png" },
+    { id: 'Platform 1 Point 35', lat: 19.9479258110046, lng: 73.8422304943829, title: { en: 'Station Manager', hi: 'स्टेशन प्रबंधक', mr: 'स्टेशन मॅनेजर' }, category: "Platform 1", icon: "./static/img/pin_icon/station_manager.png" },
+    { id: 'Platform 1 Point 38', lat: 19.9477949362633, lng: 73.8421749061679, title: { en: 'Irctc Food Track', hi: 'आईआरसीटीसी फूड ट्रैक', mr: 'आयआरसीटीसी फूड ट्रॅक' }, category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
+    { id: 'Platform 1 Point 39', lat: 19.9476854516116, lng: 73.8418588942186, title: { en: 'Irctc Dormitory & Deluxe Room', hi: 'आईआरसीटीसी डॉर्मिटरी और डीलक्स रूम', mr: 'आयआरसीटीसी डॉर्मिटरी आणि डीलक्स रूम' }, category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
+    { id: 'Platform 1 Point 40', lat: 19.9475138912436, lng: 73.8419460051485, title: { en: 'Pay & Use Toilet(M/F)', hi: 'पे एंड यूज शौचालय (पुरुष/महिला)', mr: 'पे अँड यूज शौचालय (पुरुष/महिला)' }, category: "Platform 1", icon: "./static/img/pin_icon/washroom.png" },
+    { id: 'Platform 1 Point 41', lat: 19.9475796157185, lng: 73.8419527715279, title: { en: 'Relax Zone', hi: 'विश्राम क्षेत्र', mr: 'विश्रांती क्षेत्र' }, category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
+    { id: 'Platform 1 Point 42', lat: 19.9475539155125, lng: 73.8418786083123, title: { en: 'Vastyalyam Sleeping Pod', hi: 'वस्ताल्यम स्लीपिंग पॉड', mr: 'वस्ताल्यम स्लीपिंग पॉड' }, category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
+    { id: 'Platform 1 Point 43', lat: 19.9472754710607, lng: 73.8416707951445, title: { en: 'Offtrack Rail Coach Restaurant', hi: 'ऑफट्रैक रेल कोच रेस्टोरंट', mr: 'ऑफट्रॅक रेल कोच रेस्टॉरंट' }, category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
+    { id: 'Platform 1 Point 44', lat: 19.948129339158, lng: 73.8421446919026, title: { en: 'Osop Stall', hi: 'ओसोप स्टॉल', mr: 'ओसोप स्टॉल' }, category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
+    { id: 'Platform 1 Point 45', lat: 19.948143067654, lng: 73.8421064781602, title: { en: 'Gift Shop', hi: 'गिफ्ट शॉप', mr: 'गिफ्ट शॉप' }, category: "Platform 1", icon: "./static/img/pin_icon/store.png" },
+    { id: 'Platform 1 Point 46', lat: 19.9481698293033, lng: 73.8422593972415, title: { en: 'TCI Office', hi: 'टीसीआई ऑफिस', mr: 'टीसीआय ऑफिस' }, category: "Platform 1", icon: "./static/img/pin_icon/office.png" },
+    { id: 'Platform 1 Point 47', lat: 19.9485308902095, lng: 73.8423358285154, title: { en: 'Multi Purpose Stall Food', hi: 'मल्टी पर्पस स्टॉल फूड', mr: 'मल्टी पर्पस स्टॉल फूड' }, category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
+    { id: 'Platform 1 Point 48', lat: 19.9484980281734, lng: 73.8422879214036, title: { en: 'Rail Ahar (tea)', hi: 'रेल आहार (चहा)', mr: 'रेल आहार (चहा)' }, category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
+    { id: 'Platform 1 Point 49', lat: 19.9482496775167, lng: 73.842275675835, title: { en: 'Upper Class Waiting Room(Female)', hi: 'अपर क्लास वेटिंग रूम (महिला)', mr: 'अपर क्लास वेटिंग रूम (महिला)' }, category: "Platform 1", icon: "./static/img/pin_icon/sleeping_pod.png" },
+    { id: 'Platform 1 Point 50', lat: 19.9482820506708, lng: 73.8422826237955, title: { en: 'Waiting Room', hi: 'वेटिंग रूम', mr: 'वेटिंग रूम' }, category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
+    { id: 'Platform 1 Point 52', lat: 19.9483313103336, lng: 73.842295280183, title: { en: 'Kitab Ghar', hi: 'किताब घर', mr: 'किताब घर' }, category: "Platform 1", icon: "./static/img/pin_icon/fruit_stall.png" },
+    { id: 'Platform 1 Point 53', lat: 19.9484636071821, lng: 73.8423238682215, title: { en: 'Maa Tara Ac Waiting & Cloak Room', hi: 'माँ तारा एसी वेटिंग और क्लोक रूम', mr: 'माँ तारा एसी वेटिंग आणि क्लोक रूम' }, category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
+    { id: 'Platform 1 Point 54', lat: 19.9484832502068, lng: 73.8423302994909, title: { en: 'Sleeper Class Waiting Room', hi: 'स्लीपर क्लास वेटिंग रूम', mr: 'स्लीपर क्लास वेटिंग रूम' }, category: "Platform 1", icon: "./static/img/pin_icon/waiting.png" },
 
 
-   
+
+    // Platform 2 markers
+    {
+        id: 'Platform 2',
+        lat: 19.948403,
+        lng: 73.8425432,
+        title: { en: 'Platform 2/3', hi: 'प्लेटफार्म 2/3', mr: 'प्लॅटफॉर्म 2/3' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/platform.png"
+    },
+    {
+        id: 'Platform 2 Point 2',
+        lat: 19.9449908,
+        lng: 73.8419853,
+        title: { en: 'Drinking Water', hi: 'पेयजल', mr: 'पाणी' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/water.png"
+    },
+    {
+        id: 'Platform 2 Point 3',
+        lat: 19.9459933,
+        lng: 73.8419712,
+        title: { en: 'Tea Snacks Stall', hi: 'चहा स्नॅक्स स्टॉल', mr: 'चहा स्नॅक्स स्टॉल' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/tea_stall.png"
+    },
+    {
+        id: 'Platform 2 Point 4',
+        lat: 19.9462599,
+        lng: 73.8420426,
+        title: { en: 'Oxygen Parlour', hi: 'ऑक्सिजन पार्लर', mr: 'ऑक्सिजन पार्लर' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/store.png"
+    },
+    {
+        id: 'Platform 2 Point 5',
+        lat: 19.9463788,
+        lng: 73.8420705,
+        title: { en: 'Drinking Water', hi: 'पेयजल', mr: 'पाणी' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/water.png"
+    },
+    {
+        id: 'Platform 2 Point 6',
+        lat: 19.9466785,
+        lng: 73.8421422,
+        title: { en: 'Mahanand Milk Stall', hi: 'महानंद दूध स्टॉल', mr: 'महानंद दूध स्टॉल' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/milk.png"
+    },
+    {
+        id: 'Platform 2 Point 7',
+        lat: 19.9469073,
+        lng: 73.8421788,
+        title: { en: 'Tea Stall', hi: 'चहा स्टॉल', mr: 'चहा स्टॉल' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/tea_stall.png"
+    },
+    {
+        id: 'Platform 2 Point 8',
+        lat: 19.9493372,
+        lng: 73.842735,
+        title: { en: 'Snacks Corner', hi: 'नाश्ता कोपरा', mr: 'नाश्ता कोपरा' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/fruit_stall.png"
+    },
+    {
+        id: 'Platform 2 Point 9',
+        lat: 19.9492029,
+        lng: 73.8426984,
+        title: { en: 'Toilet(M/F)', hi: 'शौचालय(पुरुष/महिला)', mr: 'टॉयलेट(पुरुष/महिला)' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/washroom.png"
+    },
+    {
+        id: 'Platform 2 Point 10',
+        lat: 19.9486886,
+        lng: 73.8425563,
+        title: { en: 'Drinking Water', hi: 'पेयजल', mr: 'पाणी' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/water.png"
+    },
+    {
+        id: 'Platform 2 Point 11',
+        lat: 19.9482395,
+        lng: 73.8424611,
+        title: { en: 'Fruit & Juice Stall', hi: 'फळ आणि ज्यूस स्टॉल', mr: 'फळ आणि ज्यूस स्टॉल' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/fruit_stall.png"
+    },
+    {
+        id: 'Platform 2 Point 12',
+        lat: 19.9481556,
+        lng: 73.8424396,
+        title: { en: 'Multipurpose Stall', hi: 'बहुउद्देशीय स्टॉल', mr: 'बहुउद्देशीय स्टॉल' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/fruit_stall.png"
+    },
+    {
+        id: 'Platform 2 Point 13',
+        lat: 19.9479139,
+        lng: 73.8424121,
+        title: { en: 'Drinking Water', hi: 'पेयजल', mr: 'पाणी' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/water.png"
+    },
+    {
+        id: 'Platform 2 Point 14',
+        lat: 19.9478792,
+        lng: 73.8423712,
+        title: { en: 'Fruit & Juice Stall', hi: 'फळ आणि ज्यूस स्टॉल', mr: 'फळ आणि ज्यूस स्टॉल' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/fruit_stall.png"
+    },
+    {
+        id: 'Platform 2 Point 15',
+        lat: 19.9477258,
+        lng: 73.8423635,
+        title: { en: 'Railahar Tea Stall', hi: 'रेलाहर चहा स्टॉल', mr: 'रेलाहर चहा स्टॉल' },
+        category: "Platform 2",
+        icon: "./static/img/pin_icon/tea_stall.png"
+    },
+
+
+    {
+        id: 'Platform 4',
+        lat: 19.947206897269872,
+        lng: 73.84249036809372,
+        title: { en: 'Platform 4', hi: 'प्लेटफार्म 4', mr: 'प्लॅटफॉर्म 4' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/platform.png"
+    },
+    {
+        id: 'Platform 4 Point 2',
+        lat: 19.9462262,
+        lng: 73.8422562,
+        title: { en: 'Tea Stall', hi: 'चहा स्टॉल', mr: 'चहा स्टॉल' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/tea_stall.png"
+    },
+    {
+        id: 'Platform 4 Point 3',
+        lat: 19.9448597,
+        lng: 73.8419789,
+        title: { en: 'Toilet(M/L)', hi: 'शौचालय(पुरुष/महिला)', mr: 'टॉयलेट(पुरुष/महिला)' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/washroom.png"
+    },
+    {
+        id: 'Platform 4 Point 4',
+        lat: 19.9469949,
+        lng: 73.8424349,
+        title: { en: 'Escalator & Stair', hi: 'एस्कलेटर आणि सिडी', mr: 'एस्केलेटर आणि जिना' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/escalator.png"
+    },
+    {
+        id: 'Platform 4 Point 5',
+        lat: 19.9473715,
+        lng: 73.8425412,
+        title: { en: 'Child Help Desk', hi: 'बाल सहाय्य कक्ष', mr: 'बाल सहाय्य कक्ष' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/help.png"
+    },
+    {
+        id: 'Platform 4 Point 6',
+        lat: 19.9488988,
+        lng: 73.8429194,
+        title: { en: 'Toilet(M/L)', hi: 'शौचालय(पुरुष/महिला)', mr: 'टॉयलेट(पुरुष/महिला)' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/washroom.png"
+    },
+    {
+        id: 'Platform 4 Point 7',
+        lat: 19.9489224,
+        lng: 73.8428393,
+        title: { en: 'Lift & Stair', hi: 'लिफ्ट आणि सिडी', mr: 'लिफ्ट आणि जिना' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/lift.png"
+    },
+    {
+        id: 'Platform 4 Point 8',
+        lat: 19.9487459,
+        lng: 73.8428979,
+        title: { en: 'Divyangjan Toilet', hi: 'दिव्यांगजन शौचालय', mr: 'दिव्यांगजन शौचालय' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/washroom.png"
+    },
+    {
+        id: 'Platform 4 Point 9',
+        lat: 19.948225,
+        lng: 73.8427105,
+        title: { en: 'Multipurpose Stall', hi: 'बहुउद्देशीय स्टॉल', mr: 'बहुउद्देशीय स्टॉल' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/fruit_stall.png"
+    },
+    {
+        id: 'Platform 4 Point 10',
+        lat: 19.948364,
+        lng: 73.8427803,
+        title: { en: 'Pf 4 Entry Exit', hi: 'पीएफ ४ प्रवेश बाहेर', mr: 'पीएफ ४ प्रवेश बाहेर' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/Entryexit.png"
+    },
+    {
+        id: 'Platform 4 Point 11',
+        lat: 19.9484613,
+        lng: 73.8429938,
+        title: { en: 'Reservation Center', hi: 'आरक्षण केंद्र', mr: 'आरक्षण केंद्र' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/reservation.png"
+    },
+    {
+        id: 'Platform 4 Point 12',
+        lat: 19.9485354,
+        lng: 73.8429546,
+        title: { en: 'Pay Parking', hi: 'पार्किंग शुल्क', mr: 'पार्किंग शुल्क' },
+        category: "Platform 4",
+        icon: "./static/img/pin_icon/pay_park.png"
+    }
+
+
 
 ];
-
-
-
-// function highlightPinpoints(pointId) {
-//     // Stop animation for all markers
-//     markers.forEach((marker) => marker.setAnimation(null));
-
-//     // Find the pinpoint object by id
-//     const location = PINPOINTS.find((point) => point.id === pointId);
-
-//     if (location && map) {
-//         // Center the map on the selected location
-//         map.setCenter({ lat: location.lat, lng: location.lng });
-
-//         // Adjust zoom level (set to 18 for a closer zoom, adjust as necessary)
-//         map.setZoom(28);
-
-//         // Find the marker for the selected location and make it bounce
-//         const marker = markers.find(
-//             (m) => m.getPosition().lat() === location.lat && m.getPosition().lng() === location.lng
-//         );
-
-//         if (marker) {
-//             marker.setAnimation(google.maps.Animation.BOUNCE); // Make the selected marker bounce
-
-//             // Stop the bouncing after 2 seconds (2000 ms)
-//             setTimeout(() => {
-//                 marker.setAnimation(null);
-//             }, 2000);
-//         }
-
-//         // console.log(Zooming into: ${location.title});
-//     } else {
-//         // console.error(Location with ID '${pointId}' not found.);
-//     }
-// }
 
 // MENU BUTTONS CODE
 
@@ -898,7 +1023,7 @@ function displayAllPinpoints() {
 function searchAndShowPinpoints(transcript) {
     // Filter the tourist places and pinpoints based on the search term
     const allLocations = [...TOURIST_PLACES, ...PINPOINTS];
-    const filteredLocations = allLocations.filter(location => 
+    const filteredLocations = allLocations.filter(location =>
         location.title.toLowerCase().includes(transcript) ||
         location.name.toLowerCase().includes(transcript)
     );
@@ -925,24 +1050,24 @@ function addMarker(location, title, icon) {
 
 
 const TOURIST_PLACES = [
-    { name: 'Trimbakeshwar', lat: 19.93453011425969, lng: 73.52842423653824, title: 'Trimbakeshwar Temple', icon: './static/img/temple.png' },
-    { name: 'Mukti Dham Mandir', lat:19.953828048064583, lng: 73.83737826265069, title: 'Mukti Dham Mandir', icon: './static/img/temple.png' },
-    { name: 'Pandav Leni', lat: 19.94463047693236, lng: 73.7463977372903, title: 'Pandav Leni', icon: './static/img/temple.png' },
-    { name: 'Panchvati', lat: 20.010315331401916, lng: 73.79150030377282, title: 'Panchvati', icon: './static/img/temple.png' },
-    { name: 'Saptashrungi Devi Mandir', lat: 20.00744084120391, lng: 73.79929304059421, title: 'Saptashrungi Devi Mandir', icon: './static/img/temple.png' },
-    { name: 'Sula Wine Yard', lat: 20.00583355051259, lng: 73.68834345884471, title: 'Sula Wine Yard', icon: './static/img/photo-camera-interface-symbol-for-button.png' },
-    { name: 'Jain Mandir', lat: 19.950409617723597, lng: 73.5853031983178, title: 'Jain Mandir', icon: './static/img/temple.png' },
-    { name: 'Anjaneri (Hanuman Temple)', lat: 19.952427945637567, lng: 73.58617831673308, title: 'Anjaneri Hanuman Temple', icon: './static/img/temple.png' },
-    { name: 'Ramkund', lat: 20.008363233800278, lng: 73.792539081843, title: 'Ramkund', icon: './static/img/photo-camera-interface-symbol-for-button.png' },
-    { name: 'Kalaram Mandir', lat: 20.007435753945348, lng: 73.79522129074769, title: 'Kalaram Mandir', icon: './static/img/temple.png' },
-    { name: 'Sita Gufa', lat: 20.007919657116876, lng: 73.79599376690547, title: 'Sita Gufa', icon: './static/img/photo-camera-interface-symbol-for-button.png' },
-    { name: 'Someshwar Mandir', lat: 20.004587365702832, lng: 73.79132816733286, title: 'Someshwar Mandir', icon: './static/img/temple.png' },
-    { name: 'Coin Museum', lat: 19.958324062485083, lng: 73.61125273880573, title: 'Coin Museum', icon: './static/img/photo-camera-interface-symbol-for-button.png' },
-    { name: 'Gondeshwar Mandir Sinnar', lat: 19.85149481194432, lng: 74.00206217901264, title: 'Gondeshwar Mandir', icon: './static/img/temple.png' },
-    { name: 'Tapowan', lat: 19.9872720045505, lng: 73.81093044681361, title: 'Tapowan', icon: './static/img/temple.png' },
+    { name: 'Trimbakeshwar', lat: 19.93453011425969, lng: 73.52842423653824, title: { en: 'Trimbakeshwar Temple', hi: 'त्र्यंबकेश्वर मंदिर', mr: 'त्र्यंबकेश्वर मंदिर' }, icon: './static/img/temple.png' },
+    { name: 'Mukti Dham Mandir', lat: 19.953828048064583, lng: 73.83737826265069, title: { en: 'Mukti Dham Mandir', hi: 'मुक्ति धाम मंदिर', mr: 'मुक्तीधाम मंदिर' }, icon: './static/img/temple.png' },
+    { name: 'Pandav Leni', lat: 19.94463047693236, lng: 73.7463977372903, title: { en: 'Pandav Leni', hi: 'पांडव लेनी', mr: 'पांडव लेणी' }, icon: './static/img/temple.png' },
+    { name: 'Panchvati', lat: 20.010315331401916, lng: 73.79150030377282, title: { en: 'Panchvati', hi: 'पंचवटी', mr: 'पंचवटी' }, icon: './static/img/temple.png' },
+    { name: 'Saptashrungi Devi Mandir', lat: 20.00744084120391, lng: 73.79929304059421, title: { en: 'Saptashrungi Devi Mandir', hi: 'सप्तश्रृंगी देवी मंदिर', mr: 'सप्तश्रृंगी देवी मंदिर' }, icon: './static/img/temple.png' },
+    { name: 'Sula Wine Yard', lat: 20.00583355051259, lng: 73.68834345884471, title: { en: 'Sula Wine Yard', hi: 'सुला वाइन यार्ड', mr: 'सुला वाइन यार्ड' }, icon: './static/img/photo-camera-interface-symbol-for-button.png' },
+    { name: 'Jain Mandir', lat: 19.950409617723597, lng: 73.5853031983178, title: { en: 'Jain Mandir', hi: 'जैन मंदिर', mr: 'जैन मंदिर' }, icon: './static/img/temple.png' },
+    { name: 'Anjaneri (Hanuman Temple)', lat: 19.952427945637567, lng: 73.58617831673308, title: { en: 'Anjaneri Hanuman Temple', hi: 'अंजनेरी हनुमान मंदिर', mr: 'अंजनेरी हनुमान मंदिर' }, icon: './static/img/temple.png' },
+    { name: 'Ramkund', lat: 20.008363233800278, lng: 73.792539081843, title: { en: 'Ramkund', hi: 'रामकुंड', mr: 'रामकुंड' }, icon: './static/img/photo-camera-interface-symbol-for-button.png' },
+    { name: 'Kalaram Mandir', lat: 20.007435753945348, lng: 73.79522129074769, title: { en: 'Kalaram Mandir', hi: 'काळाराम मंदिर', mr: 'काळाराम मंदिर' }, icon: './static/img/temple.png' },
+    { name: 'Sita Gufa', lat: 20.007919657116876, lng: 73.79599376690547, title: { en: 'Sita Gufa', hi: 'सीता गुफा', mr: 'सीता गुहा' }, icon: './static/img/photo-camera-interface-symbol-for-button.png' },
+    { name: 'Someshwar Mandir', lat: 20.004587365702832, lng: 73.79132816733286, title: { en: 'Someshwar Mandir', hi: 'सोमेश्वर मंदिर', mr: 'सोमेश्वर मंदिर' }, icon: './static/img/temple.png' },
+    { name: 'Coin Museum', lat: 19.958324062485083, lng: 73.61125273880573, title: { en: 'Coin Museum', hi: 'सिक्का संग्रहालय', mr: 'नाणे संग्रहालय' }, icon: './static/img/photo-camera-interface-symbol-for-button.png' },
+    { name: 'ondeshwar Mandir Sinnar', lat: 19.85149481194432, lng: 74.00206217901264, title: { en: 'Gondeshwar Mandir Sinnar', hi: 'गोंदेश्वर मंदिर, सिन्नर', mr: 'गोंदेश्वर मंदिर, सिन्नर' }, icon: './static/img/temple.png' },
+    { name: 'Tapowan', lat: 19.9872720045505, lng: 73.81093044681361, title: { en: 'Tapowan', hi: 'तपोवन', mr: 'तपोवन' }, icon: './static/img/temple.png' },
 ];
 
-function addTouristPinpoints(placeName) {
+function addTouristPinpoints(placeName, language = 'en') {
     // Find the corresponding tourist place
     const place = TOURIST_PLACES.find((p) => p.name === placeName);
 
@@ -952,15 +1077,44 @@ function addTouristPinpoints(placeName) {
     }
 
     // Add a custom marker for the place
-    addCustomMarker({ lat: place.lat, lng: place.lng }, place.title, place.icon);
+    addCustomMarker({ lat: place.lat, lng: place.lng }, place.title[language], place.icon);
 
     // Center the map on the added marker
     map.setCenter({ lat: place.lat, lng: place.lng });
     map.setZoom(14); // Adjust zoom level
 }
 
+// Function to update markers with the selected language
+function updateMarkersLanguage(language) {
+    // Clear existing markers
+    markers.forEach((marker) => marker.setMap(null));
+    markers = [];
 
+    PINPOINTS.forEach((pin) => {
+        addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title[language], pin.icon);
+    });
 
+    TOURIST_PLACES.forEach((place) => {
+        addCustomMarker({ lat: place.lat, lng: place.lng }, place.title[language], place.icon);
+    });
+}
+function updateLanguage(language) {
+    const elements = document.querySelectorAll('[data-en]');
+    elements.forEach(el => {
+        if (el.tagName === 'INPUT' && el.type === 'text') {
+            el.setAttribute('placeholder', el.getAttribute(`data-${language}`));
+        } else {
+            el.textContent = el.getAttribute(`data-${language}`);
+        }
+    });
+}
+
+// Listen for changes in the language dropdown
+document.getElementById('language-select').addEventListener('change', function () {
+    const selectedLanguage = this.value;
+    updateMarkersLanguage(selectedLanguage);
+    updateLanguage(selectedLanguage);
+});
 
 
 // BACK BUTON CODE
@@ -989,23 +1143,6 @@ document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
         }
     });
 });
-
-
-function changeLanguage(language) {
-    switch (language) {
-        case 'en':
-            alert('English selected');
-            break;
-        case 'hi':
-            alert('हिन्दी चुनी गई');
-            break;
-        case 'mr':
-            alert('मराठी निवडले');
-            break;
-        default:
-            alert('Language not supported');
-    }
-}
 
 // search bar code 
 
@@ -1089,4 +1226,4 @@ document.addEventListener("DOMContentLoaded", function () {
 window.initMap = initMap;
 let position;
 let cooords = '';
-console.log("Latitude:", position.coords.latitude, "Longitude:", position.coords.longitude);
+// console.log("Latitude:", position.coords.latitude, "Longitude:", position.coords.longitude);
