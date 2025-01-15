@@ -199,6 +199,7 @@ function initMap() {
         addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title, pin.icon);
     });
     
+    map.addListener('zoom_changed', handleZoomChanged);
     // Call handleZoomChanged immediately after the map is loaded to apply the right marker visibility
     handleZoomChanged();
 
@@ -292,6 +293,7 @@ function initMap() {
 
 
     createDistanceBox(); // Create the new box for showing distance
+    
     const languageSelect = document.getElementById('language-select'); 
     const selectedLanguage = languageSelect.value;
     updateMarkersLanguage(selectedLanguage);
@@ -415,7 +417,7 @@ function addCustomMarker(location, title, icon) {
             : undefined,
         label: {
             text: title, // Show the title directly on the map
-            color: "#000000", // Label text color
+            color: "#526581", // Label text color
             fontSize: "10px",
             fontWeight: "bold",
         },
@@ -466,7 +468,7 @@ function checkDeviationAndDrawDottedLine(routePolyline) {
         new google.maps.Polyline({
             path: [userPoint, closestPoint],
             map: map,
-            strokeColor: "#000000",
+            strokeColor: "#526581",
             strokeOpacity: 0.7,
             strokeWeight: 3,
             icons: [
@@ -528,7 +530,7 @@ function drawDottedLine(startPoint, endPoint) {
                     fillOpacity: 1,
                     fillColor: "#74ACFF", // Black dots
                     strokeOpacity: 1,
-                    strokeColor: "#000000",
+                    strokeColor: "#526581",
                     scale: 2, // Size of dots
                 },
                 offset: "0",
@@ -686,6 +688,9 @@ function highlightPinpoints(pointId) {
         if (marker) {
             marker.setLabel({
                 text: location.title[selectedLanguage],
+                color: "#526581",
+                fontSize: "10px",
+                fontWeight: "bold",
             });
             marker.setAnimation(google.maps.Animation.BOUNCE); // Bounce animation
             setTimeout(() => {
@@ -1097,7 +1102,10 @@ function updateMarkersLanguage(language) {
     TOURIST_PLACES.forEach((place) => {
         addCustomMarker({ lat: place.lat, lng: place.lng }, place.title[language], place.icon);
     });
+     handleZoomChanged();
 }
+
+
 function updateLanguage(language) {
     const elements = document.querySelectorAll('[data-en]');
     elements.forEach(el => {
