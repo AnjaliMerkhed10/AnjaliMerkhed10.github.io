@@ -1,3 +1,8 @@
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+
 // function toggleList(listId) {
 //     const list = document.getElementById(listId);
 //     list.classList.toggle("open");  // Toggle 'open' class to show/hide the list

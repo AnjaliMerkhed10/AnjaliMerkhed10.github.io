@@ -1,5 +1,7 @@
 
-
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
 
 
 const voiceSearchButton = document.getElementById("voiceSearch");

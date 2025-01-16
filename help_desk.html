@@ -235,6 +235,10 @@
     </div>
 
     <script>
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
 document.addEventListener('DOMContentLoaded', function () {
             const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
             document.getElementById('language-select').value = selectedLanguage;
