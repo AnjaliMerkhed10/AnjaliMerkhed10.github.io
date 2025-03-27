@@ -1,723 +1,3 @@
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-});
-
-
-// function toggleList(listId) {
-//     const list = document.getElementById(listId);
-//     list.classList.toggle("open");  // Toggle 'open' class to show/hide the list
-// }
-function toggleList(listId) {
-    // Get all dropdown lists
-    const dropdownLists = document.querySelectorAll("ul");
-
-    // Close any open dropdowns except the one being toggled
-    dropdownLists.forEach(list => {
-        if (list.id !== listId && list.classList.contains("open")) {
-            list.classList.remove("open");
-        }
-    });
-
-    // Toggle the selected dropdown
-    const list = document.getElementById(listId);
-    list.classList.toggle("open");
-
-    // Add click event to handle sublist visibility
-    const items = list.querySelectorAll("li");
-    items.forEach(item => {
-        const subList = item.querySelector("ul"); // Check if the item has a sublist
-        if (subList) {
-            item.addEventListener("click", (event) => {
-                event.stopPropagation(); // Prevent parent list toggling
-                subList.classList.toggle("open"); // Toggle the sublist
-            });
-        }
-
-        // Close the parent list when an item is clicked, if it doesn't have a sublist
-        item.addEventListener("click", () => {
-            if (!subList) {
-                list.classList.remove("open");
-            }
-        });
-    });
-}
-
-
-
-// Sidebar Toggle
-const menuIcon = document.getElementById("menuIcon");
-const sidebar = document.getElementById("sidebar");
-
-menuIcon.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-    menuIcon.classList.toggle("right"); // Shift the icon to the right
-
-    // Toggle the icon visibility when the sidebar is open
-    menuIcon.classList.toggle("hidden"); // Hide the icon when sidebar is open
-
-    // Close all submenus when the sidebar is closed   
-    if (!sidebar.classList.contains("open")) {
-        document.querySelectorAll('.submenu').forEach(submenu => {
-            submenu.style.display = 'none'; // Hide all submenus
-        });
-    }
-});
-
-// Close sidebar when clicking outside
-document.addEventListener("click", (event) => {
-    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
-        sidebar.classList.remove("open");
-        menuIcon.classList.remove("right");
-        menuIcon.classList.remove("hidden"); // Reset icon visibility when clicking outside
-
-        // Close all submenus when the sidebar is closed
-        document.querySelectorAll('.submenu').forEach(submenu => {
-            submenu.style.display = 'none'; // Hide all submenus
-        });
-    }
-});
-
-// Close sidebar when clicking any submenu item inside it
-sidebar.querySelectorAll('.menu-list li').forEach(submenuItem => {
-    submenuItem.addEventListener('click', (event) => {
-        const hasNestedSubmenu = submenuItem.querySelector('.submenu');
-
-        if (!hasNestedSubmenu) {
-            sidebar.classList.remove("open");
-            menuIcon.classList.remove("right");
-            menuIcon.classList.remove("hidden"); // Reset icon visibility
-
-            // Close all submenus
-            document.querySelectorAll('.submenu').forEach(submenu => {
-                submenu.style.display = 'none'; // Hide all submenus
-            });
-        }
-    });
-});
-
-// Close sidebar when clicking main menu items without submenus
-sidebar.querySelectorAll('.menu-item > button').forEach(menuButton => {
-    menuButton.addEventListener('click', (event) => {
-        const hasSubmenu = menuButton.nextElementSibling && menuButton.nextElementSibling.classList.contains('menu-list');
-
-        if (!hasSubmenu) {
-            sidebar.classList.remove("open");
-            menuIcon.classList.remove("right");  
-            menuIcon.classList.remove("hidden"); // Reset icon visibility
-        }
-    });
-});
-
-
-
-
-
-// LOCATION AND SUBMENU CODE
-let map;
-let markers = [];
-let directionsService;
-let directionsRenderer;
-let userLocation = null; // User's current location
-let userLocationMarker = null;
-let isMapCentered = false;
-let closestMarker = null; // Track the selected destination marker
-let distanceBox = null; // New box for displaying the distance on the path
-
-function initMap() {
-    const customStyle = [
-        { "featureType": "water", "stylers": [{ "color": "#50B6FF" }] },
-        { "featureType": "landscape", "stylers": [{ "color": "#F1F9FF" }] },
-        { "featureType": "road", "stylers": [{ "color": "#ffffff" }] },
-        { "featureType": "poi", "stylers": [{ "visibility": "off" }] },
-        // { "featureType": "landscape.natural", "stylers": [{ "color": "#BBFF9B" }] },
-        { "featureType": "road.highway", "stylers": [{ "color": "#FFEBDE" }] },
-        {
-            featureType: "transit.line", // Targets railway tracks
-            elementType: "geometry",
-            stylers: [
-                { color: "#FFC74E" }, // Change to your desired color
-                { visibility: "simplified" }, // Simplify the line
-                { weight: 4 }, // Adjust thickness
-            ],
-        },
-        {
-            featureType: "transit.line", // Targets railway tracks
-            elementType: "labels",
-            stylers: [{ visibility: "off" }], // Remove railway labels (optional)
-        },
-    ];
-
-
-
-    const mapOptions = {
-        zoomControl: false,
-        zoom: 18,
-        center: { lat: 19.9482, lng: 73.8421 }, // Default center
-        styles: customStyle,
-        mapTypeControl: false,
-        streetViewControl: false,
-
-
-        fullscreenControl: false, // Disable fullscreen control (fullscreen button)
-
-    };
-
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    const railwayLine = new google.maps.Polyline({
-        path: [
-            { lat: 19.946810167998795, lng: 73.84199274218622 }, // Starting point , 
-            { lat: 19.94985046657326, lng: 73.84263706196272 }, // Ending point  , 
-            { lat: 19.946513449638726, lng: 73.84194493518378 }, // Starting point , 
-            { lat: 19.94905780688094, lng: 73.84250658274564 },
-        ],
-        geodesic: true,
-        strokeColor: '#FFC74E', // Color of the line
-        strokeOpacity: 1.0,
-        strokeWeight: 4,
-        icons: [{
-            icon: {
-                path: "M 0,0 L 2,0",  // Horizontal line (start to end in X direction)
-                strokeColor: '#FFC74E', // Color of the horizontal dash
-                strokeWeight: 4,
-            },
-            offset: '0',
-            repeat: '20px', // Adjust the gap between dashes (20px here)
-        }],
-    });
-
-    railwayLine.setMap(map);
-
-    directionsService = new google.maps.DirectionsService();
-    directionsRenderer = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: {
-            strokeColor: "#004DBC", // Highlighted route in blue
-            strokeOpacity: 0.9,
-            strokeWeight: 6,
-        },
-        suppressMarkers: true, // Suppress default markers from directions
-    });
-
-    // Display user's location and add predefined markers
-    displayUserLocation();
-    PINPOINTS.forEach((pin) => {
-        addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title, pin.icon);
-    });
-    
-    map.addListener('zoom_changed', handleZoomChanged);
-    // Call handleZoomChanged immediately after the map is loaded to apply the right marker visibility
-    handleZoomChanged();
-
-    let polygon = null; // Variable to store the polygon object
-    let platformLabel = null; // Variable to store the label object
-
-    // Coordinates for highlighting the areas (Nashik region)
-    const platformCoordinates = {
-        platform1: [
-            { lat: 19.94651232696333, lng: 73.84195008739192 },
-            { lat: 19.946557206782217, lng: 73.84163827255864 },
-            { lat: 19.94967212368754, lng: 73.84257638314101 },
-            { lat: 19.949656996145993, lng: 73.84263405062848 },
-        ],
-        platform2: [
-            { lat: 19.945917044530635, lng: 73.84201509462258 },
-            { lat: 19.945947028206277, lng: 73.84188431685314 },
-            { lat: 19.94980431114777, lng: 73.84275299314311 },
-            { lat: 19.94978332308824, lng: 73.84287260695663 },
-        ],
-        platform3: [
-            { lat: 19.945917044530635, lng: 73.84201509462258 },
-            { lat: 19.945947028206277, lng: 73.84188431685314 },
-            { lat: 19.94980431114777, lng: 73.84275299314311 },
-            { lat: 19.94978332308824, lng: 73.84287260695663 },
-        ],
-        platform4: [
-            { lat: 19.9436202071113, lng: 73.8417142930895 },
-            { lat: 19.943654156095327, lng: 73.84161908124462 },
-            { lat: 19.94912395531475, lng: 73.84286265635902 },
-            { lat: 19.949101493390923, lng: 73.84294151237617 },
-        ]
-    };
-
-    // Function to create the polygon, zoom, and add label
-    function togglePolygon(platform) {
-        if (polygon) {
-            // Remove previous polygon and label if any
-            polygon.setMap(null);
-            polygon = null;
-            platformLabel.close(); // Close the label
-            platformLabel = null;
-        }
-
-        // Create the polygon for the selected platform
-        const polygonCoords = platformCoordinates[platform];
-
-        // Create the polygon using the selected coordinates
-        polygon = new google.maps.Polygon({
-            paths: polygonCoords,
-            strokeColor: '#FF8031',  // Border color (Orange)
-            strokeOpacity: 0.8,      // Border opacity
-            strokeWeight: 0,         // Border weight
-            fillColor: '#FF8031',    // Fill color (Orange)
-            fillOpacity: 0.35,       // Fill opacity
-        });
-
-        // Add the polygon to the map
-        polygon.setMap(map);
-
-        // Add label (Platform name)
-        platformLabel = new google.maps.InfoWindow({
-            content: platform.charAt(0).toUpperCase() + platform.slice(1), // Capitalize the first letter of the platform name
-            position: { lat: polygonCoords[0].lat, lng: polygonCoords[0].lng }, // Position the label near the polygon
-        });
-        platformLabel.open(map);
-
-        // Zoom into the polygon area
-        const bounds = new google.maps.LatLngBounds();
-        polygon.getPath().forEach(function (latLng) {
-            bounds.extend(latLng);
-        });
-        map.fitBounds(bounds); // Zoom to the bounds of the polygon
-
-        // Optionally, add a listener to change the polygon's style on click
-        google.maps.event.addListener(polygon, 'click', function () {
-            polygon.setOptions({
-                fillColor: '#ff0000', // Red color on click
-                strokeColor: '#ff0000'
-            });
-        });
-    }
-
-    // Event listeners for each platform in the menu
-    document.querySelectorAll('#platforms li').forEach(item => {
-        item.addEventListener('click', function () {
-            const platformId = this.innerText.trim().toLowerCase().replace(' ', ''); // Extract platform name (e.g., "platform1")
-            togglePolygon(platformId);
-        });
-    });
-
-
-    createDistanceBox(); // Create the new box for showing distance
-    
-    const languageSelect = document.getElementById('language-select'); 
-    const selectedLanguage = languageSelect.value;
-    updateMarkersLanguage(selectedLanguage);
-    updateLanguage(selectedLanguage);
-}
-
-
-// Function to show a certain number of markers, removing equally from the start and end
-function showMarkersEvenly(count) {
-    const halfCount = Math.floor(count / 2);
-    const markersToShow = [
-        ...markers.slice(0, halfCount), // Start part of markers
-        ...markers.slice(-halfCount)    // End part of markers
-    ];
-
-    // Show only the selected markers
-    markersToShow.forEach(marker => marker.setMap(map));
-
-    // Hide markers that are not in the markersToShow array
-    markers.forEach(marker => {
-        if (!markersToShow.includes(marker)) {
-            marker.setMap(null);
-        }
-    });
-}
-
-// Handle zoom level changes
-function handleZoomChanged() {
-    const zoomLevel = map.getZoom();
-
-    if (zoomLevel >= 21) {
-        // Show all markers at zoom level 21 and above
-        markers.forEach(marker => marker.setMap(map));
-    } else if (zoomLevel >= 20 && zoomLevel < 21) {
-        // Show 50 markers at zoom level 20
-        showMarkersEvenly(50);
-    } else if (zoomLevel >= 19 && zoomLevel < 20) {
-        // Show 40 markers at zoom level 19
-        showMarkersEvenly(40);
-    } else if (zoomLevel >= 18 && zoomLevel < 19) {
-        // Show 35 markers at zoom level 18
-        showMarkersEvenly(25);
-    } else if (zoomLevel >= 15 && zoomLevel < 18) {
-        // Show 30 markers at zoom level 15
-        showMarkersEvenly(15);
-    } else {
-        // Hide all markers for zoom levels below 15
-        markers.forEach(marker => marker.setMap(null));
-    }
-}
-
-// Display the user's location and create a marker for it
-function displayUserLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(
-            (position) => {
-                userLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
-
-                // Create or update the marker for the user's location
-                if (userLocationMarker) {
-                    userLocationMarker.setPosition(userLocation);
-                } else {
-                    userLocationMarker = new google.maps.Marker({
-                        position: userLocation,
-                        map: map,
-                        label: {
-                            color: "#ffffff",
-                            fontSize: "12px",
-                            fontWeight: "bold",
-                        },
-                        icon: {
-                            url: "./static/img/street-view.png", // Custom marker for user
-                            scaledSize: new google.maps.Size(45, 45),
-                        },
-                    });
-                }
-
-                // Zoom and center the map on the user's location
-                if (!isMapCentered) {
-                    map.setCenter(userLocation);
-                    map.setZoom(28); // Zoom level 28 for street-level precision
-                    isMapCentered = true; // Prevent recentering after this
-                }
-
-                // If there's a closest marker, recalculate the route dynamically
-                if (closestMarker) {
-                    updateRoute(userLocation, closestMarker.position); // Recalculate the route
-                    displayLiveDistance(userLocation, closestMarker.position); // Update live distance
-                }
-            },
-            (error) => {
-                alert("Error: Unable to fetch your location.");
-            },
-            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-        );
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
-}
-
-// Listen for the button click to show the user's location
-document.getElementById('userLocationButton').addEventListener('click', function () {
-    displayUserLocation();  // Call the function to show the user's location
-});
-
-
-// Function to add a custom marker with text (title) and icon
-function addCustomMarker(location, title, icon) {
-    const marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        icon: icon
-            ? {
-                url: icon, // URL of the custom icon
-                scaledSize: new google.maps.Size(30, 30), // Custom icon size
-                labelOrigin: new google.maps.Point(15, 40), // Position of label relative to icon
-            }
-            : undefined,
-        label: {
-            text: title, // Show the title directly on the map
-            color: "#526581", // Label text color
-            fontSize: "10px",
-            fontWeight: "bold",
-        },
-    });
-
-    marker.title = title;
-    // Add a click listener to calculate the route and show distance
-    marker.addListener("click", () => {
-        if (!userLocation) {
-            alert("Your location is not available yet. Please wait.");
-            return;
-        }
-
-        closestMarker = marker; // Update the closest marker
-        updateRoute(userLocation, marker.position); // Recalculate the route
-        displayLiveDistance(userLocation, marker.position); // Update live distance
-
-        // Hide other markers when one is selected
-        hideOtherMarkers(marker);
-    });
-
-    markers.push(marker); // Store the marker in the array
-}
-
-// Function to detect deviation and add a dotted line
-function checkDeviationAndDrawDottedLine(routePolyline) {
-    if (!userLocation || !routePolyline) return;
-
-    const userPoint = new google.maps.LatLng(userLocation.lat, userLocation.lng);
-    const routePath = routePolyline.getPath();
-    let closestPoint = null;
-    let minDistance = Infinity;
-
-    // Find the closest point on the route to the user's location
-    routePath.forEach((point) => {
-        const distance = google.maps.geometry.spherical.computeDistanceBetween(
-            userPoint,
-            point
-        );
-        if (distance < minDistance) {
-            minDistance = distance;
-            closestPoint = point;
-        }
-    });
-
-    // If deviation exceeds 20 meters, draw a dotted line
-    if (minDistance > 20) {
-        new google.maps.Polyline({
-            path: [userPoint, closestPoint],
-            map: map,
-            strokeColor: "#526581",
-            strokeOpacity: 0.7,
-            strokeWeight: 3,
-            icons: [
-                {
-                    icon: {
-                        path: "M 0,-1 0,1",
-                        strokeOpacity: 1,
-                        scale: 2,
-                    },
-                    offset: "0",
-                    repeat: "10px",
-                },
-            ],
-        });
-    }
-}
-
-
-function updateRoute(start, end) {
-    const request = {
-        origin: start,
-        destination: end,
-        travelMode: google.maps.TravelMode.WALKING,
-    };
-
-    directionsService.route(request, (result, status) => {
-        if (status === "OK") {
-            // Render the route
-            directionsRenderer.setDirections(result);
-
-            // Get the route's path
-            const routePath = result.routes[0].overview_path;
-
-            // Find the last point of the route
-            const lastRouteablePoint = routePath[routePath.length - 1];
-
-            // Draw a dotted line from the last point to the destination
-            drawDottedLine(lastRouteablePoint, end);
-
-            // Display total route distance
-            calculateAndDisplayRouteDistance(result.routes[0].legs[0]);
-        } else {
-            console.warn("No route found. Drawing a direct dotted line.");
-            drawDottedLine(start, end); // Draw dotted line directly if no route
-        }
-    });
-}
-
-// Function to draw a dotted line
-function drawDottedLine(startPoint, endPoint) {
-    new google.maps.Polyline({
-        path: [startPoint, endPoint],
-        strokeOpacity: 0, // Make the solid line invisible
-        map: map,
-        icons: [
-            {
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE, // Dotted line as circles
-                    fillOpacity: 1,
-                    fillColor: "#74ACFF", // Black dots
-                    strokeOpacity: 1,
-                    strokeColor: "#526581",
-                    scale: 2, // Size of dots
-                },
-                offset: "0",
-                repeat: "10px", // Distance between dots
-            },
-        ],
-    });
-}
-
-
-
-// Function to calculate and display the total route distance
-function calculateAndDisplayRouteDistance(routeLeg) {
-    const totalDistance = routeLeg.distance.text; // The distance is provided in the response
-    updateDistanceDisplay(`Total route distance: ${totalDistance}`);
-}
-
-// Function to update live distance dynamically
-function displayLiveDistance(start, end) {
-    const distance = haversineDistance(start, end);
-    let distanceMessage = "";
-
-    if (!isNaN(distance)) {
-        if (distance < 1000) {
-            // Display distance in meters if less than 1 km
-            distanceMessage = `Distance: ${distance.toFixed(0)} meters`;
-        } else {
-            // Display distance in kilometers if 1 km or more
-            distanceMessage = `Distance: ${distance.toFixed(2)} km`;
-        }
-    }
-
-    updateDistanceDisplay(distanceMessage);
-}
-
-// Function to hide all markers except the selected one
-function hideOtherMarkers(selectedMarker) {
-    markers.forEach((marker) => {
-        if (marker !== selectedMarker) {
-            marker.setMap(null); // Hide the marker
-        }
-    });
-}
-
-// Function to show all markers (for back button)
-function showAllMarkers() {
-    markers.forEach((marker) => {
-        marker.setMap(map); // Show the marker again
-    });
-}
-// Function to update distance display on the map
-function updateDistanceDisplay(message) {
-    const distanceDisplay = document.getElementById("distanceDisplay");
-    if (distanceDisplay) {
-        distanceDisplay.innerText = message;
-    }
-}
-
-
-
-// Function to calculate the Haversine distance
-function haversineDistance(coords1, coords2) {
-    if (!coords1 || !coords2) return NaN;
-
-    const R = 6371; // Radius of the Earth in kilometers
-    const toRad = (value) => (value * Math.PI) / 180;
-
-    const dLat = toRad(coords2.lat - coords1.lat);
-    const dLng = toRad(coords2.lng - coords1.lng);
-
-    const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(toRad(coords1.lat)) *
-        Math.cos(toRad(coords2.lat)) *
-        Math.sin(dLng / 2) *
-        Math.sin(dLng / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distanceKm = R * c; // Distance in kilometers
-
-    if (distanceKm < 1) {
-        return distanceKm * 1000; // Convert to meters if distance is less than 1 km
-    } else {
-        return distanceKm; // Return distance in kilometers
-    }
-}
-
-// Create a distance box for showing live distance
-function createDistanceBox() {
-    distanceBox = document.createElement("div");
-    distanceBox.id = "distanceBox";
-    distanceBox.style.position = "absolute";
-    distanceBox.style.top = "50px";
-    distanceBox.style.left = "50%";
-    distanceBox.style.transform = "translateX(-50%)";
-    distanceBox.style.padding = "10px";
-    distanceBox.style.backgroundColor = "white";
-    distanceBox.style.border = "1px solid #ccc";
-    distanceBox.style.borderRadius = "5px";
-    distanceBox.style.zIndex = "1000";
-    distanceBox.innerText = "Click a marker to calculate route to Point B";
-
-    document.body.appendChild(distanceBox);
-}
-
-// Function to update the distance display box
-function updateDistanceDisplay(text) {
-    if (distanceBox) {
-        distanceBox.textContent = text;
-    }
-}
-
-
-
-function bounceAllPins(category) {
-    markers.forEach((marker) => marker.setMap(null));
-    const selectedLanguage = document.getElementById('language-select').value;
-    document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
-    const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
-        (li) => li.textContent.trim() === category
-    );
-    if (selectedItem) selectedItem.classList.add('highlight');
-    const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
-    const bounds = new google.maps.LatLngBounds();
-    selectedPins.forEach((pin) => {
-        const marker = markers.find(
-            (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
-        );
-        if (marker) {
-            marker.setMap(map);
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-            marker.setLabel({
-                text: pin.title[selectedLanguage],
-            });
-            bounds.extend(marker.getPosition());
-        }
-    });
-
-    if (!bounds.isEmpty()) {
-        map.fitBounds(bounds);
-    }
-}
-
-function highlightPinpoints(pointId) {
-    markers.forEach((marker) => marker.setAnimation(null)); // Remove bounce from all markers
-    const selectedLanguage = document.getElementById('language-select').value;
-
-    const location = PINPOINTS.find((point) => point.id === pointId);
-    if (location && map) {
-        map.setCenter({ lat: location.lat, lng: location.lng });
-        map.setZoom(28);
-
-        const marker = markers.find(
-            (m) => m.getPosition().lat() === location.lat && m.getPosition().lng() === location.lng
-        );
-
-        if (marker) {
-            marker.setLabel({
-                text: location.title[selectedLanguage],
-                color: "#526581",
-                fontSize: "10px",
-                fontWeight: "bold",
-            });
-            marker.setAnimation(google.maps.Animation.BOUNCE); // Bounce animation
-            setTimeout(() => {
-                marker.setAnimation(null); // Stop bouncing after 2 seconds
-            }, 2000);
-        }
-    }
-}
-
-   // Function to reload the page
-   function showAllPlatforms() {
-    location.reload();  // This will reload the page when called
-}
-
-// Add event listener to the span inside the <li> for showing all platforms
-document.querySelector('span[data-en="All Platform"]').addEventListener('click', function() {
-    showAllPlatforms();  // Call showAllPlatforms when clicked
-});
-
 // Predefined constant pinpoints with text and pin_icon1 
 const PINPOINTS = [
     // Platform 1 markers
@@ -1033,6 +313,828 @@ const PINPOINTS = [
 
 ];
 
+
+let isDirectionsVisible = false;
+
+document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+});
+
+
+// function toggleList(listId) {
+//     const list = document.getElementById(listId);
+//     list.classList.toggle("open");  // Toggle 'open' class to show/hide the list
+// }
+function toggleList(listId) {
+    // Get all dropdown lists
+    const dropdownLists = document.querySelectorAll("ul");
+
+    // Close any open dropdowns except the one being toggled
+    dropdownLists.forEach(list => {
+        if (list.id !== listId && list.classList.contains("open")) {
+            list.classList.remove("open");
+        }
+    });
+
+    // Toggle the selected dropdown
+    const list = document.getElementById(listId);
+    list.classList.toggle("open");
+
+    // Add click event to handle sublist visibility
+    const items = list.querySelectorAll("li");
+    items.forEach(item => {
+        const subList = item.querySelector("ul"); // Check if the item has a sublist
+        if (subList) {
+            item.addEventListener("click", (event) => {
+                event.stopPropagation(); // Prevent parent list toggling
+                subList.classList.toggle("open"); // Toggle the sublist
+            });
+        }
+
+        // Close the parent list when an item is clicked, if it doesn't have a sublist
+        item.addEventListener("click", () => {
+            if (!subList) {
+                list.classList.remove("open");
+            }
+        });
+    });
+}
+
+
+
+// Sidebar Toggle
+const menuIcon = document.getElementById("menuIcon");
+const sidebar = document.getElementById("sidebar");
+
+menuIcon.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    menuIcon.classList.toggle("right"); // Shift the icon to the right
+
+    // Toggle the icon visibility when the sidebar is open
+    menuIcon.classList.toggle("hidden"); // Hide the icon when sidebar is open
+
+    // Close all submenus when the sidebar is closed   
+    if (!sidebar.classList.contains("open")) {
+        document.querySelectorAll('.submenu').forEach(submenu => {
+            submenu.style.display = 'none'; // Hide all submenus
+        });
+    }
+
+});
+
+// Close sidebar when clicking outside
+document.addEventListener("click", (event) => {
+    // isZoomingProgrammatically = false;
+
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+        sidebar.classList.remove("open");
+        menuIcon.classList.remove("right");
+        menuIcon.classList.remove("hidden"); // Reset icon visibility when clicking outside
+
+        // Close all submenus when the sidebar is closed
+        document.querySelectorAll('.submenu').forEach(submenu => {
+            submenu.style.display = 'none'; // Hide all submenus
+        });
+    }
+});
+
+// Close sidebar when clicking any submenu item inside it
+sidebar.querySelectorAll('.menu-list li').forEach(submenuItem => {
+    submenuItem.addEventListener('click', (event) => {
+        const hasNestedSubmenu = submenuItem.querySelector('.submenu');
+        // isZoomingProgrammatically = false;
+        isDirectionsVisible = false;
+
+        shouldDrawDottedLine = false;
+
+
+
+        if (!hasNestedSubmenu) {
+            sidebar.classList.remove("open");
+            menuIcon.classList.remove("right");
+            menuIcon.classList.remove("hidden"); // Reset icon visibility
+
+            // Close all submenus
+            document.querySelectorAll('.submenu').forEach(submenu => {
+                submenu.style.display = 'none'; // Hide all submenus
+            });
+        }
+    });
+});
+
+// Close sidebar when clicking main menu items without submenus
+sidebar.querySelectorAll('.menu-item > button').forEach(menuButton => {
+    menuButton.addEventListener('click', (event) => {
+        const hasSubmenu = menuButton.nextElementSibling && menuButton.nextElementSibling.classList.contains('menu-list');
+        isDirectionsVisible = false;
+
+        shouldDrawDottedLine = false;
+
+        console.log("here each selecred value uis ", hasSubmenu)
+
+        if (!hasSubmenu) {
+            sidebar.classList.remove("open");
+            menuIcon.classList.remove("right");
+            menuIcon.classList.remove("hidden"); // Reset icon visibility
+        }
+    });
+});
+
+
+
+
+
+// LOCATION AND SUBMENU CODE
+let map;
+let markers = [];
+let directionsService;
+let directionsRenderer;
+let userLocation = null; // User's current location
+let userLocationMarker = null;
+let isMapCentered = false;
+let closestMarker = null; // Track the selected destination marker
+let distanceBox = null; // New box for displaying the distance on the path
+
+let shouldDrawDottedLine = true;
+let dottedLinesArray = [];
+
+let selectedMarkers = []; // To track selected markers
+let isZoomingProgrammatically = false;
+let iconChoose = '';
+
+function initMap() {
+    const customStyle = [
+        { "featureType": "water", "stylers": [{ "color": "#50B6FF" }] },
+        { "featureType": "landscape", "stylers": [{ "color": "#F1F9FF" }] },
+        { "featureType": "road", "stylers": [{ "color": "#ffffff" }] },
+        { "featureType": "poi", "stylers": [{ "visibility": "off" }] },
+        // { "featureType": "landscape.natural", "stylers": [{ "color": "#BBFF9B" }] },
+        { "featureType": "road.highway", "stylers": [{ "color": "#FFEBDE" }] },
+        {
+            featureType: "transit.line", // Targets railway tracks
+            elementType: "geometry",
+            stylers: [
+                { color: "#FFC74E" }, // Change to your desired color
+                { visibility: "simplified" }, // Simplify the line
+                { weight: 4 }, // Adjust thickness
+            ],
+        },
+        {
+            featureType: "transit.line", // Targets railway tracks
+            elementType: "labels",
+            stylers: [{ visibility: "off" }], // Remove railway labels (optional)
+        },
+    ];
+
+
+
+    const mapOptions = {
+        zoomControl: false,
+        zoom: 18,
+        center: { lat: 19.9482, lng: 73.8421 }, // Default center
+        styles: customStyle,
+        mapTypeControl: false,
+        streetViewControl: false,
+
+
+        fullscreenControl: false, // Disable fullscreen control (fullscreen button)
+
+    };
+
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    const railwayLine = new google.maps.Polyline({
+        path: [
+            { lat: 19.946810167998795, lng: 73.84199274218622 }, // Starting point , 
+            { lat: 19.94985046657326, lng: 73.84263706196272 }, // Ending point  , 
+            { lat: 19.946513449638726, lng: 73.84194493518378 }, // Starting point , 
+            { lat: 19.94905780688094, lng: 73.84250658274564 },
+        ],
+        geodesic: true,
+        strokeColor: '#FFC74E', // Color of the line
+        strokeOpacity: 1.0,
+        strokeWeight: 4,
+        icons: [{
+            icon: {
+                path: "M 0,0 L 2,0",  // Horizontal line (start to end in X direction)
+                strokeColor: '#FFC74E', // Color of the horizontal dash
+                strokeWeight: 4,
+            },
+            offset: '0',
+            repeat: '20px', // Adjust the gap between dashes (20px here)
+        }],
+    });
+
+    railwayLine.setMap(map);
+
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: {
+            strokeColor: "#004DBC", // Highlighted route in blue
+            strokeOpacity: 0.9,
+            strokeWeight: 6,
+        },
+        suppressMarkers: true, // Suppress default markers from directions
+    });
+
+    // Display user's location and add predefined markers
+    displayUserLocation();
+    PINPOINTS.forEach((pin) => {
+        addCustomMarker({ lat: pin.lat, lng: pin.lng }, pin.title, pin.icon);
+    });
+
+    map.addListener('zoom_changed', handleZoomChanged);
+    // Call handleZoomChanged immediately after the map is loaded to apply the right marker visibility
+    handleZoomChanged();
+
+    let polygon = null; // Variable to store the polygon object
+    let platformLabel = null; // Variable to store the label object
+
+    // Coordinates for highlighting the areas (Nashik region)
+    const platformCoordinates = {
+        platform1: [
+            { lat: 19.94651232696333, lng: 73.84195008739192 },
+            { lat: 19.946557206782217, lng: 73.84163827255864 },
+            { lat: 19.94967212368754, lng: 73.84257638314101 },
+            { lat: 19.949656996145993, lng: 73.84263405062848 },
+        ],
+        platform2: [
+            { lat: 19.945917044530635, lng: 73.84201509462258 },
+            { lat: 19.945947028206277, lng: 73.84188431685314 },
+            { lat: 19.94980431114777, lng: 73.84275299314311 },
+            { lat: 19.94978332308824, lng: 73.84287260695663 },
+        ],
+        platform3: [
+            { lat: 19.945917044530635, lng: 73.84201509462258 },
+            { lat: 19.945947028206277, lng: 73.84188431685314 },
+            { lat: 19.94980431114777, lng: 73.84275299314311 },
+            { lat: 19.94978332308824, lng: 73.84287260695663 },
+        ],
+        platform4: [
+            { lat: 19.9436202071113, lng: 73.8417142930895 },
+            { lat: 19.943654156095327, lng: 73.84161908124462 },
+            { lat: 19.94912395531475, lng: 73.84286265635902 },
+            { lat: 19.949101493390923, lng: 73.84294151237617 },
+        ]
+    };
+
+    // Function to create the polygon, zoom, and add label
+    function togglePolygon(platform) {
+        if (polygon) {
+            // Remove previous polygon and label if any
+            polygon.setMap(null);
+            polygon = null;
+            platformLabel.close(); // Close the label
+            platformLabel = null;
+        }
+
+        // Create the polygon for the selected platform
+        const polygonCoords = platformCoordinates[platform];
+
+        // Create the polygon using the selected coordinates
+        polygon = new google.maps.Polygon({
+            paths: polygonCoords,
+            strokeColor: '#FF8031',  // Border color (Orange)
+            strokeOpacity: 0.8,      // Border opacity
+            strokeWeight: 0,         // Border weight
+            fillColor: '#FF8031',    // Fill color (Orange)
+            fillOpacity: 0.35,       // Fill opacity
+        });
+
+        // Add the polygon to the map
+        polygon.setMap(map);
+
+        // Add label (Platform name)
+        platformLabel = new google.maps.InfoWindow({
+            content: platform.charAt(0).toUpperCase() + platform.slice(1), // Capitalize the first letter of the platform name
+            position: { lat: polygonCoords[0].lat, lng: polygonCoords[0].lng }, // Position the label near the polygon
+        });
+        platformLabel.open(map);
+
+        // Zoom into the polygon area
+        const bounds = new google.maps.LatLngBounds();
+        polygon.getPath().forEach(function (latLng) {
+            bounds.extend(latLng);
+        });
+        map.fitBounds(bounds); // Zoom to the bounds of the polygon
+
+        // Optionally, add a listener to change the polygon's style on click
+        google.maps.event.addListener(polygon, 'click', function () {
+            polygon.setOptions({
+                fillColor: '#ff0000', // Red color on click
+                strokeColor: '#ff0000'
+            });
+        });
+    }
+
+    // Event listeners for each platform in the menu
+    document.querySelectorAll('#platforms li').forEach(item => {
+        item.addEventListener('click', function () {
+            const platformId = this.innerText.trim().toLowerCase().replace(' ', ''); // Extract platform name (e.g., "platform1")
+            togglePolygon(platformId);
+        });
+    });
+
+    createDistanceBox(); // Create the new box for showing distance
+
+    const languageSelect = document.getElementById('language-select');
+    const selectedLanguage = languageSelect.value;
+    updateMarkersLanguage(selectedLanguage);
+    updateLanguage(selectedLanguage);
+}
+
+
+// Function to show a certain number of markers, removing equally from the start and end
+function showMarkersEvenly(count) {
+    const halfCount = Math.floor(count / 2);
+    const markersToShow = [
+        ...markers.slice(0, halfCount), // Start part of markers
+        ...markers.slice(-halfCount)    // End part of markers
+    ];
+
+    // Show only the selected markers
+    markersToShow.forEach(marker => marker.setMap(map));
+
+    console.log("selected MARKERS", selectedMarkers)
+
+    if (!isDirectionsVisible) {
+        // Hide markers that are not in the markersToShow array
+        markers.forEach(marker => {
+            if (!markersToShow.includes(marker) && marker.title !== selectedMarkers[0]) {
+                marker.setMap(null);
+            }
+        });
+    } else {
+        markers.forEach(marker => {
+            if (marker.title !== iconChoose) {
+                marker.setMap(null);
+            }
+        });
+
+    }
+
+}
+
+// Handle zoom level changes
+function handleZoomChanged() {
+
+    const zoomLevel = map.getZoom();
+
+    if (isZoomingProgrammatically) {
+        return;
+    }
+
+    if (zoomLevel >= 21) {
+        // Show all markers at zoom level 21 and above
+        markers.forEach(marker => marker.setMap(map));
+    } else if (zoomLevel >= 20 && zoomLevel < 21) {
+        // Show 50 markers at zoom level 20
+        showMarkersEvenly(50);
+    } else if (zoomLevel >= 19 && zoomLevel < 20) {
+        // Show 40 markers at zoom level 19
+        showMarkersEvenly(40);
+    } else if (zoomLevel >= 18 && zoomLevel < 19) {
+        // Show 35 markers at zoom level 18
+        showMarkersEvenly(25);
+    } else if (zoomLevel >= 15 && zoomLevel < 18) {
+        // Show 30 markers at zoom level 15
+        showMarkersEvenly(15);
+    } else {
+        // Hide all markers for zoom levels below 15
+        markers.forEach(marker => marker.setMap(null));
+    }
+}
+
+// Display the user's location and create a marker for it
+function displayUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(
+            (position) => {
+                userLocation = {
+                    // lat: position.coords.latitude,
+                    // lng: position.coords.longitude,
+                    lat: 19.948237975349134,
+                    lng: 73.8419811704629
+                };
+
+                // Create or update the marker for the user's location
+                if (userLocationMarker) {
+                    userLocationMarker.setPosition(userLocation);
+                } else {
+                    userLocationMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        label: {
+                            color: "#ffffff",
+                            fontSize: "12px",
+                            fontWeight: "bold",
+                        },
+                        icon: {
+                            url: "./static/img/street-view.png", // Custom marker for user
+                            scaledSize: new google.maps.Size(45, 45),
+                        },
+                    });
+                }
+
+                // Zoom and center the map on the user's location
+                if (!isMapCentered) {
+                    map.setCenter(userLocation);
+                    map.setZoom(28); // Zoom level 28 for street-level precision
+                    isMapCentered = true; // Prevent recentering after this
+                }
+
+                // If there's a closest marker, recalculate the route dynamically
+                if (closestMarker) {
+                    // console.log("here call update route")
+                    if (isDirectionsVisible || !shouldDrawDottedLine) return;
+                    updateRoute(userLocation, closestMarker.position); // Recalculate the route
+                    displayLiveDistance(userLocation, closestMarker.position); // Update live distance
+                }
+            },
+            (error) => {
+                alert("Error: Unable to fetch your location.");
+            },
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+// Listen for the button click to show the user's location
+document.getElementById('userLocationButton').addEventListener('click', function () {
+    displayUserLocation();  // Call the function to show the user's location
+});
+
+
+// Function to add a custom marker with text (title) and icon
+function addCustomMarker(location, title, icon) {
+    const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: icon
+            ? {
+                url: icon, // URL of the custom icon
+                scaledSize: new google.maps.Size(30, 30), // Custom icon size
+                labelOrigin: new google.maps.Point(15, 40), // Position of label relative to icon
+            }
+            : undefined,
+        label: {
+            text: title, // Show the title directly on the map
+            color: "#526581", // Label text color
+            fontSize: "10px",
+            fontWeight: "bold",
+        },
+    });
+
+    marker.title = title;
+    // Add a click listener to calculate the route and show distance
+    marker.addListener("click", () => {
+        if (!userLocation) {
+            alert("Your location is not available yet. Please wait.");
+            return;
+        }
+
+        closestMarker = marker; // Update the closest marker
+        updateRoute(userLocation, marker.position); // Recalculate the route
+        iconChoose = marker.title
+        displayLiveDistance(userLocation, marker.position); // Update live distance
+
+        // Hide other markers when one is selected
+        hideOtherMarkers(marker);
+    });
+
+    markers.push(marker); // Store the marker in the array
+}
+
+// Function to detect deviation and add a dotted line
+function checkDeviationAndDrawDottedLine(routePolyline) {
+    if (!userLocation || !routePolyline || !shouldDrawDottedLine) return;
+
+    const userPoint = new google.maps.LatLng(userLocation.lat, userLocation.lng);
+    const routePath = routePolyline.getPath();
+    let closestPoint = null;
+    let minDistance = Infinity;
+
+    // Find the closest point on the route to the user's location
+    routePath.forEach((point) => {
+        const distance = google.maps.geometry.spherical.computeDistanceBetween(
+            userPoint,
+            point
+        );
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestPoint = point;
+        }
+    });
+
+    // If deviation exceeds 20 meters, draw a dotted line
+    if (minDistance > 20) {
+        const dottedLine = new google.maps.Polyline({
+            path: [userPoint, closestPoint],
+            map: map,
+            strokeColor: "#526581",
+            strokeOpacity: 0.7,
+            strokeWeight: 3,
+            icons: [
+                {
+                    icon: {
+                        path: "M 0,-1 0,1",
+                        strokeOpacity: 1,
+                        scale: 2,
+                    },
+                    offset: "0",
+                    repeat: "10px",
+                },
+            ],
+        });
+
+        // Add the newly created dotted line to the array
+        dottedLinesArray.push(dottedLine);
+    }
+}
+
+
+function updateRoute(start, end) {
+    const request = {
+        origin: start,
+        destination: end,
+        travelMode: google.maps.TravelMode.WALKING,
+    };
+
+    console.log("here is reposnible for distance but not ")
+
+    directionsService.route(request, (result, status) => {
+        if (status === "OK") {
+            // Render the route
+            directionsRenderer.setDirections(result);
+            directionsRenderer.setMap(map);
+
+            isDirectionsVisible = true;
+
+            // Get the route's path
+            const routePath = result.routes[0].overview_path;
+
+            // Find the last point of the route
+            const firstRouteablePoint = routePath[0];
+
+            // Find the last point of the route
+            const lastRouteablePoint = routePath[routePath.length - 1];
+
+            hideDottedLines();
+
+            drawDottedLine(start, firstRouteablePoint);
+            // Draw a dotted line from the last point to the destination
+            drawDottedLine(lastRouteablePoint, end);
+
+            // Display total route distance
+            calculateAndDisplayRouteDistance(result.routes[0].legs[0]);
+        } else {
+            console.warn("No route found. Drawing a direct dotted line.");
+            drawDottedLine(start, end); // Draw dotted line directly if no route
+        }
+    });
+}
+
+// Function to draw a dotted line
+function drawDottedLine(startPoint, endPoint) {
+    const dottedLine = new google.maps.Polyline({
+        path: [startPoint, endPoint],
+        strokeOpacity: 0, // Make the solid line invisible
+        map: map,
+        icons: [
+            {
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE, // Dotted line as circles
+                    fillOpacity: 1,
+                    fillColor: "#74ACFF", // Black dots
+                    strokeOpacity: 1,
+                    strokeColor: "#526581",
+                    scale: 2, // Size of dots
+                },
+                offset: "0",
+                repeat: "10px", // Distance between dots
+            },
+        ],
+    });
+
+    // Add the newly created dotted line to the array
+    dottedLinesArray.push(dottedLine);
+}
+
+
+// Function to hide the dotted line when highlighting a marker
+function hideDottedLines() {
+    dottedLinesArray.forEach((line) => {
+        line.setMap(null); // Remove the dotted line from the map
+    });
+    dottedLinesArray = []; // Clear the array
+}
+
+
+// Function to calculate and display the total route distance
+function calculateAndDisplayRouteDistance(routeLeg) {
+    const totalDistance = routeLeg.distance.text; // The distance is provided in the response
+    updateDistanceDisplay(`Total route distance: ${totalDistance}`);
+}
+
+// Function to update live distance dynamically
+function displayLiveDistance(start, end) {
+    const distance = haversineDistance(start, end);
+    let distanceMessage = "";
+
+    if (!isNaN(distance)) {
+        if (distance < 1000) {
+            // Display distance in meters if less than 1 km
+            distanceMessage = `Distance: ${distance.toFixed(0)} meters`;
+        } else {
+            // Display distance in kilometers if 1 km or more
+            distanceMessage = `Distance: ${distance.toFixed(2)} km`;
+        }
+    }
+
+    updateDistanceDisplay(distanceMessage);
+}
+
+// Function to hide all markers except the selected one
+function hideOtherMarkers(selectedMarker) {
+    markers.forEach((marker) => {
+        if (marker !== selectedMarker) {
+            marker.setMap(null); // Hide the marker
+        }
+    });
+}
+
+// Function to show all markers (for back button)
+function showAllMarkers() {
+    markers.forEach((marker) => {
+        marker.setMap(map); // Show the marker again
+    });
+}
+// Function to update distance display on the map
+function updateDistanceDisplay(message) {
+    const distanceDisplay = document.getElementById("distanceDisplay");
+    if (distanceDisplay) {
+        distanceDisplay.innerText = message;
+    }
+}
+
+
+
+// Function to calculate the Haversine distance
+function haversineDistance(coords1, coords2) {
+    if (!coords1 || !coords2) return NaN;
+
+    const R = 6371; // Radius of the Earth in kilometers
+    const toRad = (value) => (value * Math.PI) / 180;
+
+    const dLat = toRad(coords2.lat - coords1.lat);
+    const dLng = toRad(coords2.lng - coords1.lng);
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRad(coords1.lat)) *
+        Math.cos(toRad(coords2.lat)) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distanceKm = R * c; // Distance in kilometers
+
+    if (distanceKm < 1) {
+        return distanceKm * 1000; // Convert to meters if distance is less than 1 km
+    } else {
+        return distanceKm; // Return distance in kilometers
+    }
+}
+
+// Create a distance box for showing live distance
+function createDistanceBox() {
+    distanceBox = document.createElement("div");
+    distanceBox.id = "distanceBox";
+    distanceBox.style.position = "absolute";
+    distanceBox.style.top = "50px";
+    distanceBox.style.left = "50%";
+    distanceBox.style.transform = "translateX(-50%)";
+    distanceBox.style.padding = "10px";
+    distanceBox.style.backgroundColor = "white";
+    distanceBox.style.border = "1px solid #ccc";
+    distanceBox.style.borderRadius = "5px";
+    distanceBox.style.zIndex = "1000";
+    distanceBox.innerText = "Click a marker to calculate route to Point B";
+
+    document.body.appendChild(distanceBox);
+}
+
+// Function to update the distance display box
+function updateDistanceDisplay(text) {
+    if (distanceBox) {
+        distanceBox.textContent = text;
+    }
+}
+
+
+
+function bounceAllPins(category) {
+    isZoomingProgrammatically = true;
+    markers.forEach((marker) => marker.setMap(null));
+    const selectedLanguage = document.getElementById('language-select').value;
+    document.querySelectorAll('.menu-list li').forEach((li) => li.classList.remove('highlight'));
+
+    const selectedItem = Array.from(document.querySelectorAll('.menu-list li')).find(
+        (li) => li.textContent.trim() === category
+    );
+
+    if (selectedItem) selectedItem.classList.add('highlight');
+    const selectedPins = PINPOINTS.filter((pin) => pin.category === category);
+    const bounds = new google.maps.LatLngBounds();
+    selectedPins.forEach((pin) => {
+        const marker = markers.find(
+            (m) => m.getPosition().lat() === pin.lat && m.getPosition().lng() === pin.lng
+        );
+        if (marker) {
+            marker.setMap(map);
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            marker.setLabel({
+                text: pin.title[selectedLanguage],
+                fontSize: '10px',
+            });
+            bounds.extend(marker.getPosition());
+        }
+    });
+
+    if (!bounds.isEmpty()) {
+        map.fitBounds(bounds);
+    }
+
+    if (!isDirectionsVisible) {
+        // Only clear directions if necessary
+        directionsRenderer.setMap(null);
+        directionsRenderer.setDirections({});
+        isDirectionsVisible = false;
+        shouldDrawDottedLine = false;
+        hideDottedLines();
+    }
+    // isZoomingProgrammatically = false;
+
+}
+
+function highlightPinpoints(pointId) {
+    markers.forEach((marker) => marker.setAnimation(null)); // Remove bounce from all markers
+    const selectedLanguage = document.getElementById('language-select').value;
+
+    const location = PINPOINTS.find((point) => point.id === pointId);
+
+    if (location && map) {
+        map.setCenter({ lat: location.lat, lng: location.lng });
+        map.setZoom(28);
+
+        const marker = markers.find(
+            (m) => m.getPosition().lat() === location.lat && m.getPosition().lng() === location.lng
+        );
+
+        if (marker) {
+            marker.setLabel({
+                text: location.title[selectedLanguage],
+                color: "#526581",
+                fontSize: "10px",
+                fontWeight: "bold",
+                marginBottom: "10px"
+            });
+            marker.setAnimation(google.maps.Animation.BOUNCE); // Bounce animation
+            isZoomingProgrammatically = false;
+            selectedMarkers.push(marker.title); // Add this marker to the selected markers list
+
+            if (isDirectionsVisible) {
+                // Only clear directions if necessary
+                directionsRenderer.setMap(null);
+                directionsRenderer.setDirections({});
+                isDirectionsVisible = false;
+                shouldDrawDottedLine = false;
+                hideDottedLines();
+            }
+
+            marker.setMap(map); // Ensure it stays visible even with zoom changes
+
+            setTimeout(() => {
+                marker.setAnimation(null); // Stop bouncing after 2 seconds
+            }, 2000);
+        }
+    }
+}
+
+// Function to reload the page
+function showAllPlatforms() {
+    location.reload();  // This will reload the page when called
+}
+
+// Add event listener to the span inside the <li> for showing all platforms
+document.querySelector('span[data-en="All Platform"]').addEventListener('click', function () {
+    showAllPlatforms();  // Call showAllPlatforms when clicked
+});
+
+
 // MENU BUTTONS CODE
 
 // NASHIK MAP CODE
@@ -1080,6 +1182,7 @@ function displayAllPinpoints() {
 
 // Function to search and show specific pinpoints based on the transcript
 function searchAndShowPinpoints(transcript) {
+
     // Filter the tourist places and pinpoints based on the search term
     const allLocations = [...TOURIST_PLACES, ...PINPOINTS];
     const filteredLocations = allLocations.filter(location =>
@@ -1156,7 +1259,7 @@ function updateMarkersLanguage(language) {
     TOURIST_PLACES.forEach((place) => {
         addCustomMarker({ lat: place.lat, lng: place.lng }, place.title[language], place.icon);
     });
-     handleZoomChanged();
+    handleZoomChanged();
 }
 
 
@@ -1204,9 +1307,33 @@ document.querySelectorAll('.menu-list > li').forEach((menuItem) => {
     menuItem.addEventListener('click', function (e) {
         e.stopPropagation(); // Prevent event bubbling
         const submenu = this.querySelector('.submenu');
+
+        // Close the search suggestions (empty the <ul> that holds them)
+        const searchSuggestions = document.querySelector(".search-suggestions");
+        if (searchSuggestions) {
+            searchSuggestions.innerHTML = ""; // Clear suggestions
+        }
+
+        const searchInput = document.querySelector(".search-bar input");
+        searchInput.innerHTML = ""; // Clear input content
+
+        // Close all other submenus
+        document.querySelectorAll('.submenu').forEach(otherSubmenu => {
+            if (otherSubmenu !== submenu) {
+                otherSubmenu.style.display = 'none';
+            }
+        });
+
+        // If the current submenu exists, toggle its display
         if (submenu) {
-            // Toggle the display of the submenu
             submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Close all submenus when the sidebar is closed   
+        if (!sidebar.classList.contains("open")) {
+            document.querySelectorAll('.submenu').forEach(submenu => {
+                submenu.style.display = 'none'; // Hide all submenus
+            });
         }
     });
 });
@@ -1236,6 +1363,8 @@ document.addEventListener("DOMContentLoaded", function () {
         searchSuggestions.innerHTML = ""; // Clear previous suggestions
 
         if (query) {
+            console.log("searchInput");
+
             // Search in Tourist Places
             const matchingTouristPlaces = touristPlaces.filter(place =>
                 place.title.toLowerCase().includes(query)
@@ -1249,6 +1378,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     searchInput.value = place.title; // Set the clicked value in the input
                     place.element.click(); // Trigger the place's click functionality
                     searchSuggestions.innerHTML = ""; // Clear suggestions
+                    searchInput.classList.remove("with-border"); // Remove border after selection
                 });
                 searchSuggestions.appendChild(suggestionItem);
             });
@@ -1257,16 +1387,33 @@ document.addEventListener("DOMContentLoaded", function () {
             sidebarItems.forEach(item => {
                 if (item.textContent.toLowerCase().includes(query)) {
                     const suggestionItem = document.createElement("li");
-                    suggestionItem.textContent = item.textContent;
+
+                    // Trim the text content to remove leading/trailing spaces
+                    suggestionItem.textContent = item.textContent.trim(); // Apply trim() here
                     suggestionItem.classList.add("suggestion-item");
+
                     suggestionItem.addEventListener("click", () => {
-                        searchInput.value = item.textContent; // Set the clicked value in the input
+                        // Trim the clicked value as well before setting it to the search input
+                        searchInput.value = suggestionItem.textContent.trim(); // Apply trim() here as well
                         item.click(); // Trigger the sidebar item's functionality
                         searchSuggestions.innerHTML = ""; // Clear suggestions
+                        searchInput.classList.remove("with-border"); // Remove border after selection
                     });
+
                     searchSuggestions.appendChild(suggestionItem);
                 }
             });
+
+            // If there are suggestions, add the border to the input
+            if (searchSuggestions.children.length > 0) {
+                searchInput.classList.add("with-border");
+            } else {
+                searchInput.classList.remove("with-border");
+            }
+
+        } else {
+            // If the input is empty, remove the border
+            searchInput.classList.remove("with-border");
         }
     });
 
@@ -1283,6 +1430,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
 
 
 //  

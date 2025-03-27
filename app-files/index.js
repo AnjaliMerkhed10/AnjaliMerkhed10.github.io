@@ -21,6 +21,8 @@ document.addEventListener('contextmenu', function(e) {
 
 'use strict';
 
+let scene_num;
+
 (function() {
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
@@ -35,7 +37,6 @@ document.addEventListener('contextmenu', function(e) {
   var sceneListToggleElement = document.querySelector('#sceneListToggle');
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
-  
 
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
@@ -270,12 +271,15 @@ document.addEventListener('contextmenu', function(e) {
   }
 
   function switchScene(scene) {
+    // console.log("here call", scene.data)
+    scene_num = scene.data
     stopAutorotate();
     scene.view.setParameters(scene.data.initialViewParameters);
     scene.scene.switchTo();
     startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
+
   }
 
   // function updateSceneName(scene) {
@@ -476,6 +480,81 @@ document.addEventListener('contextmenu', function(e) {
     return null;
   }
 
+
+
+
+  //Here the 3d view is 
+
+  document.addEventListener('mousemove', function(event) {
+    // Get all images with the class 'link-hotspot-icon'
+    var viewButtons = document.getElementsByClassName("link-hotspot-icon");
+
+    // Calculate rotation based on mouse position
+    var mouseX = event.clientX;
+    var mouseY = event.clientY;
+
+    
+    console.log("here scene_num", scene_num.linkHotspots    )
+
+    // Loop through all the elements and update their position and rotation
+    for (var i = 0; i < viewButtons.length; i++) {
+      var viewButton = viewButtons[i];
+  
+      console.log("view imag--->", viewButton);
+  
+      // Get the current transform style (if any)
+      var currentTransform = viewButton.style.transform;
+  
+      // If no current transform is applied, set it to an empty string
+      if (!currentTransform) {
+          currentTransform = "";
+      }
+  
+      // Apply transform with translateX, translateY based on mouse position
+      var newTransform = `translateX(${mouseX / 12}px) translateY(${-mouseY / 4}px)`;
+  
+      // If there is an existing rotation, keep it
+      var rotationMatch = currentTransform.match(/rotate\(([^)]+)\)/);
+      if (rotationMatch) {
+          // Keep the existing rotation
+          newTransform += ` rotate(${rotationMatch[1]})`;
+      } else {
+          // Otherwise, set the default rotation (or no rotation at all)
+          newTransform += ` rotate(0deg)`;
+      }
+  
+      // Apply the new transform to the element
+      viewButton.style.transform = newTransform;
+  
+      // Optionally, update the rotation in data.js or a similar object
+      // updateRotationInData(rotation); // Uncomment and use if needed
+  }
+  
+});
+
+// Function to update rotation in the data.js (or a similar object)
+// function updateRotationInData(rotation) {
+//     // Assuming your linkHotspots are stored in an array in the data.js
+//     // var data = {
+//     //     "linkHotspots": [
+//     //         {
+//     //             "yaw": 1.296531152896442,
+//     //             "pitch": 0.1802174907633809,
+//     //             "rotation": 0,  // Initially set to 0 or other value
+//     //             "target": "1-pf1-entry"
+//     //         }
+//     //     ]
+//     // };
+
+//     // Find the relevant linkHotspot (e.g., you can use index or some identifier)
+//     // For this example, we will update the first linkHotspot's rotation
+//     data.linkHotspots[0].rotation = rotation;
+
+//     console.log("Updated rotation in data.js:", data.linkHotspots[0].rotation);
+// }
+  
+  
+
   function findSceneDataById(id) {
     for (var i = 0; i < data.scenes.length; i++) {
       if (data.scenes[i].id === id) {
@@ -564,6 +643,4 @@ document.addEventListener('contextmenu', function(e) {
   };
 
 })();
-
-
 
