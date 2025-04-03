@@ -430,7 +430,7 @@ sidebar.querySelectorAll('.menu-item > button').forEach(menuButton => {
 
         shouldDrawDottedLine = false;
 
-        console.log("here each selecred value uis ", hasSubmenu)
+        // console.log("here each selecred value uis ", hasSubmenu)
 
         if (!hasSubmenu) {
             sidebar.classList.remove("open");
@@ -656,7 +656,7 @@ function showMarkersEvenly(count) {
     // Show only the selected markers
     markersToShow.forEach(marker => marker.setMap(map));
 
-    console.log("selected MARKERS", selectedMarkers)
+    // console.log("selected MARKERS", selectedMarkers)
 
     if (!isDirectionsVisible) {
         // Hide markers that are not in the markersToShow array
@@ -712,10 +712,10 @@ function displayUserLocation() {
         navigator.geolocation.watchPosition(
             (position) => {
                 userLocation = {
-                    // lat: position.coords.latitude,
-                    // lng: position.coords.longitude,
-                    lat: 19.948237975349134,
-                    lng: 73.8419811704629
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                    // lat: 19.948237975349134,
+                    // lng: 73.8419811704629
                 };
 
                 // Create or update the marker for the user's location
@@ -863,7 +863,6 @@ function updateRoute(start, end) {
         travelMode: google.maps.TravelMode.WALKING,
     };
 
-    console.log("here is reposnible for distance but not ")
 
     directionsService.route(request, (result, status) => {
         if (status === "OK") {
@@ -1363,7 +1362,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchSuggestions.innerHTML = ""; // Clear previous suggestions
 
         if (query) {
-            console.log("searchInput");
+            // console.log("searchInput");
 
             // Search in Tourist Places
             const matchingTouristPlaces = touristPlaces.filter(place =>
