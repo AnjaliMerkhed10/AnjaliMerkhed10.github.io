@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-document.addEventListener('contextmenu', function(e) {
+document.addEventListener('contextmenu', function (e) {
   e.preventDefault();
 });
 
@@ -23,7 +23,7 @@ document.addEventListener('contextmenu', function(e) {
 
 let scene_num;
 
-(function() {
+(function () {
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
   var screenfull = window.screenfull;
@@ -40,7 +40,7 @@ let scene_num;
 
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
-    var setMode = function() {
+    var setMode = function () {
       if (mql.matches) {
         document.body.classList.remove('desktop');
         document.body.classList.add('mobile');
@@ -58,7 +58,7 @@ let scene_num;
 
   // Detect whether we are on a touch device.
   document.body.classList.add('no-touch');
-  window.addEventListener('touchstart', function() {
+  window.addEventListener('touchstart', function () {
     document.body.classList.remove('no-touch');
     document.body.classList.add('touch');
   });
@@ -79,14 +79,14 @@ let scene_num;
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
 
   // Create scenes.
-  var scenes = data.scenes.map(function(data) {
+  var scenes = data.scenes.map(function (data) {
     var urlPrefix = "tiles";
     var source = Marzipano.ImageUrlSource.fromString(
       urlPrefix + "/" + data.id + "/{z}/{f}/{y}/{x}.jpg",
       { cubeMapPreviewUrl: urlPrefix + "/" + data.id + "/preview.jpg" });
     var geometry = new Marzipano.CubeGeometry(data.levels);
 
-    var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180);
+    var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100 * Math.PI / 180, 120 * Math.PI / 180);
     var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
 
     var scene = viewer.createScene({
@@ -97,13 +97,13 @@ let scene_num;
     });
 
     // Create link hotspots.
-    data.linkHotspots.forEach(function(hotspot) {
+    data.linkHotspots.forEach(function (hotspot) {
       var element = createLinkHotspotElement(hotspot);
       scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
     });
 
     // Create info hotspots.
-    data.infoHotspots.forEach(function(hotspot) {
+    data.infoHotspots.forEach(function (hotspot) {
       var element = createInfoHotspotElement(hotspot);
       scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
     });
@@ -115,7 +115,7 @@ let scene_num;
     };
   });
 
-    // -------------------
+  // -------------------
 
 
   // Display the initial scene.
@@ -127,24 +127,24 @@ let scene_num;
 
 
   function handleOrientation(event) {
-      if (!activeScene) return;
+    if (!activeScene) return;
 
-      let yaw = -event.alpha * (Math.PI / 180);   // Convert to radians
-      let pitch = event.beta * (Math.PI / 180);
+    let yaw = -event.alpha * (Math.PI / 180);   // Convert to radians
+    let pitch = event.beta * (Math.PI / 180);
 
-      scenes.forEach((scene) => {
-        if (scene && scene.view) {
-          scene.view.setYaw(yaw);
-          scene.view.setPitch(pitch);
-        }
-      });
+    scenes.forEach((scene) => {
+      if (scene && scene.view) {
+        scene.view.setYaw(yaw);
+        scene.view.setPitch(pitch);
+      }
+    });
 
-      activeScene.view.setYaw(yaw);
-      activeScene.view.setPitch(pitch);
+    activeScene.view.setYaw(yaw);
+    activeScene.view.setPitch(pitch);
 
-      document.getElementById('alpha').textContent = event.alpha.toFixed(2);
-      document.getElementById('beta').textContent = event.beta.toFixed(2);
-      document.getElementById('gamma').textContent = event.gamma.toFixed(2);
+    document.getElementById('alpha').textContent = event.alpha.toFixed(2);
+    document.getElementById('beta').textContent = event.beta.toFixed(2);
+    document.getElementById('gamma').textContent = event.gamma.toFixed(2);
   }
 
 
@@ -169,12 +169,12 @@ let scene_num;
   function disableMotionControls() {
     window.removeEventListener('deviceorientation', handleOrientation);
     toggleButtons(false);
-  
+
     // Reset displayed data to 0
     document.getElementById('alpha').textContent = "0";
     document.getElementById('beta').textContent = "0";
     document.getElementById('gamma').textContent = "0";
-  
+
     // Reset scene view if necessary
     if (activeScene) {
       activeScene.view.setYaw(0);
@@ -186,11 +186,11 @@ let scene_num;
     document.getElementById('requestPermissionButton').style.display = enable ? 'none' : 'block';
     document.getElementById('disablePermissionButton').style.display = enable ? 'block' : 'none';
   }
-  
+
   // Event listeners for buttons
   document.getElementById('requestPermissionButton').addEventListener('click', requestPermission);
   document.getElementById('disablePermissionButton').addEventListener('click', disableMotionControls);
- 
+
 
 
   // -----------------------
@@ -199,7 +199,7 @@ let scene_num;
   var autorotate = Marzipano.autorotate({
     yawSpeed: 0.03,
     targetPitch: 0,
-    targetFov: Math.PI/2
+    targetFov: Math.PI / 2
   });
   if (data.settings.autorotateEnabled) {
     autorotateToggleElement.classList.add('enabled');
@@ -211,10 +211,10 @@ let scene_num;
   // Set up fullscreen mode, if supported.
   if (screenfull.enabled && data.settings.fullscreenButton) {
     document.body.classList.add('fullscreen-enabled');
-    fullscreenToggleElement.addEventListener('click', function() {
+    fullscreenToggleElement.addEventListener('click', function () {
       screenfull.toggle();
     });
-    screenfull.on('change', function() {
+    screenfull.on('change', function () {
       if (screenfull.isFullscreen) {
         fullscreenToggleElement.classList.add('enabled');
       } else {
@@ -234,9 +234,9 @@ let scene_num;
   }
 
   // Set handler for scene switch.
-  scenes.forEach(function(scene) {
+  scenes.forEach(function (scene) {
     var el = document.querySelector('#sceneList .scene[data-id="' + scene.data.id + '"]');
-    el.addEventListener('click', function() {
+    el.addEventListener('click', function () {
       switchScene(scene);
       // On mobile, hide scene list after selecting a scene.
       if (document.body.classList.contains('mobile')) {
@@ -259,12 +259,12 @@ let scene_num;
 
   // Associate view controls with elements.
   var controls = viewer.controls();
-  controls.registerMethod('upElement',    new Marzipano.ElementPressControlMethod(viewUpElement,     'y', -velocity, friction), true);
-  controls.registerMethod('downElement',  new Marzipano.ElementPressControlMethod(viewDownElement,   'y',  velocity, friction), true);
-  controls.registerMethod('leftElement',  new Marzipano.ElementPressControlMethod(viewLeftElement,   'x', -velocity, friction), true);
-  controls.registerMethod('rightElement', new Marzipano.ElementPressControlMethod(viewRightElement,  'x',  velocity, friction), true);
-  controls.registerMethod('inElement',    new Marzipano.ElementPressControlMethod(viewInElement,  'zoom', -velocity, friction), true);
-  controls.registerMethod('outElement',   new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom',  velocity, friction), true);
+  controls.registerMethod('upElement', new Marzipano.ElementPressControlMethod(viewUpElement, 'y', -velocity, friction), true);
+  controls.registerMethod('downElement', new Marzipano.ElementPressControlMethod(viewDownElement, 'y', velocity, friction), true);
+  controls.registerMethod('leftElement', new Marzipano.ElementPressControlMethod(viewLeftElement, 'x', -velocity, friction), true);
+  controls.registerMethod('rightElement', new Marzipano.ElementPressControlMethod(viewRightElement, 'x', velocity, friction), true);
+  controls.registerMethod('inElement', new Marzipano.ElementPressControlMethod(viewInElement, 'zoom', -velocity, friction), true);
+  controls.registerMethod('outElement', new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom', velocity, friction), true);
 
   function sanitize(s) {
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
@@ -313,15 +313,15 @@ let scene_num;
   }
 
   var icons = sceneListToggleElement.querySelectorAll('img');
-    
-    // If the images are present, remove them
-    if (icons.length > 0) {
-        icons.forEach(function(icon) {
-            icon.style.display = 'none'; // Hides the images
-        });
-    }
- 
-  
+
+  // If the images are present, remove them
+  if (icons.length > 0) {
+    icons.forEach(function (icon) {
+      icon.style.display = 'none'; // Hides the images
+    });
+  }
+
+
 
 
   function startAutorotate() {
@@ -360,14 +360,14 @@ let scene_num;
     icon.classList.add('link-hotspot-icon');
 
     // Set rotation transform.
-    var transformProperties = [ '-ms-transform', '-webkit-transform', 'transform' ];
+    var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
     for (var i = 0; i < transformProperties.length; i++) {
       var property = transformProperties[i];
       icon.style[property] = 'rotate(' + hotspot.rotation + 'rad)';
     }
 
     // Add click event handler.
-    wrapper.addEventListener('click', function() {
+    wrapper.addEventListener('click', function () {
       switchScene(findSceneById(hotspot.target));
     });
 
@@ -398,13 +398,13 @@ let scene_num;
     var header = document.createElement('div');
     header.classList.add('info-hotspot-header');
 
-   // Create image element.
-   var iconWrapper = document.createElement('div');
-   // iconWrapper.classList.add('info-hotspot-icon-wrapper');
-   var icon = document.createElement('img');
-   // icon.src = 'img/info.png';
-   // icon.classList.add('info-hotspot-icon');
-   iconWrapper.appendChild(icon);
+    // Create image element.
+    var iconWrapper = document.createElement('div');
+    // iconWrapper.classList.add('info-hotspot-icon-wrapper');
+    var icon = document.createElement('img');
+    // icon.src = 'img/info.png';
+    // icon.classList.add('info-hotspot-icon');
+    iconWrapper.appendChild(icon);
 
     // Create title element.
     var titleWrapper = document.createElement('div');
@@ -442,7 +442,7 @@ let scene_num;
     modal.classList.add('info-hotspot-modal');
     document.body.appendChild(modal);
 
-    var toggle = function() {
+    var toggle = function () {
       wrapper.classList.toggle('visible');
       modal.classList.toggle('visible');
     };
@@ -462,10 +462,10 @@ let scene_num;
 
   // Prevent touch and scroll events from reaching the parent element.
   function stopTouchAndScrollEventPropagation(element, eventList) {
-    var eventList = [ 'touchstart', 'touchmove', 'touchend', 'touchcancel',
-                      'wheel', 'mousewheel' ];
+    var eventList = ['touchstart', 'touchmove', 'touchend', 'touchcancel',
+      'wheel', 'mousewheel'];
     for (var i = 0; i < eventList.length; i++) {
-      element.addEventListener(eventList[i], function(event) {
+      element.addEventListener(eventList[i], function (event) {
         event.stopPropagation();
       });
     }
@@ -485,75 +485,127 @@ let scene_num;
 
   //Here the 3d view is 
 
-  document.addEventListener('mousemove', function(event) {
+  // Function to handle the mousemove and touchmove events
+  function handleMovement(event) {
     // Get all images with the class 'link-hotspot-icon'
     var viewButtons = document.getElementsByClassName("link-hotspot-icon");
 
-    // Calculate rotation based on mouse position
-    var mouseX = event.clientX;
-    var mouseY = event.clientY;
+    // Calculate position based on the event (mouse or touch)
+    var mouseX, mouseY;
 
-    
-    console.log("here scene_num", scene_num.linkHotspots    )
+    // For mouse events, use clientX and clientY
+    if (event.type === 'mousemove') {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    }
+    // For touch events, use touches[0] (first touch point)
+    else if (event.type === 'touchmove') {
+      mouseX = event.touches[0].clientX;
+      mouseY = event.touches[0].clientY;
+    }
 
     // Loop through all the elements and update their position and rotation
     for (var i = 0; i < viewButtons.length; i++) {
       var viewButton = viewButtons[i];
-  
-      console.log("view imag--->", viewButton);
-  
+
       // Get the current transform style (if any)
       var currentTransform = viewButton.style.transform;
-  
+
       // If no current transform is applied, set it to an empty string
       if (!currentTransform) {
-          currentTransform = "";
+        currentTransform = "";
       }
-  
-      // Apply transform with translateX, translateY based on mouse position
+
+      // Apply transform with translateX, translateY based on mouse or touch position
       var newTransform = `translateX(${mouseX / 12}px) translateY(${-mouseY / 4}px)`;
-  
+
       // If there is an existing rotation, keep it
       var rotationMatch = currentTransform.match(/rotate\(([^)]+)\)/);
       if (rotationMatch) {
-          // Keep the existing rotation
-          newTransform += ` rotate(${rotationMatch[1]})`;
+        // Keep the existing rotation
+        newTransform += ` rotate(${rotationMatch[1]})`;
       } else {
-          // Otherwise, set the default rotation (or no rotation at all)
-          newTransform += ` rotate(0deg)`;
+        // Otherwise, set the default rotation (or no rotation at all)
+        newTransform += ` rotate(0deg)`;
       }
-  
+
       // Apply the new transform to the element
       viewButton.style.transform = newTransform;
-  
-      // Optionally, update the rotation in data.js or a similar object
-      // updateRotationInData(rotation); // Uncomment and use if needed
+    }
   }
-  
-});
 
-// Function to update rotation in the data.js (or a similar object)
-// function updateRotationInData(rotation) {
-//     // Assuming your linkHotspots are stored in an array in the data.js
-//     // var data = {
-//     //     "linkHotspots": [
-//     //         {
-//     //             "yaw": 1.296531152896442,
-//     //             "pitch": 0.1802174907633809,
-//     //             "rotation": 0,  // Initially set to 0 or other value
-//     //             "target": "1-pf1-entry"
-//     //         }
-//     //     ]
-//     // };
+  // Add event listeners for both mouse and touch events
+  document.addEventListener('mousemove', handleMovement);  // For desktop mouse movement
+  document.addEventListener('touchmove', handleMovement);  // For mobile touch movement
 
-//     // Find the relevant linkHotspot (e.g., you can use index or some identifier)
-//     // For this example, we will update the first linkHotspot's rotation
-//     data.linkHotspots[0].rotation = rotation;
 
-//     console.log("Updated rotation in data.js:", data.linkHotspots[0].rotation);
-// }
-  
-  
+
+  //   document.addEventListener('mousemove', function(event) {
+  //     // Get all images with the class 'link-hotspot-icon'
+  //     var viewButtons = document.getElementsByClassName("link-hotspot-icon");
+
+  //     // Calculate rotation based on mouse position
+  //     var mouseX = event.clientX;
+  //     var mouseY = event.clientY;
+
+  //     // Loop through all the elements and update their position and rotation
+  //     for (var i = 0; i < viewButtons.length; i++) {
+  //       var viewButton = viewButtons[i];
+
+  //       console.log("view imag--->", viewButton);
+
+  //       // Get the current transform style (if any)
+  //       var currentTransform = viewButton.style.transform;
+
+  //       // If no current transform is applied, set it to an empty string
+  //       if (!currentTransform) {
+  //           currentTransform = "";
+  //       }
+
+  //       // Apply transform with translateX, translateY based on mouse position
+  //       var newTransform = `translateX(${mouseX / 12}px) translateY(${-mouseY / 4}px)`;
+
+  //       // If there is an existing rotation, keep it
+  //       var rotationMatch = currentTransform.match(/rotate\(([^)]+)\)/);
+  //       if (rotationMatch) {
+  //           // Keep the existing rotation
+  //           newTransform += ` rotate(${rotationMatch[1]})`;
+  //       } else {
+  //           // Otherwise, set the default rotation (or no rotation at all)
+  //           newTransform += ` rotate(0deg)`;
+  //       }
+
+  //       // Apply the new transform to the element
+  //       viewButton.style.transform = newTransform;
+
+  //       // Optionally, update the rotation in data.js or a similar object
+  //       // updateRotationInData(rotation); // Uncomment and use if needed
+  //   }
+
+  // });
+
+  // Function to update rotation in the data.js (or a similar object)
+  // function updateRotationInData(rotation) {
+  //     // Assuming your linkHotspots are stored in an array in the data.js
+  //     // var data = {
+  //     //     "linkHotspots": [
+  //     //         {
+  //     //             "yaw": 1.296531152896442,
+  //     //             "pitch": 0.1802174907633809,
+  //     //             "rotation": 0,  // Initially set to 0 or other value
+  //     //             "target": "1-pf1-entry"
+  //     //         }
+  //     //     ]
+  //     // };
+
+  //     // Find the relevant linkHotspot (e.g., you can use index or some identifier)
+  //     // For this example, we will update the first linkHotspot's rotation
+  //     data.linkHotspots[0].rotation = rotation;
+
+  //     console.log("Updated rotation in data.js:", data.linkHotspots[0].rotation);
+  // }
+
+
 
   function findSceneDataById(id) {
     for (var i = 0; i < data.scenes.length; i++) {
@@ -569,77 +621,77 @@ let scene_num;
 
 })();
 
-(function() {
+(function () {
   var Marzipano = window.Marzipano;
   var viewer;
 
   // Initialize the viewer when the document is ready
-  document.addEventListener('DOMContentLoaded', function() {
-      var panoElement = document.querySelector('#pano');
-      viewer = new Marzipano.Viewer(panoElement, {
-          controls: {
-              mouseViewMode: 'drag' // Adjust this depending on your need
-          }
-      });
-
-      // Get the scene ID from the URL (if any)
-      const sceneId = getSceneFromUrl();
-      if (sceneId) {
-          showScene(sceneId); // Show the scene based on the URL parameter
-      } else {
-          showScene('1-pf1-entry'); // Default to a scene if no scene ID is in the URL
+  document.addEventListener('DOMContentLoaded', function () {
+    var panoElement = document.querySelector('#pano');
+    viewer = new Marzipano.Viewer(panoElement, {
+      controls: {
+        mouseViewMode: 'drag' // Adjust this depending on your need
       }
+    });
+
+    // Get the scene ID from the URL (if any)
+    const sceneId = getSceneFromUrl();
+    if (sceneId) {
+      showScene(sceneId); // Show the scene based on the URL parameter
+    } else {
+      showScene('1-pf1-entry'); // Default to a scene if no scene ID is in the URL
+    }
   });
 
   // Function to get the scene ID from the URL
   function getSceneFromUrl() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get('scene');
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('scene');
   }
 
   // Function to find a scene by its ID from the list of scenes
   function findSceneById(id) {
-      for (var i = 0; i < data.scenes.length; i++) {
-          if (data.scenes[i].id === id) {
-              return data.scenes[i];
-          }
+    for (var i = 0; i < data.scenes.length; i++) {
+      if (data.scenes[i].id === id) {
+        return data.scenes[i];
       }
-      return null;
+    }
+    return null;
   }
 
   // Function to update the scene name in the UI
   function updateSceneName(scene) {
-      const sceneNameElement = document.querySelector('#sceneName');
-      if (sceneNameElement) {
-          sceneNameElement.innerHTML = sanitize(scene.name);
-      }
+    const sceneNameElement = document.querySelector('#sceneName');
+    if (sceneNameElement) {
+      sceneNameElement.innerHTML = sanitize(scene.name);
+    }
   }
 
   // Function to sanitize scene name (to avoid HTML injection)
   function sanitize(s) {
-      return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
+    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
   }
 
   // Function to switch to the selected scene
   function switchScene(scene) {
-      viewer.scene(scene.id).switchTo();
-      updateSceneName(scene);
+    viewer.scene(scene.id).switchTo();
+    updateSceneName(scene);
   }
 
   // Function to show the scene based on its ID
   function showScene(sceneId) {
-      var scene = findSceneById(sceneId);
-      if (scene) {
-          switchScene(scene);
-      }
+    var scene = findSceneById(sceneId);
+    if (scene) {
+      switchScene(scene);
+    }
   }
 
   // Function to load a scene when a menu item is clicked
-  window.loadScene = function(sceneId) {
-      var scene = findSceneById(sceneId);
-      if (scene) {
-          switchScene(scene);
-      }
+  window.loadScene = function (sceneId) {
+    var scene = findSceneById(sceneId);
+    if (scene) {
+      switchScene(scene);
+    }
   };
 
 })();
