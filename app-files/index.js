@@ -359,12 +359,12 @@ let scene_num;
     icon.src = 'img/link.png';
     icon.classList.add('link-hotspot-icon');
 
-    // Set rotation transform.
-    var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
-    for (var i = 0; i < transformProperties.length; i++) {
-      var property = transformProperties[i];
-      icon.style[property] = 'rotate(' + hotspot.rotation + 'rad)';
-    }
+    // // Set rotation transform.
+    // var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
+    // for (var i = 0; i < transformProperties.length; i++) {
+    //   var property = transformProperties[i];
+    //   icon.style[property] = 'rotate(' + hotspot.rotation + 'rad)';
+    // }
 
     // Add click event handler.
     wrapper.addEventListener('click', function () {
