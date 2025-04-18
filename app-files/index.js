@@ -21,8 +21,6 @@ document.addEventListener('contextmenu', function (e) {
 
 'use strict';
 
-let scene_num;
-
 (function () {
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
@@ -37,6 +35,7 @@ let scene_num;
   var sceneListToggleElement = document.querySelector('#sceneListToggle');
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
+
 
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
@@ -271,15 +270,12 @@ let scene_num;
   }
 
   function switchScene(scene) {
-    // console.log("here call", scene.data)
-    scene_num = scene.data
     stopAutorotate();
     scene.view.setParameters(scene.data.initialViewParameters);
     scene.scene.switchTo();
     startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
-
   }
 
   // function updateSceneName(scene) {
@@ -359,7 +355,7 @@ let scene_num;
     icon.src = 'img/link.png';
     icon.classList.add('link-hotspot-icon');
 
-    // // Set rotation transform.
+    // Set rotation transform.
     // var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
     // for (var i = 0; i < transformProperties.length; i++) {
     //   var property = transformProperties[i];
@@ -386,6 +382,60 @@ let scene_num;
 
     return wrapper;
   }
+
+
+  var currentMouseYaw = 0;
+  var currentMousePitch = 0;
+
+  viewer.addEventListener('viewChange', function () {
+    var view = viewer.view();  // Assuming viewer.view() gives access to yaw, pitch
+    currentMouseYaw = view.yaw();
+    currentMousePitch = view.pitch();
+
+    updateHotspotPositions();
+  });
+
+  // function updateHotspotPositions() {
+  //   // Assuming you have a reference to the DOM elements of hotspots
+  //   var linkHotspots = document.querySelectorAll('.link-hotspot');
+
+  //   console.log("here is calling")
+
+  //   console.log("currentMouseYaw-->",currentMouseYaw)
+  //   console.log("currentMousePitch-->",currentMousePitch)
+
+
+  //   linkHotspots.forEach(function (hotspotEl) {
+  //     var rotation = currentMouseYaw; // Or however you want to modify
+  //     var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
+  //     for (var i = 0; i < transformProperties.length; i++) {
+  //       var property = transformProperties[i];
+  //       hotspotEl.style[property] = 'rotate(' + rotation + 'rad)';
+  //     }
+  //   });
+  // }
+
+  function updateHotspotPositions() {
+    var linkHotspots = document.querySelectorAll('.link-hotspot');
+  
+    linkHotspots.forEach(function (hotspotEl) {
+      // Convert yaw (-π to π) and pitch (-π/2 to π/2) to screen x and y
+      var x = (currentMouseYaw / (Math.PI * 2)) * window.innerWidth + (window.innerWidth / 2);
+      var y = (currentMousePitch / Math.PI) * window.innerHeight + (window.innerHeight / 2);
+  
+      // Wrap around if needed
+      x = (x + window.innerWidth) % window.innerWidth;
+      y = (y + window.innerHeight) % window.innerHeight;
+  
+      // Move the hotspot wrapper
+      hotspotEl.style.position = 'absolute';
+      hotspotEl.style.left = x + 'px';
+      hotspotEl.style.top = y + 'px';
+    });
+  }
+  
+
+
 
   function createInfoHotspotElement(hotspot) {
 
@@ -480,133 +530,6 @@ let scene_num;
     return null;
   }
 
-
-
-
-  //Here the 3d view is 
-
-  // Function to handle the mousemove and touchmove events
-  function handleMovement(event) {
-    // Get all images with the class 'link-hotspot-icon'
-    var viewButtons = document.getElementsByClassName("link-hotspot-icon");
-
-    // Calculate position based on the event (mouse or touch)
-    var mouseX, mouseY;
-
-    // For mouse events, use clientX and clientY
-    if (event.type === 'mousemove') {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-    }
-    // For touch events, use touches[0] (first touch point)
-    else if (event.type === 'touchmove') {
-      mouseX = event.touches[0].clientX;
-      mouseY = event.touches[0].clientY;
-    }
-
-    // Loop through all the elements and update their position and rotation
-    for (var i = 0; i < viewButtons.length; i++) {
-      var viewButton = viewButtons[i];
-
-      // Get the current transform style (if any)
-      var currentTransform = viewButton.style.transform;
-
-      // If no current transform is applied, set it to an empty string
-      if (!currentTransform) {
-        currentTransform = "";
-      }
-
-      // Apply transform with translateX, translateY based on mouse or touch position
-      var newTransform = `translateX(${mouseX / 12}px) translateY(${-mouseY / 4}px)`;
-
-      // If there is an existing rotation, keep it
-      var rotationMatch = currentTransform.match(/rotate\(([^)]+)\)/);
-      if (rotationMatch) {
-        // Keep the existing rotation
-        newTransform += ` rotate(${rotationMatch[1]})`;
-      } else {
-        // Otherwise, set the default rotation (or no rotation at all)
-        newTransform += ` rotate(0deg)`;
-      }
-
-      // Apply the new transform to the element
-      viewButton.style.transform = newTransform;
-    }
-  }
-
-  // Add event listeners for both mouse and touch events
-  document.addEventListener('mousemove', handleMovement);  // For desktop mouse movement
-  document.addEventListener('touchmove', handleMovement);  // For mobile touch movement
-
-
-
-  //   document.addEventListener('mousemove', function(event) {
-  //     // Get all images with the class 'link-hotspot-icon'
-  //     var viewButtons = document.getElementsByClassName("link-hotspot-icon");
-
-  //     // Calculate rotation based on mouse position
-  //     var mouseX = event.clientX;
-  //     var mouseY = event.clientY;
-
-  //     // Loop through all the elements and update their position and rotation
-  //     for (var i = 0; i < viewButtons.length; i++) {
-  //       var viewButton = viewButtons[i];
-
-  //       console.log("view imag--->", viewButton);
-
-  //       // Get the current transform style (if any)
-  //       var currentTransform = viewButton.style.transform;
-
-  //       // If no current transform is applied, set it to an empty string
-  //       if (!currentTransform) {
-  //           currentTransform = "";
-  //       }
-
-  //       // Apply transform with translateX, translateY based on mouse position
-  //       var newTransform = `translateX(${mouseX / 12}px) translateY(${-mouseY / 4}px)`;
-
-  //       // If there is an existing rotation, keep it
-  //       var rotationMatch = currentTransform.match(/rotate\(([^)]+)\)/);
-  //       if (rotationMatch) {
-  //           // Keep the existing rotation
-  //           newTransform += ` rotate(${rotationMatch[1]})`;
-  //       } else {
-  //           // Otherwise, set the default rotation (or no rotation at all)
-  //           newTransform += ` rotate(0deg)`;
-  //       }
-
-  //       // Apply the new transform to the element
-  //       viewButton.style.transform = newTransform;
-
-  //       // Optionally, update the rotation in data.js or a similar object
-  //       // updateRotationInData(rotation); // Uncomment and use if needed
-  //   }
-
-  // });
-
-  // Function to update rotation in the data.js (or a similar object)
-  // function updateRotationInData(rotation) {
-  //     // Assuming your linkHotspots are stored in an array in the data.js
-  //     // var data = {
-  //     //     "linkHotspots": [
-  //     //         {
-  //     //             "yaw": 1.296531152896442,
-  //     //             "pitch": 0.1802174907633809,
-  //     //             "rotation": 0,  // Initially set to 0 or other value
-  //     //             "target": "1-pf1-entry"
-  //     //         }
-  //     //     ]
-  //     // };
-
-  //     // Find the relevant linkHotspot (e.g., you can use index or some identifier)
-  //     // For this example, we will update the first linkHotspot's rotation
-  //     data.linkHotspots[0].rotation = rotation;
-
-  //     console.log("Updated rotation in data.js:", data.linkHotspots[0].rotation);
-  // }
-
-
-
   function findSceneDataById(id) {
     for (var i = 0; i < data.scenes.length; i++) {
       if (data.scenes[i].id === id) {
@@ -620,6 +543,7 @@ let scene_num;
   switchScene(scenes[0]);
 
 })();
+
 
 (function () {
   var Marzipano = window.Marzipano;
@@ -695,4 +619,6 @@ let scene_num;
   };
 
 })();
+
+
 
