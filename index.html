@@ -12,6 +12,19 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./static/css/map.css">
+    <!-- always put inside head tag of index.html -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEN6J8YHXS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-BEN6J8YHXS');
+    </script>
+    <!--always put inside head tag of index.html -->
+
+    <!-- this is your id google analytics (G-BEN6J8YHXS) -->
 </head>
 
 <body>
@@ -50,7 +63,7 @@
                 data-en="Search..." data-hi="खोज..." data-mr="शोधा..." onkeyup="filterMenu()">
             <i class="fas fa-search"></i>
         </div>
-<!-- 	  
+        <!-- 	  
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('platforms')">
                 <img src="./static/img/menu_img/platforms.png" alt="">
@@ -207,7 +220,7 @@
                             <span data-en="Pay & Park Parking" data-hi="पे एंड पार्क पार्किंग"
                                 data-mr="पे अँड पार्क पार्किंग">Pay & Park Parking</span>
                         </li>
-																	   
+
 
                         <li onclick="highlightPinpoints('Platform 1 Point 34')">
                             <span data-en="Pf 1 Entrance" data-hi="प्लेटफार्म १ प्रवेश" data-mr="प्लॅटफॉर्म १ प्रवेश">Pf
@@ -343,39 +356,39 @@
                                 data-mr="रेलाहर चहा स्टॉल">Railahar tea stall</span>
                         </li>
                     </ul>
-            </li>
+                </li>
 
-            <li>
-                <span onclick="bounceAllPins('Platform 4')" data-en="Platform 4" data-hi="प्लेटफार्म ४"
-                    data-mr="प्लॅटफॉर्म ४">Platform 4</span>
-                <ul class="submenu">
-                    <!-- <li onclick="bounceAllPins('Platform 4')">Platform 4</li> -->
-                    <li onclick="highlightPinpoints('Platform 4 Point 2')" data-en="Tea stall" data-hi="चाय स्टाल"
-                        data-mr="चहा स्टॉल">Tea stall</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 3')" data-en="Toilet(M/L)" data-hi="शौचालय(पु/म) "
-                        data-mr="शौचालय(पु/म) ">Toilet(M/L)</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 4')" data-en="Escalator & stair"
-                        data-hi="एस्केलेटर और सीढ़ी" data-mr="एस्केलेटर आणि पायऱ्या">Escalator & stair</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 5')" data-en="Child help desk"
-                        data-hi="बच्चा मदद डेस्क" data-mr="लहान मुलांच्या मदतीचा डेस्क">Child help desk</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 6')" data-en="Toilet(M/L)" data-hi="शौचालय(पु/म) "
-                        data-mr="शौचालय(पु/म) ">Toilet(M/L)</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 7')" data-en="Lift & stair"
-                        data-hi="लिफ्ट और सीढ़ी" data-mr="लिफ्ट आणि पायऱ्या">Lift & stair</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 8')" data-en="Divyangjan toilet"
-                        data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan toilet</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 9')" data-en="Multipurpose stall"
-                        data-hi="बहुउद्देश्यीय स्टॉल" data-mr="बहुउद्देशीय स्टॉल">Multipurpose stall</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 10')" data-en="Pf 4 entry exit"
-                        data-hi="प्लेटफार्म ४ प्रवेश निकास" data-mr="प्लॅटफॉर्म ४ प्रवेश निकास">Pf 4 entry exit</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 11')" data-en="Reservation center"
-                        data-hi="आरक्षण केंद्र" data-mr="आरक्षण केंद्र">Reservation center</li>
-                    <li onclick="highlightPinpoints('Platform 4 Point 12')" data-en="Pay parking"
-                        data-hi="भुगतान पार्किंग" data-mr="सशुल्क पार्किंग">Pay parking</li>
-                </ul>		 
-            </li>
-         <li>
-            <span  data-en="All Platform" data-hi="सभी प्लेटफार्म" data-mr="सर्व प्लॅटफॉर्म">All Platform</span>
+                <li>
+                    <span onclick="bounceAllPins('Platform 4')" data-en="Platform 4" data-hi="प्लेटफार्म ४"
+                        data-mr="प्लॅटफॉर्म ४">Platform 4</span>
+                    <ul class="submenu">
+                        <!-- <li onclick="bounceAllPins('Platform 4')">Platform 4</li> -->
+                        <li onclick="highlightPinpoints('Platform 4 Point 2')" data-en="Tea stall" data-hi="चाय स्टाल"
+                            data-mr="चहा स्टॉल">Tea stall</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 3')" data-en="Toilet(M/L)"
+                            data-hi="शौचालय(पु/म) " data-mr="शौचालय(पु/म) ">Toilet(M/L)</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 4')" data-en="Escalator & stair"
+                            data-hi="एस्केलेटर और सीढ़ी" data-mr="एस्केलेटर आणि पायऱ्या">Escalator & stair</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 5')" data-en="Child help desk"
+                            data-hi="बच्चा मदद डेस्क" data-mr="लहान मुलांच्या मदतीचा डेस्क">Child help desk</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 6')" data-en="Toilet(M/L)"
+                            data-hi="शौचालय(पु/म) " data-mr="शौचालय(पु/म) ">Toilet(M/L)</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 7')" data-en="Lift & stair"
+                            data-hi="लिफ्ट और सीढ़ी" data-mr="लिफ्ट आणि पायऱ्या">Lift & stair</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 8')" data-en="Divyangjan toilet"
+                            data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan toilet</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 9')" data-en="Multipurpose stall"
+                            data-hi="बहुउद्देश्यीय स्टॉल" data-mr="बहुउद्देशीय स्टॉल">Multipurpose stall</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 10')" data-en="Pf 4 entry exit"
+                            data-hi="प्लेटफार्म ४ प्रवेश निकास" data-mr="प्लॅटफॉर्म ४ प्रवेश निकास">Pf 4 entry exit</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 11')" data-en="Reservation center"
+                            data-hi="आरक्षण केंद्र" data-mr="आरक्षण केंद्र">Reservation center</li>
+                        <li onclick="highlightPinpoints('Platform 4 Point 12')" data-en="Pay parking"
+                            data-hi="भुगतान पार्किंग" data-mr="सशुल्क पार्किंग">Pay parking</li>
+                    </ul>
+                </li>
+                <li>
+                    <span data-en="All Platform" data-hi="सभी प्लेटफार्म" data-mr="सर्व प्लॅटफॉर्म">All Platform</span>
                     <ul class="submenu">
                     </ul>
                 </li>
@@ -386,11 +399,12 @@
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('360_amenities')">
                 <img src="./static/img/menu_img/virtual.png" alt="">
-                <span data-en="360 view amenities" data-hi="360 दृश्य सुविधाएं" data-mr="360 दृश्य सुविधा">360 view amenities</span>
+                <span data-en="360 view amenities" data-hi="360 दृश्य सुविधाएं" data-mr="360 दृश्य सुविधा">360 view
+                    amenities</span>
                 <i class="fas fa-chevron-down"></i>
             </button>
-            
-            
+
+
             <ul id="360_amenities" class="menu-list">
                 <li onclick="window.location.href='./app-files/index.html?scene=scene=1-pf1-entry'">
                     <a href="javascript:void(0);">
@@ -398,10 +412,11 @@
                         <span data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १">Platform 1</span>
                     </a>
                 </li>
-                <li onclick="window.location.href='./app-files/pf2.html'">     
+                <li onclick="window.location.href='./app-files/pf2.html'">
                     <a href="./app-files/pf2.html">
                         <img src="./static/img/pin_icon/platform.png" height="20">
-                        <span data-en="Platform 2/3" data-hi="प्लेटफार्म 2/3" data-mr="प्लॅटफॉर्म २/३ ">Platform 2/3</span>
+                        <span data-en="Platform 2/3" data-hi="प्लेटफार्म 2/3" data-mr="प्लॅटफॉर्म २/३ ">Platform
+                            2/3</span>
                     </a>
                 </li>
                 <li onclick="window.location.href='./app-files/pf4.html'">
@@ -410,104 +425,125 @@
                         <span data-en="Platform 4" data-hi="प्लेटफार्म 4" data-mr="प्लॅटफॉर्म 4 ">Platform 4</span>
                     </a>
                 </li>
-            
-              
+
+
             </ul>
-            
+
         </div>
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Divyangjan-facilities')">
                 <img src="./static/img/menu_img/Divyangjan facilities.png" alt="">
-                <span data-en="Divyangjan facilities" data-hi="दिव्यांगजन सुविधाएं" data-mr="दिव्यांगजन सुविधा">Divyangjan facilities</span>
+                <span data-en="Divyangjan facilities" data-hi="दिव्यांगजन सुविधाएं"
+                    data-mr="दिव्यांगजन सुविधा">Divyangjan facilities</span>
                 <i class="fas fa-chevron-down"></i>
             </button>
-            
+
             <ul id="Divyangjan-facilities" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 30')" >
-                    <img src="./static/img/pin_icon/washroom.png" height="20"><span data-en="Divyangjan Toilet" data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan Toilet</span>
+                <li onclick="highlightPinpoints('Platform 1 Point 30')">
+                    <img src="./static/img/pin_icon/washroom.png" height="20"><span data-en="Divyangjan Toilet"
+                        data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan Toilet</span>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 15')" >
-                    <a href="#"><img src="./static/img/pin_icon/water.png" height="20"><span data-en="Water Booth" data-hi="जल बूथ" data-mr="पाण्याचे बूथ">Water Booth</span> </a>
+                <li onclick="highlightPinpoints('Platform 1 Point 15')">
+                    <a href="#"><img src="./static/img/pin_icon/water.png" height="20"><span data-en="Water Booth"
+                            data-hi="जल बूथ" data-mr="पाण्याचे बूथ">Water Booth</span> </a>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 18')" >
-                    <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"><span data-en="Divyangjan Escalator" data-hi="दिव्यांगजन एस्केलेटर" data-mr="दिव्यांगजन एस्केलेटर">Divyangjan Escalator</span></a>
+                <li onclick="highlightPinpoints('Platform 1 Point 18')">
+                    <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"><span
+                            data-en="Divyangjan Escalator" data-hi="दिव्यांगजन एस्केलेटर"
+                            data-mr="दिव्यांगजन एस्केलेटर">Divyangjan Escalator</span></a>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 2')" >
-                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"><span data-en="Divyangjan Lift" data-hi="दिव्यांगजन लिफ्ट" data-mr="दिव्यांगजन लिफ्ट">Divyangjan Lift</span></a>
+                <li onclick="highlightPinpoints('Platform 1 Point 2')">
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"><span data-en="Divyangjan Lift"
+                            data-hi="दिव्यांगजन लिफ्ट" data-mr="दिव्यांगजन लिफ्ट">Divyangjan Lift</span></a>
                 </li>
             </ul>
         </div>
-        
+
 
         <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('Storage&Services')" >
-                <img src="./static/img/menu_img/Storage & Services.png" alt=""> 
-                <span data-en="Storage & Services" data-hi="भंडारण और सेवाएं" data-mr="साठवण आणि सेवा">Storage & Services</span><i class="fas fa-chevron-down"></i>
+            <button class="menu-btn" onclick="toggleList('Storage&Services')">
+                <img src="./static/img/menu_img/Storage & Services.png" alt="">
+                <span data-en="Storage & Services" data-hi="भंडारण और सेवाएं" data-mr="साठवण आणि सेवा">Storage &
+                    Services</span><i class="fas fa-chevron-down"></i>
             </button>
             <ul id="Storage&Services" class="menu-list">
                 <li onclick="highlightPinpoints('Platform 1 Point 53')">
-                    <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"><span data-en="Luggage Room" data-hi="सामान कक्ष" data-mr="सामान कक्ष">Luggage Room</span> </a>
+                    <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"><span data-en="Luggage Room"
+                            data-hi="सामान कक्ष" data-mr="सामान कक्ष">Luggage Room</span> </a>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 14')" >
-                    <img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Cloak Room" data-hi="क्लोक रूम" data-mr="क्लोक रूम">Cloak Room</span>
+                <li onclick="highlightPinpoints('Platform 1 Point 14')">
+                    <img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Cloak Room"
+                        data-hi="क्लोक रूम" data-mr="क्लोक रूम">Cloak Room</span>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 4')" >
-                    <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Parcel Room" data-hi="पार्सल कक्ष" data-mr="पार्सल कक्ष">Parcel Room</span></a>
+                <li onclick="highlightPinpoints('Platform 1 Point 4')">
+                    <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Parcel Room"
+                            data-hi="पार्सल कक्ष" data-mr="पार्सल कक्ष">Parcel Room</span></a>
                 </li>
             </ul>
         </div>
-        
+
 
         <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('Escalator')" >
-                <img src="./static/img/menu_img/menu_escalator.png" alt=""><span data-en="Lift & Escalator" data-hi="लिफ्ट और एस्केलेटर" data-mr="लिफ्ट आणि एस्केलेटर">Lift & Escalator</span>
+            <button class="menu-btn" onclick="toggleList('Escalator')">
+                <img src="./static/img/menu_img/menu_escalator.png" alt=""><span data-en="Lift & Escalator"
+                    data-hi="लिफ्ट और एस्केलेटर" data-mr="लिफ्ट आणि एस्केलेटर">Lift & Escalator</span>
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="Escalator" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 2')" >
-                    <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"> <span data-en="PF1 Escalator" data-hi="प्लेटफार्म 1 एस्केलेटर" data-mr="प्लॅटफॉर्म 1 एस्केलेटर">PF1 Escalator</span></a>
+                <li onclick="highlightPinpoints('Platform 1 Point 2')">
+                    <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"> <span
+                            data-en="PF1 Escalator" data-hi="प्लेटफार्म 1 एस्केलेटर"
+                            data-mr="प्लॅटफॉर्म 1 एस्केलेटर">PF1 Escalator</span></a>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 2')" >
-                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span data-en="PF1 Lift Bhusval end" data-hi="प्लेटफार्म 1 लिफ्ट भुसावल छोर" data-mr="प्लॅटफॉर्म 1 लिफ्ट भुसावळ छोर">PF1 Lift Bhusval end</span></a>
+                <li onclick="highlightPinpoints('Platform 1 Point 2')">
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span
+                            data-en="PF1 Lift Bhusval end" data-hi="प्लेटफार्म 1 लिफ्ट भुसावल छोर"
+                            data-mr="प्लॅटफॉर्म 1 लिफ्ट भुसावळ छोर">PF1 Lift Bhusval end</span></a>
                 </li>
                 <li onclick="highlightPinpoints('Platform 4 Point 4')">
-                    <img src="./static/img/pin_icon/escalator.png" height="20"> <span data-en="PF4 Escalator" data-hi="प्लेटफार्म 4 एस्केलेटर" data-mr="प्लॅटफॉर्म 4 एस्केलेटर">PF4 Escalator</span>
+                    <img src="./static/img/pin_icon/escalator.png" height="20"> <span data-en="PF4 Escalator"
+                        data-hi="प्लेटफार्म 4 एस्केलेटर" data-mr="प्लॅटफॉर्म 4 एस्केलेटर">PF4 Escalator</span>
                 </li>
                 <li onclick="highlightPinpoints('Platform 4 Point 7')">
-                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span data-en="PF4 Lift" data-hi="प्लेटफार्म 4 लिफ्ट" data-mr="प्लॅटफॉर्म 4 लिफ्ट">PF4 Lift</span></a>
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span data-en="PF4 Lift"
+                            data-hi="प्लेटफार्म 4 लिफ्ट" data-mr="प्लॅटफॉर्म 4 लिफ्ट">PF4 Lift</span></a>
                 </li>
             </ul>
         </div>
-        
+
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Entry')">
-                <img src="./static/img/menu_img/Entryexit.png" alt=""><span data-en="Entry/exit" data-hi="प्रवेश/निकास" data-mr="प्रवेश/निर्गम">Entry/exit</span><span><i class="fas fa-chevron-down"></i></span>
+                <img src="./static/img/menu_img/Entryexit.png" alt=""><span data-en="Entry/exit" data-hi="प्रवेश/निकास"
+                    data-mr="प्रवेश/निर्गम">Entry/exit</span><span><i class="fas fa-chevron-down"></i></span>
             </button>
-			
-		  
+
+
             <ul id="Entry" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 34')" >
-                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span data-en="PF 1 Entry/exit" data-hi="प्लेटफार्म 1 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 1 प्रवेश/निर्गम">PF 1 Entry/exit</span>
+                <li onclick="highlightPinpoints('Platform 1 Point 34')">
+                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span data-en="PF 1 Entry/exit"
+                        data-hi="प्लेटफार्म 1 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 1 प्रवेश/निर्गम">PF 1 Entry/exit</span>
                 </li>
-                <li onclick="highlightPinpoints('Platform 4 Point 10')" >
-                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span data-en="PF 4 Entry/exit" data-hi="प्लेटफार्म 4 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 4 प्रवेश/निर्गम">PF 4 Entry/exit</span>
+                <li onclick="highlightPinpoints('Platform 4 Point 10')">
+                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span data-en="PF 4 Entry/exit"
+                        data-hi="प्लेटफार्म 4 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 4 प्रवेश/निर्गम">PF 4 Entry/exit</span>
                 </li>
             </ul>
         </div>
-        
+
 
 
 
 
         <div class="menu-item">
             <button class="menu-btn" onclick="window.location.href='help_desk.html'">
-                <img src="./static/img/menu_img/HelpDesk.png" alt=""><span data-en="Help Desk" data-hi="मदद डेस्क" data-mr="मदत डेस्क">Help Desk</span>
+                <img src="./static/img/menu_img/HelpDesk.png" alt=""><span data-en="Help Desk" data-hi="मदद डेस्क"
+                    data-mr="मदत डेस्क">Help Desk</span>
             </button>
 
         </div>
-        
+
         <hr class="custom-hr">
 
         <p class="safety_text" data-en="SAFETY" data-hi="सुरक्षा" data-mr="सुरक्षा">SAFETY</p>
@@ -520,49 +556,70 @@
         </div> -->
 
         <div class="menu-item">
-            <button class="menu-btn" onclick="highlightPinpoints('Platform 1 Point 20')" >
-                <img src="./static/img/menu_img/Police station locator.png" alt=""><span data-en="Police station locator" data-hi="पुलिस स्टेशन लोकेटर" data-mr="पोलीस स्टेशन शोधक">Police station locator</span>
+            <button class="menu-btn" onclick="highlightPinpoints('Platform 1 Point 20')">
+                <img src="./static/img/menu_img/Police station locator.png" alt=""><span
+                    data-en="Police station locator" data-hi="पुलिस स्टेशन लोकेटर" data-mr="पोलीस स्टेशन शोधक">Police
+                    station locator</span>
             </button>
 
         </div>
-        
-        <p class="safety_text" data-en="EXPLORE NASHIK" data-hi="नासिक का अन्वेषण करें" data-mr="नाशिक शोधा">EXPLORE NASHIK</p>
+
+        <p class="safety_text" data-en="EXPLORE NASHIK" data-hi="नासिक का अन्वेषण करें" data-mr="नाशिक शोधा">EXPLORE
+            NASHIK</p>
 
 
 
         <div class="menu-item">
             <button class="menu-btn" id="nashikMapBtn">
-                <img src="./static/img/menu_img/Nashik map.png" alt=""><span data-en="Nashik map" data-hi="नासिक का नक्शा" data-mr="नाशिक नकाशा">Nashik map</span>
+                <img src="./static/img/menu_img/Nashik map.png" alt=""><span data-en="Nashik map"
+                    data-hi="नासिक का नक्शा" data-mr="नाशिक नकाशा">Nashik map</span>
             </button>
         </div>
-        
+
 
 
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('tourist-list')">
-                <img src="./static/img/menu_img/Popular places.png" alt=""><span data-en="Tourist Places" data-hi="पर्यटक स्थल" data-mr="पर्यटन स्थळे">Tourist Places</span><span><i class="fas fa-chevron-down "></i></span>
-												 
+                <img src="./static/img/menu_img/Popular places.png" alt=""><span data-en="Tourist Places"
+                    data-hi="पर्यटक स्थल" data-mr="पर्यटन स्थळे">Tourist Places</span><span><i
+                        class="fas fa-chevron-down "></i></span>
+
             </button>
             <ul id="tourist-list" class="menu-list">
-                <li onclick="addTouristPinpoints('Trimbakeshwar')" data-en="Trimbakeshwar" data-hi="त्र्यंबकेश्वर" data-mr="त्र्यंबकेश्वर">Trimbakeshwar</li>
-                <li onclick="addTouristPinpoints('Mukti Dham Mandir')" data-en="Mukti Dham Mandir" data-hi="मुक्ति धाम मंदिर" data-mr="मुक्ति धाम मंदिर">Mukti Dham Mandir</li>
-                <li onclick="addTouristPinpoints('Pandav Leni')" data-en="Pandav Leni" data-hi="पांडव लेनी" data-mr="पांडव लेणी">Pandav Leni</li>
-                <li onclick="addTouristPinpoints('Panchvati')" data-en="Panchvati" data-hi="पंचवटी" data-mr="पंचवटी">Panchvati</li>
-                <li onclick="addTouristPinpoints('Saptashrungi Devi Mandir')" data-en="Saptashrungi Devi Mandir" data-hi="सप्तश्रृंगी देवी मंदिर" data-mr="सप्तश्रृंगी देवी मंदिर">Saptashrungi Devi Mandir</li>
-                <li onclick="addTouristPinpoints('Sula Wine Yard')" data-en="Sula Wine Yard" data-hi="सुला वाइन यार्ड" data-mr="सुला वाइन यार्ड">Sula Wine Yard</li>
-                <li onclick="addTouristPinpoints('Jain Mandir')" data-en="Jain Mandir" data-hi="जैन मंदिर" data-mr="जैन मंदिर">Jain Mandir</li>
-                <li onclick="addTouristPinpoints('Anjaneri (Hanuman Temple)')" data-en="Anjaneri (Hanuman Temple)" data-hi="अंजनेरी (हनुमान मंदिर)" data-mr="अंजनेरी (हनुमान मंदिर)">Anjaneri (Hanuman Temple)</li>
-                <li onclick="addTouristPinpoints('Ramkund')" data-en="Ramkund" data-hi="रामकुंड" data-mr="रामकुंड">Ramkund</li>
-                <li onclick="addTouristPinpoints('Kalaram Mandir')" data-en="Kalaram Mandir" data-hi="कालाराम मंदिर" data-mr="कालाराम मंदिर">Kalaram Mandir</li>
-                <li onclick="addTouristPinpoints('Sita Gufa')" data-en="Sita Gufa" data-hi="सीता गुफा" data-mr="सीता गुफा">Sita Gufa</li>
-                <li onclick="addTouristPinpoints('Someshwar Mandir')" data-en="Someshwar Mandir" data-hi="सोमेश्वर मंदिर" data-mr="सोमेश्वर मंदिर">Someshwar Mandir</li>
-                <li onclick="addTouristPinpoints('Coin Museum')" data-en="Coin Museum" data-hi="सिक्का संग्रहालय" data-mr="नाणे संग्रहालय">Coin Museum</li>
-                <li onclick="addTouristPinpoints('Gondeshwar Mandir Sinnar')" data-en="Gondeshwar Mandir Sinnar" data-hi="गोंदेश्वर मंदिर सिन्नर" data-mr="गोंदेश्वर मंदिर सिन्नर">Gondeshwar Mandir Sinnar</li>
-                <li onclick="addTouristPinpoints('Tapowan')" data-en="Tapowan" data-hi="तपोवन" data-mr="तपोवन">Tapowan</li>
+                <li onclick="addTouristPinpoints('Trimbakeshwar')" data-en="Trimbakeshwar" data-hi="त्र्यंबकेश्वर"
+                    data-mr="त्र्यंबकेश्वर">Trimbakeshwar</li>
+                <li onclick="addTouristPinpoints('Mukti Dham Mandir')" data-en="Mukti Dham Mandir"
+                    data-hi="मुक्ति धाम मंदिर" data-mr="मुक्ति धाम मंदिर">Mukti Dham Mandir</li>
+                <li onclick="addTouristPinpoints('Pandav Leni')" data-en="Pandav Leni" data-hi="पांडव लेनी"
+                    data-mr="पांडव लेणी">Pandav Leni</li>
+                <li onclick="addTouristPinpoints('Panchvati')" data-en="Panchvati" data-hi="पंचवटी" data-mr="पंचवटी">
+                    Panchvati</li>
+                <li onclick="addTouristPinpoints('Saptashrungi Devi Mandir')" data-en="Saptashrungi Devi Mandir"
+                    data-hi="सप्तश्रृंगी देवी मंदिर" data-mr="सप्तश्रृंगी देवी मंदिर">Saptashrungi Devi Mandir</li>
+                <li onclick="addTouristPinpoints('Sula Wine Yard')" data-en="Sula Wine Yard" data-hi="सुला वाइन यार्ड"
+                    data-mr="सुला वाइन यार्ड">Sula Wine Yard</li>
+                <li onclick="addTouristPinpoints('Jain Mandir')" data-en="Jain Mandir" data-hi="जैन मंदिर"
+                    data-mr="जैन मंदिर">Jain Mandir</li>
+                <li onclick="addTouristPinpoints('Anjaneri (Hanuman Temple)')" data-en="Anjaneri (Hanuman Temple)"
+                    data-hi="अंजनेरी (हनुमान मंदिर)" data-mr="अंजनेरी (हनुमान मंदिर)">Anjaneri (Hanuman Temple)</li>
+                <li onclick="addTouristPinpoints('Ramkund')" data-en="Ramkund" data-hi="रामकुंड" data-mr="रामकुंड">
+                    Ramkund</li>
+                <li onclick="addTouristPinpoints('Kalaram Mandir')" data-en="Kalaram Mandir" data-hi="कालाराम मंदिर"
+                    data-mr="कालाराम मंदिर">Kalaram Mandir</li>
+                <li onclick="addTouristPinpoints('Sita Gufa')" data-en="Sita Gufa" data-hi="सीता गुफा"
+                    data-mr="सीता गुफा">Sita Gufa</li>
+                <li onclick="addTouristPinpoints('Someshwar Mandir')" data-en="Someshwar Mandir"
+                    data-hi="सोमेश्वर मंदिर" data-mr="सोमेश्वर मंदिर">Someshwar Mandir</li>
+                <li onclick="addTouristPinpoints('Coin Museum')" data-en="Coin Museum" data-hi="सिक्का संग्रहालय"
+                    data-mr="नाणे संग्रहालय">Coin Museum</li>
+                <li onclick="addTouristPinpoints('Gondeshwar Mandir Sinnar')" data-en="Gondeshwar Mandir Sinnar"
+                    data-hi="गोंदेश्वर मंदिर सिन्नर" data-mr="गोंदेश्वर मंदिर सिन्नर">Gondeshwar Mandir Sinnar</li>
+                <li onclick="addTouristPinpoints('Tapowan')" data-en="Tapowan" data-hi="तपोवन" data-mr="तपोवन">Tapowan
+                </li>
             </ul>
         </div>
-        
+
 
         <!-- <div class="menu-item">
             <button class="menu-btn"><img src="./static/img/menu_img/How to travel.png" alt="">How to travel ?
@@ -573,7 +630,8 @@
 
 
     <!-- Voice Status -->
-    <div class="voice-status" id="voiceStatus" data-en="Listening..." data-hi="सुन रहा है..." data-mr="ऐकत आहे...">Listening...</div>
+    <div class="voice-status" id="voiceStatus" data-en="Listening..." data-hi="सुन रहा है..." data-mr="ऐकत आहे...">
+        Listening...</div>
 
     <!-- Map Section -->
 
@@ -584,38 +642,42 @@
     <!-- Bottom Navigation Bar -->
     <div class="bottom-bar d-flex justify-content-around">
 
-        <a href="./index.html" class="text_decoration"><button class="d-flex flex-column align-items-center" id="backButton">
-            <img src="./static/img/home-2.png" alt="Virtual Tour Icon" loading="lazy" id="backImg" onclick="goBack()">
-           <span data-en="Home" data-hi="होम" data-mr="होम">Home</span>
-        </button></a>
-    
+        <a href="./index.html" class="text_decoration"><button class="d-flex flex-column align-items-center"
+                id="backButton">
+                <img src="./static/img/home-2.png" alt="Virtual Tour Icon" loading="lazy" id="backImg"
+                    onclick="goBack()">
+                <span data-en="Home" data-hi="होम" data-mr="होम">Home</span>
+            </button></a>
+
         <button class="d-flex flex-column align-items-center" onclick="window.location.href='./app-files/index.html'">
             <img src="./static/img/360.png" alt="Virtual Tour Icon" loading="lazy">
             <span data-en="Virtual Tour" data-hi="वर्चुअल टूर" data-mr="आभासी टूर">Virtual Tour</span>
-		
+
         </button>
-    
+
         <button class="voice_button d-flex flex-column align-items-center" id="voiceSearch">
             <img src="./static/img/speak.png" alt="" loading="lazy">
             <!-- <span>Speak</span> -->
-	   
-        </button>
-    
 
-        <button class="d-flex flex-column align-items-center" id="userLocationButton" onclick="window.location.href='index.html'">
+        </button>
+
+
+        <button class="d-flex flex-column align-items-center" id="userLocationButton"
+            onclick="window.location.href='index.html'">
             <img src="./static/img/menu_img/user.png" alt="Help Icon" loading="lazy">
             <span data-en="User Location" data-hi="उपयोगकर्ता स्थान" data-mr="वापरकर्ता स्थान">User Location</span>
         </button>
-    
-        <button class="d-flex flex-column align-items-center" onclick="window.location.href='help_desk.html'" >
+
+        <button class="d-flex flex-column align-items-center" onclick="window.location.href='help_desk.html'">
             <img src="./static/img/menu_img/HelpDesk.png" alt="Virtual Tour Icon" loading="lazy">
-	   
-            <a href="./help_desk.html" class="text_decoration"> <span data-en="Help Desk" data-hi="मदद डेस्क" data-mr="मदत डेस्क">Help Desk</span></a>
+
+            <a href="./help_desk.html" class="text_decoration"> <span data-en="Help Desk" data-hi="मदद डेस्क"
+                    data-mr="मदत डेस्क">Help Desk</span></a>
 
         </button>
-    
+
     </div>
-    
+
 
     <script src="./static/js/map.js"></script>
     <script src="./static/js/voice.js"></script>
