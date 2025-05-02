@@ -7,6 +7,10 @@
 <style> @-ms-viewport { width: device-width; } </style>
 <link rel="stylesheet" href="vendor/reset.min.css">
 <link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="/feedback.js"></script>
+
 </head>
 <body class="multiple-scenes ">
 
@@ -461,12 +465,112 @@
   <img class="icon" src="img/minus.png">
 </a>
 
+
+
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content text-center p-3">
+              <div class="modal-header border-0 pb-0">
+                  <h5 class="modal-title w-100">Share your Feedback</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <p class="mt-2">Rate your Experience 👋</p>
+              <div id="starContainer" class="mb-3">
+                  <span class="star" data-value="1">&#9733;</span>
+                  <span class="star" data-value="2">&#9733;</span>
+                  <span class="star" data-value="3">&#9733;</span>
+                  <span class="star" data-value="4">&#9733;</span>
+                  <span class="star" data-value="5">&#9733;</span>
+              </div>
+              <div class="mb-3">
+                  <textarea id="feedbackText" class="form-control"
+                      placeholder="Describe Your Experience Here"></textarea>
+              </div>
+              <button class="btn btn-primary w-100" onclick="submitFeedback()">Submit Feedback</button>
+          </div>
+      </div>
+  </div>
+
+
+
+  <!-- feedback js using session storage -->
+  <!-- <script>
+      let selectedRating = 0;
+      document.addEventListener("DOMContentLoaded", function () {
+          if (sessionStorage.getItem("modalShown") === "true") return;
+          let startTime = sessionStorage.getItem("modalStartTime");
+          const now = Date.now();
+          if (!startTime) {
+              sessionStorage.setItem("modalStartTime", now);
+              startTime = now;
+          }
+          const elapsed = now - parseInt(startTime);
+          const remaining = Math.max(0, 5000 - elapsed);
+          setTimeout(() => {
+              if (sessionStorage.getItem("modalShown") !== "true") {
+                  const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+                  modal.show();
+                  sessionStorage.setItem("modalShown", "true");
+              }
+          }, remaining);
+          document.querySelectorAll(".star").forEach((star) => {
+              star.addEventListener("click", function () {
+                  selectedRating = parseInt(this.dataset.value);
+                  highlightStars(selectedRating);
+              });
+          });
+      });
+      function highlightStars(rating) {
+          document.querySelectorAll(".star").forEach((star, index) => {
+              star.style.color = index < rating ? "gold" : "#ccc";
+          });
+      }
+      function resetFeedbackForm() {
+          const commentField = document.getElementById("feedbackText");
+          if (commentField) commentField.value = "";
+          selectedRating = 0;
+          highlightStars(0);
+      }
+      function submitFeedback() {
+          const comment = document.getElementById("feedbackText").value;
+          if (selectedRating === 0 || comment.trim() === "") {
+              alert("Please provide both rating and comment.");
+              return;
+          }
+          const scriptUrl = "https://script.google.com/macros/s/AKfycbyiGf_ehEbxWem8KnZace9AoxRV_a_616JB3iJqMhGomBl4HFXFDRDOeTOCWXQn59C4/exec";
+          const callbackName = "handleFeedbackResponse";
+          const script = document.createElement('script');
+          script.src = `${scriptUrl}?rating=${selectedRating}&comment=${encodeURIComponent(comment)}&callback=${callbackName}`;
+          window[callbackName] = function (response) {
+              if (response && response.success) {
+                  resetFeedbackForm();
+                  alert("Thanks for your feedback!");
+                  bootstrap.Modal.getInstance(document.getElementById('feedbackModal')).hide();
+              } else {
+                  alert("Failed to submit feedback.");
+              }
+              document.body.removeChild(script);
+              delete window[callbackName];
+          };
+          script.onerror = function () {
+              alert("Failed to submit feedback. Network error.");
+              document.body.removeChild(script);
+              delete window[callbackName];
+          };
+          document.body.appendChild(script);
+      }
+  </script> -->
+
+
 <script src="vendor/screenfull.min.js" ></script>
 <script src="vendor/bowser.min.js" ></script>
 <script src="vendor/marzipano.js" ></script>
 
 <script src="data.js"></script>
 <script src="pf4.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- <script src="virtual.js"></script> -->
 
 </body>
