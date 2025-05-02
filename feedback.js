@@ -10,7 +10,7 @@
             startTime = now;
         }
         const elapsed = now - parseInt(startTime);
-        const remaining = Math.max(0, 5000 - elapsed);
+        const remaining = Math.max(0, 45000 - elapsed);
         setTimeout(() => {
             if (sessionStorage.getItem("modalShown") !== "true") {
                 const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));
