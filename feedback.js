@@ -38,8 +38,8 @@
     }
     function submitFeedback() {
         const comment = document.getElementById("feedbackText").value;
-        if (selectedRating === 0 || comment.trim() === "") {
-            alert("Please provide both rating and comment.");
+        if (selectedRating === 0 || comment.trim() === " ") {
+            // alert("Please provide both rating and comment.");
             return;
         }
             // Show alert immediately
