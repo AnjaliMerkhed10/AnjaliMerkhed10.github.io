@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/star.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -16,6 +17,7 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEN6J8YHXS"></script>
     <script src="/feedback.js"></script>
+    <script src="/prevent.js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -87,23 +89,28 @@
             </ul>
         </div> -->
 
+        
+      <div class="menu-item">
+        <span>Platform</span>
+      </div>
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('platform-list')">
                 <img src="./static/img/menu_img/platform_amenity.png" alt="">
-                <span data-en="Platform Amenities" data-hi="प्लेटफार्म सुविधाएं"
+                <span class="track" data-source="Platform_Ameneties" data-en="Platform Amenities" data-hi="प्लेटफार्म सुविधाएं"
                     data-mr="प्लॅटफॉर्म सोयीसुविधा">Platform Amenities</span>
                 <span><i class="fas fa-chevron-down "></i></span>
             </button>
 
             <ul id="platform-list" class="menu-list">
                 <li>
-                    <span onclick="bounceAllPins('Platform 1')" data-en="Platform 1" data-hi="प्लेटफार्म 1"
-                        data-mr="प्लॅटफॉर्म १">Platform 1</span>
+                 <span class="track" data-source="PA_Platform 1" data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १" onclick="bounceAllPins('Platform 1')">
+                    Platform 1</span>
+
                     <ul class="submenu" id="submenu">
                         <!-- <li onclick="bounceAllPins('Platform 1')">Platform 1</li> -->
-                        <li onclick="highlightPinpoints('Platform 1 Point 2')">
-                            <span data-en="Lift and Stairs Bhusval end" data-hi="लिफ्ट और सीढ़ियाँ भुसावल छोर"
+                        <li   onclick="highlightPinpoints('Platform 1 Point 2')">
+                            <span data-track="map-load-section-lift_stairs" data-en="Lift and Stairs Bhusval end" data-hi="लिफ्ट और सीढ़ियाँ भुसावल छोर"
                                 data-mr="लिफ्ट आणि जिने भुसावळ शेवट">Lift and Stairs Bhusval end</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 3')">
@@ -297,7 +304,7 @@
                     </ul>
                 </li>
                 <li>
-                    <span onclick="bounceAllPins('Platform 2')" data-en="Platform 2/3" data-hi="प्लेटफार्म २/३"
+                    <span class="track" data-source="PA_Platform 2/3" onclick="bounceAllPins('Platform 2')" data-en="Platform 2/3" data-hi="प्लेटफार्म २/३"
                         data-mr="प्लॅटफॉर्म २/३">Platform 2/3</span>
                     <ul class="submenu">
                         <!-- <li onclick="bounceAllPins('Platform 2')">Platform 2/3</li> -->
@@ -360,7 +367,7 @@
                 </li>
 
                 <li>
-                    <span onclick="bounceAllPins('Platform 4')" data-en="Platform 4" data-hi="प्लेटफार्म ४"
+                    <span class="track" data-source="PA_Platform 4" onclick="bounceAllPins('Platform 4')" data-en="Platform 4" data-hi="प्लेटफार्म ४"
                         data-mr="प्लॅटफॉर्म ४">Platform 4</span>
                     <ul class="submenu">
                         <!-- <li onclick="bounceAllPins('Platform 4')">Platform 4</li> -->
@@ -389,7 +396,7 @@
                     </ul>
                 </li>
                 <li>
-                    <span data-en="All Platform" data-hi="सभी प्लेटफार्म" data-mr="सर्व प्लॅटफॉर्म">All Platform</span>
+                    <span class="track" data-source="PA_AllPlatform" data-en="All Platform" data-hi="सभी प्लेटफार्म" data-mr="सर्व प्लॅटफॉर्म">All Platform</span>
                     <ul class="submenu">
                     </ul>
                 </li>
@@ -407,23 +414,23 @@
 
 
             <ul id="360_amenities" class="menu-list">
-                <li onclick="window.location.href='./app-files/index.html?scene=scene=1-pf1-entry'">
+                <li class="track" data-source="360_Platform 1" onclick="window.location.href='./app-files/index.html?scene=scene=1-pf1-entry'">
                     <a href="javascript:void(0);">
                         <img src="./static/img/pin_icon/platform.png" height="20">
-                        <span data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १">Platform 1</span>
+                        <span  data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १">Platform 1</span>
                     </a>
                 </li>
                 <li onclick="window.location.href='./app-files/pf2.html'">
                     <a href="./app-files/pf2.html">
                         <img src="./static/img/pin_icon/platform.png" height="20">
-                        <span data-en="Platform 2/3" data-hi="प्लेटफार्म 2/3" data-mr="प्लॅटफॉर्म २/३ ">Platform
+                        <span class="track" data-source="360_Platform 2/3" data-en="Platform 2/3" data-hi="प्लेटफार्म 2/3" data-mr="प्लॅटफॉर्म २/३ ">Platform
                             2/3</span>
                     </a>
                 </li>
                 <li onclick="window.location.href='./app-files/pf4.html'">
                     <a href="./app-files/pf4.html">
                         <img src="./static/img/pin_icon/platform.png" height="20">
-                        <span data-en="Platform 4" data-hi="प्लेटफार्म 4" data-mr="प्लॅटफॉर्म 4 ">Platform 4</span>
+                        <span class="track" data-source="360_Platform 4" data-en="Platform 4" data-hi="प्लेटफार्म 4" data-mr="प्लॅटफॉर्म 4 ">Platform 4</span>
                     </a>
                 </li>
 
@@ -435,26 +442,26 @@
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Divyangjan-facilities')">
                 <img src="./static/img/menu_img/Divyangjan facilities.png" alt="">
-                <span data-en="Divyangjan facilities" data-hi="दिव्यांगजन सुविधाएं"
+                <span  class="track" data-source="Divyangjan_Facilities" data-en="Divyangjan facilities" data-hi="दिव्यांगजन सुविधाएं"
                     data-mr="दिव्यांगजन सुविधा">Divyangjan facilities</span>
                 <i class="fas fa-chevron-down"></i>
             </button>
 
             <ul id="Divyangjan-facilities" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 30')">
+                <li class="track" data-source="Divyangjan_Facilities_Toilet" onclick="highlightPinpoints('Platform 1 Point 30')">
                     <img src="./static/img/pin_icon/washroom.png" height="20"><span data-en="Divyangjan Toilet"
                         data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan Toilet</span>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 15')">
+                <li class="track" data-source="Divyangjan_Facilities_Toilet_waterbooth" onclick="highlightPinpoints('Platform 1 Point 15')">
                     <a href="#"><img src="./static/img/pin_icon/water.png" height="20"><span data-en="Water Booth"
                             data-hi="जल बूथ" data-mr="पाण्याचे बूथ">Water Booth</span> </a>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 18')">
+                <li class="track" data-source="Divyangjan_Facilities_Toilet_Escalotor" onclick="highlightPinpoints('Platform 1 Point 18')">
                     <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"><span
                             data-en="Divyangjan Escalator" data-hi="दिव्यांगजन एस्केलेटर"
                             data-mr="दिव्यांगजन एस्केलेटर">Divyangjan Escalator</span></a>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 2')">
+                <li class="track" data-source="Divyangjan_Facilities_Toilet_Lift" onclick="highlightPinpoints('Platform 1 Point 2')">
                     <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"><span data-en="Divyangjan Lift"
                             data-hi="दिव्यांगजन लिफ्ट" data-mr="दिव्यांगजन लिफ्ट">Divyangjan Lift</span></a>
                 </li>
@@ -465,19 +472,19 @@
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Storage&Services')">
                 <img src="./static/img/menu_img/Storage & Services.png" alt="">
-                <span data-en="Storage & Services" data-hi="भंडारण और सेवाएं" data-mr="साठवण आणि सेवा">Storage &
+                <span class="track" data-source="Storage_Services" data-en="Storage & Services" data-hi="भंडारण और सेवाएं" data-mr="साठवण आणि सेवा">Storage &
                     Services</span><i class="fas fa-chevron-down"></i>
             </button>
             <ul id="Storage&Services" class="menu-list">
-                <li onclick="highlightPinpoints('Platform 1 Point 53')">
+                <li class="track" data-source="Storage_Services_Luggage_Room" onclick="highlightPinpoints('Platform 1 Point 53')">
                     <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"><span data-en="Luggage Room"
                             data-hi="सामान कक्ष" data-mr="सामान कक्ष">Luggage Room</span> </a>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 14')">
+                <li class="track" data-source="Storage_Services_Cloak_Room" onclick="highlightPinpoints('Platform 1 Point 14')">
                     <img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Cloak Room"
                         data-hi="क्लोक रूम" data-mr="क्लोक रूम">Cloak Room</span>
                 </li>
-                <li onclick="highlightPinpoints('Platform 1 Point 4')">
+                <li class="track" data-source="Storage_Services_Parcel_Room" onclick="highlightPinpoints('Platform 1 Point 4')">
                     <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Parcel Room"
                             data-hi="पार्सल कक्ष" data-mr="पार्सल कक्ष">Parcel Room</span></a>
                 </li>
@@ -486,28 +493,28 @@
 
 
         <div class="menu-item">
-            <button class="menu-btn" onclick="toggleList('Escalator')">
-                <img src="./static/img/menu_img/menu_escalator.png" alt=""><span data-en="Lift & Escalator"
+            <button class="menu-btn"  onclick="toggleList('Escalator')">
+                <img src="./static/img/menu_img/menu_escalator.png" alt=""><span class="track" data-source="Lift_&_Escalator" data-en="Lift & Escalator"
                     data-hi="लिफ्ट और एस्केलेटर" data-mr="लिफ्ट आणि एस्केलेटर">Lift & Escalator</span>
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="Escalator" class="menu-list">
                 <li onclick="highlightPinpoints('Platform 1 Point 2')">
                     <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"> <span
-                            data-en="PF1 Escalator" data-hi="प्लेटफार्म 1 एस्केलेटर"
+                      class="track" data-source="Lift_&_Escalator_PF1_Escalator"      data-en="PF1 Escalator" data-hi="प्लेटफार्म 1 एस्केलेटर"
                             data-mr="प्लॅटफॉर्म 1 एस्केलेटर">PF1 Escalator</span></a>
                 </li>
                 <li onclick="highlightPinpoints('Platform 1 Point 2')">
                     <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span
-                            data-en="PF1 Lift Bhusval end" data-hi="प्लेटफार्म 1 लिफ्ट भुसावल छोर"
+                        class="track" data-source="Lift_&_Escalator_PF1_Lift_Bhusvalend"      data-en="PF1 Lift Bhusval end" data-hi="प्लेटफार्म 1 लिफ्ट भुसावल छोर"
                             data-mr="प्लॅटफॉर्म 1 लिफ्ट भुसावळ छोर">PF1 Lift Bhusval end</span></a>
                 </li>
                 <li onclick="highlightPinpoints('Platform 4 Point 4')">
-                    <img src="./static/img/pin_icon/escalator.png" height="20"> <span data-en="PF4 Escalator"
+                    <img src="./static/img/pin_icon/escalator.png" height="20"> <span   class="track" data-source="Lift_&_Escalator_PF4_Escalator" data-en="PF4 Escalator"
                         data-hi="प्लेटफार्म 4 एस्केलेटर" data-mr="प्लॅटफॉर्म 4 एस्केलेटर">PF4 Escalator</span>
                 </li>
                 <li onclick="highlightPinpoints('Platform 4 Point 7')">
-                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span data-en="PF4 Lift"
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span class="track" data-source="Lift_&_Escalator_PF4_Lift" data-en="PF4 Lift"
                             data-hi="प्लेटफार्म 4 लिफ्ट" data-mr="प्लॅटफॉर्म 4 लिफ्ट">PF4 Lift</span></a>
                 </li>
             </ul>
@@ -516,18 +523,18 @@
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Entry')">
-                <img src="./static/img/menu_img/Entryexit.png" alt=""><span data-en="Entry/exit" data-hi="प्रवेश/निकास"
+                <img src="./static/img/menu_img/Entryexit.png" alt=""><span class="track" data-source="Entry/Exit" data-en="Entry/exit" data-hi="प्रवेश/निकास"
                     data-mr="प्रवेश/निर्गम">Entry/exit</span><span><i class="fas fa-chevron-down"></i></span>
             </button>
 
 
             <ul id="Entry" class="menu-list">
                 <li onclick="highlightPinpoints('Platform 1 Point 34')">
-                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span data-en="PF 1 Entry/exit"
+                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span class="track" data-source="Entry/Exit_PF1" data-en="PF 1 Entry/exit"
                         data-hi="प्लेटफार्म 1 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 1 प्रवेश/निर्गम">PF 1 Entry/exit</span>
                 </li>
                 <li onclick="highlightPinpoints('Platform 4 Point 10')">
-                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span data-en="PF 4 Entry/exit"
+                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span class="track" data-source="Entry/Exit_PF4" data-en="PF 4 Entry/exit"
                         data-hi="प्लेटफार्म 4 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 4 प्रवेश/निर्गम">PF 4 Entry/exit</span>
                 </li>
             </ul>
@@ -539,7 +546,7 @@
 
         <div class="menu-item">
             <button class="menu-btn" onclick="window.location.href='help_desk.html'">
-                <img src="./static/img/menu_img/HelpDesk.png" alt=""><span data-en="Help Desk" data-hi="मदद डेस्क"
+                <img src="./static/img/menu_img/HelpDesk.png" alt=""><span  data-en="Help Desk" data-hi="मदद डेस्क"
                     data-mr="मदत डेस्क">Help Desk</span>
             </button>
 
@@ -559,7 +566,7 @@
         <div class="menu-item">
             <button class="menu-btn" onclick="highlightPinpoints('Platform 1 Point 20')">
                 <img src="./static/img/menu_img/Police station locator.png" alt=""><span
-                    data-en="Police station locator" data-hi="पुलिस स्टेशन लोकेटर" data-mr="पोलीस स्टेशन शोधक">Police
+              class="track" data-source="Police_Station_Locator"      data-en="Police station locator" data-hi="पुलिस स्टेशन लोकेटर" data-mr="पोलीस स्टेशन शोधक">Police
                     station locator</span>
             </button>
 
@@ -572,7 +579,7 @@
 
         <div class="menu-item">
             <button class="menu-btn" id="nashikMapBtn">
-                <img src="./static/img/menu_img/Nashik map.png" alt=""><span data-en="Nashik map"
+                <img src="./static/img/menu_img/Nashik map.png" alt=""><span class="track" data-source="Nashik_Map" data-en="Nashik map"
                     data-hi="नासिक का नक्शा" data-mr="नाशिक नकाशा">Nashik map</span>
             </button>
         </div>
@@ -582,7 +589,7 @@
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('tourist-list')">
-                <img src="./static/img/menu_img/Popular places.png" alt=""><span data-en="Tourist Places"
+                <img src="./static/img/menu_img/Popular places.png" alt=""><span class="track" data-source="Tourist_Places" data-en="Tourist Places"
                     data-hi="पर्यटक स्थल" data-mr="पर्यटन स्थळे">Tourist Places</span><span><i
                         class="fas fa-chevron-down "></i></span>
 
@@ -680,7 +687,8 @@
     </div>
 
 
-    <!-- Feedback Modal -->
+   <form onsubmit="submitFeedback(); return false;">
+    <!-- Modal -->
     <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center p-3">
@@ -700,10 +708,11 @@
                     <textarea id="feedbackText" class="form-control"
                         placeholder="Describe Your Experience Here"></textarea>
                 </div>
-                <button id="btn" class="btn btn-primary w-100" onclick="submitFeedback()">Submit Feedback</button>
+                <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
             </div>
         </div>
     </div>
+</form>
 
 
 
@@ -782,7 +791,31 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnBmHondgwsA-dzeWtQdRT3X83On_V-wI&libraries=geometry&callback=initMap"></script>
     <!-- Bootstrap JS -->
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+   <!-- GA EVENT LABEL Monitoring -->
+<script>
+   document.querySelectorAll(".track").forEach(span => {
+  span.addEventListener("click", () => {
+    const source = span.getAttribute('data-source');
+
+    gtag('event', 'NashikRailway_Event', {
+      'event_category': 'Map Interaction',
+      'event_label': source,
+      'event_time': new Date().toISOString()
+    });
+
+    console.log("GA event sent from:", source);
+  });
+});
+  </script>
+
+  
+
 </body>
 
 </html>

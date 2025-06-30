@@ -508,7 +508,7 @@ function initMap() {
             { lat: 19.946810167998795, lng: 73.84199274218622 }, // Starting point , 
             { lat: 19.94985046657326, lng: 73.84263706196272 }, // Ending point  , 
             { lat: 19.946513449638726, lng: 73.84194493518378 }, // Starting point , 
-            { lat: 19.94905780688094, lng: 73.84250658274564 },
+            { lat: 19.94905780688094, lng: 73.84250658274564 }, 
         ],
         geodesic: true,
         strokeColor: '#FFC74E', // Color of the line
