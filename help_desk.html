@@ -11,124 +11,8 @@
     <link rel="stylesheet" href="./static/css/map.css">
     <script src="/feedback.js"></script>
     <script src="/prevent.js"></script>
-    <style>
-        body {
-            background: #f7f9ff;
-            overflow: auto;
+    <link rel="stylesheet" href="helpdesk.css">
 
-        }
-
-        .container_div {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .container_main_div {
-            height: 1000px;
-            overflow: auto;
-            filter: blur(8px);
-        }
-
-        .help_desk_input_container {
-            position: relative;
-            width: 100%;
-        }
-
-        .help_desk_input_container i {
-            position: absolute;
-            top: 50%;
-            left: 10px;
-            transform: translateY(-50%);
-            color: gray;
-        }
-
-        .help_desk_input_container input {
-            width: 100%;
-            padding-left: 35px;
-            height: 50px;
-            font-size: 16px;
-            border: 2px solid rgb(168, 168, 168);
-            border-radius: 5px;
-        }
-
-        .heading_tile {
-            text-align: center;
-        }
-
-        .help_desk_form_main_div {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .hekp_desk_submit_button {
-            width: 100%;
-            padding: 8px;
-            background-color: #2196f3;
-            color: white;
-            border: none;
-            border-radius: 40px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .hekp_desk_submit_button:hover {
-            background-color: #2196f3;
-        }
-
-        .help_desk_icon_main_div {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-            grid-gap: 10px;
-            padding: 10px 0;
-            width: 100%;
-        }
-
-        .help_desk_icon_div {
-            position: relative;
-            transition: 0.3s;
-            text-decoration: none;
-            height: fit-content;
-            padding: 5px 5px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .help_desk_icon_div img {
-            width: 100%;
-            transition: transform 0.3s, border 0.3s;
-        }
-
-        /* When an image is clicked, add a black border around it */
-        .help_desk_icon_div.selected img {
-            transform: scale(0.99);
-            /* Shrink the image by 2% */
-            border: 3px solid rgb(85, 82, 82);
-            /* Add a black border around the image */
-            padding: 4px;
-            border-radius: 10px;
-        }
-
-        /* Remove the tick mark or any background for the selected state */
-        .help_desk_icon_div.selected::after {
-            content: '';
-            /* Remove the checkmark */
-            display: none;
-            /* Hide the checkmark */
-        }
-        .service_warning{
-            position: absolute;
-            top: 50%;
-            left: 40%;
-            color: tomato;
-            font-size: larger;
-        }
-    </style>
 </head>
 
 <body>
@@ -152,12 +36,12 @@
 
     <div class="container_main_div">
         <div class="container_div mt-5">
-            <span data-en="Select the help desk option from the options below."
+            <!-- <span data-en="Select the help desk option from the options below."
                 data-hi="नीचे दिए गए विकल्पों से सहायता डेस्क विकल्प चुनें।"
                 data-mr="खाली दिलेल्या पर्यायांपैकी मदत डेस्कचा पर्याय निवडा.">Select the help desk option from the
-                options below.</span>
+                options below.</span> -->
 
-            <div class="help_desk_icon_main_div">
+            <!-- <div class="help_desk_icon_main_div">
                 <div class="help_desk_icon_div" data-message="coolie">
                     <img src="./static/img/help_desk/coolie.png" alt="Coolie">
                 </div>
@@ -182,10 +66,49 @@
                 <div class="help_desk_icon_div" data-message="others">
                     <img src="./static/img/help_desk/others.png" alt="Others">
                 </div>
+            </div> -->
+
+            <!-- new code modal wala -->
+            <div class="help_desk_icon_main_div">
+                <div class="help_desk_icon_div" data-service="Coolie" data-phone="9503011971">
+                    <img src="./static/img/help_desk/coolie.png" alt="Coolie">
+                </div>
+                <div class="help_desk_icon_div" data-service="Doctor" data-phone="9503011971">
+                    <img src="./static/img/help_desk/doctor.png" alt="Doctor">
+                </div>
+                <div class="help_desk_icon_div" data-service="Police" data-phone="9503011971">
+                    <img src="./static/img/help_desk/police.png" alt="Police">
+                </div>
+                <div class="help_desk_icon_div" data-service="Wheelchair" data-phone="9503011971">
+                    <img src="./static/img/help_desk/wheelchair.png" alt="Wheelchair">
+                </div>
+                <div class="help_desk_icon_div" data-service="Stretcher" data-phone="9503011971">
+                    <img src="./static/img/help_desk/streatcher.png" alt="Stretcher">
+                </div>
+                <div class="help_desk_icon_div" data-service="Cart" data-phone="9503011971">
+                    <img src="./static/img/help_desk/cart.png" alt="Cart">
+                </div>
+                <div class="help_desk_icon_div" data-service="Child Help" data-phone="9503011971">
+                    <img src="./static/img/help_desk/childhelp.png" alt="Child Help">
+                </div>
+                <div class="help_desk_icon_div" data-service="Others" data-phone="9503011971">
+                    <img src="./static/img/help_desk/others.png" alt="Others">
+                </div>
             </div>
 
+            <!-- Modal & Backdrop -->
+            <div class="modal-backdrop" id="modalBackdrop"></div>
+            <div class="custom-modal" id="customModal">
+                <span class="modal-close" id="modalClose">×</span>
+                <h4 id="modalService">Service</h4>
+                <h5 id="modalPhone">Helpline: </h5>
+            </div>
+
+
+            <!-- end -->
+
             <div class="help_desk_form_main_div">
-                <div class="help_desk_input_container">
+                <!-- <div class="help_desk_input_container">
                     <i class="fa fa-user"></i>
                     <input class="help_desk_aapka_nam" placeholder="Full Name" data-en="Full Name" data-hi="पूरा नाम"
                         data-mr="पूर्ण नाव">
@@ -204,15 +127,33 @@
                 </div>
 
                 <button class="hekp_desk_submit_button mt-3" type="submit" data-en="Submit" data-hi="प्रस्तुत"
-                    data-mr="प्रस्तुत">Submit</button>
+                    data-mr="प्रस्तुत">Submit</button> -->
+
+
+
+                <!-- Help Desk Container -->
+
+                <!-- <div class="help_desk_input_container">
+                    <div class="card p-3 shadow-sm bg-light rounded">
+                        <h5 class="mb-2 text-black">
+                            <img src="./static/img/help_desk/phone-call.png" width="18px" height="18px">
+                            <span data-key="helpline">Helpline Number : 9503011971</span>
+                        </h5>
+                        <p class="fst-italic text-muted" data-key="quote">
+                            "Have a safe journey, we are always here for you."'
+                        </p>
+                    </div>
+                </div> -->
+                <!-- end container -->
+
             </div>
 
         </div>
     </div>
     <!-- Service Release Overlay -->
-    <div class="service_warning">
+    <!-- <div class="service_warning">
         These services will be released soon.
-    </div>
+    </div> -->
     <!-- Bottom Navigation Bar -->
     <div class="bottom-bar d-flex justify-content-around">
 
@@ -246,37 +187,38 @@
 
     </div>
 
-    
-<!-- Feedback Modal -->
-<div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content text-center p-3">
-            <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title w-100">Share your Feedback</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-3">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title w-100">Share your Feedback</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <p class="mt-2">Rate your Experience 👋</p>
+                <div id="starContainer" class="mb-3">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+                <div class="mb-3">
+                    <textarea id="feedbackText" class="form-control"
+                        placeholder="Describe Your Experience Here"></textarea>
+                </div>
+                <button class="btn btn-primary w-100" onclick="submitFeedback()">Submit Feedback</button>
             </div>
-            <p class="mt-2">Rate your Experience 👋</p>
-            <div id="starContainer" class="mb-3">
-                <span class="star" data-value="1">&#9733;</span>
-                <span class="star" data-value="2">&#9733;</span>
-                <span class="star" data-value="3">&#9733;</span>
-                <span class="star" data-value="4">&#9733;</span>
-                <span class="star" data-value="5">&#9733;</span>
-            </div>
-            <div class="mb-3">
-                <textarea id="feedbackText" class="form-control" placeholder="Describe Your Experience Here"></textarea>
-            </div>
-            <button class="btn btn-primary w-100" onclick="submitFeedback()">Submit Feedback</button>
         </div>
     </div>
-</div>
 
     <script>
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-});
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
 
-document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
             const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
             document.getElementById('language-select').value = selectedLanguage;
             updateLanguage(selectedLanguage);
@@ -299,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('selectedLanguage', selectedLanguage);
             updateLanguage(selectedLanguage);
         });
-        
+
         // Get all icon divs
         const iconDivs = document.querySelectorAll('.help_desk_icon_div');
 
@@ -383,6 +325,104 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     </script>
+
+
+    <script>
+        // ✅ Google Script URL
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzUp-Pa1auZasW4D5ZDM6LbOy6LbAG9tH4xJvQgtLsZHKw9C6zFZqRq6nomM_-umA2j/exec?helpdesk=true";
+
+        // ✅ Call after page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch(scriptURL)
+                .then(response => console.log("✅ Help Desk count incremented"))
+                .catch(error => console.error("❌ Error incrementing Help Desk count:", error));
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const helpDeskIcons = document.querySelectorAll(".help_desk_icon_div");
+
+            helpDeskIcons.forEach(icon => {
+                icon.addEventListener("click", function () {
+                    const service = this.getAttribute("data-service").toLowerCase().replace(/\s+/g, '');
+                    console.log(service);
+                    const url = `https://script.google.com/macros/s/AKfycbzUp-Pa1auZasW4D5ZDM6LbOy6LbAG9tH4xJvQgtLsZHKw9C6zFZqRq6nomM_-umA2j/exec?${service}=true`;
+
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log("✅ Request sent successfully:", data);
+                            // alert(`${service.charAt(0).toUpperCase() + service.slice(1)} service called successfully!`);
+                        })
+                        .catch(error => {
+                            console.error("❌ Error calling service:", error);
+                            // alert("Something went wrong. Try again!");
+                        });
+                });
+            });
+
+        });
+    </script>
+
+    <!-- hlp deshk  text.... -->
+    <script>
+        const translations = {
+            en: {
+                helpline: "Helpline Number : 9503011971",
+                quote: '"Have a safe journey, we\'re always here for you."'
+            },
+            hi: {
+                helpline: "सहायता नंबर : ९५०३०११९७१",
+                quote: '"यात्रा सुखद हो, हम हमेशा आपके साथ हैं।"'
+            },
+            mr: {
+                helpline: "साहाय्य क्रमांक : ९५०३०११९७१",
+                quote: '"प्रवास सुखद होवो, आम्ही नेहमी तुमच्यासोबत आहोत."'
+            }
+        };
+
+        const languageSelect = document.getElementById('language-select');
+
+        languageSelect.addEventListener('change', () => {
+            const selectedLang = languageSelect.value;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                el.innerText = translations[selectedLang][key];
+            });
+        });
+    </script>
+
+    <!-- new -->
+    <script>
+        const helpIcons = document.querySelectorAll(".help_desk_icon_div");
+        const modal = document.getElementById("customModal");
+        const backdrop = document.getElementById("modalBackdrop");
+        const modalService = document.getElementById("modalService");
+        const modalPhone = document.getElementById("modalPhone");
+        const closeBtn = document.getElementById("modalClose");
+
+        helpIcons.forEach(icon => {
+            icon.addEventListener("click", () => {
+                const service = icon.getAttribute("data-service");
+                const phone = icon.getAttribute("data-phone");
+
+                modalService.innerText = service;
+                modalPhone.innerText = `Helpline: ${phone}`;
+                modal.style.display = "block";
+                backdrop.style.display = "block";
+            });
+        });
+
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+            backdrop.style.display = "none";
+        });
+
+        backdrop.addEventListener("click", () => {
+            modal.style.display = "none";
+            backdrop.style.display = "none";
+        });
+    </script>
+
 
     <!-- <script src="./static/js/map.js"></script> -->
     <!-- <script src="./static/js/voice.js"></script> -->

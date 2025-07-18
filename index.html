@@ -29,6 +29,22 @@
     <!--always put inside head tag of index.html -->
 
     <!-- this is your id google analytics (G-BEN6J8YHXS) -->
+
+
+
+    <style>
+    .star {
+        font-size: 2rem; /* Increase size, adjust as needed */
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.3s;
+    }
+
+    .star:hover,
+    .star.selected {
+        color: gold;
+    }
+</style>
 </head>
 
 <body>
@@ -90,61 +106,72 @@
             </ul>
         </div> -->
 
-        
-      <div class="menu-item">
-        <span>Platform</span>
-      </div>
+
+        <div class="menu-item">
+            <span>Platform</span>
+        </div>
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('platform-list')">
                 <img src="./static/img/menu_img/platform_amenity.png" alt="">
-                <span class="track" data-source="Platform_Ameneties" data-en="Platform Amenities" data-hi="प्लेटफार्म सुविधाएं"
-                    data-mr="प्लॅटफॉर्म सोयीसुविधा">Platform Amenities</span>
+                <span class="track" data-source="Platform_Ameneties" data-en="Platform Amenities"
+                    data-hi="प्लेटफार्म सुविधाएं" data-mr="प्लॅटफॉर्म सोयीसुविधा">Platform Amenities</span>
                 <span><i class="fas fa-chevron-down "></i></span>
             </button>
 
             <ul id="platform-list" class="menu-list">
                 <li>
-                 <span class="track" data-source="PA_Platform 1" data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १" onclick="bounceAllPins('Platform 1')">
-                    Platform 1</span>
+                    <span class="track" data-source="PA_Platform 1" data-en="Platform 1" data-hi="प्लेटफार्म 1"
+                        data-mr="प्लॅटफॉर्म १" onclick="bounceAllPins('Platform 1')">
+                        Platform 1</span>
 
                     <ul class="submenu" id="submenu">
                         <!-- <li onclick="bounceAllPins('Platform 1')">Platform 1</li> -->
-                        <li   onclick="highlightPinpoints('Platform 1 Point 2')">
-                            <span class="track" data-source="PA_Platform 1_Lift_BhusavalEnd" data-track="map-load-section-lift_stairs" data-en="Lift and Stairs Bhusval end" data-hi="लिफ्ट और सीढ़ियाँ भुसावल छोर"
-                                data-mr="लिफ्ट आणि जिने भुसावळ शेवट">Lift and Stairs Bhusval end</span>
+                        <li onclick="highlightPinpoints('Platform 1 Point 2')">
+                            <span class="track" data-source="PA_Platform 1_Lift_BhusavalEnd"
+                                data-track="map-load-section-lift_stairs" data-en="Lift and Stairs Bhusval end"
+                                data-hi="लिफ्ट और सीढ़ियाँ भुसावल छोर" data-mr="लिफ्ट आणि जिने भुसावळ शेवट">Lift and
+                                Stairs Bhusval end</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 3')">
-                            <span class="track" data-source="PA_Platform 1_PassengerLift" data-en="Passenger Lift" data-hi="यात्री लिफ्ट" data-mr="प्रवासी लिफ्ट">Passenger
+                            <span class="track" data-source="PA_Platform 1_PassengerLift" data-en="Passenger Lift"
+                                data-hi="यात्री लिफ्ट" data-mr="प्रवासी लिफ्ट">Passenger
                                 Lift</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 4')">
-                            <span class="track" data-source="PA_Platform 1_Toilet_ParcelOffice" data-en="Pay and Use toilet near parcel office"
+                            <span class="track" data-source="PA_Platform 1_Toilet_ParcelOffice"
+                                data-en="Pay and Use toilet near parcel office"
                                 data-hi="पार्सल कार्यालय के पास पे एंड यूज शौचालय"
                                 data-mr="पार्सल ऑफिसजवळचे पैसे आणि वापर शौचालय">Pay and Use toilet near parcel
                                 office</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 5')">
-                            <span class="track" data-source="PA_Platform 1_ParcelOffice" data-en="Parcel Office" data-hi="पार्सल कार्यालय" data-mr="पार्सल ऑफिस">Parcel
+                            <span class="track" data-source="PA_Platform 1_ParcelOffice" data-en="Parcel Office"
+                                data-hi="पार्सल कार्यालय" data-mr="पार्सल ऑफिस">Parcel
                                 Office</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 7')">
-                            <span class="track" data-source="PA_Platform 1_DYSS_Office" data-en="DYSS Office" data-hi="डीवायएसएस कार्यालय" data-mr="डीवायएसएस ऑफिस">DYSS
+                            <span class="track" data-source="PA_Platform 1_DYSS_Office" data-en="DYSS Office"
+                                data-hi="डीवायएसएस कार्यालय" data-mr="डीवायएसएस ऑफिस">DYSS
                                 Office</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 9')">
-                            <span class="track" data-source="PA_Platform 1_SleepingPod_Vatsalyam" data-en="Sleeping Pod (Vatsalyam)" data-hi="स्लीपिंग पॉड (वत्सल्य)"
+                            <span class="track" data-source="PA_Platform 1_SleepingPod_Vatsalyam"
+                                data-en="Sleeping Pod (Vatsalyam)" data-hi="स्लीपिंग पॉड (वत्सल्य)"
                                 data-mr="झोपण्याचे पॉड (वत्सल्य)">Sleeping Pod (Vatsalyam)</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 10')">
-                            <span class="track" data-source="PA_Platform 1_DeluxeToilet data-en="Deluxe Toilet" data-hi="डिलक्स शौचालय" data-mr="डिलक्स शौचालय">Deluxe
+                            <span class="track" data-source="PA_Platform 1_DeluxeToilet data-en=" Deluxe Toilet"
+                                data-hi="डिलक्स शौचालय" data-mr="डिलक्स शौचालय">Deluxe
                                 Toilet</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 11')">
-                            <span class="track" data-source="PA_Platform 1_ATM" data-en="ATM" data-hi="एटीएम" data-mr="एटीएम">ATM</span>
+                            <span class="track" data-source="PA_Platform 1_ATM" data-en="ATM" data-hi="एटीएम"
+                                data-mr="एटीएम">ATM</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 12')">
-                            <span  class="track" data-source="PA_Platform 1_ACRetiring_Godavari" data-en="AC Retiring Hall (Godavari Waiting Hall)"
+                            <span class="track" data-source="PA_Platform 1_ACRetiring_Godavari"
+                                data-en="AC Retiring Hall (Godavari Waiting Hall)"
                                 data-hi="एसी रिटायरिंग हॉल (गोदावरी वेटिंग हॉल)"
                                 data-mr="एसी रिटायरिंग हॉल (गोदावरी वेटिंग हॉल)">AC Retiring Hall (Godavari Waiting
                                 Hall)</span>
@@ -152,33 +179,41 @@
 
                         <!-- <li onclick="highlightPinpoints('Platform 1 Point 13')">IRCTC Dormitory</li> -->
                         <li onclick="highlightPinpoints('Platform 1 Point 14')">
-                            <span class="track" data-source="PA_Platform 1_WaitingRoom_CloakRoom_Paid" data-en="Waiting Room and Cloak Room Paid" data-hi="वेटिंग रूम और क्लोक रूम भुगतान"
+                            <span class="track" data-source="PA_Platform 1_WaitingRoom_CloakRoom_Paid"
+                                data-en="Waiting Room and Cloak Room Paid" data-hi="वेटिंग रूम और क्लोक रूम भुगतान"
                                 data-mr="वेटिंग रूम आणि क्लोक रूम पेड">Waiting Room and Cloak Room Paid</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 15')">
-                            <span  class="track" data-source="PA_Platform 1_WaterStand_MiddlePF" data-en="Water Stand PF at Middle" data-hi="बीच में जल स्टैंड पीएफ"
+                            <span class="track" data-source="PA_Platform 1_WaterStand_MiddlePF"
+                                data-en="Water Stand PF at Middle" data-hi="बीच में जल स्टैंड पीएफ"
                                 data-mr="मधला वॉटर स्टँड पीएफ">Water Stand PF at Middle</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 16')">
-                            <span class="track" data-source="PA_Platform 1_NashikRoadBusStop" data-en="Nashik Road Bus Stop" data-hi="नासिक रोड बस स्टॉप"
+                            <span class="track" data-source="PA_Platform 1_NashikRoadBusStop"
+                                data-en="Nashik Road Bus Stop" data-hi="नासिक रोड बस स्टॉप"
                                 data-mr="नाशिक रोड बस स्टॉप">Nashik Road Bus Stop</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 17')">
-                            <span class="track" data-source="PA_Platform 1_DrinkingWater" data-en="Drinking Water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                            <span class="track" data-source="PA_Platform 1_DrinkingWater" data-en="Drinking Water"
+                                data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
                                 Water</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 18')">
-                            <span class="track" data-source="PA_Platform 1_Escalator" data-en="Escalator" data-hi="एस्केलेटर" data-mr="चलती जिने">Escalator</span>
+                            <span class="track" data-source="PA_Platform 1_Escalator" data-en="Escalator"
+                                data-hi="एस्केलेटर" data-mr="चलती जिने">Escalator</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 19')">
-                            <span  class="track" data-source="PA_Platform 1_GiftShop_1" data-en="Gift Shop" data-hi="उपहार की दुकान" data-mr="भेटवस्तू दुकान">Gift Shop</span>
+                            <span class="track" data-source="PA_Platform 1_GiftShop_1" data-en="Gift Shop"
+                                data-hi="उपहार की दुकान" data-mr="भेटवस्तू दुकान">Gift Shop</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 20')">
-                            <span class="track" data-source="PA_Platform 1_RPF_Station" data-en="RPF Station" data-hi="आरपीएफ स्टेशन" data-mr="आरपीएफ स्टेशन">RPF
+                            <span class="track" data-source="PA_Platform 1_RPF_Station" data-en="RPF Station"
+                                data-hi="आरपीएफ स्टेशन" data-mr="आरपीएफ स्टेशन">RPF
                                 Station</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 21')">
-                            <span  class="track" data-source="PA_Platform 1_ACDorm_MD_Ranjit" data-en="M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms"
+                            <span class="track" data-source="PA_Platform 1_ACDorm_MD_Ranjit"
+                                data-en="M. Dinshaw & Ranjit AC Dormitory, Deluxe Rooms"
                                 data-hi="एम. दिनशॉ और रंजीत एसी डॉरमिटरी, डीलक्स रूम"
                                 data-mr="एम. दिनशॉ आणि रंजीत एसी डॉर्मिटरी, डिलक्स रूम">M. Dinshaw & Ranjit AC
                                 Dormitory, Deluxe Rooms</span>
@@ -187,115 +222,139 @@
 
                         <!-- <li onclick="highlightPinpoints('Platform 1 Point 22')">Relax Zone</li> -->
                         <li onclick="highlightPinpoints('Platform 1 Point 23')">
-                            <span class="track" data-source="PA_Platform 1_MedicalFacility" data-en="Emergency Medical Facility" data-hi="आपातकालीन चिकित्सा सुविधा"
+                            <span class="track" data-source="PA_Platform 1_MedicalFacility"
+                                data-en="Emergency Medical Facility" data-hi="आपातकालीन चिकित्सा सुविधा"
                                 data-mr="आपत्कालीन वैद्यकीय सुविधा">Emergency Medical Facility</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 24')">
-                            <span class="track" data-source="PA_Platform 1_TicketCounter" data-en="Ticket Counter" data-hi="टिकट काउंटर" data-mr="तिकीट काउंटर">Ticket
+                            <span class="track" data-source="PA_Platform 1_TicketCounter" data-en="Ticket Counter"
+                                data-hi="टिकट काउंटर" data-mr="तिकीट काउंटर">Ticket
                                 Counter</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 25')">
-                            <span class="track" data-source="PA_Platform 1_Cafeteria" data-en="Cafeteria" data-hi="कैफेटेरिया" data-mr="कॅफेटेरिया">Cafeteria</span>
+                            <span class="track" data-source="PA_Platform 1_Cafeteria" data-en="Cafeteria"
+                                data-hi="कैफेटेरिया" data-mr="कॅफेटेरिया">Cafeteria</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 26')">
-                            <span  class="track" data-source="PA_Platform 1_PayUseToilet_1" data-en="Pay & Use Toilet" data-hi="पे एंड यूज शौचालय" data-mr="पे अँड यूज शौचालय">Pay
+                            <span class="track" data-source="PA_Platform 1_PayUseToilet_1" data-en="Pay & Use Toilet"
+                                data-hi="पे एंड यूज शौचालय" data-mr="पे अँड यूज शौचालय">Pay
                                 & Use Toilet</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 27')">
-                            <span class="track" data-source="PA_Platform 1_PayUseToilet_2" data-en="Pay & Use Toilet" data-hi="पे एंड यूज शौचालय" data-mr="पे अँड यूज शौचालय">Pay
+                            <span class="track" data-source="PA_Platform 1_PayUseToilet_2" data-en="Pay & Use Toilet"
+                                data-hi="पे एंड यूज शौचालय" data-mr="पे अँड यूज शौचालय">Pay
                                 & Use Toilet</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 28')">
-                            <span class="track" data-source="PA_Platform 1_WaterStand_PF1" data-en="Water Stand PF-1" data-hi="वाटर स्टैंड पीएफ-१"
-                                data-mr="वॉटर स्टँड पीएफ-१">Water Stand PF-1</span>
+                            <span class="track" data-source="PA_Platform 1_WaterStand_PF1" data-en="Water Stand PF-1"
+                                data-hi="वाटर स्टैंड पीएफ-१" data-mr="वॉटर स्टँड पीएफ-१">Water Stand PF-1</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 29')">
-                            <span class="track" data-source="PA_Platform 1_DeluxeToilet_MF" data-en="Deluxe Toilet (M/F)" data-hi="डिलक्स शौचालय (पुरुष/महिला)"
+                            <span class="track" data-source="PA_Platform 1_DeluxeToilet_MF"
+                                data-en="Deluxe Toilet (M/F)" data-hi="डिलक्स शौचालय (पुरुष/महिला)"
                                 data-mr="डिलक्स शौचालय (पुरुष/महिला)">Deluxe Toilet (M/F)</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 30')">
-                            <span class="track" data-source="PA_Platform 1_DivyangjanToilet" data-en="Divyangjan Toilet" data-hi="दिव्यांगजन शौचालय"
-                                data-mr="दिव्यांगजन शौचालय">Divyangjan Toilet</span>
+                            <span class="track" data-source="PA_Platform 1_DivyangjanToilet" data-en="Divyangjan Toilet"
+                                data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan Toilet</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 31')">
-                            <span class="track" data-source="PA_Platform 1_KhadiStore" data-en="Khadi Garments Store" data-hi="खादी वस्त्र दुकान"
-                                data-mr="खादी वस्त्र दुकान">Khadi Garments Store</span>
+                            <span class="track" data-source="PA_Platform 1_KhadiStore" data-en="Khadi Garments Store"
+                                data-hi="खादी वस्त्र दुकान" data-mr="खादी वस्त्र दुकान">Khadi Garments Store</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 32')">
-                            <span class="track" data-source="PA_Platform 1_PF1_AutoStand" data-en="PF 1 Auto Stand" data-hi="पीएफ १ ऑटो स्टैंड" data-mr="पीएफ १ ऑटो स्टँड">PF 1
+                            <span class="track" data-source="PA_Platform 1_PF1_AutoStand" data-en="PF 1 Auto Stand"
+                                data-hi="पीएफ १ ऑटो स्टैंड" data-mr="पीएफ १ ऑटो स्टँड">PF 1
                                 Auto Stand</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 33')">
-                            <span class="track" data-source="PA_Platform 1_PayPark_Parking" data-en="Pay & Park Parking" data-hi="पे एंड पार्क पार्किंग"
-                                data-mr="पे अँड पार्क पार्किंग">Pay & Park Parking</span>
+                            <span class="track" data-source="PA_Platform 1_PayPark_Parking" data-en="Pay & Park Parking"
+                                data-hi="पे एंड पार्क पार्किंग" data-mr="पे अँड पार्क पार्किंग">Pay & Park
+                                Parking</span>
                         </li>
 
 
                         <li onclick="highlightPinpoints('Platform 1 Point 34')">
-                            <span class="track" data-source="PA_Platform 1_PF1_Entrance" data-en="Pf 1 Entrance" data-hi="प्लेटफार्म १ प्रवेश" data-mr="प्लॅटफॉर्म १ प्रवेश">Pf
+                            <span class="track" data-source="PA_Platform 1_PF1_Entrance" data-en="Pf 1 Entrance"
+                                data-hi="प्लेटफार्म १ प्रवेश" data-mr="प्लॅटफॉर्म १ प्रवेश">Pf
                                 1 Entrance</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 35')">
-                            <span class="track" data-source="PA_Platform 1_StationManager" data-en="Station Manager" data-hi="स्टेशन प्रबंधक" data-mr="स्थानक व्यवस्थापक">Station
+                            <span class="track" data-source="PA_Platform 1_StationManager" data-en="Station Manager"
+                                data-hi="स्टेशन प्रबंधक" data-mr="स्थानक व्यवस्थापक">Station
                                 Manager</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 38')">
-                            <span class="track" data-source="PA_Platform 1_IRCTC_FoodTrack" data-en="Irctc Food Track" data-hi="आईआरसीटीसी फूड ट्रक"
-                                data-mr="आयआरसीटीसी फूड ट्रक">Irctc Food Track</span>
+                            <span class="track" data-source="PA_Platform 1_IRCTC_FoodTrack" data-en="Irctc Food Track"
+                                data-hi="आईआरसीटीसी फूड ट्रक" data-mr="आयआरसीटीसी फूड ट्रक">Irctc Food Track</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 39')">
-                            <span  class="track" data-source="PA_Platform 1_IRCTC_DormRoom" data-en="Irctc Dormitory & Deluxe Room" data-hi="आईआरसीटीसी डॉरमिटरी और डीलक्स रूम"
+                            <span class="track" data-source="PA_Platform 1_IRCTC_DormRoom"
+                                data-en="Irctc Dormitory & Deluxe Room" data-hi="आईआरसीटीसी डॉरमिटरी और डीलक्स रूम"
                                 data-mr="आयआरसीटीसी डॉर्मिटरी आणि डिलक्स रूम">Irctc Dormitory & Deluxe Room</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 40')">
-                            <span class="track" data-source="PA_Platform 1_PayUseToilet_MF" data-en="Pay & Use Toilet(M/F)" data-hi="पे एंड यूज शौचालय (पुरुष/महिला)"
+                            <span class="track" data-source="PA_Platform 1_PayUseToilet_MF"
+                                data-en="Pay & Use Toilet(M/F)" data-hi="पे एंड यूज शौचालय (पुरुष/महिला)"
                                 data-mr="पे अँड यूज शौचालय (पुरुष/महिला)">Pay & Use Toilet(M/F)</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 41')">
-                            <span  class="track" data-source="PA_Platform 1_RelaxZone" data-en="Relax Zone" data-hi="आराम क्षेत्र" data-mr="रिलॅक्स झोन">Relax Zone</span>
+                            <span class="track" data-source="PA_Platform 1_RelaxZone" data-en="Relax Zone"
+                                data-hi="आराम क्षेत्र" data-mr="रिलॅक्स झोन">Relax Zone</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 42')">
-                            <span class="track" data-source="PA_Platform 1_SleepingPod_Vatsalyam_2" data-en="Vastyalyam Sleeping Pod" data-hi="वत्सल्य स्लीपिंग पॉड"
+                            <span class="track" data-source="PA_Platform 1_SleepingPod_Vatsalyam_2"
+                                data-en="Vastyalyam Sleeping Pod" data-hi="वत्सल्य स्लीपिंग पॉड"
                                 data-mr="वत्सल्य झोपण्याचे पॉड">Vastyalyam Sleeping Pod</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 43')">
-                            <span class="track" data-source="PA_Platform 1_RailCoachRestaurant" data-en="Offtrack Rail Coach Restaurant" data-hi="ऑफट्रैक रेल कोच रेस्टोरेंट"
+                            <span class="track" data-source="PA_Platform 1_RailCoachRestaurant"
+                                data-en="Offtrack Rail Coach Restaurant" data-hi="ऑफट्रैक रेल कोच रेस्टोरेंट"
                                 data-mr="ऑफट्रॅक रेल कोच रेस्टॉरंट">Offtrack Rail Coach Restaurant</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 44')">
-                            <span class="track" data-source="PA_Platform 1_OSOP_Stall" data-en="Osop Stall" data-hi="ओएसओपी स्टॉल" data-mr="ओएसओपी स्टॉल">Osop Stall</span>
+                            <span class="track" data-source="PA_Platform 1_OSOP_Stall" data-en="Osop Stall"
+                                data-hi="ओएसओपी स्टॉल" data-mr="ओएसओपी स्टॉल">Osop Stall</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 45')">
-                            <span class="track" data-source="PA_Platform 1_GiftShop_2" data-en="Gift Shop" data-hi="उपहार की दुकान" data-mr="भेटवस्तू दुकान">Gift Shop</span>
+                            <span class="track" data-source="PA_Platform 1_GiftShop_2" data-en="Gift Shop"
+                                data-hi="उपहार की दुकान" data-mr="भेटवस्तू दुकान">Gift Shop</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 46')">
-                            <span class="track" data-source="PA_Platform 1_TCI_Office" data-en="TCI Office" data-hi="टीसीआई कार्यालय" data-mr="टीसीआय ऑफिस">TCI Office</span>
+                            <span class="track" data-source="PA_Platform 1_TCI_Office" data-en="TCI Office"
+                                data-hi="टीसीआई कार्यालय" data-mr="टीसीआय ऑफिस">TCI Office</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 47')">
-                            <span  class="track" data-source="PA_Platform 1_MultiFood_Stall" data-en="Multi Purpose Stall Food" data-hi="बहुउद्देशीय स्टॉल खाद्य"
+                            <span class="track" data-source="PA_Platform 1_MultiFood_Stall"
+                                data-en="Multi Purpose Stall Food" data-hi="बहुउद्देशीय स्टॉल खाद्य"
                                 data-mr="बहुउद्देशीय स्टॉल खाद्य">Multi Purpose Stall Food</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 48')">
-                            <span  class="track" data-source="PA_Platform 1_RailAhar_Tea" data-en="Rail Ahar (tea)" data-hi="रेल आहार (चाय)" data-mr="रेल आहार (चहा)">Rail Ahar
+                            <span class="track" data-source="PA_Platform 1_RailAhar_Tea" data-en="Rail Ahar (tea)"
+                                data-hi="रेल आहार (चाय)" data-mr="रेल आहार (चहा)">Rail Ahar
                                 (tea)</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 49')">
-                            <span class="track" data-source="PA_Platform 1_UpperClassWaiting_Female" data-en="Upper class waiting room(Female)" data-hi="उच्च वर्ग प्रतीक्षालय (महिला)"
+                            <span class="track" data-source="PA_Platform 1_UpperClassWaiting_Female"
+                                data-en="Upper class waiting room(Female)" data-hi="उच्च वर्ग प्रतीक्षालय (महिला)"
                                 data-mr="उच्च वर्ग प्रतीक्षालय (महिला)">Upper class waiting room(Female)</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 50')">
-                            <span class="track" data-source="PA_Platform 1_WaitingRoom" data-en="Waiting Room" data-hi="प्रतीक्षालय" data-mr="प्रतीक्षालय">Waiting Room</span>
+                            <span class="track" data-source="PA_Platform 1_WaitingRoom" data-en="Waiting Room"
+                                data-hi="प्रतीक्षालय" data-mr="प्रतीक्षालय">Waiting Room</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 52')">
-                            <span class="track" data-source="PA_Platform 1_KitabGhar" data-en="Kitab Ghar" data-hi="किताब घर" data-mr="किताब घर">Kitab Ghar</span>
+                            <span class="track" data-source="PA_Platform 1_KitabGhar" data-en="Kitab Ghar"
+                                data-hi="किताब घर" data-mr="किताब घर">Kitab Ghar</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 53')">
-                            <span class="track" data-source="PA_Platform 1_MaaTara_ACWaitingCloak" data-en="Maa Tara Ac Waiting&Cloak Room"
-                                data-hi="माँ तारा एसी प्रतीक्षालय और क्लोक रूम"
+                            <span class="track" data-source="PA_Platform 1_MaaTara_ACWaitingCloak"
+                                data-en="Maa Tara Ac Waiting&Cloak Room" data-hi="माँ तारा एसी प्रतीक्षालय और क्लोक रूम"
                                 data-mr="माँ तारा एसी प्रतीक्षालय आणि क्लोक रूम">Maa Tara Ac Waiting&Cloak Room</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 1 Point 54')">
-                            <span class="track" data-source="PA_Platform 1_SleeperClassWaiting" data-en="Sleeper Class Waiting Room" data-hi="स्लीपर क्लास प्रतीक्षालय"
+                            <span class="track" data-source="PA_Platform 1_SleeperClassWaiting"
+                                data-en="Sleeper Class Waiting Room" data-hi="स्लीपर क्लास प्रतीक्षालय"
                                 data-mr="स्लीपर क्लास प्रतीक्षालय">Sleeper Class Waiting Room</span>
                         </li>
 
@@ -305,100 +364,125 @@
                     </ul>
                 </li>
                 <li>
-                    <span class="track" data-source="PA_Platform 2/3" onclick="bounceAllPins('Platform 2')" data-en="Platform 2/3" data-hi="प्लेटफार्म २/३"
-                        data-mr="प्लॅटफॉर्म २/३">Platform 2/3</span>
+                    <span class="track" data-source="PA_Platform 2/3" onclick="bounceAllPins('Platform 2')"
+                        data-en="Platform 2/3" data-hi="प्लेटफार्म २/३" data-mr="प्लॅटफॉर्म २/३">Platform 2/3</span>
                     <ul class="submenu">
                         <!-- <li onclick="bounceAllPins('Platform 2')">Platform 2/3</li> -->
                         <li onclick="highlightPinpoints('Platform 2 Point 2')">
-                            <span class="track" data-source="PA_Platform 2/3_DrinkingWater_1" data-en="Drinking water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                            <span class="track" data-source="PA_Platform 2/3_DrinkingWater_1" data-en="Drinking water"
+                                data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
                                 water</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 3')">
-                            <span class="track" data-source="PA_Platform 2/3_TeaSnacksStall" data-en="Tea snacks stall" data-hi="चाय स्नैक्स स्टॉल" data-mr="चहा स्नॅक्स स्टॉल">Tea
+                            <span class="track" data-source="PA_Platform 2/3_TeaSnacksStall" data-en="Tea snacks stall"
+                                data-hi="चाय स्नैक्स स्टॉल" data-mr="चहा स्नॅक्स स्टॉल">Tea
                                 snacks stall</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 4')">
-                            <span class="track" data-source="PA_Platform 2/3_OxygenParlour" data-en="Oxygen parlour" data-hi="ऑक्सीजन पार्लर" data-mr="ऑक्सिजन पार्लर">Oxygen
+                            <span class="track" data-source="PA_Platform 2/3_OxygenParlour" data-en="Oxygen parlour"
+                                data-hi="ऑक्सीजन पार्लर" data-mr="ऑक्सिजन पार्लर">Oxygen
                                 parlour</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 5')">
-                            <span class="track" data-source="PA_Platform 2/3_DrinkingWater_2" data-en="Drinking water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                            <span class="track" data-source="PA_Platform 2/3_DrinkingWater_2" data-en="Drinking water"
+                                data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
                                 water</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 6')">
-                            <span class="track" data-source="PA_Platform 2/3_MahanandMilkStall" data-en="Mahanand milk stall" data-hi="महानंद दूध स्टॉल"
+                            <span class="track" data-source="PA_Platform 2/3_MahanandMilkStall"
+                                data-en="Mahanand milk stall" data-hi="महानंद दूध स्टॉल"
                                 data-mr="महानंद दूध स्टॉल">Mahanand milk stall</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 7')">
-                            <span class="track" data-source="PA_Platform 2/3_TeaStall" data-en="Tea stall" data-hi="चाय स्टॉल" data-mr="चहा स्टॉल">Tea stall</span>
+                            <span class="track" data-source="PA_Platform 2/3_TeaStall" data-en="Tea stall"
+                                data-hi="चाय स्टॉल" data-mr="चहा स्टॉल">Tea stall</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 8')">
-                            <span class="track" data-source="PA_Platform 2/3_SnacksCorner" data-en="Snacks corner" data-hi="स्नैक्स कॉर्नर" data-mr="स्नॅक्स कॉर्नर">Snacks
+                            <span class="track" data-source="PA_Platform 2/3_SnacksCorner" data-en="Snacks corner"
+                                data-hi="स्नैक्स कॉर्नर" data-mr="स्नॅक्स कॉर्नर">Snacks
                                 corner</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 9')">
-                            <span class="track" data-source="PA_Platform 2/3_Toilet_MF" data-en="Toilet (M/F)" data-hi="शौचालय (पुरुष/महिला)"
-                                data-mr="शौचालय (पुरुष/महिला)">Toilet (M/F)</span>
+                            <span class="track" data-source="PA_Platform 2/3_Toilet_MF" data-en="Toilet (M/F)"
+                                data-hi="शौचालय (पुरुष/महिला)" data-mr="शौचालय (पुरुष/महिला)">Toilet (M/F)</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 10')">
-                            <span class="track" data-source="PA_Platform 2/3_DrinkingWater_3" data-en="Drinking water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                            <span class="track" data-source="PA_Platform 2/3_DrinkingWater_3" data-en="Drinking water"
+                                data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
                                 water</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 11')">
-                            <span class="track" data-source="PA_Platform 2/3_FruitJuiceStall_1" data-en="Fruit & juice stall" data-hi="फल और जूस स्टॉल"
+                            <span class="track" data-source="PA_Platform 2/3_FruitJuiceStall_1"
+                                data-en="Fruit & juice stall" data-hi="फल और जूस स्टॉल"
                                 data-mr="फळे व ज्यूस स्टॉल">Fruit & juice stall</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 12')">
-                            <span class="track" data-source="PA_Platform 2/3_MultipurposeStall" data-en="Multipurpose stall" data-hi="बहुउद्देशीय स्टॉल"
+                            <span class="track" data-source="PA_Platform 2/3_MultipurposeStall"
+                                data-en="Multipurpose stall" data-hi="बहुउद्देशीय स्टॉल"
                                 data-mr="बहुउद्देशीय स्टॉल">Multipurpose stall</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 13')">
-                            <span class="track" data-source="PA_Platform 2/3_DrinkingWater_4" data-en="Drinking water" data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
+                            <span class="track" data-source="PA_Platform 2/3_DrinkingWater_4" data-en="Drinking water"
+                                data-hi="पीने का पानी" data-mr="पिण्याचे पाणी">Drinking
                                 water</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 14')">
-                            <span class="track" data-source="PA_Platform 2/3_FruitJuiceStall_2" data-en="Fruit & juice stall" data-hi="फल और जूस स्टॉल"
+                            <span class="track" data-source="PA_Platform 2/3_FruitJuiceStall_2"
+                                data-en="Fruit & juice stall" data-hi="फल और जूस स्टॉल"
                                 data-mr="फळे व ज्यूस स्टॉल">Fruit & juice stall</span>
                         </li>
                         <li onclick="highlightPinpoints('Platform 2 Point 15')">
-                            <span class="track" data-source="PA_Platform 2/3_RailAharTeaStall" data-en="Railahar tea stall" data-hi="रेलाहर चाय स्टॉल"
+                            <span class="track" data-source="PA_Platform 2/3_RailAharTeaStall"
+                                data-en="Railahar tea stall" data-hi="रेलाहर चाय स्टॉल"
                                 data-mr="रेलाहर चहा स्टॉल">Railahar tea stall</span>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <span class="track" data-source="PA_Platform 4" onclick="bounceAllPins('Platform 4')" data-en="Platform 4" data-hi="प्लेटफार्म ४"
-                        data-mr="प्लॅटफॉर्म ४">Platform 4</span>
+                    <span class="track" data-source="PA_Platform 4" onclick="bounceAllPins('Platform 4')"
+                        data-en="Platform 4" data-hi="प्लेटफार्म ४" data-mr="प्लॅटफॉर्म ४">Platform 4</span>
                     <ul class="submenu">
                         <!-- <li onclick="bounceAllPins('Platform 4')">Platform 4</li> -->
-                        <li class="track" data-source="PA_Platform 4_TeaStall" onclick="highlightPinpoints('Platform 4 Point 2')" data-en="Tea stall" data-hi="चाय स्टाल"
+                        <li class="track" data-source="PA_Platform 4_TeaStall"
+                            onclick="highlightPinpoints('Platform 4 Point 2')" data-en="Tea stall" data-hi="चाय स्टाल"
                             data-mr="चहा स्टॉल">Tea stall</li>
-                        <li class="track" data-source="PA_Platform 4_Toilet_ML_1" onclick="highlightPinpoints('Platform 4 Point 3')" data-en="Toilet(M/L)"
+                        <li class="track" data-source="PA_Platform 4_Toilet_ML_1"
+                            onclick="highlightPinpoints('Platform 4 Point 3')" data-en="Toilet(M/L)"
                             data-hi="शौचालय(पु/म) " data-mr="शौचालय(पु/म) ">Toilet(M/L)</li>
-                        <li class="track" data-source="PA_Platform 4_Escalator_Stair" onclick="highlightPinpoints('Platform 4 Point 4')" data-en="Escalator & stair"
+                        <li class="track" data-source="PA_Platform 4_Escalator_Stair"
+                            onclick="highlightPinpoints('Platform 4 Point 4')" data-en="Escalator & stair"
                             data-hi="एस्केलेटर और सीढ़ी" data-mr="एस्केलेटर आणि पायऱ्या">Escalator & stair</li>
-                        <li class="track" data-source="PA_Platform 4_ChildHelpDesk" onclick="highlightPinpoints('Platform 4 Point 5')" data-en="Child help desk"
+                        <li class="track" data-source="PA_Platform 4_ChildHelpDesk"
+                            onclick="highlightPinpoints('Platform 4 Point 5')" data-en="Child help desk"
                             data-hi="बच्चा मदद डेस्क" data-mr="लहान मुलांच्या मदतीचा डेस्क">Child help desk</li>
-                        <li class="track" data-source="PA_Platform 4_Toilet_ML_2" onclick="highlightPinpoints('Platform 4 Point 6')" data-en="Toilet(M/L)"
+                        <li class="track" data-source="PA_Platform 4_Toilet_ML_2"
+                            onclick="highlightPinpoints('Platform 4 Point 6')" data-en="Toilet(M/L)"
                             data-hi="शौचालय(पु/म) " data-mr="शौचालय(पु/म) ">Toilet(M/L)</li>
-                        <li class="track" data-source="PA_Platform 4_Lift_Stair" onclick="highlightPinpoints('Platform 4 Point 7')" data-en="Lift & stair"
+                        <li class="track" data-source="PA_Platform 4_Lift_Stair"
+                            onclick="highlightPinpoints('Platform 4 Point 7')" data-en="Lift & stair"
                             data-hi="लिफ्ट और सीढ़ी" data-mr="लिफ्ट आणि पायऱ्या">Lift & stair</li>
-                        <li class="track" data-source="PA_Platform 4_DivyangjanToilet" onclick="highlightPinpoints('Platform 4 Point 8')" data-en="Divyangjan toilet"
+                        <li class="track" data-source="PA_Platform 4_DivyangjanToilet"
+                            onclick="highlightPinpoints('Platform 4 Point 8')" data-en="Divyangjan toilet"
                             data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan toilet</li>
-                        <li class="track" data-source="PA_Platform 4_MultipurposeStall" onclick="highlightPinpoints('Platform 4 Point 9')" data-en="Multipurpose stall"
+                        <li class="track" data-source="PA_Platform 4_MultipurposeStall"
+                            onclick="highlightPinpoints('Platform 4 Point 9')" data-en="Multipurpose stall"
                             data-hi="बहुउद्देश्यीय स्टॉल" data-mr="बहुउद्देशीय स्टॉल">Multipurpose stall</li>
-                        <li class="track" data-source="PA_Platform 4_PF4_EntryExit" onclick="highlightPinpoints('Platform 4 Point 10')" data-en="Pf 4 entry exit"
+                        <li class="track" data-source="PA_Platform 4_PF4_EntryExit"
+                            onclick="highlightPinpoints('Platform 4 Point 10')" data-en="Pf 4 entry exit"
                             data-hi="प्लेटफार्म ४ प्रवेश निकास" data-mr="प्लॅटफॉर्म ४ प्रवेश निकास">Pf 4 entry exit</li>
-                        <li class="track" data-source="PA_Platform 4_ReservationCenter" onclick="highlightPinpoints('Platform 4 Point 11')" data-en="Reservation center"
+                        <li class="track" data-source="PA_Platform 4_ReservationCenter"
+                            onclick="highlightPinpoints('Platform 4 Point 11')" data-en="Reservation center"
                             data-hi="आरक्षण केंद्र" data-mr="आरक्षण केंद्र">Reservation center</li>
-                        <li class="track" data-source="PA_Platform 4_PayParking" onclick="highlightPinpoints('Platform 4 Point 12')" data-en="Pay parking"
+                        <li class="track" data-source="PA_Platform 4_PayParking"
+                            onclick="highlightPinpoints('Platform 4 Point 12')" data-en="Pay parking"
                             data-hi="भुगतान पार्किंग" data-mr="सशुल्क पार्किंग">Pay parking</li>
                     </ul>
                 </li>
-                
+
                 <li>
-                    <span  class="track" data-source="PA_AllPlatform"  data-en="All Platform" data-hi="सभी प्लेटफार्म" data-mr="सर्व प्लॅटफॉर्म">All Platform</span>
+                    <span class="track" data-source="PA_AllPlatform" data-en="All Platform" data-hi="सभी प्लेटफार्म"
+                        data-mr="सर्व प्लॅटफॉर्म">All Platform</span>
                     <ul class="submenu">
                     </ul>
                 </li>
@@ -416,23 +500,26 @@
 
 
             <ul id="360_amenities" class="menu-list">
-                <li class="track" data-source="360_Platform 1" onclick="window.location.href='./app-files/index.html?scene=scene=1-pf1-entry'">
+                <li class="track" data-source="360_Platform 1"
+                    onclick="window.location.href='./app-files/index.html?scene=scene=1-pf1-entry'">
                     <a href="javascript:void(0);">
                         <img src="./static/img/pin_icon/platform.png" height="20">
-                        <span  data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १">Platform 1</span>
+                        <span data-en="Platform 1" data-hi="प्लेटफार्म 1" data-mr="प्लॅटफॉर्म १">Platform 1</span>
                     </a>
                 </li>
                 <li onclick="window.location.href='./app-files/pf2.html'">
                     <a href="./app-files/pf2.html">
                         <img src="./static/img/pin_icon/platform.png" height="20">
-                        <span class="track" data-source="360_Platform 2/3" data-en="Platform 2/3" data-hi="प्लेटफार्म 2/3" data-mr="प्लॅटफॉर्म २/३ ">Platform
+                        <span class="track" data-source="360_Platform 2/3" data-en="Platform 2/3"
+                            data-hi="प्लेटफार्म 2/3" data-mr="प्लॅटफॉर्म २/३ ">Platform
                             2/3</span>
                     </a>
                 </li>
                 <li onclick="window.location.href='./app-files/pf4.html'">
                     <a href="./app-files/pf4.html">
                         <img src="./static/img/pin_icon/platform.png" height="20">
-                        <span class="track" data-source="360_Platform 4" data-en="Platform 4" data-hi="प्लेटफार्म 4" data-mr="प्लॅटफॉर्म 4 ">Platform 4</span>
+                        <span class="track" data-source="360_Platform 4" data-en="Platform 4" data-hi="प्लेटफार्म 4"
+                            data-mr="प्लॅटफॉर्म 4 ">Platform 4</span>
                     </a>
                 </li>
 
@@ -444,26 +531,30 @@
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Divyangjan-facilities')">
                 <img src="./static/img/menu_img/Divyangjan facilities.png" alt="">
-                <span  class="track" data-source="Divyangjan_Facilities" data-en="Divyangjan facilities" data-hi="दिव्यांगजन सुविधाएं"
-                    data-mr="दिव्यांगजन सुविधा">Divyangjan facilities</span>
+                <span class="track" data-source="Divyangjan_Facilities" data-en="Divyangjan facilities"
+                    data-hi="दिव्यांगजन सुविधाएं" data-mr="दिव्यांगजन सुविधा">Divyangjan facilities</span>
                 <i class="fas fa-chevron-down"></i>
             </button>
 
             <ul id="Divyangjan-facilities" class="menu-list">
-                <li class="track" data-source="Divyangjan_Facilities_Toilet" onclick="highlightPinpoints('Platform 1 Point 30')">
+                <li class="track" data-source="Divyangjan_Facilities_Toilet"
+                    onclick="highlightPinpoints('Platform 1 Point 30')">
                     <img src="./static/img/pin_icon/washroom.png" height="20"><span data-en="Divyangjan Toilet"
                         data-hi="दिव्यांगजन शौचालय" data-mr="दिव्यांगजन शौचालय">Divyangjan Toilet</span>
                 </li>
-                <li class="track" data-source="Divyangjan_Facilities_Toilet_waterbooth" onclick="highlightPinpoints('Platform 1 Point 15')">
+                <li class="track" data-source="Divyangjan_Facilities_Toilet_waterbooth"
+                    onclick="highlightPinpoints('Platform 1 Point 15')">
                     <a href="#"><img src="./static/img/pin_icon/water.png" height="20"><span data-en="Water Booth"
                             data-hi="जल बूथ" data-mr="पाण्याचे बूथ">Water Booth</span> </a>
                 </li>
-                <li class="track" data-source="Divyangjan_Facilities_Toilet_Escalotor" onclick="highlightPinpoints('Platform 1 Point 18')">
+                <li class="track" data-source="Divyangjan_Facilities_Toilet_Escalotor"
+                    onclick="highlightPinpoints('Platform 1 Point 18')">
                     <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"><span
                             data-en="Divyangjan Escalator" data-hi="दिव्यांगजन एस्केलेटर"
                             data-mr="दिव्यांगजन एस्केलेटर">Divyangjan Escalator</span></a>
                 </li>
-                <li class="track" data-source="Divyangjan_Facilities_Toilet_Lift" onclick="highlightPinpoints('Platform 1 Point 2')">
+                <li class="track" data-source="Divyangjan_Facilities_Toilet_Lift"
+                    onclick="highlightPinpoints('Platform 1 Point 2')">
                     <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"><span data-en="Divyangjan Lift"
                             data-hi="दिव्यांगजन लिफ्ट" data-mr="दिव्यांगजन लिफ्ट">Divyangjan Lift</span></a>
                 </li>
@@ -474,19 +565,23 @@
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Storage&Services')">
                 <img src="./static/img/menu_img/Storage & Services.png" alt="">
-                <span class="track" data-source="Storage_Services" data-en="Storage & Services" data-hi="भंडारण और सेवाएं" data-mr="साठवण आणि सेवा">Storage &
+                <span class="track" data-source="Storage_Services" data-en="Storage & Services"
+                    data-hi="भंडारण और सेवाएं" data-mr="साठवण आणि सेवा">Storage &
                     Services</span><i class="fas fa-chevron-down"></i>
             </button>
             <ul id="Storage&Services" class="menu-list">
-                <li class="track" data-source="Storage_Services_Luggage_Room" onclick="highlightPinpoints('Platform 1 Point 53')">
+                <li class="track" data-source="Storage_Services_Luggage_Room"
+                    onclick="highlightPinpoints('Platform 1 Point 53')">
                     <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"><span data-en="Luggage Room"
                             data-hi="सामान कक्ष" data-mr="सामान कक्ष">Luggage Room</span> </a>
                 </li>
-                <li class="track" data-source="Storage_Services_Cloak_Room" onclick="highlightPinpoints('Platform 1 Point 14')">
+                <li class="track" data-source="Storage_Services_Cloak_Room"
+                    onclick="highlightPinpoints('Platform 1 Point 14')">
                     <img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Cloak Room"
                         data-hi="क्लोक रूम" data-mr="क्लोक रूम">Cloak Room</span>
                 </li>
-                <li class="track" data-source="Storage_Services_Parcel_Room" onclick="highlightPinpoints('Platform 1 Point 4')">
+                <li class="track" data-source="Storage_Services_Parcel_Room"
+                    onclick="highlightPinpoints('Platform 1 Point 4')">
                     <a href="#"><img src="./static/img/pin_icon/waiting.png" height="20"> <span data-en="Parcel Room"
                             data-hi="पार्सल कक्ष" data-mr="पार्सल कक्ष">Parcel Room</span></a>
                 </li>
@@ -495,29 +590,33 @@
 
 
         <div class="menu-item">
-            <button class="menu-btn"  onclick="toggleList('Escalator')">
-                <img src="./static/img/menu_img/menu_escalator.png" alt=""><span class="track" data-source="Lift_&_Escalator" data-en="Lift & Escalator"
-                    data-hi="लिफ्ट और एस्केलेटर" data-mr="लिफ्ट आणि एस्केलेटर">Lift & Escalator</span>
+            <button class="menu-btn" onclick="toggleList('Escalator')">
+                <img src="./static/img/menu_img/menu_escalator.png" alt=""><span class="track"
+                    data-source="Lift_&_Escalator" data-en="Lift & Escalator" data-hi="लिफ्ट और एस्केलेटर"
+                    data-mr="लिफ्ट आणि एस्केलेटर">Lift & Escalator</span>
                 <span><i class="fas fa-chevron-down"></i></span>
             </button>
             <ul id="Escalator" class="menu-list">
                 <li onclick="highlightPinpoints('Platform 1 Point 2')">
-                    <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"> <span
-                      class="track" data-source="Lift_&_Escalator_PF1_Escalator"      data-en="PF1 Escalator" data-hi="प्लेटफार्म 1 एस्केलेटर"
-                            data-mr="प्लॅटफॉर्म 1 एस्केलेटर">PF1 Escalator</span></a>
+                    <a href="#"><img src="./static/img/pin_icon/escalator.png" height="20"> <span class="track"
+                            data-source="Lift_&_Escalator_PF1_Escalator" data-en="PF1 Escalator"
+                            data-hi="प्लेटफार्म 1 एस्केलेटर" data-mr="प्लॅटफॉर्म 1 एस्केलेटर">PF1 Escalator</span></a>
                 </li>
                 <li onclick="highlightPinpoints('Platform 1 Point 2')">
-                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span
-                        class="track" data-source="Lift_&_Escalator_PF1_Lift_Bhusvalend"      data-en="PF1 Lift Bhusval end" data-hi="प्लेटफार्म 1 लिफ्ट भुसावल छोर"
-                            data-mr="प्लॅटफॉर्म 1 लिफ्ट भुसावळ छोर">PF1 Lift Bhusval end</span></a>
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span class="track"
+                            data-source="Lift_&_Escalator_PF1_Lift_Bhusvalend" data-en="PF1 Lift Bhusval end"
+                            data-hi="प्लेटफार्म 1 लिफ्ट भुसावल छोर" data-mr="प्लॅटफॉर्म 1 लिफ्ट भुसावळ छोर">PF1 Lift
+                            Bhusval end</span></a>
                 </li>
                 <li onclick="highlightPinpoints('Platform 4 Point 4')">
-                    <img src="./static/img/pin_icon/escalator.png" height="20"> <span   class="track" data-source="Lift_&_Escalator_PF4_Escalator" data-en="PF4 Escalator"
+                    <img src="./static/img/pin_icon/escalator.png" height="20"> <span class="track"
+                        data-source="Lift_&_Escalator_PF4_Escalator" data-en="PF4 Escalator"
                         data-hi="प्लेटफार्म 4 एस्केलेटर" data-mr="प्लॅटफॉर्म 4 एस्केलेटर">PF4 Escalator</span>
                 </li>
                 <li onclick="highlightPinpoints('Platform 4 Point 7')">
-                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span class="track" data-source="Lift_&_Escalator_PF4_Lift" data-en="PF4 Lift"
-                            data-hi="प्लेटफार्म 4 लिफ्ट" data-mr="प्लॅटफॉर्म 4 लिफ्ट">PF4 Lift</span></a>
+                    <a href="#"><img src="./static/img/pin_icon/lift.png" height="20"> <span class="track"
+                            data-source="Lift_&_Escalator_PF4_Lift" data-en="PF4 Lift" data-hi="प्लेटफार्म 4 लिफ्ट"
+                            data-mr="प्लॅटफॉर्म 4 लिफ्ट">PF4 Lift</span></a>
                 </li>
             </ul>
         </div>
@@ -525,19 +624,22 @@
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('Entry')">
-                <img src="./static/img/menu_img/Entryexit.png" alt=""><span class="track" data-source="Entry/Exit" data-en="Entry/exit" data-hi="प्रवेश/निकास"
-                    data-mr="प्रवेश/निर्गम">Entry/exit</span><span><i class="fas fa-chevron-down"></i></span>
+                <img src="./static/img/menu_img/Entryexit.png" alt=""><span class="track" data-source="Entry/Exit"
+                    data-en="Entry/exit" data-hi="प्रवेश/निकास" data-mr="प्रवेश/निर्गम">Entry/exit</span><span><i
+                        class="fas fa-chevron-down"></i></span>
             </button>
 
 
             <ul id="Entry" class="menu-list">
                 <li onclick="highlightPinpoints('Platform 1 Point 34')">
-                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span class="track" data-source="Entry/Exit_PF1" data-en="PF 1 Entry/exit"
-                        data-hi="प्लेटफार्म 1 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 1 प्रवेश/निर्गम">PF 1 Entry/exit</span>
+                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span class="track"
+                        data-source="Entry/Exit_PF1" data-en="PF 1 Entry/exit" data-hi="प्लेटफार्म 1 प्रवेश/निकास"
+                        data-mr="प्लॅटफॉर्म 1 प्रवेश/निर्गम">PF 1 Entry/exit</span>
                 </li>
                 <li onclick="highlightPinpoints('Platform 4 Point 10')">
-                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span class="track" data-source="Entry/Exit_PF4" data-en="PF 4 Entry/exit"
-                        data-hi="प्लेटफार्म 4 प्रवेश/निकास" data-mr="प्लॅटफॉर्म 4 प्रवेश/निर्गम">PF 4 Entry/exit</span>
+                    <img src="./static/img/pin_icon/Entryexit.png" height="20"> <span class="track"
+                        data-source="Entry/Exit_PF4" data-en="PF 4 Entry/exit" data-hi="प्लेटफार्म 4 प्रवेश/निकास"
+                        data-mr="प्लॅटफॉर्म 4 प्रवेश/निर्गम">PF 4 Entry/exit</span>
                 </li>
             </ul>
         </div>
@@ -548,7 +650,7 @@
 
         <div class="menu-item">
             <button class="menu-btn" onclick="window.location.href='help_desk.html'">
-                <img src="./static/img/menu_img/HelpDesk.png" alt=""><span  data-en="Help Desk" data-hi="मदद डेस्क"
+                <img src="./static/img/menu_img/HelpDesk.png" alt=""><span data-en="Help Desk" data-hi="मदद डेस्क"
                     data-mr="मदत डेस्क">Help Desk</span>
             </button>
 
@@ -567,8 +669,9 @@
 
         <div class="menu-item">
             <button class="menu-btn" onclick="highlightPinpoints('Platform 1 Point 20')">
-                <img src="./static/img/menu_img/Police station locator.png" alt=""><span
-              class="track" data-source="Police_Station_Locator"      data-en="Police station locator" data-hi="पुलिस स्टेशन लोकेटर" data-mr="पोलीस स्टेशन शोधक">Police
+                <img src="./static/img/menu_img/Police station locator.png" alt=""><span class="track"
+                    data-source="Police_Station_Locator" data-en="Police station locator" data-hi="पुलिस स्टेशन लोकेटर"
+                    data-mr="पोलीस स्टेशन शोधक">Police
                     station locator</span>
             </button>
 
@@ -581,8 +684,8 @@
 
         <div class="menu-item">
             <button class="menu-btn" id="nashikMapBtn">
-                <img src="./static/img/menu_img/Nashik map.png" alt=""><span class="track" data-source="Nashik_Map" data-en="Nashik map"
-                    data-hi="नासिक का नक्शा" data-mr="नाशिक नकाशा">Nashik map</span>
+                <img src="./static/img/menu_img/Nashik map.png" alt=""><span class="track" data-source="Nashik_Map"
+                    data-en="Nashik map" data-hi="नासिक का नक्शा" data-mr="नाशिक नकाशा">Nashik map</span>
             </button>
         </div>
 
@@ -591,9 +694,9 @@
 
         <div class="menu-item">
             <button class="menu-btn" onclick="toggleList('tourist-list')">
-                <img src="./static/img/menu_img/Popular places.png" alt=""><span class="track" data-source="Tourist_Places" data-en="Tourist Places"
-                    data-hi="पर्यटक स्थल" data-mr="पर्यटन स्थळे">Tourist Places</span><span><i
-                        class="fas fa-chevron-down "></i></span>
+                <img src="./static/img/menu_img/Popular places.png" alt=""><span class="track"
+                    data-source="Tourist_Places" data-en="Tourist Places" data-hi="पर्यटक स्थल"
+                    data-mr="पर्यटन स्थळे">Tourist Places</span><span><i class="fas fa-chevron-down "></i></span>
 
             </button>
             <ul id="tourist-list" class="menu-list">
@@ -630,12 +733,17 @@
             </ul>
         </div>
 
+        <div class="menu-item">
+            <a class="menu-btn" href="admin_dashboard.html" style="text-decoration: none;">
+                <img src="./static/img/menu_img/admin.png" alt="" style="width: 20px; height: 20px; margin-right: 9px;">
+                <span class="track" data-source="Admin" data-en="Admin" data-hi="व्यवस्थापक"
+                    data-mr="प्रशासक">Admin</span>
+            </a>
+        </div>
 
-        <!-- <div class="menu-item">
-            <button class="menu-btn"><img src="./static/img/menu_img/How to travel.png" alt="">How to travel ?
-                </button>
 
-        </div> -->
+      
+
     </div>
 
 
@@ -689,32 +797,32 @@
     </div>
 
 
-   <form onsubmit="submitFeedback(); return false;">
-    <!-- Modal -->
-    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center p-3">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title w-100">Share your Feedback</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <form onsubmit="submitFeedback(); return false;">
+        <!-- Modal -->
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center p-3">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title w-100">Share your Feedback</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <p class="mt-2">Rate your Experience 👋</p>
+                    <div id="starContainer" class="mb-3">
+                        <span class="star" data-value="1">&#9733;</span>
+                        <span class="star" data-value="2">&#9733;</span>
+                        <span class="star" data-value="3">&#9733;</span>
+                        <span class="star" data-value="4">&#9733;</span>
+                        <span class="star" data-value="5">&#9733;</span>
+                    </div>
+                    <div class="mb-3">
+                        <textarea id="feedbackText" class="form-control"
+                            placeholder="Describe Your Experience Here"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
                 </div>
-                <p class="mt-2">Rate your Experience 👋</p>
-                <div id="starContainer" class="mb-3">
-                    <span class="star" data-value="1">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="5">&#9733;</span>
-                </div>
-                <div class="mb-3">
-                    <textarea id="feedbackText" class="form-control"
-                        placeholder="Describe Your Experience Here"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
 
 
@@ -785,7 +893,7 @@
             document.body.appendChild(script);
         }
     </script> -->
-    
+
     <script src="./static/js/map.js"></script>
     <script src="./static/js/voice.js"></script>
 
@@ -793,28 +901,28 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnBmHondgwsA-dzeWtQdRT3X83On_V-wI&libraries=geometry&callback=initMap"></script>
     <!-- Bootstrap JS -->
-  
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 
 
 
-   <!-- GA EVENT LABEL Monitoring -->
-<script>
-   document.querySelectorAll(".track").forEach(span => {
-  span.addEventListener("click", () => {
-    const source = span.getAttribute('data-source');
+    <!-- GA EVENT LABEL Monitoring -->
+    <script>
+        document.querySelectorAll(".track").forEach(span => {
+            span.addEventListener("click", () => {
+                const source = span.getAttribute('data-source');
 
-    gtag('event', 'NashikRailway_Event', {
-      'event_category': 'Map Interaction',
-      'event_label': source,
-      'event_time': new Date().toISOString()
-    });
+                gtag('event', 'NashikRailway_Event', {
+                    'event_category': 'Map Interaction',
+                    'event_label': source,
+                    'event_time': new Date().toISOString()
+                });
 
-    console.log("GA event sent from:", source);
-  });
-});
-  </script>
+                console.log("GA event sent from:", source);
+            });
+        });
+    </script>
 
 
 

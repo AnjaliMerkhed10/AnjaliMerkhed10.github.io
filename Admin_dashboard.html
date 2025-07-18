@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard</title>
+   <link rel="stylesheet" href="admin.css">
+    <script src="prevent.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 🔐 Login Section -->
+        <div id="loginSection" class="login-section">
+            <h2>🔐 Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="handleLogin()">Login</button>
+            <div id="loginError" class="error" style="display: none;"></div>
+        </div>
+
+        <!-- 📊 Main Dashboard -->
+        <div id="mainApp" style="display: none;">
+            <div class="header">
+                <h1>📊 Analytics Dashboard</h1>
+                <p>Latest Performance Metrics</p>
+            </div>
+
+            <div class="controls">
+                <div class="date-inputs">
+                    <div class="date-group">
+                        <label>Start Date:</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div class="date-group">
+                        <label>End Date:</label>
+                        <input type="date" id="endDate">
+                    </div>
+                    <button class="fetch-btn" onclick="fetchData()">Get Latest Data</button>
+                    <button class="fetch-btn" onclick="logOut()">Logout</button>
+                </div>
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Fetching your analytics data...</p>
+            </div>
+
+            <div id="error" class="error" style="display: none;"></div>
+
+            <div id="dashboard" class="dashboard">
+                <!-- Overall Stats -->
+                <div class="stats-section">
+                    <div class="section-title">📈 Overall Statistics</div>
+                    <div class="stats-grid">
+                        <!-- <div class="stat-card">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-value" id="totalCount">-</div>
+                            <div class="stat-label">Total Count</div>
+                        </div> -->
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-value" id="visitorCount">-</div>
+                            <div class="stat-label">Visitor Count</div>
+                        </div>
+                        <div class="stat-card" id="todayvisitor">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-value" id="todayVisitors">-</div>
+                            <div class="stat-label">Today's Visitors</div>
+                        </div>
+                        <!-- <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-value" id="helpCount">-</div>
+                            <div class="stat-label">Help Desk Count</div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Service-wise Stats -->
+                <div class="stats-section">
+                    <div class="section-title">🏥 Service-wise Statistics</div>
+                    <div class="service-stats-grid">
+                        <div class="service-card">
+                            <div class="service-icon">🎒</div>
+                            <div class="service-value" id="coolieCount">-</div>
+                            <div class="service-label">Coolie Count</div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">👨‍⚕️</div>
+                            <div class="service-value" id="doctorCount">-</div>
+                            <div class="service-label">Doctor Count</div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">👮‍♂️</div>
+                            <div class="service-value" id="policeCount">-</div>
+                            <div class="service-label">Police Count</div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">♿</div>
+                            <div class="service-value" id="wheelchairCount">-</div>
+                            <div class="service-label">Wheelchair Count</div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🏥</div>
+                            <div class="service-value" id="stretcherCount">-</div>
+                            <div class="service-label">Stretcher Count</div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🛒</div>
+                            <div class="service-value" id="cartCount">-</div>
+                            <div class="service-label">Cart Count</div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🧒</div>
+                            <div class="service-value" id="childHelpCount">-</div>
+                            <div class="service-label">Child Help Count</div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">📋</div>
+                            <div class="service-value" id="otherCount">-</div>
+                            <div class="service-label">Other Count</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
