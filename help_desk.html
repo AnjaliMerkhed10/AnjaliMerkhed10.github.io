@@ -329,7 +329,8 @@
 
     <script>
         // ✅ Google Script URL
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzUp-Pa1auZasW4D5ZDM6LbOy6LbAG9tH4xJvQgtLsZHKw9C6zFZqRq6nomM_-umA2j/exec?helpdesk=true";
+       const scriptURL = "https://script.google.com/macros/s/AKfycbzTXtTzR3DHlUDbynioqRUQI7O9q-jgbpMQNS7byj1LCdg_YbLMRZfaq3tlysbEX2pe/exec";
+
 
         // ✅ Call after page loads
         window.addEventListener('DOMContentLoaded', () => {
@@ -345,7 +346,7 @@
                 icon.addEventListener("click", function () {
                     const service = this.getAttribute("data-service").toLowerCase().replace(/\s+/g, '');
                     console.log(service);
-                    const url = `https://script.google.com/macros/s/AKfycbzUp-Pa1auZasW4D5ZDM6LbOy6LbAG9tH4xJvQgtLsZHKw9C6zFZqRq6nomM_-umA2j/exec?${service}=true`;
+                    const url = `https://script.google.com/macros/s/AKfycbzTXtTzR3DHlUDbynioqRUQI7O9q-jgbpMQNS7byj1LCdg_YbLMRZfaq3tlysbEX2pe/exec?${service}=true`;
 
                     fetch(url)
                         .then(response => response.json())

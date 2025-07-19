@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Analytics Dashboard</title>
-   <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin.css">
     <script src="prevent.js"></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <!-- 🔐 Login Section -->
-        <div id="loginSection" class="login-section">
-            <h2>🔐 Login</h2>
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <button onclick="handleLogin()">Login</button>
-            <div id="loginError" class="error" style="display: none;"></div>
+        <div style="display: flex;justify-content: center;align-items: center; ">
+            <div id="loginSection" class="login-section">
+                <h2>🔐 Login</h2>
+                <input type="text" id="username" placeholder="Username">
+
+                <div style="position: relative;">
+                    <input type="password" id="password" placeholder="Password" style="padding-right: 30px;">
+                    <span onclick="togglePassword()" style="position: absolute; right: 8px; top: 8px; cursor: pointer;"
+                        id="toggleEye"><img src="../AnjaliMerkhed10.github.io/static/img/admin/eye.png" alt=""></span>
+                </div>
+
+                <button onclick="handleLogin()">Login</button>
+                <div id="loginError" class="error" style="display: none;"></div>
+            </div>
         </div>
 
+        
         <!-- 📊 Main Dashboard -->
         <div id="mainApp" style="display: none;">
             <div class="header">
@@ -28,11 +38,11 @@
                 <div class="date-inputs">
                     <div class="date-group">
                         <label>Start Date:</label>
-                        <input type="date"  min="2025-04-20" id="startDate">
+                        <input type="date" min="2025-04-20" id="startDate">
                     </div>
                     <div class="date-group">
                         <label>End Date:</label>
-                        <input type="date"  min="2025-04-20" id="endDate">
+                        <input type="date" min="2025-04-20" id="endDate">
                     </div>
                     <button class="fetch-btn" onclick="fetchData()">Get Latest Data</button>
                     <button class="fetch-btn" onclick="logOut()">Logout</button>
@@ -123,7 +133,27 @@
             </div>
         </div>
     </div>
+    <script>
 
-  <script src="admin.js"></script>
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            const toggleIcon = document.getElementById("toggleIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.src = "../AnjaliMerkhed10.github.io/static/img/admin/eye.png";  // 👁️‍🗨️ closed eye
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.src = "../AnjaliMerkhed10.github.io/static/img/admin/app.png";    // 👁️ open eye
+            }
+        }
+
+
+
+
+        // 
+    </script>
+    <script src="admin.js"></script>
 </body>
+
 </html>
