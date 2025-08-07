@@ -3,7 +3,14 @@ const USERS = [
     { username: "NashikAdmin", password: "N@shik@123" },
 ];
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbzTXtTzR3DHlUDbynioqRUQI7O9q-jgbpMQNS7byj1LCdg_YbLMRZfaq3tlysbEX2pe/exec";
+// const scriptURL = "https://script.google.com/macros/s/AKfycbyrEvlxqSVqtaqO1UUTTQ7jAqzIWMVSSevuLJbuganlAr9wOV5wyJ_d3UzNgyNOfw4/exec";
+
+const scriptURL = "https://script.google.com/macros/s/AKfycbx7DV199RifTLb4LmZr4w674rM3q-kne-EcX1A4zQD8kMicC2SOoZuQeB4PbhIYp3BT/exec";
+
+// AKfycbyrEvlxqSVqtaqO1UUTTQ7jAqzIWMVSSevuLJbuganlAr9wOV5wyJ_d3UzNgyNOfw4
+
+// https://script.google.com/macros/s/AKfycbyrEvlxqSVqtaqO1UUTTQ7jAqzIWMVSSevuLJbuganlAr9wOV5wyJ_d3UzNgyNOfw4/exec
+
 // Show/hide sections
 function showApp() {
     document.getElementById('loginSection').style.display = 'none';
