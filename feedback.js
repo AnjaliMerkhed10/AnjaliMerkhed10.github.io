@@ -51,7 +51,7 @@
 
     bootstrap.Modal.getInstance(document.getElementById('feedbackModal')).hide();
 
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbzUp-Pa1auZasW4D5ZDM6LbOy6LbAG9tH4xJvQgtLsZHKw9C6zFZqRq6nomM_-umA2j/exec";
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbzTXtTzR3DHlUDbynioqRUQI7O9q-jgbpMQNS7byj1LCdg_YbLMRZfaq3tlysbEX2pe/exec";
         const callbackName = "handleFeedbackResponse";
         const script = document.createElement('script');
         script.src = `${scriptUrl}?rating=${selectedRating}&comment=${encodeURIComponent(comment)}&callback=${callbackName}`;
